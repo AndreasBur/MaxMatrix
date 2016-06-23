@@ -8,10 +8,10 @@
  *  -------------------------------------------------------------------------------------------------------------------
  *  FILE DESCRIPTION
  *  -----------------------------------------------------------------------------------------------------------------*/
-/**     \file		MaxMatrix.c
- *      \brief		Main file of MaxMatrix library
+/**     \file       MaxMatrix.c
+ *      \brief      Main file of MaxMatrix library
  *
- *      \details	Arduino library to drive 8x8 LED display Matrix modules with MAX7219 
+ *      \details    Arduino library to drive 8x8 LED display Matrix modules with MAX7219 
  *                  
  *
  *********************************************************************************************************************/
@@ -39,15 +39,15 @@
  *********************************************************************************************************************/
 MaxMatrix::MaxMatrix(byte sDataInPin, byte sChipSelectPin, byte sClockPin) 
 {
-	DataInPin = sDataInPin;
-	ChipSelectPin = sChipSelectPin;
-	ClockPin = sClockPin;
-	String = NULL;
-	SpriteShiftCounter = 0;
-	State = MAXMATRIX_STATE_NONE;
-	
-	for (int i = 0; i < MAXMATRIX_NUMBER_OF_COLUMNS; i++) MatrixBuffer[i] = 0;
-	for (int i = 0; i < MAXMATRIX_SPRITE_TABLE_NUMBER_OF_COLUMNS; i++) SpriteBuffer[i] = 0;
+    DataInPin = sDataInPin;
+    ChipSelectPin = sChipSelectPin;
+    ClockPin = sClockPin;
+    String = NULL;
+    SpriteShiftCounter = 0;
+    State = MAXMATRIX_STATE_NONE;
+    
+    for (int i = 0; i < MAXMATRIX_NUMBER_OF_COLUMNS; i++) MatrixBuffer[i] = 0;
+    for (int i = 0; i < MAXMATRIX_SPRITE_TABLE_NUMBER_OF_COLUMNS; i++) SpriteBuffer[i] = 0;
 } /* MaxMatrix */
 
 
@@ -70,22 +70,22 @@ MaxMatrix::~MaxMatrix()
  *********************************************************************************************************************/
 void MaxMatrix::init()
 {
-	State = MAXMATRIX_STATE_INIT;
-	pinMode(DataInPin, OUTPUT);
-	pinMode(ClockPin, OUTPUT);
-	pinMode(ChipSelectPin, OUTPUT);
-	digitalWrite(ClockPin, HIGH); 
+    State = MAXMATRIX_STATE_INIT;
+    pinMode(DataInPin, OUTPUT);
+    pinMode(ClockPin, OUTPUT);
+    pinMode(ChipSelectPin, OUTPUT);
+    digitalWrite(ClockPin, HIGH); 
 
-	RegisterWrite(MAX7219_REG_SCAN_LIMIT_ADDRESS, MAX7219_REG_SCAN_LIMIT_DISPLAY_DIGIT_0_TO_7);		// display all digits  
-	RegisterWrite(MAX7219_REG_DECODE_MODE_ADDRESS, MAX7219_REG_DECODE_MODE_NO_DECODE);				// using an led matrix (not digits)
-	RegisterWrite(MAX7219_REG_SHUTDOWN_ADDRESS, MAX7219_REG_SHUTDOWN_MODE_NORMAL_OPERATION);		// normal operation mode
-	RegisterWrite(MAX7219_REG_DISPLAY_TEST_ADDRESS, MAX7219_REG_DISPLAY_TEST_NORMAL_OPERATION);		// no display test
-	
-	/* initialize registers, turn all LEDs off */
-	clear();
-	
-	setIntensity(0x04);    // the first 0x0f is the value you can set
-	State = MAXMATRIX_STATE_READY;
+    RegisterWrite(MAX7219_REG_SCAN_LIMIT_ADDRESS, MAX7219_REG_SCAN_LIMIT_DISPLAY_DIGIT_0_TO_7);     // display all digits  
+    RegisterWrite(MAX7219_REG_DECODE_MODE_ADDRESS, MAX7219_REG_DECODE_MODE_NO_DECODE);              // using an led matrix (not digits)
+    RegisterWrite(MAX7219_REG_SHUTDOWN_ADDRESS, MAX7219_REG_SHUTDOWN_MODE_NORMAL_OPERATION);        // normal operation mode
+    RegisterWrite(MAX7219_REG_DISPLAY_TEST_ADDRESS, MAX7219_REG_DISPLAY_TEST_NORMAL_OPERATION);     // no display test
+    
+    /* initialize registers, turn all LEDs off */
+    clear();
+    
+    setIntensity(0x04);    // the first 0x0f is the value you can set
+    State = MAXMATRIX_STATE_READY;
 } /* init */
 
 
@@ -94,15 +94,15 @@ void MaxMatrix::init()
 **********************************************************************************************************************/
 /*! \brief          shifts char or string over the matrix
  *  \details        this function has to be called periodically until state change from 
- *					MAXMATRIX_STATE_CHAR_SHIFT or MAXMATRIX_STATE_STRING_SHIFT to MAXMATRIX_STATE_READY
+ *                  MAXMATRIX_STATE_CHAR_SHIFT or MAXMATRIX_STATE_STRING_SHIFT to MAXMATRIX_STATE_READY
  *  \return         -
- *  \pre			printCharWithShift or printStringWithShift must be called first
+ *  \pre            printCharWithShift or printStringWithShift must be called first
  *********************************************************************************************************************/
 void MaxMatrix::shiftTask()
 {
-	//if(MAXMATRIX_STATE_INIT == State) State = MAXMATRIX_STATE_READY;
-	if(MAXMATRIX_STATE_STRING_SHIFT == State) stringShiftTask();
-	if(MAXMATRIX_STATE_CHAR_SHIFT == State) charShiftTask();
+    //if(MAXMATRIX_STATE_INIT == State) State = MAXMATRIX_STATE_READY;
+    if(MAXMATRIX_STATE_STRING_SHIFT == State) stringShiftTask();
+    if(MAXMATRIX_STATE_CHAR_SHIFT == State) charShiftTask();
 } /* shiftTask */
 
 
@@ -112,18 +112,18 @@ void MaxMatrix::shiftTask()
 /*! \brief          set led intensity of matrix module
  *  \details        
  *                  
- *  \param[in]      Intensity		intensity value from 0 to 15
+ *  \param[in]      Intensity       intensity value from 0 to 15
  *  \return         E_OK
  *                  E_NOT_OK
  *********************************************************************************************************************/
 stdReturnType MaxMatrix::setIntensity(byte Intensity)
 {
-	if(Intensity >= MAX7219_REG_INTENSITY_MIN_VALUE && Intensity <= MAX7219_REG_INTENSITY_MAX_VALUE) {
-		RegisterWrite(MAX7219_REG_INTENSITY_ADDRESS, Intensity);
-		return E_OK;
-	} else {
-		return E_NOT_OK; 
-	}
+    if(Intensity >= MAX7219_REG_INTENSITY_MIN_VALUE && Intensity <= MAX7219_REG_INTENSITY_MAX_VALUE) {
+        RegisterWrite(MAX7219_REG_INTENSITY_ADDRESS, Intensity);
+        return E_OK;
+    } else {
+        return E_NOT_OK; 
+    }
 } /* setIntensity */
 
 
@@ -137,11 +137,11 @@ stdReturnType MaxMatrix::setIntensity(byte Intensity)
  *********************************************************************************************************************/
 void MaxMatrix::clear()
 {
-	for(int i = 0; i < MAXMATRIX_COLUMN_NUMBER_OF_MODULE; i++)
-		setColumnOnAllModules(i,0);
-		
-	for(int i = 0; i < MAXMATRIX_NUMBER_OF_COLUMNS; i++)
-		MatrixBuffer[i] = 0;
+    for(int i = 0; i < MAXMATRIX_COLUMN_NUMBER_OF_MODULE; i++)
+        setColumnOnAllModules(i,0);
+        
+    for(int i = 0; i < MAXMATRIX_NUMBER_OF_COLUMNS; i++)
+        MatrixBuffer[i] = 0;
 } /* clear */
 
 
@@ -151,20 +151,20 @@ void MaxMatrix::clear()
 /*! \brief          send SPI command to MAX7219
  *  \details        
  *                  
- *  \param[in]      RegisterAddress		Address of the MAX7219 Register
- *  \param[in]      Value				Register Value
+ *  \param[in]      RegisterAddress     Address of the MAX7219 Register
+ *  \param[in]      Value               Register Value
  *  \return         -
  *********************************************************************************************************************/
 void MaxMatrix::RegisterWrite(byte RegisterAddress, byte RegisterValue)
 {
-	digitalWrite(ChipSelectPin, LOW);
-	for(int i = 0; i < MAXMATRIX_NUMBER_OF_MODULES; i++)
-	{
-		shiftOut(DataInPin, ClockPin, MSBFIRST, RegisterAddress);
-		shiftOut(DataInPin, ClockPin, MSBFIRST, RegisterValue);
-	}
-	digitalWrite(ChipSelectPin, LOW);
-	digitalWrite(ChipSelectPin, HIGH);
+    digitalWrite(ChipSelectPin, LOW);
+    for(int i = 0; i < MAXMATRIX_NUMBER_OF_MODULES; i++)
+    {
+        shiftOut(DataInPin, ClockPin, MSBFIRST, RegisterAddress);
+        shiftOut(DataInPin, ClockPin, MSBFIRST, RegisterValue);
+    }
+    digitalWrite(ChipSelectPin, LOW);
+    digitalWrite(ChipSelectPin, HIGH);
 } /* RegisterWrite */
 
 
@@ -175,34 +175,34 @@ void MaxMatrix::RegisterWrite(byte RegisterAddress, byte RegisterValue)
  *  \details        this function sets a column on the LED matrix with the given values
  *                  column reaches from zero to number of modules multiplied by eight
  *
- *  \param[in]      Column		column on matrix which contains eight leds
- *  \param[in]      Value		led value in column each bit means one led
+ *  \param[in]      Column      column on matrix which contains eight leds
+ *  \param[in]      Value       led value in column each bit means one led
  *  \return         E_OK
  *                  E_NOT_OK
  *********************************************************************************************************************/
 stdReturnType MaxMatrix::setColumn(byte Column, byte Value)
 {
-	if(Column >= 0 && Column <= MAXMATRIX_NUMBER_OF_COLUMNS) {
-		int Module = Column / MAXMATRIX_COLUMN_NUMBER_OF_MODULE;
-		int ModuleColumn = Column % MAXMATRIX_COLUMN_NUMBER_OF_MODULE;
-		digitalWrite(ChipSelectPin, LOW);
-		for(int i = 0; i < MAXMATRIX_NUMBER_OF_MODULES; i++)
-		{
-			if (i == Module) {
-				shiftOut(DataInPin, ClockPin, MSBFIRST,  ModuleColumn + 1);
-				shiftOut(DataInPin, ClockPin, MSBFIRST, Value);
-			} else {
-				shiftOut(DataInPin, ClockPin, MSBFIRST, 0);
-				shiftOut(DataInPin, ClockPin, MSBFIRST, 0);
-			}
-		}
-		digitalWrite(ChipSelectPin, LOW);
-		digitalWrite(ChipSelectPin, HIGH);
-		MatrixBuffer[Column] = Value;
-		return E_OK;
-	} else {
-		return E_NOT_OK;
-	}
+    if(Column >= 0 && Column <= MAXMATRIX_NUMBER_OF_COLUMNS) {
+        int Module = Column / MAXMATRIX_COLUMN_NUMBER_OF_MODULE;
+        int ModuleColumn = Column % MAXMATRIX_COLUMN_NUMBER_OF_MODULE;
+        digitalWrite(ChipSelectPin, LOW);
+        for(int i = 0; i < MAXMATRIX_NUMBER_OF_MODULES; i++)
+        {
+            if (i == Module) {
+                shiftOut(DataInPin, ClockPin, MSBFIRST,  ModuleColumn + 1);
+                shiftOut(DataInPin, ClockPin, MSBFIRST, Value);
+            } else {
+                shiftOut(DataInPin, ClockPin, MSBFIRST, 0);
+                shiftOut(DataInPin, ClockPin, MSBFIRST, 0);
+            }
+        }
+        digitalWrite(ChipSelectPin, LOW);
+        digitalWrite(ChipSelectPin, HIGH);
+        MatrixBuffer[Column] = Value;
+        return E_OK;
+    } else {
+        return E_NOT_OK;
+    }
 } /* setColumn */
 
 
@@ -213,27 +213,27 @@ stdReturnType MaxMatrix::setColumn(byte Column, byte Value)
  *  \details        this function sets a column on all LED matrix modules with the given values
  *                  column reaches from zero to column number of a module
  *
- *  \param[in]      Column		column on matrix which contains eight LEDs
- *  \param[in] 		Value		led value in column each bit means one LED
+ *  \param[in]      Column      column on matrix which contains eight LEDs
+ *  \param[in]      Value       led value in column each bit means one LED
  *  \return         E_OK
  *                  E_NOT_OK
  *********************************************************************************************************************/
 stdReturnType MaxMatrix::setColumnOnAllModules(byte Column, byte Value)
 {
-	if(Column >= 0 && Column <= MAXMATRIX_COLUMN_NUMBER_OF_MODULE) {
-		digitalWrite(ChipSelectPin, LOW);
-		for(int i = 0; i < MAXMATRIX_NUMBER_OF_MODULES; i++)
-		{
-			shiftOut(DataInPin, ClockPin, MSBFIRST, Column + 1);
-			shiftOut(DataInPin, ClockPin, MSBFIRST, Value);
-			MatrixBuffer[Column * i] = Value;
-		}
-		digitalWrite(ChipSelectPin, LOW);
-		digitalWrite(ChipSelectPin, HIGH);
-		return E_OK;
-	} else {
-		return E_NOT_OK;
-	}
+    if(Column >= 0 && Column <= MAXMATRIX_COLUMN_NUMBER_OF_MODULE) {
+        digitalWrite(ChipSelectPin, LOW);
+        for(int i = 0; i < MAXMATRIX_NUMBER_OF_MODULES; i++)
+        {
+            shiftOut(DataInPin, ClockPin, MSBFIRST, Column + 1);
+            shiftOut(DataInPin, ClockPin, MSBFIRST, Value);
+            MatrixBuffer[Column * i] = Value;
+        }
+        digitalWrite(ChipSelectPin, LOW);
+        digitalWrite(ChipSelectPin, HIGH);
+        return E_OK;
+    } else {
+        return E_NOT_OK;
+    }
 } /* setColumnOnAllModules */
 
 
@@ -249,28 +249,28 @@ stdReturnType MaxMatrix::setColumnOnAllModules(byte Column, byte Value)
  *********************************************************************************************************************/
 stdReturnType MaxMatrix::setDot(byte Column, byte Row, byte Value)
 {
-	if(Column >= 0 && Column < MAXMATRIX_NUMBER_OF_COLUMNS && Row >= 0 && Row < MAXMATRIX_ROW_NUMBER_OF_MODULE) {
-	    bitWrite(MatrixBuffer[Column], Row, Value);
+    if(Column >= 0 && Column < MAXMATRIX_NUMBER_OF_COLUMNS && Row >= 0 && Row < MAXMATRIX_ROW_NUMBER_OF_MODULE) {
+        bitWrite(MatrixBuffer[Column], Row, Value);
 
-	    int Module = Column / MAXMATRIX_COLUMN_NUMBER_OF_MODULE;
-	    int ModuleColumn = Column % MAXMATRIX_COLUMN_NUMBER_OF_MODULE;
-	    digitalWrite(ChipSelectPin, LOW);
-	    for(int i = 0; i < MAXMATRIX_NUMBER_OF_MODULES; i++)
-	    {
-		    if (i == Module) {
-			    shiftOut(DataInPin, ClockPin, MSBFIRST, ModuleColumn + 1);
-			    shiftOut(DataInPin, ClockPin, MSBFIRST, MatrixBuffer[Column]);
-			} else {
-			    shiftOut(DataInPin, ClockPin, MSBFIRST, 0);
-			    shiftOut(DataInPin, ClockPin, MSBFIRST, 0);
-		    }
-	    }
-	    digitalWrite(ChipSelectPin, LOW);
-	    digitalWrite(ChipSelectPin, HIGH);
-		return E_OK;
-	} else {
-		return E_NOT_OK;
-	}
+        int Module = Column / MAXMATRIX_COLUMN_NUMBER_OF_MODULE;
+        int ModuleColumn = Column % MAXMATRIX_COLUMN_NUMBER_OF_MODULE;
+        digitalWrite(ChipSelectPin, LOW);
+        for(int i = 0; i < MAXMATRIX_NUMBER_OF_MODULES; i++)
+        {
+            if (i == Module) {
+                shiftOut(DataInPin, ClockPin, MSBFIRST, ModuleColumn + 1);
+                shiftOut(DataInPin, ClockPin, MSBFIRST, MatrixBuffer[Column]);
+            } else {
+                shiftOut(DataInPin, ClockPin, MSBFIRST, 0);
+                shiftOut(DataInPin, ClockPin, MSBFIRST, 0);
+            }
+        }
+        digitalWrite(ChipSelectPin, LOW);
+        digitalWrite(ChipSelectPin, HIGH);
+        return E_OK;
+    } else {
+        return E_NOT_OK;
+    }
 } /* setDot */
 
 
@@ -280,22 +280,22 @@ stdReturnType MaxMatrix::setDot(byte Column, byte Row, byte Value)
 /*! \brief          prints a char on the matrix
  *  \details        
  *                  
- *  \param[in]      X			x coordinate
- *  \param[in]      Y			y coordinate
+ *  \param[in]      X           x coordinate
+ *  \param[in]      Y           y coordinate
  *  \return         E_OK
  *                  E_NOT_OK
  *********************************************************************************************************************/
 stdReturnType MaxMatrix::printChar(int X, int Y, char Char)
-{	
-	spriteIndexType SpriteIndex;
-	spriteType Sprite;
-	
-	if(E_OK == convertCharToSprite(Char, &SpriteIndex)) {
-		if(E_OK == getSprite(SpriteIndex, &Sprite)) {
-			printSprite(X, Y, &Sprite);
-			return E_OK;
-		} else return E_NOT_OK;
-	} else return E_NOT_OK;
+{   
+    spriteIndexType SpriteIndex;
+    spriteType Sprite;
+    
+    if(E_OK == convertCharToSprite(Char, &SpriteIndex)) {
+        if(E_OK == getSprite(SpriteIndex, &Sprite)) {
+            printSprite(X, Y, &Sprite);
+            return E_OK;
+        } else return E_NOT_OK;
+    } else return E_NOT_OK;
 } /* printChar */
 
 
@@ -305,22 +305,22 @@ stdReturnType MaxMatrix::printChar(int X, int Y, char Char)
 /*! \brief          shifts a char into the matrix and stops on the right side
  *  \details        this function shifts a given char into the matrix and stops shifting on the right side.
  *                  Every shift process will be triggered by calling the shiftMainFunction. 
- *					
- *  \param[in]      Char		char to print on matrix
+ *                  
+ *  \param[in]      Char        char to print on matrix
  *  \return         E_OK
  *                  E_NOT_OK
  *********************************************************************************************************************/
 stdReturnType MaxMatrix::printCharWithShift(char Char)
 {
-	spriteIndexType SpriteIndex;
-	
-	if(E_OK == convertCharToSprite(Char, &SpriteIndex)) {
-		if(E_OK == getSprite(SpriteIndex, &SpriteBuffer)) {
-			SpriteShiftCounter = 1;
-			State = MAXMATRIX_STATE_CHAR_SHIFT;
-			return E_OK;
-		} else return E_NOT_OK;
-	} else return E_NOT_OK;
+    spriteIndexType SpriteIndex;
+    
+    if(E_OK == convertCharToSprite(Char, &SpriteIndex)) {
+        if(E_OK == getSprite(SpriteIndex, &SpriteBuffer)) {
+            SpriteShiftCounter = 1;
+            State = MAXMATRIX_STATE_CHAR_SHIFT;
+            return E_OK;
+        } else return E_NOT_OK;
+    } else return E_NOT_OK;
 } /* printCharWithShift */
 
 
@@ -331,17 +331,17 @@ stdReturnType MaxMatrix::printCharWithShift(char Char)
  *  \details        this function shifts a given string into the matrix and stops shifting on the right side,
  *                  when the last char appears on the matrix.
  *
- *  \param[in]      sString		string to print on matrix
+ *  \param[in]      sString     string to print on matrix
  *  \return         E_OK
  *                  E_NOT_OK
  *********************************************************************************************************************/
 stdReturnType MaxMatrix::printStringWithShift(char* sString)
 {
-	if(sString != NULL) {
-		String = sString;
-		State = MAXMATRIX_STATE_STRING_SHIFT;
-		return E_OK;
-	} else return E_NOT_OK;
+    if(sString != NULL) {
+        String = sString;
+        State = MAXMATRIX_STATE_STRING_SHIFT;
+        return E_OK;
+    } else return E_NOT_OK;
 } /* printStringWithShift */
 
 
@@ -350,22 +350,22 @@ stdReturnType MaxMatrix::printStringWithShift(char* sString)
 **********************************************************************************************************************/
 /*! \brief          shift the whole matrix led states one column to the left
  *  \details        this functions shifts the states of all LEDs on the matrix one column to the left.
- *					By activating fill width zero, the column on the right side will be initialized with LED off.
+ *                  By activating fill width zero, the column on the right side will be initialized with LED off.
  *                  By activating rotation, the last column will be first.
  *
- *  \param[in]      Rotate			activate rotation of the matrix LED states
- *  \param[in]      FillWithZero	initialize the column on the right side with zero.
+ *  \param[in]      Rotate          activate rotation of the matrix LED states
+ *  \param[in]      FillWithZero    initialize the column on the right side with zero.
  *  \return         -
  *********************************************************************************************************************/
 void MaxMatrix::shiftLeft(bool Rotate, bool FillWithZero)
 {
-	byte old = MatrixBuffer[0];
-	for(int i = 0; i < MAXMATRIX_NUMBER_OF_COLUMNS; i++)
-		MatrixBuffer[i] = MatrixBuffer[i+1];
-	if(Rotate) MatrixBuffer[MAXMATRIX_NUMBER_OF_COLUMNS-1] = old;
-	else if(FillWithZero) MatrixBuffer[MAXMATRIX_NUMBER_OF_COLUMNS-1] = 0;
-	
-	reload();
+    byte old = MatrixBuffer[0];
+    for(int i = 0; i < MAXMATRIX_NUMBER_OF_COLUMNS; i++)
+        MatrixBuffer[i] = MatrixBuffer[i+1];
+    if(Rotate) MatrixBuffer[MAXMATRIX_NUMBER_OF_COLUMNS-1] = old;
+    else if(FillWithZero) MatrixBuffer[MAXMATRIX_NUMBER_OF_COLUMNS-1] = 0;
+    
+    reload();
 } /* shiftLeft */
 
 
@@ -374,23 +374,23 @@ void MaxMatrix::shiftLeft(bool Rotate, bool FillWithZero)
 **********************************************************************************************************************/
 /*! \brief          shift the whole matrix led states one column to the right
  *  \details        this functions shifts the states of all LEDs on the matrix one column to the right.
- *					By activating fill width zero, the column on the left side will be initialized with LED off.
+ *                  By activating fill width zero, the column on the left side will be initialized with LED off.
  *                  By activating rotation, the last column will be first.
  *
- *  \param[in]      Rotate			activate rotation of the matrix LED states
- *  \param[in]      FillWithZero	initialize the column on the right side with zero.
+ *  \param[in]      Rotate          activate rotation of the matrix LED states
+ *  \param[in]      FillWithZero    initialize the column on the right side with zero.
  *  \return         -
  *********************************************************************************************************************/
 void MaxMatrix::shiftRight(bool Rotate, bool FillWithZero)
 {
-	int LastColumn = MAXMATRIX_NUMBER_OF_COLUMNS-1;
-	byte old = MatrixBuffer[LastColumn];
-	for(int i = MAXMATRIX_NUMBER_OF_COLUMNS-1; i > 0; i--)
-		MatrixBuffer[i] = MatrixBuffer[i-1];
-	if(Rotate) MatrixBuffer[0] = old;
-	else if(FillWithZero) MatrixBuffer[0] = 0;
-	
-	reload();
+    int LastColumn = MAXMATRIX_NUMBER_OF_COLUMNS-1;
+    byte old = MatrixBuffer[LastColumn];
+    for(int i = MAXMATRIX_NUMBER_OF_COLUMNS-1; i > 0; i--)
+        MatrixBuffer[i] = MatrixBuffer[i-1];
+    if(Rotate) MatrixBuffer[0] = old;
+    else if(FillWithZero) MatrixBuffer[0] = 0;
+    
+    reload();
 } /* shiftRight */
 
 
@@ -399,21 +399,21 @@ void MaxMatrix::shiftRight(bool Rotate, bool FillWithZero)
 **********************************************************************************************************************/
 /*! \brief          shift the whole matrix led states one row up to the top
  *  \details        this function shifts the states of all LEDS on the matrix one row up to the top.
- *					The row on the bottom will be initialized with LED off.
+ *                  The row on the bottom will be initialized with LED off.
  *                  By activating rotation, the last row will be first.
  
- *  \param[in]      Rotate			activate rotation of the matrix LED states
+ *  \param[in]      Rotate          activate rotation of the matrix LED states
  *  \return         -
  *********************************************************************************************************************/
 void MaxMatrix::shiftUp(bool Rotate)
 {
-	for(int i = 0; i < MAXMATRIX_NUMBER_OF_COLUMNS; i++)
-	{
-		bool b = MatrixBuffer[i] & 1;
-		MatrixBuffer[i] >>= 1;
-		if(Rotate) bitWrite(MatrixBuffer[i], 7, b);
-	}
-	reload();
+    for(int i = 0; i < MAXMATRIX_NUMBER_OF_COLUMNS; i++)
+    {
+        bool b = MatrixBuffer[i] & 1;
+        MatrixBuffer[i] >>= 1;
+        if(Rotate) bitWrite(MatrixBuffer[i], 7, b);
+    }
+    reload();
 } /* shiftUp */
 
 
@@ -422,21 +422,21 @@ void MaxMatrix::shiftUp(bool Rotate)
 **********************************************************************************************************************/
 /*! \brief          shift the whole matrix led states one row down to the bottom
  *  \details        this function shifts the states of all LEDS on the matrix one row down to the bottom.
- *					The row on the top will be initialized with LED off.
+ *                  The row on the top will be initialized with LED off.
  *                  By activating rotation, the last row will be first.
  
- *  \param[in]      Rotate			activate rotation of the matrix LED states
+ *  \param[in]      Rotate          activate rotation of the matrix LED states
  *  \return         -
  *********************************************************************************************************************/
 void MaxMatrix::shiftDown(bool Rotate)
 {
-	for(int i=0; i < MAXMATRIX_NUMBER_OF_COLUMNS; i++)
-	{
-		bool b = MatrixBuffer[i] & 128;
-		MatrixBuffer[i] <<= 1;
-		if(Rotate) bitWrite(MatrixBuffer[i], 0, b);
-	}
-	reload();
+    for(int i=0; i < MAXMATRIX_NUMBER_OF_COLUMNS; i++)
+    {
+        bool b = MatrixBuffer[i] & 128;
+        MatrixBuffer[i] <<= 1;
+        if(Rotate) bitWrite(MatrixBuffer[i], 0, b);
+    }
+    reload();
 } /* shiftDown */
 
 
@@ -446,16 +446,16 @@ void MaxMatrix::shiftDown(bool Rotate)
 /*! \brief          get an sprite from the sprite table
  *  \details        this function returns an sprite by an given sprite index
  *                  
- *  \param[in]      SpriteIndex		index of sprite from sprite table
- *  \param[out]     Sprite			sprite from sprite table (width, height, value column 1 ... 5)
+ *  \param[in]      SpriteIndex     index of sprite from sprite table
+ *  \param[out]     Sprite          sprite from sprite table (width, height, value column 1 ... 5)
  *  \return         -
  *********************************************************************************************************************/
 stdReturnType MaxMatrix::getSprite(spriteIndexType SpriteIndex, spriteType* Sprite)
 {
-	if(SpriteIndex >= 0 && SpriteIndex < MAXMATRIX_SPRITE_TABLE_NUMBER_OF_ROWS) {
-		memcpy_P(*Sprite, SpriteTable + MAXMATRIX_SPRITE_TABLE_NUMBER_OF_COLUMNS * SpriteIndex, MAXMATRIX_SPRITE_TABLE_NUMBER_OF_COLUMNS);
-		return E_OK;
-	} else return E_NOT_OK;
+    if(SpriteIndex >= 0 && SpriteIndex < MAXMATRIX_SPRITE_TABLE_NUMBER_OF_ROWS) {
+        memcpy_P(*Sprite, SpriteTable + MAXMATRIX_SPRITE_TABLE_NUMBER_OF_COLUMNS * SpriteIndex, MAXMATRIX_SPRITE_TABLE_NUMBER_OF_COLUMNS);
+        return E_OK;
+    } else return E_NOT_OK;
 } /* getSprite */
 
 
@@ -465,35 +465,35 @@ stdReturnType MaxMatrix::getSprite(spriteIndexType SpriteIndex, spriteType* Spri
 /*! \brief          print sprite on matrix
  *  \details        this function prints an sprite on the matrix located to the given coordinates
  *                  
- *  \param[in]      X			x coordinate
- *  \param[in]      Y			y coordinate
- *  \param[in]      Sprite		sprite from sprite table (width, height, value column 1 ... 5)
+ *  \param[in]      X           x coordinate
+ *  \param[in]      Y           y coordinate
+ *  \param[in]      Sprite      sprite from sprite table (width, height, value column 1 ... 5)
  *  \return         -
  *********************************************************************************************************************/
 void MaxMatrix::printSprite(int X, int Y, const spriteType* Sprite)
 {
-	int SpriteWidth = (*Sprite)[ASCII_TABLE_SPRITE_WIDTH];
-	int SpriteHeight = (*Sprite)[ASCII_TABLE_SPRITE_HEIGHT];
-	
-	if(SpriteHeight == MAXMATRIX_ROW_NUMBER_OF_MODULE && Y == 0) {
-		for(int i = 0; i < SpriteWidth; i++)
-		{
-			int Column = X + i;
-			if(Column >= 0 && Column < MAXMATRIX_NUMBER_OF_COLUMNS)
-				setColumn(Column, (*Sprite)[i + ASCII_TABLE_SPRITE_COLUMN1]);
-		} 
-	} else {
-		for(int i = 0; i < SpriteWidth; i++)
-		{
-			for(int j = 0; j < SpriteHeight; j++)
-			{
-				int Column = X + i;
-				int Row = Y + j;
-				if(Column >= 0 && Column < MAXMATRIX_NUMBER_OF_COLUMNS && Row >= 0 && Row < MAXMATRIX_ROW_NUMBER_OF_MODULE)
-					setDot(Column, Row, bitRead((*Sprite)[i + ASCII_TABLE_SPRITE_COLUMN1], j));
-			}
-		}
-	}
+    int SpriteWidth = (*Sprite)[ASCII_TABLE_SPRITE_WIDTH];
+    int SpriteHeight = (*Sprite)[ASCII_TABLE_SPRITE_HEIGHT];
+    
+    if(SpriteHeight == MAXMATRIX_ROW_NUMBER_OF_MODULE && Y == 0) {
+        for(int i = 0; i < SpriteWidth; i++)
+        {
+            int Column = X + i;
+            if(Column >= 0 && Column < MAXMATRIX_NUMBER_OF_COLUMNS)
+                setColumn(Column, (*Sprite)[i + ASCII_TABLE_SPRITE_COLUMN1]);
+        } 
+    } else {
+        for(int i = 0; i < SpriteWidth; i++)
+        {
+            for(int j = 0; j < SpriteHeight; j++)
+            {
+                int Column = X + i;
+                int Row = Y + j;
+                if(Column >= 0 && Column < MAXMATRIX_NUMBER_OF_COLUMNS && Row >= 0 && Row < MAXMATRIX_ROW_NUMBER_OF_MODULE)
+                    setDot(Column, Row, bitRead((*Sprite)[i + ASCII_TABLE_SPRITE_COLUMN1], j));
+            }
+        }
+    }
 } /* printSprite */
 
 
@@ -511,19 +511,19 @@ void MaxMatrix::printSprite(int X, int Y, const spriteType* Sprite)
  *********************************************************************************************************************/
 void MaxMatrix::reload()
 {
-	for(int i = 0; i < MAXMATRIX_COLUMN_NUMBER_OF_MODULE; i++)
-	{
-		int Column = i;
-		digitalWrite(ChipSelectPin, LOW);
-		for(int j = 0; j < MAXMATRIX_NUMBER_OF_MODULES; j++)
-		{
-			shiftOut(DataInPin, ClockPin, MSBFIRST, i + 1);
-			shiftOut(DataInPin, ClockPin, MSBFIRST, MatrixBuffer[Column]);
-			Column += MAXMATRIX_COLUMN_NUMBER_OF_MODULE;
-		}
-		digitalWrite(ChipSelectPin, LOW);
-		digitalWrite(ChipSelectPin, HIGH);
-	}
+    for(int i = 0; i < MAXMATRIX_COLUMN_NUMBER_OF_MODULE; i++)
+    {
+        int Column = i;
+        digitalWrite(ChipSelectPin, LOW);
+        for(int j = 0; j < MAXMATRIX_NUMBER_OF_MODULES; j++)
+        {
+            shiftOut(DataInPin, ClockPin, MSBFIRST, i + 1);
+            shiftOut(DataInPin, ClockPin, MSBFIRST, MatrixBuffer[Column]);
+            Column += MAXMATRIX_COLUMN_NUMBER_OF_MODULE;
+        }
+        digitalWrite(ChipSelectPin, LOW);
+        digitalWrite(ChipSelectPin, HIGH);
+    }
 } /* reload */
 
 
@@ -532,20 +532,20 @@ void MaxMatrix::reload()
 **********************************************************************************************************************/
 /*! \brief          shifts char one column to the left
  *  \details        this function has to be called periodically until state change from 
- *					MAXMATRIX_STATE_CHAR_SHIFT or MAXMATRIX_STATE_STRING_SHIFT to MAXMATRIX_STATE_READY
+ *                  MAXMATRIX_STATE_CHAR_SHIFT or MAXMATRIX_STATE_STRING_SHIFT to MAXMATRIX_STATE_READY
  *  \return         -
- *  \pre			has to be called from shiftTask()
+ *  \pre            has to be called from shiftTask()
  *********************************************************************************************************************/
 void MaxMatrix::charShiftTask()
 {
-	if(SpriteShiftCounter <= SpriteBuffer[ASCII_TABLE_SPRITE_WIDTH]) {
-		shiftLeft(false, false);
-		printSprite(MAXMATRIX_NUMBER_OF_COLUMNS-SpriteShiftCounter, 0, &SpriteBuffer);
-		SpriteShiftCounter++;
-	} else {
-		if (MAXMATRIX_STATE_CHAR_SHIFT == State) State = MAXMATRIX_STATE_READY;
-		SpriteShiftCounter = 0;
-	}
+    if(SpriteShiftCounter <= SpriteBuffer[ASCII_TABLE_SPRITE_WIDTH]) {
+        shiftLeft(false, false);
+        printSprite(MAXMATRIX_NUMBER_OF_COLUMNS-SpriteShiftCounter, 0, &SpriteBuffer);
+        SpriteShiftCounter++;
+    } else {
+        if (MAXMATRIX_STATE_CHAR_SHIFT == State) State = MAXMATRIX_STATE_READY;
+        SpriteShiftCounter = 0;
+    }
 } /* charShiftTask */
 
 
@@ -554,28 +554,28 @@ void MaxMatrix::charShiftTask()
 **********************************************************************************************************************/
 /*! \brief          shifts string one column to the left
  *  \details        this function has to be called periodically until state change from
- *					MAXMATRIX_STATE_CHAR_SHIFT or MAXMATRIX_STATE_STRING_SHIFT to MAXMATRIX_STATE_READY
+ *                  MAXMATRIX_STATE_CHAR_SHIFT or MAXMATRIX_STATE_STRING_SHIFT to MAXMATRIX_STATE_READY
  *  \return         -
- *  \pre			has to be called from shiftTask()
+ *  \pre            has to be called from shiftTask()
  *********************************************************************************************************************/
 void MaxMatrix::stringShiftTask()
 {
-	if(SpriteShiftCounter == 0)
-	{
-		if(*String != NULL) {
-			memcpy_P(SpriteBuffer, SpriteTable + MAXMATRIX_SPRITE_TABLE_NUMBER_OF_COLUMNS * (*String + MAXMATRIX_ASCII_TABLE_OFFSET), MAXMATRIX_SPRITE_TABLE_NUMBER_OF_COLUMNS);
-			if(SpriteShiftCounter != 0) shiftLeft(false, true);
-			SpriteShiftCounter = 1;
-			charShiftTask();
-			String++;
-		} else {
-			State = MAXMATRIX_STATE_READY;
-			shiftLeft(false, true);
-		}
-	} else {
-		charShiftTask();
-		if(SpriteShiftCounter == 0) shiftLeft(false, true);
-	}
+    if(SpriteShiftCounter == 0)
+    {
+        if(*String != NULL) {
+            memcpy_P(SpriteBuffer, SpriteTable + MAXMATRIX_SPRITE_TABLE_NUMBER_OF_COLUMNS * (*String + MAXMATRIX_ASCII_TABLE_OFFSET), MAXMATRIX_SPRITE_TABLE_NUMBER_OF_COLUMNS);
+            if(SpriteShiftCounter != 0) shiftLeft(false, true);
+            SpriteShiftCounter = 1;
+            charShiftTask();
+            String++;
+        } else {
+            State = MAXMATRIX_STATE_READY;
+            shiftLeft(false, true);
+        }
+    } else {
+        charShiftTask();
+        if(SpriteShiftCounter == 0) shiftLeft(false, true);
+    }
 } /* stringShiftTask */
 
 
@@ -585,23 +585,23 @@ void MaxMatrix::stringShiftTask()
 /*! \brief          converts char to sprite
  *  \details        this function converts the ascii char to sprite index
  *                  
- *  \param[in]      Char			char to convert to sprite
- *  \param[out]     SpriteIndex		appropriate sprite
+ *  \param[in]      Char            char to convert to sprite
+ *  \param[out]     SpriteIndex     appropriate sprite
  *  \return         E_OK
  *                  E_NOT_OK
  *********************************************************************************************************************/
 stdReturnType MaxMatrix::convertCharToSprite(char Char, spriteIndexType* SpriteIndex)
 {
-	stdReturnType ReturnType = E_NOT_OK;
-	
-	if('Ä' == Char) { *SpriteIndex = 95; ReturnType = E_OK; }
-	else if('Ö' == Char) { *SpriteIndex = 96; ReturnType = E_OK; }
-	else if('Ü' == Char) { *SpriteIndex = 97; ReturnType = E_OK; }
-	else if('ä' == Char) { *SpriteIndex = 98; ReturnType = E_OK; }
-	else if('ö' == Char) { *SpriteIndex = 99; ReturnType = E_OK; }
-	else if('ü' == Char) { *SpriteIndex = 100; ReturnType = E_OK; }
-	else if(Char >= MAXMATRIX_ASCII_CHAR_MIN && Char <= MAXMATRIX_ASCII_CHAR_MAX)
-	    { *SpriteIndex = Char + MAXMATRIX_ASCII_TABLE_OFFSET; ReturnType = E_OK; }
+    stdReturnType ReturnType = E_NOT_OK;
+    
+    if('Ä' == Char) { *SpriteIndex = 95; ReturnType = E_OK; }
+    else if('Ö' == Char) { *SpriteIndex = 96; ReturnType = E_OK; }
+    else if('Ü' == Char) { *SpriteIndex = 97; ReturnType = E_OK; }
+    else if('ä' == Char) { *SpriteIndex = 98; ReturnType = E_OK; }
+    else if('ö' == Char) { *SpriteIndex = 99; ReturnType = E_OK; }
+    else if('ü' == Char) { *SpriteIndex = 100; ReturnType = E_OK; }
+    else if(Char >= MAXMATRIX_ASCII_CHAR_MIN && Char <= MAXMATRIX_ASCII_CHAR_MAX)
+        { *SpriteIndex = Char + MAXMATRIX_ASCII_TABLE_OFFSET; ReturnType = E_OK; }
 
     return ReturnType;
 } /* convertCharToSprite */
