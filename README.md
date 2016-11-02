@@ -7,4 +7,4 @@ Features:
 - scroll text over the matrix
 - set dot
 
-![stack Overflow](http://lmsotfy.com/so.png)
+![Matrix Connection](doku/LED_Matrix.png)
