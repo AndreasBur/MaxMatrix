@@ -1,0 +1,14 @@
+﻿<Window x:Class="AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LedMatrix"
+        mc:Ignorable="d"
+        Title="About" Height="250" Width="300">
+    <Grid>
+        <Label x:Name="label" Content="Andreas Burnickl" HorizontalAlignment="Left" Margin="10,58,0,0" VerticalAlignment="Top" Height="40" Width="274" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="16" VerticalContentAlignment="Center"/>
+        <Label x:Name="label_Copy" Content="a.burnickl@gmail.com" HorizontalAlignment="Left" Margin="10,101,0,0" VerticalAlignment="Top" Height="40" Width="274" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"/>
+
+    </Grid>
+</Window>
