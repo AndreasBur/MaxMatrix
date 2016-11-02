@@ -23,11 +23,9 @@
 #include "MaxMatrix.h"
 #if(MAXMATRIX_USE_SPI == STD_ON)
 	#include "SPI.h"
-#error SPI AN
 #endif
 #if(MAXMATRIX_USE_DIGITAL_WRITE_FAST == STD_ON)
 	#include "digitalWriteFast.h"
-#error WRITE FAST AN
 #endif
 
 
@@ -95,7 +93,6 @@ void MaxMatrix::init()
 # endif
 #endif
     
-
     RegisterWrite(MAX7219_REG_SCAN_LIMIT_ADDRESS, MAX7219_REG_SCAN_LIMIT_DISPLAY_DIGIT_0_TO_7);     // display all digits  
     RegisterWrite(MAX7219_REG_DECODE_MODE_ADDRESS, MAX7219_REG_DECODE_MODE_NO_DECODE);              // using an led matrix (not digits)
     RegisterWrite(MAX7219_REG_SHUTDOWN_ADDRESS, MAX7219_REG_SHUTDOWN_MODE_NORMAL_OPERATION);        // normal operation mode
@@ -104,7 +101,7 @@ void MaxMatrix::init()
     /* initialize registers, turn all LEDs off */
     clear();
     
-    setIntensity(0x04);    // the first 0x0f is the value you can set
+    setIntensity(0x02);    // the first 0x0f is the value you can set
     State = MAXMATRIX_STATE_READY;
 } /* init */
 
@@ -217,14 +214,25 @@ stdReturnType MaxMatrix::getColumn(byte Column, byte* Value)
 {
 	int Module = Column / MAXMATRIX_COLUMN_NUMBER_OF_MODULE;
     int ModuleColumn = Column % MAXMATRIX_COLUMN_NUMBER_OF_MODULE;
+	byte ValueReversed;
 
 	if(Orientation == MAXMATRIX_MODULE_ORIENTATION_0) return getColumnLL(Column, Value);
+	
 	if(Orientation == MAXMATRIX_MODULE_ORIENTATION_90) return getRowLL(Module, ModuleColumn, Value);
-	if(Orientation == MAXMATRIX_MODULE_ORIENTATION_180) return getColumnLL(MAXMATRIX_NUMBER_OF_COLUMNS - Column - 1, Value);
-	if(Orientation == MAXMATRIX_MODULE_ORIENTATION_270) return getRowLL(Module, MAXMATRIX_ROW_NUMBER_OF_MODULE - ModuleColumn - 1, Value);
-
+	
+	if(Orientation == MAXMATRIX_MODULE_ORIENTATION_180) {
+		if(E_OK == getColumnLL(MAXMATRIX_NUMBER_OF_COLUMNS - Column - 1, &ValueReversed)) {
+			*Value = reverseByte(ValueReversed);
+			return E_OK;
+		} else return E_NOT_OK;
+	}
+	if(Orientation == MAXMATRIX_MODULE_ORIENTATION_270) {
+		if(E_OK == getRowLL(Module, MAXMATRIX_ROW_NUMBER_OF_MODULE - ModuleColumn - 1, &ValueReversed)) {
+			*Value = reverseByte(ValueReversed);
+			return E_OK;
+		} else return E_NOT_OK;
+	}
 	return E_NOT_OK;
-
 } /* getColumn */
 
 
@@ -269,7 +277,6 @@ stdReturnType MaxMatrix::setColumn(byte Column, byte Value)
 	if(Orientation == MAXMATRIX_MODULE_ORIENTATION_270) return setRowLL(Module, MAXMATRIX_ROW_NUMBER_OF_MODULE - ModuleColumn - 1, reverseByte(Value));
 
 	return E_NOT_OK;
-
 } /* setColumn */
 
 
@@ -331,9 +338,7 @@ stdReturnType MaxMatrix::getRow(byte Row, rowType* Value)
 		}
 		return E_OK;
 	}
-
 	return E_NOT_OK;
-
 } /* getRow */
 
 
@@ -369,9 +374,7 @@ stdReturnType MaxMatrix::getRow(byte Module, byte Row, byte* Value)
 			return E_OK;
 		} else return E_NOT_OK;
 	}
-
 	return E_NOT_OK;
-
 } /* getRow */
 
 
@@ -414,7 +417,6 @@ stdReturnType MaxMatrix::setRow(byte Row, const rowType* Value)
 		}
 		return E_OK;
 	}
-
 	return E_NOT_OK;
 } /* setRow */
 
@@ -644,7 +646,6 @@ void MaxMatrix::shiftRight(bool Rotate, bool FillWithZero)
 	if(Orientation == MAXMATRIX_MODULE_ORIENTATION_90) shiftDownLL(Rotate, true);
 	if(Orientation == MAXMATRIX_MODULE_ORIENTATION_180) shiftLeftLL(Rotate, FillWithZero, true);
 	if(Orientation == MAXMATRIX_MODULE_ORIENTATION_270) shiftUpLL(Rotate, true);
-
 } /* shiftRight */
 
 
@@ -779,7 +780,6 @@ void MaxMatrix::setOrientation(MaxMatrixModuleOrientationType sOrientation)
 				}
 			}
 		}
-
 		// rotate 180 degree
 		if((Orientation == MAXMATRIX_MODULE_ORIENTATION_0  && sOrientation == MAXMATRIX_MODULE_ORIENTATION_180) ||
 		  (Orientation == MAXMATRIX_MODULE_ORIENTATION_90  && sOrientation == MAXMATRIX_MODULE_ORIENTATION_270) ||
@@ -797,7 +797,6 @@ void MaxMatrix::setOrientation(MaxMatrixModuleOrientationType sOrientation)
 				}
 			}
 		}
-
 		// rotate 270 degree
 		if((Orientation == MAXMATRIX_MODULE_ORIENTATION_0  && sOrientation == MAXMATRIX_MODULE_ORIENTATION_270) ||
 		  (Orientation == MAXMATRIX_MODULE_ORIENTATION_90  && sOrientation == MAXMATRIX_MODULE_ORIENTATION_0)   ||
@@ -815,12 +814,10 @@ void MaxMatrix::setOrientation(MaxMatrixModuleOrientationType sOrientation)
 			    }
 			}
 		}
-
 		Orientation = sOrientation;
 		for(int i = 0; i < MAXMATRIX_BUFFER_SIZE; i++) MatrixBuffer[i] = MatrixBufferRotated[i];
 		reload();
 	}
-
 } /* setOrientation */
 
 
@@ -1424,7 +1421,7 @@ void MaxMatrix::shiftDownLL(bool Rotate, bool ShiftToNeighbourModule)
 			if(Module == MAXMATRIX_NUMBER_OF_MODULES - 1) {
 				if(Rotate) setRowLL(Module, 0, MatrixBottomRow);
 			} else {
-				setRowLL(Module, MAXMATRIX_ROW_NUMBER_OF_MODULE, ModuleBottomRow);
+				setRowLL(Module, 0, ModuleBottomRow);
 			}
 		}
 	} else {
@@ -1438,7 +1435,7 @@ void MaxMatrix::shiftDownLL(bool Rotate, bool ShiftToNeighbourModule)
     reload();
 } /* shiftDownLL */
 
-
 /******************************************************************************************************************************************************
  *  E N D   O F   F I L E
  *****************************************************************************************************************************************************/
+ 

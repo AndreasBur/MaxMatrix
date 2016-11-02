@@ -110,10 +110,12 @@ typedef enum {
 } MaxMatrixStateType;
 
 /* Type which describes the orientation of the Matrix */
+/*
 typedef enum {
 	MAXMATRIX_MATRIX_ORIENTATION_0,
 	MAXMATRIX_MATRIX_ORIENTATION_180
 } MaxMatrixMatrixOrientationType;
+*/
 
 /* Type which describes the orientation of the Modules */
 typedef enum {

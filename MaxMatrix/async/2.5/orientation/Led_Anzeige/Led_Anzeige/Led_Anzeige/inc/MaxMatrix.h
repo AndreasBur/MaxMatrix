@@ -22,16 +22,14 @@
  * INCLUDES
  *****************************************************************************************************************************************************/
 #include "Arduino.h"
+#include "StandardTypes.h"
+
 
 /******************************************************************************************************************************************************
  *  LOCAL CONSTANT MACROS
  *****************************************************************************************************************************************************/
- /* standard type for configuration */
-#define STD_ON       1u
-#define STD_OFF      0u
-
 /* MaxMatrix Configuration Parameter */
-#define MAXMATRIX_NUMBER_OF_MODULES                                 2
+#define MAXMATRIX_NUMBER_OF_MODULES                                 4
 #define MAXMATRIX_USE_SPI                                           STD_OFF
 #define MAXMATRIX_USE_DIGITAL_WRITE_FAST                            STD_OFF
 
@@ -102,12 +100,6 @@
 /******************************************************************************************************************************************************
  *  GLOBAL DATA TYPES AND STRUCTURES
  *****************************************************************************************************************************************************/
- /* standard return type for functions */
-typedef enum {
-    E_OK = 0,
-    E_NOT_OK = 1
-} stdReturnType;
-
 /* Type which describes the internal state of the MaxMatrix task */
 typedef enum {
     MAXMATRIX_STATE_NONE,

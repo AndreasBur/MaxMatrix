@@ -33,7 +33,8 @@ src/MaxMatrix.d src/MaxMatrix.o: ../src/MaxMatrix.cpp ../inc/MaxMatrix.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
  ..\\..\ArduinoCore\include\core/Arduino.h \
- ..\\..\ArduinoCore\include\variants\standard/pins_arduino.h
+ ..\\..\ArduinoCore\include\variants\standard/pins_arduino.h \
+ ../inc/StandardTypes.h
 
 ../inc/MaxMatrix.h:
 
@@ -106,3 +107,5 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 ..\\..\ArduinoCore\include\core/Arduino.h:
 
 ..\\..\ArduinoCore\include\variants\standard/pins_arduino.h:
+
+../inc/StandardTypes.h:
