@@ -6,3 +6,5 @@ Features:
 - set Char
 - scroll text over the matrix
 - set dot
+
+![stack Overflow](http://lmsotfy.com/so.png)
