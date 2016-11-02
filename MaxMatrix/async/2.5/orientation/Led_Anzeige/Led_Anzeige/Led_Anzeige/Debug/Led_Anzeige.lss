@@ -23,11 +23,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
   9 .debug_frame  000013e4  00000000  00000000  0001480c  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00002c82  00000000  00000000  00015bf0  2**0
+ 10 .debug_str    00002c1e  00000000  00000000  00015bf0  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    000089c8  00000000  00000000  00018872  2**0
+ 11 .debug_loc    000089c8  00000000  00000000  0001880e  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000007d8  00000000  00000000  0002123a  2**0
+ 12 .debug_ranges 000007d8  00000000  00000000  000211d6  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -3408,6 +3408,12 @@ void MaxMatrix::shiftTask()
     19da:	08 95       	ret
 
 000019dc <__vector_13>:
+  else if(pin == 2 || pin == 10) {
+    DDRB |= _BV(PORTB2);
+    TCCR1A |= _BV(COM1B1);
+  }
+  setPwmDuty(pin, duty);
+  resume();			// Lex - make sure the clock is running.  We don't want to restart the count, in case we are starting the second WGM
     19dc:	1f 92       	push	r1
     19de:	0f 92       	push	r0
     19e0:	0f b6       	in	r0, 0x3f	; 63
@@ -3564,6 +3570,12 @@ void MaxMatrix::shiftTask()
     1b18:	08 95       	ret
 
 00001b1a <_ZN8TimerOne15attachInterruptEPFvvEl>:
+  if(pin == 1 || pin == 9)       TCCR1A &= ~_BV(COM1A1);   // clear the bit that enables pwm on PB1
+  else if(pin == 2 || pin == 10) TCCR1A &= ~_BV(COM1B1);   // clear the bit that enables pwm on PB2
+}
+
+void TimerOne::attachInterrupt(void (*isr)(), long microseconds)
+{
     1b1a:	0f 93       	push	r16
     1b1c:	1f 93       	push	r17
     1b1e:	cf 93       	push	r28
@@ -3572,24 +3584,43 @@ void MaxMatrix::shiftTask()
     1b24:	8b 01       	movw	r16, r22
     1b26:	ba 01       	movw	r22, r20
     1b28:	a9 01       	movw	r20, r18
+  if(microseconds > 0) setPeriod(microseconds);
     1b2a:	14 16       	cp	r1, r20
     1b2c:	15 06       	cpc	r1, r21
     1b2e:	16 06       	cpc	r1, r22
     1b30:	17 06       	cpc	r1, r23
     1b32:	14 f4       	brge	.+4      	; 0x1b38 <_ZN8TimerOne15attachInterruptEPFvvEl+0x1e>
     1b34:	0e 94 15 0d 	call	0x1a2a	; 0x1a2a <_ZN8TimerOne9setPeriodEl>
+  isrCallback = isr;                                       // register the user's callback with the real ISR
     1b38:	1d 83       	std	Y+5, r17	; 0x05
     1b3a:	0c 83       	std	Y+4, r16	; 0x04
+  TIMSK1 = _BV(TOIE1);                                     // sets the timer overflow interrupt enable bit
     1b3c:	81 e0       	ldi	r24, 0x01	; 1
     1b3e:	80 93 6f 00 	sts	0x006F, r24	; 0x80006f <__TEXT_REGION_LENGTH__+0x7e006f>
+	// might be running with interrupts disabled (eg inside an ISR), so don't touch the global state
+//  sei();
+  resume();												
     1b42:	ce 01       	movw	r24, r28
+}
     1b44:	df 91       	pop	r29
     1b46:	cf 91       	pop	r28
     1b48:	1f 91       	pop	r17
     1b4a:	0f 91       	pop	r16
+  if(microseconds > 0) setPeriod(microseconds);
+  isrCallback = isr;                                       // register the user's callback with the real ISR
+  TIMSK1 = _BV(TOIE1);                                     // sets the timer overflow interrupt enable bit
+	// might be running with interrupts disabled (eg inside an ISR), so don't touch the global state
+//  sei();
+  resume();												
     1b4c:	0c 94 84 0d 	jmp	0x1b08	; 0x1b08 <_ZN8TimerOne6resumeEv>
 
 00001b50 <__vector_9>:
+
+/******************************************************************************************************************************************************
+  I S R   F U N C T I O N S
+******************************************************************************************************************************************************/
+ISR(TIMER2_OVF_vect)
+{
     1b50:	1f 92       	push	r1
     1b52:	0f 92       	push	r0
     1b54:	0f b6       	in	r0, 0x3f	; 63
@@ -3607,9 +3638,11 @@ void MaxMatrix::shiftTask()
     1b6c:	bf 93       	push	r27
     1b6e:	ef 93       	push	r30
     1b70:	ff 93       	push	r31
+	Timer2.TimerOverflowCallback();
     1b72:	e0 91 d4 01 	lds	r30, 0x01D4	; 0x8001d4 <Timer2+0x4>
     1b76:	f0 91 d5 01 	lds	r31, 0x01D5	; 0x8001d5 <Timer2+0x5>
     1b7a:	09 95       	icall
+}
     1b7c:	ff 91       	pop	r31
     1b7e:	ef 91       	pop	r30
     1b80:	bf 91       	pop	r27
@@ -3629,11 +3662,19 @@ void MaxMatrix::shiftTask()
     1b9c:	18 95       	reti
 
 00001b9e <_GLOBAL__sub_I_Timer2>:
+ *    
+ *  \return         -
+ *****************************************************************************************************************************************************/
+TimerTwo::TimerTwo()
+{
+	State = TIMERTWO_STATE_NONE;
     1b9e:	e0 ed       	ldi	r30, 0xD0	; 208
     1ba0:	f1 e0       	ldi	r31, 0x01	; 1
     1ba2:	10 82       	st	Z, r1
+	TimerOverflowCallback = NULL;
     1ba4:	15 82       	std	Z+5, r1	; 0x05
     1ba6:	14 82       	std	Z+4, r1	; 0x04
+	ClockSelectBitGroup = TIMERTWO_REG_CS_NO_CLOCK;
     1ba8:	11 82       	std	Z+1, r1	; 0x01
     1baa:	08 95       	ret
 
