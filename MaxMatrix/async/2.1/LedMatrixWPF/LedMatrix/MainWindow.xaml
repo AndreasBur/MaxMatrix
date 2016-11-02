@@ -1,0 +1,66 @@
+﻿<Window x:Class="MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LedMatrix"
+        mc:Ignorable="d"
+        Title="Led Matrix" Height="493.078" Width="722.156" ResizeMode="NoResize" Loaded="Window_Loaded" Closed="Window_Closed">
+    <Grid Margin="10,10,10,10">
+        <GroupBox x:Name="SerialPortGroupBox" Header="Serial Port" Margin="0,64,10,0" VerticalAlignment="Top" Height="142" HorizontalAlignment="Right" Width="170">
+            <Grid>
+                <Button x:Name="OpenButton" Content="Öffnen" HorizontalAlignment="Left" Margin="20,66,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.786,0.364" Height="22"/>
+                <ComboBox x:Name="SerialPortComboBox" Margin="20,20,20.8,0" Height="22" VerticalAlignment="Top"/>
+                <Image x:Name="SerialPortStatusImage" HorizontalAlignment="Left" Height="22" Margin="115,66,0,0" VerticalAlignment="Top" Width="22" Source="pack://siteoforigin:,,,/Resources/led_green_off_big.png"/>
+            </Grid>
+        </GroupBox>
+        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Margin="10,51,0,10.4" Width="486">
+            <TabItem Header="Text">
+                <Grid>
+                    <GroupBox x:Name="LedMatrixTextGroupBox" Header="Led Matrix Text" Margin="20,21,20,20">
+                        <Grid>
+                            <GroupBox x:Name="IntensityGroupBox" Header="Intensität" HorizontalAlignment="Left" Margin="30,105,0,0" VerticalAlignment="Top" Height="145" Width="104">
+                                <Grid>
+                                    <Slider x:Name="IntensitySlider" HorizontalAlignment="Left" Margin="8,12,0,10.4" Width="36" Orientation="Vertical" SmallChange="1" Value="1" Minimum="1" IsSnapToTickEnabled="True" IsEnabled="False"/>
+                                    <TextBox x:Name="IntensityValue" HorizontalAlignment="Left" Margin="49,50,0,50.4" TextWrapping="Wrap" Width="30" RenderTransformOrigin="-0.107,0.47" Text="{Binding Value, ElementName=IntensitySlider}" IsEnabled="False"/>
+                                </Grid>
+                            </GroupBox>
+                            <GroupBox x:Name="SpeedGroupBox" Header="Geschwindigkeit" HorizontalAlignment="Left" Margin="175,105,0,0" VerticalAlignment="Top" Height="145" Width="104">
+                                <Grid>
+                                    <Slider x:Name="SpeedSlider" HorizontalAlignment="Left" Margin="8,12,0,10.4" Width="36" Orientation="Vertical" SmallChange="1" Value="1" Minimum="1" IsSnapToTickEnabled="True" IsEnabled="False" Maximum="20"/>
+                                    <TextBox x:Name="SpeedValue" HorizontalAlignment="Left" Margin="49,50,0,50.4" TextWrapping="Wrap" Width="30" RenderTransformOrigin="-0.107,0.47" Text="{Binding Value, ElementName=SpeedSlider}" IsEnabled="False"/>
+                                </Grid>
+                            </GroupBox>
+                            
+                            <TextBox x:Name="LedMatrixText" Height="23" Margin="30,32,30,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" IsEnabled="False"/>
+                            <Button x:Name="SendButton" Content="Senden" HorizontalAlignment="Left" Margin="323,231,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.515,-0.365" IsEnabled="False"/>
+                            <Button x:Name="DeleteButton" Content="Löschen" HorizontalAlignment="Left" Margin="323,188,0,0" VerticalAlignment="Top" Width="75" IsEnabled="False"/>
+                            <CheckBox x:Name="ShiftCheckBox" Content="Schieben" HorizontalAlignment="Left" Margin="323,107,0,0" VerticalAlignment="Top"/>
+                        </Grid>
+                    </GroupBox>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Led">
+                <Grid>
+                    <GroupBox x:Name="LedMatrixStateGroupBox" Header="Led Matrix Zustände" Margin="20,21,20,20">
+                        <Grid x:Name="LedMatrixStateGrid"/>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <GroupBox x:Name="LogGroupBox" Header="Log" Margin="0,216,10,10.4" HorizontalAlignment="Right" Width="170">
+            <TextBox x:Name="LogTextBox" Margin="5,10,5,5" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"/>
+        </GroupBox>
+        <Menu x:Name="menu" Height="23" VerticalAlignment="Top" BorderBrush="Gray" BorderThickness="1">
+            <MenuItem Header="Datei" Height="23">
+                <MenuItem Header="Beenden" HorizontalAlignment="Left" Width="139.2" Click="CloseMenuItem_Click"/>
+            </MenuItem>
+            <MenuItem Header="Hilfe" Height="23">
+                <MenuItem Header="Über" HorizontalAlignment="Left" Width="139.2" Click="AboutMenuItem_Click"/>
+            </MenuItem>
+        </Menu>
+
+
+    </Grid>
+</Window>

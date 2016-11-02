@@ -1,0 +1,1328 @@
+Archive member included to satisfy reference by file (symbol)
+
+C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+                              Sketch.o (_ZN14HardwareSerial9availableEv)
+C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
+                              Sketch.o (Serial)
+C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(main.o)
+                              C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.0.106/gcc/dev/atmega328p/avr5/crtatmega328p.o (main)
+C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+                              C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o) (_ZN5Print5writeEPKhj)
+C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+                              C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(main.o) (init)
+C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+                              src/MaxMatrix.o (pinMode)
+C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_shift.o)
+                              src/MaxMatrix.o (shiftOut)
+C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(abi.o)
+                              C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o) (__cxa_pure_virtual)
+C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(hooks.o)
+                              C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring.o) (yield)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(addsf3.o)
+                              C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o) (__subsf3)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(addsf3x.o)
+                              c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(addsf3.o) (__addsf3x)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(cmpsf2.o)
+                              C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o) (__ltsf2)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(divsf3.o)
+                              C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o) (__divsf3)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(divsf3x.o)
+                              c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(divsf3.o) (__divsf3x)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fixsfsi.o)
+                              C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o) (__fixsfsi)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
+                              C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o) (__fixunssfsi)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(floatsisf.o)
+                              C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o) (__floatunsisf)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_cmp.o)
+                              c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(cmpsf2.o) (__fp_cmp)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_inf.o)
+                              c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(addsf3x.o) (__fp_inf)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_nan.o)
+                              c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(addsf3x.o) (__fp_nan)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_pscA.o)
+                              c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(addsf3x.o) (__fp_pscA)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_pscB.o)
+                              c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(addsf3x.o) (__fp_pscB)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_round.o)
+                              c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(addsf3.o) (__fp_round)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_split3.o)
+                              c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(addsf3x.o) (__fp_split3)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_zero.o)
+                              c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(addsf3x.o) (__fp_zero)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(gesf2.o)
+                              C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o) (__gtsf2)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(mulsf3.o)
+                              C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o) (__mulsf3)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
+                              c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(mulsf3.o) (__mulsf3x)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(unordsf2.o)
+                              C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o) (__unordsf2)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_udivmodsi4.o)
+                              src/TimerOne.o (__udivmodsi4)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+                              C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.0.106/gcc/dev/atmega328p/avr5/crtatmega328p.o (exit)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_copy_data.o)
+                              Sketch.o (__do_copy_data)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+                              Sketch.o (__do_clear_bss)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_ctors.o)
+                              Sketch.o (__do_global_ctors)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_dtors.o)
+                              Sketch.o (__do_global_dtors)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_usmulhisi3.o)
+                              Sketch.o (__usmulhisi3)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_muluhisi3.o)
+                              src/TimerOne.o (__muluhisi3)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_tablejump2.o)
+                              c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_ctors.o) (__tablejump2__)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_umulhisi3.o)
+                              c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_usmulhisi3.o) (__umulhisi3)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(abort.o)
+                              C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(abi.o) (abort)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(atoi.o)
+                              Sketch.o (atoi)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(memcpy_P.o)
+                              src/MaxMatrix.o (memcpy_P)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(strtok.o)
+                              Sketch.o (strtok)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(strchr.o)
+                              Sketch.o (strchr)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(strcmp.o)
+                              Sketch.o (strcmp)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(strncpy.o)
+                              Sketch.o (strncpy)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(strtok_r.o)
+                              c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(strtok.o) (strtok_r)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(mul10.o)
+                              c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(atoi.o) (__mulhi_const_10)
+
+Discarded input sections
+
+ .data          0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.0.106/gcc/dev/atmega328p/avr5/crtatmega328p.o
+ .bss           0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.0.106/gcc/dev/atmega328p/avr5/crtatmega328p.o
+ .text          0x00000000        0x0 Sketch.o
+ .data          0x00000000        0x0 Sketch.o
+ .bss           0x00000000        0x0 Sketch.o
+ .text          0x00000000        0x0 src/MaxMatrix.o
+ .data          0x00000000        0x0 src/MaxMatrix.o
+ .bss           0x00000000        0x0 src/MaxMatrix.o
+ .text._ZN9MaxMatrix10shiftRightEbb
+                0x00000000       0x36 src/MaxMatrix.o
+ .text._ZN9MaxMatrix7shiftUpEb
+                0x00000000       0x30 src/MaxMatrix.o
+ .text._ZN9MaxMatrix9shiftDownEb
+                0x00000000       0x2e src/MaxMatrix.o
+ .text._ZN9MaxMatrix11setColumnLLEhhh
+                0x00000000       0x10 src/MaxMatrix.o
+ .text._ZN9MaxMatrix16setCharWithShiftEc
+                0x00000000       0x5a src/MaxMatrix.o
+ .text._ZN9MaxMatrix8setRowLLEhPA2_Kh
+                0x00000000       0xb2 src/MaxMatrix.o
+ .text._ZN9MaxMatrix6setRowEhPA2_Kh
+                0x00000000       0xd0 src/MaxMatrix.o
+ .text._ZN9MaxMatrix9setColumnEhhh
+                0x00000000       0x10 src/MaxMatrix.o
+ .text._ZN9MaxMatrix7setCharEiic
+                0x00000000       0x82 src/MaxMatrix.o
+ .text._ZN9MaxMatrix6setRowEhhh
+                0x00000000       0x6c src/MaxMatrix.o
+ .text._ZN9MaxMatrix20setRowOnAllModulesLLEhh
+                0x00000000       0xda src/MaxMatrix.o
+ .text          0x00000000        0x0 src/TimerOne.o
+ .data          0x00000000        0x0 src/TimerOne.o
+ .bss           0x00000000        0x0 src/TimerOne.o
+ .text._ZN8TimerOne10setPwmDutyEci
+                0x00000000       0x4e src/TimerOne.o
+ .text._ZN8TimerOne10disablePwmEc
+                0x00000000       0x1e src/TimerOne.o
+ .text._ZN8TimerOne15detachInterruptEv
+                0x00000000        0xc src/TimerOne.o
+ .text._ZN8TimerOne3pwmEcil
+                0x00000000       0x66 src/TimerOne.o
+ .text._ZN8TimerOne5startEv
+                0x00000000       0x4a src/TimerOne.o
+ .text._ZN8TimerOne7restartEv
+                0x00000000        0x4 src/TimerOne.o
+ .text._ZN8TimerOne4stopEv
+                0x00000000        0xc src/TimerOne.o
+ .text._ZN8TimerOne4readEv
+                0x00000000       0xce src/TimerOne.o
+ .rodata.CSWTCH.18
+                0x00000000        0x4 src/TimerOne.o
+ .group         0x00000000        0x8 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+ .text          0x00000000        0x0 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+ .data          0x00000000        0x0 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+ .bss           0x00000000        0x0 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+ .text._ZN14HardwareSerial3endEv
+                0x00000000       0x38 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+ .text._ZN14HardwareSerial17availableForWriteEv
+                0x00000000       0x1e C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+ .text          0x00000000        0x0 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
+ .data          0x00000000        0x0 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
+ .bss           0x00000000        0x0 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
+ .text          0x00000000        0x0 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(main.o)
+ .data          0x00000000        0x0 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(main.o)
+ .bss           0x00000000        0x0 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(main.o)
+ .text.atexit   0x00000000        0x6 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(main.o)
+ .group         0x00000000        0x8 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .group         0x00000000        0x8 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .text          0x00000000        0x0 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .data          0x00000000        0x0 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .bss           0x00000000        0x0 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .text._ZN5Print5printERK6String
+                0x00000000       0x1c C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .text._ZN5Print5printEPKc
+                0x00000000        0x4 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .text._ZN5Print5printERK9Printable
+                0x00000000       0x14 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .text._ZN5Print7printlnERK6String
+                0x00000000       0x24 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .text._ZN5Print7printlnEc
+                0x00000000       0x24 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .text._ZN5Print7printlnERK9Printable
+                0x00000000       0x24 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .text._ZN5Print11printNumberEmh
+                0x00000000       0xac C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .text._ZN5Print5printEli
+                0x00000000       0x94 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .text._ZN5Print5printEii
+                0x00000000        0xe C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .text._ZN5Print7printlnEii
+                0x00000000       0x2e C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .text._ZN5Print7printlnEli
+                0x00000000       0x24 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .text._ZN5Print5printEmi
+                0x00000000       0x1a C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .text._ZN5Print5printEhi
+                0x00000000        0xe C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .text._ZN5Print7printlnEhi
+                0x00000000       0x2e C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .text._ZN5Print5printEji
+                0x00000000        0xc C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .text._ZN5Print7printlnEji
+                0x00000000       0x2c C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .text._ZN5Print7printlnEmi
+                0x00000000       0x24 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .rodata.str1.1
+                0x00000000        0xe C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .text._ZN5Print10printFloatEdh
+                0x00000000      0x1ca C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .text._ZN5Print5printEdi
+                0x00000000        0x4 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .text._ZN5Print7printlnEdi
+                0x00000000       0x24 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .rodata._ZTV5Print
+                0x00000000        0x8 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .text          0x00000000        0x0 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+ .data          0x00000000        0x0 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+ .bss           0x00000000        0x0 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+ .text.millis   0x00000000       0x18 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+ .text.micros   0x00000000       0x4a C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+ .text.delay    0x00000000       0x50 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+ .text.delayMicroseconds
+                0x00000000       0x14 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+ .text          0x00000000        0x0 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+ .data          0x00000000        0x0 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+ .bss           0x00000000        0x0 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+ .text.digitalRead
+                0x00000000       0x52 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+ .progmem.data.port_to_input_PGM
+                0x00000000        0xa C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+ .text          0x00000000        0x0 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_shift.o)
+ .data          0x00000000        0x0 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_shift.o)
+ .bss           0x00000000        0x0 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_shift.o)
+ .text.shiftIn  0x00000000       0x76 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_shift.o)
+ .text          0x00000000        0x0 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(abi.o)
+ .data          0x00000000        0x0 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(abi.o)
+ .bss           0x00000000        0x0 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(abi.o)
+ .text.__cxa_pure_virtual
+                0x00000000        0x4 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(abi.o)
+ .text.__cxa_deleted_virtual
+                0x00000000        0x4 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(abi.o)
+ .debug_info    0x00000000       0x8e C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(abi.o)
+ .debug_abbrev  0x00000000       0x5e C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(abi.o)
+ .debug_aranges
+                0x00000000       0x28 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(abi.o)
+ .debug_ranges  0x00000000       0x18 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(abi.o)
+ .debug_line    0x00000000       0xbf C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(abi.o)
+ .debug_str     0x00000000      0x1a2 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(abi.o)
+ .comment       0x00000000       0x31 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(abi.o)
+ .debug_frame   0x00000000       0x34 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(abi.o)
+ .text          0x00000000        0x0 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(hooks.o)
+ .data          0x00000000        0x0 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(hooks.o)
+ .bss           0x00000000        0x0 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(hooks.o)
+ .text.__empty  0x00000000        0x2 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(hooks.o)
+ .debug_info    0x00000000       0x3e C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(hooks.o)
+ .debug_abbrev  0x00000000       0x2a C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(hooks.o)
+ .debug_aranges
+                0x00000000       0x20 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(hooks.o)
+ .debug_ranges  0x00000000       0x10 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(hooks.o)
+ .debug_line    0x00000000       0x40 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(hooks.o)
+ .debug_str     0x00000000      0x132 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(hooks.o)
+ .comment       0x00000000       0x31 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(hooks.o)
+ .debug_frame   0x00000000       0x24 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(hooks.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(addsf3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(addsf3.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(addsf3.o)
+ .text.avr-libc.fplib
+                0x00000000        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(addsf3.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(addsf3x.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(addsf3x.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(addsf3x.o)
+ .text.avr-libc.fplib
+                0x00000000       0xcc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(addsf3x.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(cmpsf2.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(cmpsf2.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(cmpsf2.o)
+ .text.avr-libc.fplib
+                0x00000000        0xa c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(cmpsf2.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(divsf3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(divsf3.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(divsf3.o)
+ .text.avr-libc.fplib
+                0x00000000        0x8 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(divsf3.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(divsf3x.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(divsf3x.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(divsf3x.o)
+ .text.avr-libc.fplib
+                0x00000000       0xdc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(divsf3x.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fixsfsi.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fixsfsi.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fixsfsi.o)
+ .text.avr-libc.fplib
+                0x00000000        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fixsfsi.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
+ .text.avr-libc.fplib
+                0x00000000       0x5e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(floatsisf.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(floatsisf.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(floatsisf.o)
+ .text.avr-libc.fplib
+                0x00000000       0x7a c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(floatsisf.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_cmp.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_cmp.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_cmp.o)
+ .text.avr-libc.fplib
+                0x00000000       0x48 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_cmp.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_inf.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_inf.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_inf.o)
+ .text.avr-libc.fplib
+                0x00000000        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_inf.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_nan.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_nan.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_nan.o)
+ .text.avr-libc.fplib
+                0x00000000        0x6 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_nan.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_pscA.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_pscA.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_pscA.o)
+ .text.avr-libc.fplib
+                0x00000000        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_pscA.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_pscB.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_pscB.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_pscB.o)
+ .text.avr-libc.fplib
+                0x00000000        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_pscB.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_round.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_round.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_round.o)
+ .text.avr-libc.fplib
+                0x00000000       0x22 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_round.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_split3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_split3.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_split3.o)
+ .text.avr-libc.fplib
+                0x00000000       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_split3.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_zero.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_zero.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_zero.o)
+ .text.avr-libc.fplib
+                0x00000000        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(fp_zero.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(gesf2.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(gesf2.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(gesf2.o)
+ .text.avr-libc.fplib
+                0x00000000        0xa c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(gesf2.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(mulsf3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(mulsf3.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(mulsf3.o)
+ .text.avr-libc.fplib
+                0x00000000        0x8 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(mulsf3.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
+ .text.avr-libc.fplib
+                0x00000000       0xd2 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(unordsf2.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(unordsf2.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(unordsf2.o)
+ .text.avr-libc.fplib
+                0x00000000        0xa c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a(unordsf2.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_udivmodsi4.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_udivmodsi4.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_udivmodsi4.o)
+ .text.libgcc.mul
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_udivmodsi4.o)
+ .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_udivmodsi4.o)
+ .text.libgcc.prologue
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_udivmodsi4.o)
+ .text.libgcc.builtins
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_udivmodsi4.o)
+ .text.libgcc.fmul
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_udivmodsi4.o)
+ .text.libgcc.fixed
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_udivmodsi4.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+ .text.libgcc.mul
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+ .text.libgcc.div
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+ .text.libgcc.prologue
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+ .text.libgcc.builtins
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+ .text.libgcc.fmul
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+ .text.libgcc.fixed
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_copy_data.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_copy_data.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc.mul
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc.div
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc.prologue
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc.builtins
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc.fmul
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc.fixed
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_copy_data.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc.mul
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc.div
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc.prologue
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc.builtins
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc.fmul
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc.fixed
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_ctors.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_ctors.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_ctors.o)
+ .text.libgcc.mul
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_ctors.o)
+ .text.libgcc.div
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_ctors.o)
+ .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_ctors.o)
+ .text.libgcc.prologue
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_ctors.o)
+ .text.libgcc.builtins
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_ctors.o)
+ .text.libgcc.fmul
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_ctors.o)
+ .text.libgcc.fixed
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_ctors.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_dtors.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_dtors.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_dtors.o)
+ .text.libgcc.mul
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_dtors.o)
+ .text.libgcc.div
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_dtors.o)
+ .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_dtors.o)
+ .text.libgcc.prologue
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_dtors.o)
+ .text.libgcc.builtins
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_dtors.o)
+ .text.libgcc.fmul
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_dtors.o)
+ .text.libgcc.fixed
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_dtors.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_usmulhisi3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_usmulhisi3.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_usmulhisi3.o)
+ .text.libgcc.div
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_usmulhisi3.o)
+ .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_usmulhisi3.o)
+ .text.libgcc.prologue
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_usmulhisi3.o)
+ .text.libgcc.builtins
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_usmulhisi3.o)
+ .text.libgcc.fmul
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_usmulhisi3.o)
+ .text.libgcc.fixed
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_usmulhisi3.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_muluhisi3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_muluhisi3.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_muluhisi3.o)
+ .text.libgcc.mul
+                0x00000000       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_muluhisi3.o)
+ .text.libgcc.div
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_muluhisi3.o)
+ .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_muluhisi3.o)
+ .text.libgcc.prologue
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_muluhisi3.o)
+ .text.libgcc.builtins
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_muluhisi3.o)
+ .text.libgcc.fmul
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_muluhisi3.o)
+ .text.libgcc.fixed
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_muluhisi3.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_tablejump2.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_tablejump2.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_tablejump2.o)
+ .text.libgcc.mul
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_tablejump2.o)
+ .text.libgcc.div
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_tablejump2.o)
+ .text.libgcc.prologue
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_tablejump2.o)
+ .text.libgcc.builtins
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_tablejump2.o)
+ .text.libgcc.fmul
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_tablejump2.o)
+ .text.libgcc.fixed
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_tablejump2.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_umulhisi3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_umulhisi3.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_umulhisi3.o)
+ .text.libgcc.div
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_umulhisi3.o)
+ .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_umulhisi3.o)
+ .text.libgcc.prologue
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_umulhisi3.o)
+ .text.libgcc.builtins
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_umulhisi3.o)
+ .text.libgcc.fmul
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_umulhisi3.o)
+ .text.libgcc.fixed
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_umulhisi3.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(abort.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(abort.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(abort.o)
+ .text.avr-libc
+                0x00000000        0xa c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(abort.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(atoi.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(atoi.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(atoi.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(memcpy_P.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(memcpy_P.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(memcpy_P.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(strtok.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(strtok.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(strchr.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(strchr.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(strchr.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(strcmp.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(strcmp.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(strcmp.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(strncpy.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(strncpy.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(strncpy.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(strtok_r.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(strtok_r.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(strtok_r.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(mul10.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(mul10.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(mul10.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+text             0x00000000         0x00020000         xr
+data             0x00800060         0x0000ffa0         rw !x
+eeprom           0x00810000         0x00010000         rw !x
+fuse             0x00820000         0x00000400         rw !x
+lock             0x00830000         0x00000400         rw !x
+signature        0x00840000         0x00000400         rw !x
+user_signatures  0x00850000         0x00000400         rw !x
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+Address of section .data set to 0x800100
+LOAD C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.0.106/gcc/dev/atmega328p/avr5/crtatmega328p.o
+LOAD Sketch.o
+LOAD src/MaxMatrix.o
+LOAD src/TimerOne.o
+START GROUP
+LOAD c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a
+LOAD C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a
+END GROUP
+LOAD c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a
+LOAD c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a
+START GROUP
+LOAD c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a
+LOAD c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a
+LOAD c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a
+LOAD C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.0.106/gcc/dev/atmega328p/avr5\libatmega328p.a
+END GROUP
+                0x00020000                __TEXT_REGION_LENGTH__ = DEFINED (__TEXT_REGION_LENGTH__)?__TEXT_REGION_LENGTH__:0x20000
+                0x0000ffa0                __DATA_REGION_LENGTH__ = DEFINED (__DATA_REGION_LENGTH__)?__DATA_REGION_LENGTH__:0xffa0
+                0x00010000                __EEPROM_REGION_LENGTH__ = DEFINED (__EEPROM_REGION_LENGTH__)?__EEPROM_REGION_LENGTH__:0x10000
+                0x00000400                __FUSE_REGION_LENGTH__ = DEFINED (__FUSE_REGION_LENGTH__)?__FUSE_REGION_LENGTH__:0x400
+                0x00000400                __LOCK_REGION_LENGTH__ = DEFINED (__LOCK_REGION_LENGTH__)?__LOCK_REGION_LENGTH__:0x400
+                0x00000400                __SIGNATURE_REGION_LENGTH__ = DEFINED (__SIGNATURE_REGION_LENGTH__)?__SIGNATURE_REGION_LENGTH__:0x400
+                0x00000400                __USER_SIGNATURE_REGION_LENGTH__ = DEFINED (__USER_SIGNATURE_REGION_LENGTH__)?__USER_SIGNATURE_REGION_LENGTH__:0x400
+
+.hash
+ *(.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.init
+ *(.rel.init)
+
+.rela.init
+ *(.rela.init)
+
+.rel.text
+ *(.rel.text)
+ *(.rel.text.*)
+ *(.rel.gnu.linkonce.t*)
+
+.rela.text
+ *(.rela.text)
+ *(.rela.text.*)
+ *(.rela.gnu.linkonce.t*)
+
+.rel.fini
+ *(.rel.fini)
+
+.rela.fini
+ *(.rela.fini)
+
+.rel.rodata
+ *(.rel.rodata)
+ *(.rel.rodata.*)
+ *(.rel.gnu.linkonce.r*)
+
+.rela.rodata
+ *(.rela.rodata)
+ *(.rela.rodata.*)
+ *(.rela.gnu.linkonce.r*)
+
+.rel.data
+ *(.rel.data)
+ *(.rel.data.*)
+ *(.rel.gnu.linkonce.d*)
+
+.rela.data
+ *(.rela.data)
+ *(.rela.data.*)
+ *(.rela.gnu.linkonce.d*)
+
+.rel.ctors
+ *(.rel.ctors)
+
+.rela.ctors
+ *(.rela.ctors)
+
+.rel.dtors
+ *(.rel.dtors)
+
+.rela.dtors
+ *(.rela.dtors)
+
+.rel.got
+ *(.rel.got)
+
+.rela.got
+ *(.rela.got)
+
+.rel.bss
+ *(.rel.bss)
+
+.rela.bss
+ *(.rela.bss)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.text           0x00000000     0x20d6
+ *(.vectors)
+ .vectors       0x00000000       0x68 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.0.106/gcc/dev/atmega328p/avr5/crtatmega328p.o
+                0x00000000                __vector_default
+                0x00000000                __vectors
+ *(.vectors)
+ *(.progmem.gcc*)
+                0x00000068                . = ALIGN (0x2)
+                0x00000068                __trampolines_start = .
+ *(.trampolines)
+ .trampolines   0x00000068        0x0 linker stubs
+ *(.trampolines*)
+                0x00000068                __trampolines_end = .
+ *libprintf_flt.a:*(.progmem.data)
+ *libc.a:*(.progmem.data)
+ *(.progmem*)
+ .progmem.data._ZZ9printHelpvE3__c_2
+                0x00000068       0x1b Sketch.o
+ .progmem.data._ZZ9printHelpvE3__c_1
+                0x00000083       0x37 Sketch.o
+ .progmem.data._ZZ9printHelpvE3__c_0
+                0x000000ba       0x2e Sketch.o
+ .progmem.data._ZZ9printHelpvE3__c
+                0x000000e8       0x17 Sketch.o
+ .progmem.data._ZZ15uartInputHandlevE3__c_2
+                0x000000ff       0x44 Sketch.o
+ .progmem.data._ZZ15uartInputHandlevE3__c_1
+                0x00000143       0x13 Sketch.o
+ .progmem.data._ZZ15uartInputHandlevE3__c_0
+                0x00000156       0x50 Sketch.o
+ .progmem.data._ZZ15uartInputHandlevE3__c
+                0x000001a6       0x13 Sketch.o
+ .progmem.data._ZL11SpriteTable
+                0x000001b9      0x2bc src/MaxMatrix.o
+ .progmem.data.digital_pin_to_timer_PGM
+                0x00000475       0x14 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+                0x00000475                digital_pin_to_timer_PGM
+ .progmem.data.digital_pin_to_bit_mask_PGM
+                0x00000489       0x14 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+                0x00000489                digital_pin_to_bit_mask_PGM
+ .progmem.data.digital_pin_to_port_PGM
+                0x0000049d       0x14 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+                0x0000049d                digital_pin_to_port_PGM
+ .progmem.data.port_to_output_PGM
+                0x000004b1        0xa C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+                0x000004b1                port_to_output_PGM
+ .progmem.data.port_to_mode_PGM
+                0x000004bb        0xa C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+                0x000004bb                port_to_mode_PGM
+                0x000004c6                . = ALIGN (0x2)
+ *fill*         0x000004c5        0x1 
+ *(.jumptables)
+ *(.jumptables*)
+ *(.lowtext)
+ *(.lowtext*)
+                0x000004c6                __ctors_start = .
+ *(.ctors)
+ .ctors         0x000004c6        0x2 Sketch.o
+ .ctors         0x000004c8        0x2 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
+                0x000004ca                __ctors_end = .
+                0x000004ca                __dtors_start = .
+ *(.dtors)
+ .dtors         0x000004ca        0x2 Sketch.o
+                0x000004cc                __dtors_end = .
+ SORT(*)(.ctors)
+ SORT(*)(.dtors)
+ *(.init0)
+ .init0         0x000004cc        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.0.106/gcc/dev/atmega328p/avr5/crtatmega328p.o
+                0x000004cc                __init
+ *(.init0)
+ *(.init1)
+ *(.init1)
+ *(.init2)
+ .init2         0x000004cc        0xc C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.0.106/gcc/dev/atmega328p/avr5/crtatmega328p.o
+ *(.init2)
+ *(.init3)
+ *(.init3)
+ *(.init4)
+ .init4         0x000004d8       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_copy_data.o)
+                0x000004d8                __do_copy_data
+ .init4         0x000004ee       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+                0x000004ee                __do_clear_bss
+ *(.init4)
+ *(.init5)
+ *(.init5)
+ *(.init6)
+ .init6         0x000004fe       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_ctors.o)
+                0x000004fe                __do_global_ctors
+ *(.init6)
+ *(.init7)
+ *(.init7)
+ *(.init8)
+ *(.init8)
+ *(.init9)
+ .init9         0x00000514        0x8 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.0.106/gcc/dev/atmega328p/avr5/crtatmega328p.o
+ *(.init9)
+ *(.text)
+ .text          0x0000051c        0x4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.0.106/gcc/dev/atmega328p/avr5/crtatmega328p.o
+                0x0000051c                __vector_22
+                0x0000051c                __vector_1
+                0x0000051c                __vector_24
+                0x0000051c                __vector_12
+                0x0000051c                __bad_interrupt
+                0x0000051c                __vector_6
+                0x0000051c                __vector_3
+                0x0000051c                __vector_23
+                0x0000051c                __vector_25
+                0x0000051c                __vector_11
+                0x0000051c                __vector_17
+                0x0000051c                __vector_7
+                0x0000051c                __vector_5
+                0x0000051c                __vector_4
+                0x0000051c                __vector_9
+                0x0000051c                __vector_2
+                0x0000051c                __vector_21
+                0x0000051c                __vector_15
+                0x0000051c                __vector_8
+                0x0000051c                __vector_14
+                0x0000051c                __vector_10
+                0x0000051c                __vector_20
+                0x00000520                . = ALIGN (0x2)
+ *(.text.*)
+ .text._Z8systTickv
+                0x00000520        0x8 Sketch.o
+                0x00000520                _Z8systTickv
+ .text.setup    0x00000528       0x76 Sketch.o
+                0x00000528                setup
+ .text._Z9printHelpv
+                0x0000059e       0x30 Sketch.o
+                0x0000059e                _Z9printHelpv
+ .text._Z15uartInputHandlev
+                0x000005ce      0x2d8 Sketch.o
+                0x000005ce                _Z15uartInputHandlev
+ .text.loop     0x000008a6       0x4e Sketch.o
+                0x000008a6                loop
+ .text.startup._GLOBAL__sub_I_UartInput
+                0x000008f4        0xe Sketch.o
+ .text.exit._GLOBAL__sub_D_UartInput
+                0x00000902        0x8 Sketch.o
+ .text._Z11serialEventv
+                0x0000090a       0x50 Sketch.o
+                0x0000090a                _Z11serialEventv
+ .text._ZN9MaxMatrixC2Ehhh
+                0x0000095a       0x36 src/MaxMatrix.o
+                0x0000095a                _ZN9MaxMatrixC1Ehhh
+                0x0000095a                _ZN9MaxMatrixC2Ehhh
+ .text._ZN9MaxMatrixD2Ev
+                0x00000990        0x2 src/MaxMatrix.o
+                0x00000990                _ZN9MaxMatrixD1Ev
+                0x00000990                _ZN9MaxMatrixD2Ev
+ .text._ZN9MaxMatrix13RegisterWriteEhh
+                0x00000992       0x5e src/MaxMatrix.o
+                0x00000992                _ZN9MaxMatrix13RegisterWriteEhh
+ .text._ZN9MaxMatrix12setIntensityEh
+                0x000009f0       0x14 src/MaxMatrix.o
+                0x000009f0                _ZN9MaxMatrix12setIntensityEh
+ .text._ZN9MaxMatrix9getSpriteEhPA7_h
+                0x00000a04       0x22 src/MaxMatrix.o
+                0x00000a04                _ZN9MaxMatrix9getSpriteEhPA7_h
+ .text._ZN9MaxMatrix11reverseByteEh
+                0x00000a26       0x24 src/MaxMatrix.o
+                0x00000a26                _ZN9MaxMatrix11reverseByteEh
+ .text._ZN9MaxMatrix6reloadEv
+                0x00000a4a       0x80 src/MaxMatrix.o
+                0x00000a4a                _ZN9MaxMatrix6reloadEv
+ .text._ZN9MaxMatrix9shiftLeftEbb
+                0x00000aca       0x36 src/MaxMatrix.o
+                0x00000aca                _ZN9MaxMatrix9shiftLeftEbb
+ .text._ZN9MaxMatrix14setOrientationE24MaxMatrixOrientationType
+                0x00000b00      0x47e src/MaxMatrix.o
+                0x00000b00                _ZN9MaxMatrix14setOrientationE24MaxMatrixOrientationType
+ .text._ZN9MaxMatrix19convertCharToSpriteEcPh
+                0x00000f7e       0x44 src/MaxMatrix.o
+                0x00000f7e                _ZN9MaxMatrix19convertCharToSpriteEcPh
+ .text._ZN9MaxMatrix11setColumnLLEhh
+                0x00000fc2       0xa6 src/MaxMatrix.o
+                0x00000fc2                _ZN9MaxMatrix11setColumnLLEhh
+ .text._ZN9MaxMatrix23setColumnOnAllModulesLLEhh
+                0x00001068       0x94 src/MaxMatrix.o
+                0x00001068                _ZN9MaxMatrix23setColumnOnAllModulesLLEhh
+ .text._ZN9MaxMatrix5clearEv
+                0x000010fc       0x30 src/MaxMatrix.o
+                0x000010fc                _ZN9MaxMatrix5clearEv
+ .text._ZN9MaxMatrix4initEv
+                0x0000112c       0x6a src/MaxMatrix.o
+                0x0000112c                _ZN9MaxMatrix4initEv
+ .text._ZN9MaxMatrix16setTextWithShiftEPc
+                0x00001196       0x30 src/MaxMatrix.o
+                0x00001196                _ZN9MaxMatrix16setTextWithShiftEPc
+ .text._ZN9MaxMatrix8setRowLLEhhh
+                0x000011c6       0xb6 src/MaxMatrix.o
+                0x000011c6                _ZN9MaxMatrix8setRowLLEhhh
+ .text._ZN9MaxMatrix9setColumnEhh
+                0x0000127c       0xa2 src/MaxMatrix.o
+                0x0000127c                _ZN9MaxMatrix9setColumnEhh
+ .text._ZN9MaxMatrix6setDotEhhb
+                0x0000131e       0x5e src/MaxMatrix.o
+                0x0000131e                _ZN9MaxMatrix6setDotEhhb
+ .text._ZN9MaxMatrix9setSpriteEiiPA7_Kh
+                0x0000137c      0x126 src/MaxMatrix.o
+                0x0000137c                _ZN9MaxMatrix9setSpriteEiiPA7_Kh
+ .text._ZN9MaxMatrix7setTextEPc
+                0x000014a2       0x9c src/MaxMatrix.o
+                0x000014a2                _ZN9MaxMatrix7setTextEPc
+ .text._ZN9MaxMatrix13charShiftTaskEv
+                0x0000153e       0x4c src/MaxMatrix.o
+                0x0000153e                _ZN9MaxMatrix13charShiftTaskEv
+ .text._ZN9MaxMatrix15stringShiftTaskEv
+                0x0000158a       0xa0 src/MaxMatrix.o
+                0x0000158a                _ZN9MaxMatrix15stringShiftTaskEv
+ .text._ZN9MaxMatrix9shiftTaskEv
+                0x0000162a       0x28 src/MaxMatrix.o
+                0x0000162a                _ZN9MaxMatrix9shiftTaskEv
+ .text.__vector_13
+                0x00001652       0x4e src/TimerOne.o
+                0x00001652                __vector_13
+ .text._ZN8TimerOne9setPeriodEl
+                0x000016a0       0xd0 src/TimerOne.o
+                0x000016a0                _ZN8TimerOne9setPeriodEl
+ .text._ZN8TimerOne10initializeEl
+                0x00001770        0xe src/TimerOne.o
+                0x00001770                _ZN8TimerOne10initializeEl
+ .text._ZN8TimerOne6resumeEv
+                0x0000177e       0x12 src/TimerOne.o
+                0x0000177e                _ZN8TimerOne6resumeEv
+ .text._ZN8TimerOne15attachInterruptEPFvvEl
+                0x00001790       0x36 src/TimerOne.o
+                0x00001790                _ZN8TimerOne15attachInterruptEPFvvEl
+ .text._ZN14HardwareSerial9availableEv
+                0x000017c6       0x18 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+                0x000017c6                _ZN14HardwareSerial9availableEv
+ .text._ZN14HardwareSerial4peekEv
+                0x000017de       0x1c C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+                0x000017de                _ZN14HardwareSerial4peekEv
+ .text._ZN14HardwareSerial4readEv
+                0x000017fa       0x28 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+                0x000017fa                _ZN14HardwareSerial4readEv
+ .text._Z14serialEventRunv
+                0x00001822       0x1c C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+                0x00001822                _Z14serialEventRunv
+ .text._ZN14HardwareSerial17_tx_udr_empty_irqEv
+                0x0000183e       0x42 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+                0x0000183e                _ZN14HardwareSerial17_tx_udr_empty_irqEv
+ .text._ZN14HardwareSerial5flushEv
+                0x00001880       0x44 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+                0x00001880                _ZN14HardwareSerial5flushEv
+ .text._ZN14HardwareSerial5writeEh
+                0x000018c4       0x90 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+                0x000018c4                _ZN14HardwareSerial5writeEh
+ .text._ZN14HardwareSerial5beginEmh
+                0x00001954       0xca C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+                0x00001954                _ZN14HardwareSerial5beginEmh
+ .text.__vector_18
+                0x00001a1e       0x64 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
+                0x00001a1e                __vector_18
+ .text.__vector_19
+                0x00001a82       0x4c C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
+                0x00001a82                __vector_19
+ .text._Z17Serial0_availablev
+                0x00001ace       0x14 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
+                0x00001ace                _Z17Serial0_availablev
+ .text.startup._GLOBAL__sub_I___vector_18
+                0x00001ae2       0x5a C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
+ .text.initVariant
+                0x00001b3c        0x2 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(main.o)
+                0x00001b3c                initVariant
+ .text.startup.main
+                0x00001b3e       0x1e C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(main.o)
+                0x00001b3e                main
+ .text._ZN5Print5writeEPKhj
+                0x00001b5c       0x50 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+                0x00001b5c                _ZN5Print5writeEPKhj
+ .text._ZN5Print5writeEPKc
+                0x00001bac       0x2a C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+                0x00001bac                _ZN5Print5writeEPKc
+ .text._ZN5Print5printEPK19__FlashStringHelper
+                0x00001bd6       0x46 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+                0x00001bd6                _ZN5Print5printEPK19__FlashStringHelper
+ .text._ZN5Print5printEc
+                0x00001c1c        0xe C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+                0x00001c1c                _ZN5Print5printEc
+ .text._ZN5Print7printlnEv
+                0x00001c2a       0x28 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+                0x00001c2a                _ZN5Print7printlnEv
+ .text._ZN5Print7printlnEPK19__FlashStringHelper
+                0x00001c52       0x24 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+                0x00001c52                _ZN5Print7printlnEPK19__FlashStringHelper
+ .text._ZN5Print7printlnEPKc
+                0x00001c76       0x24 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+                0x00001c76                _ZN5Print7printlnEPKc
+ .text.__vector_16
+                0x00001c9a       0x94 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+                0x00001c9a                __vector_16
+ .text.init     0x00001d2e       0x76 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+                0x00001d2e                init
+ .text.turnOffPWM
+                0x00001da4       0x52 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+ .text.pinMode  0x00001df6       0x78 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+                0x00001df6                pinMode
+ .text.digitalWrite
+                0x00001e6e       0x60 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+                0x00001e6e                digitalWrite
+ .text.shiftOut
+                0x00001ece       0x76 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_shift.o)
+                0x00001ece                shiftOut
+ .text.libgcc.div
+                0x00001f44       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_udivmodsi4.o)
+                0x00001f44                __udivmodsi4
+ .text.libgcc.mul
+                0x00001f88        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_usmulhisi3.o)
+                0x00001f88                __usmulhisi3
+                0x00001f8c                __usmulhisi3_tail
+ .text.libgcc   0x00001f96        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_tablejump2.o)
+                0x00001f96                __tablejump2__
+ .text.libgcc.mul
+                0x00001fa2       0x1e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_umulhisi3.o)
+                0x00001fa2                __umulhisi3
+ .text.avr-libc
+                0x00001fc0       0x3c c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(atoi.o)
+                0x00001fc0                atoi
+ .text.avr-libc
+                0x00001ffc       0x12 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(memcpy_P.o)
+                0x00001ffc                memcpy_P
+ .text.avr-libc
+                0x0000200e        0xa c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(strtok.o)
+                0x0000200e                strtok
+ .text.avr-libc
+                0x00002018       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(strchr.o)
+                0x00002018                strchr
+ .text.avr-libc
+                0x0000202e       0x12 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(strcmp.o)
+                0x0000202e                strcmp
+ .text.avr-libc
+                0x00002040       0x1e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(strncpy.o)
+                0x00002040                strncpy
+ .text.avr-libc
+                0x0000205e       0x4e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(strtok_r.o)
+                0x0000205e                strtok_r
+ .text.avr-libc
+                0x000020ac       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(mul10.o)
+                0x000020ac                __mulhi_const_10
+                0x000020bc                . = ALIGN (0x2)
+ *(.fini9)
+ .fini9         0x000020bc        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+                0x000020bc                _exit
+                0x000020bc                exit
+ *(.fini9)
+ *(.fini8)
+ *(.fini8)
+ *(.fini7)
+ *(.fini7)
+ *(.fini6)
+ .fini6         0x000020bc       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_dtors.o)
+                0x000020bc                __do_global_dtors
+ *(.fini6)
+ *(.fini5)
+ *(.fini5)
+ *(.fini4)
+ *(.fini4)
+ *(.fini3)
+ *(.fini3)
+ *(.fini2)
+ *(.fini2)
+ *(.fini1)
+ *(.fini1)
+ *(.fini0)
+ .fini0         0x000020d2        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+ *(.fini0)
+                0x000020d6                _etext = .
+
+.data           0x00800100       0x50 load address 0x000020d6
+                0x00800100                PROVIDE (__data_start, .)
+ *(.data)
+ *(.data*)
+ *(.rodata)
+ *(.rodata*)
+ .rodata.str1.1
+                0x00800100       0x3f Sketch.o
+ .rodata._ZTV14HardwareSerial
+                0x0080013f       0x10 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+                0x0080013f                _ZTV14HardwareSerial
+ *(.gnu.linkonce.d*)
+                0x00800150                . = ALIGN (0x2)
+ *fill*         0x0080014f        0x1 
+                0x00800150                _edata = .
+                0x00800150                PROVIDE (__data_end, .)
+
+.bss            0x00800150      0x116
+                0x00800150                PROVIDE (__bss_start, .)
+ *(.bss)
+ .bss           0x00800150        0x2 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(strtok.o)
+ *(.bss*)
+ .bss.State     0x00800152        0x1 Sketch.o
+                0x00800152                State
+ .bss.Matrix    0x00800153       0x1f Sketch.o
+                0x00800153                Matrix
+ .bss.Timer1Overflow
+                0x00800172        0x1 Sketch.o
+                0x00800172                Timer1Overflow
+ .bss.MaxMatrixText
+                0x00800173       0x1e Sketch.o
+                0x00800173                MaxMatrixText
+ .bss.UartInputComplete
+                0x00800191        0x1 Sketch.o
+                0x00800191                UartInputComplete
+ .bss.UartInput
+                0x00800192       0x28 Sketch.o
+                0x00800192                UartInput
+ .bss.Timer1    0x008001ba        0x6 src/TimerOne.o
+                0x008001ba                Timer1
+ .bss.Serial    0x008001c0       0x9d C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
+                0x008001c0                Serial
+ .bss.timer0_fract
+                0x0080025d        0x1 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+ .bss.timer0_millis
+                0x0080025e        0x4 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+                0x0080025e                timer0_millis
+ .bss.timer0_overflow_count
+                0x00800262        0x4 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+                0x00800262                timer0_overflow_count
+ *(COMMON)
+                0x00800266                PROVIDE (__bss_end, .)
+                0x000020d6                __data_load_start = LOADADDR (.data)
+                0x00002126                __data_load_end = (__data_load_start + SIZEOF (.data))
+
+.noinit         0x00800266        0x0
+                [!provide]                PROVIDE (__noinit_start, .)
+ *(.noinit*)
+                [!provide]                PROVIDE (__noinit_end, .)
+                0x00800266                _end = .
+                [!provide]                PROVIDE (__heap_start, .)
+
+.eeprom         0x00810000        0x0
+ *(.eeprom*)
+                0x00810000                __eeprom_end = .
+
+.fuse
+ *(.fuse)
+ *(.lfuse)
+ *(.hfuse)
+ *(.efuse)
+
+.lock
+ *(.lock*)
+
+.signature
+ *(.signature*)
+
+.user_signatures
+ *(.user_signatures*)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x00000000       0x30
+ *(.comment)
+ .comment       0x00000000       0x30 Sketch.o
+                                 0x31 (size before relaxing)
+ .comment       0x00000030       0x31 src/MaxMatrix.o
+ .comment       0x00000030       0x31 src/TimerOne.o
+ .comment       0x00000030       0x31 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+ .comment       0x00000030       0x31 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
+ .comment       0x00000030       0x31 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(main.o)
+ .comment       0x00000030       0x31 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .comment       0x00000030       0x31 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+ .comment       0x00000030       0x31 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+ .comment       0x00000030       0x31 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_shift.o)
+ .comment       0x00000030       0x31 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(strtok.o)
+
+.note.gnu.avr.deviceinfo
+                0x00000000       0x40
+ .note.gnu.avr.deviceinfo
+                0x00000000       0x40 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.0.106/gcc/dev/atmega328p/avr5/crtatmega328p.o
+
+.note.gnu.build-id
+ *(.note.gnu.build-id)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000      0x468
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x58 Sketch.o
+ .debug_aranges
+                0x00000058      0x128 src/MaxMatrix.o
+ .debug_aranges
+                0x00000180       0x80 src/TimerOne.o
+ .debug_aranges
+                0x00000200       0x68 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+ .debug_aranges
+                0x00000268       0x38 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
+ .debug_aranges
+                0x000002a0       0x30 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(main.o)
+ .debug_aranges
+                0x000002d0       0xf0 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .debug_aranges
+                0x000003c0       0x48 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+ .debug_aranges
+                0x00000408       0x38 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+ .debug_aranges
+                0x00000440       0x28 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_shift.o)
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info     0x00000000     0xaca8
+ *(.debug_info .gnu.linkonce.wi.*)
+ .debug_info    0x00000000     0x1b3b Sketch.o
+ .debug_info    0x00001b3b     0x255a src/MaxMatrix.o
+ .debug_info    0x00004095      0x68d src/TimerOne.o
+ .debug_info    0x00004722     0x1a79 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+ .debug_info    0x0000619b     0x16a5 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
+ .debug_info    0x00007840      0x1f0 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(main.o)
+ .debug_info    0x00007a30     0x271c C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .debug_info    0x0000a14c      0x2bd C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+ .debug_info    0x0000a409      0x5f9 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+ .debug_info    0x0000aa02      0x2a6 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_shift.o)
+
+.debug_abbrev   0x00000000     0x1a44
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000      0x445 Sketch.o
+ .debug_abbrev  0x00000445      0x431 src/MaxMatrix.o
+ .debug_abbrev  0x00000876      0x1c0 src/TimerOne.o
+ .debug_abbrev  0x00000a36      0x3f1 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+ .debug_abbrev  0x00000e27      0x344 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
+ .debug_abbrev  0x0000116b       0xd7 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(main.o)
+ .debug_abbrev  0x00001242      0x436 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .debug_abbrev  0x00001678      0x145 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+ .debug_abbrev  0x000017bd      0x15b C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+ .debug_abbrev  0x00001918      0x12c C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_shift.o)
+
+.debug_line     0x00000000     0x2b5a
+ *(.debug_line .debug_line.* .debug_line_end)
+ .debug_line    0x00000000      0x4d2 Sketch.o
+ .debug_line    0x000004d2      0xea6 src/MaxMatrix.o
+ .debug_line    0x00001378      0x3a5 src/TimerOne.o
+ .debug_line    0x0000171d      0x424 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+ .debug_line    0x00001b41      0x257 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
+ .debug_line    0x00001d98      0x159 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(main.o)
+ .debug_line    0x00001ef1      0x622 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .debug_line    0x00002513      0x28f C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+ .debug_line    0x000027a2      0x252 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+ .debug_line    0x000029f4      0x166 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_shift.o)
+
+.debug_frame    0x00000000      0xf80
+ *(.debug_frame)
+ .debug_frame   0x00000000       0xc0 Sketch.o
+ .debug_frame   0x000000c0      0x5b0 src/MaxMatrix.o
+ .debug_frame   0x00000670      0x194 src/TimerOne.o
+ .debug_frame   0x00000804      0x104 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+ .debug_frame   0x00000908       0xc0 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
+ .debug_frame   0x000009c8       0x44 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(main.o)
+ .debug_frame   0x00000a0c      0x3b0 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .debug_frame   0x00000dbc       0xbc C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+ .debug_frame   0x00000e78       0x7c C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+ .debug_frame   0x00000ef4       0x8c C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_shift.o)
+
+.debug_str      0x00000000     0x2620
+ *(.debug_str)
+ .debug_str     0x00000000      0xe81 Sketch.o
+                                0xfb4 (size before relaxing)
+ .debug_str     0x00000e81      0x21f src/MaxMatrix.o
+                                0xc8b (size before relaxing)
+ .debug_str     0x000010a0       0xa4 src/TimerOne.o
+                                0x3e0 (size before relaxing)
+ .debug_str     0x00001144      0xeb4 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+                               0x118b (size before relaxing)
+ .debug_str     0x00001ff8       0x47 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
+                                0xf85 (size before relaxing)
+ .debug_str     0x0000203f       0x32 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(main.o)
+                                0x251 (size before relaxing)
+ .debug_str     0x00002071      0x36d C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+                                0xe82 (size before relaxing)
+ .debug_str     0x000023de      0x13e C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+                                0x234 (size before relaxing)
+ .debug_str     0x0000251c       0xc7 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+                                0x2a2 (size before relaxing)
+ .debug_str     0x000025e3       0x3d C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_shift.o)
+                                0x1ff (size before relaxing)
+
+.debug_loc      0x00000000     0x6b82
+ *(.debug_loc)
+ .debug_loc     0x00000000      0x41d Sketch.o
+ .debug_loc     0x0000041d     0x3044 src/MaxMatrix.o
+ .debug_loc     0x00003461      0x6e2 src/TimerOne.o
+ .debug_loc     0x00003b43      0x45a C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+ .debug_loc     0x00003f9d      0x161 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
+ .debug_loc     0x000040fe       0x26 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(main.o)
+ .debug_loc     0x00004124     0x1f4b C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .debug_loc     0x0000606f      0x249 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+ .debug_loc     0x000062b8      0x5e3 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+ .debug_loc     0x0000689b      0x2e7 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_shift.o)
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.debug_pubtypes
+ *(.debug_pubtypes)
+
+.debug_ranges   0x00000000      0x658
+ *(.debug_ranges)
+ .debug_ranges  0x00000000       0x78 Sketch.o
+ .debug_ranges  0x00000078      0x318 src/MaxMatrix.o
+ .debug_ranges  0x00000390       0x70 src/TimerOne.o
+ .debug_ranges  0x00000400       0x70 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial.o)
+ .debug_ranges  0x00000470       0x28 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(HardwareSerial0.o)
+ .debug_ranges  0x00000498       0x20 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(main.o)
+ .debug_ranges  0x000004b8      0x128 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(Print.o)
+ .debug_ranges  0x000005e0       0x38 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring.o)
+ .debug_ranges  0x00000618       0x28 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_digital.o)
+ .debug_ranges  0x00000640       0x18 C:\Users\virskl\Downloads\MaxMatrix\2.0\AtmelStudio\Led_Anzeige\Led_Anzeige\ArduinoCore\Debug\libArduinoCore.a(wiring_shift.o)
+
+.debug_macro
+ *(.debug_macro)
+OUTPUT(Led_Anzeige.elf elf32-avr)
+LOAD linker stubs
