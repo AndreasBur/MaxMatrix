@@ -15,8 +15,7 @@
  *                  
  *
  *****************************************************************************************************************************************************/
-
-#define MAXMATRIX_SOURCE
+ #define _MAXMATRIX_SOURCE_
 
 /******************************************************************************************************************************************************
  * INCLUDES
@@ -553,18 +552,24 @@ stdReturnType MaxMatrix::setText(const char* String)
 	spriteType Sprite;
 	int CharColumn = 0;
 	
-	while(*String != NULL)
+	if(String != NULL)
 	{
-		if(E_NOT_OK == convertCharToSprite(*String, &SpriteIndex)) { return E_NOT_OK; }
-		else if(E_NOT_OK == getSprite(SpriteIndex, &Sprite)) { return E_NOT_OK; }
-        else {
-			setSprite(CharColumn, 0, &Sprite);
-			CharColumn += Sprite[ASCII_TABLE_SPRITE_WIDTH] + 1;
-			if(CharColumn > MAXMATRIX_NUMBER_OF_COLUMNS) break;
+		while(*String != '\0')
+		{
+			if(E_NOT_OK == convertCharToSprite(*String, &SpriteIndex)) { return E_NOT_OK; }
+			else if(E_NOT_OK == getSprite(SpriteIndex, &Sprite)) { return E_NOT_OK; }
+			else {
+				setSprite(CharColumn, 0, &Sprite);
+				CharColumn += Sprite[ASCII_TABLE_SPRITE_WIDTH] + 1;
+				if(CharColumn > MAXMATRIX_NUMBER_OF_COLUMNS) break;
+			}
+			String++;
 		}
-		String++;
+		return E_OK;
+	} else {
+		return E_NOT_OK;
 	}
-	return E_OK;
+
 } /* setText */
 
 
@@ -808,7 +813,7 @@ void MaxMatrix::stringShiftTask()
     
     if(SpriteShiftCounter == 0)
     {
-        if(*String != NULL) {
+        if(*String != '\0') {
             convertCharToSprite(*String, &SpriteIndex);
             getSprite(SpriteIndex, &SpriteBuffer);
             if(SpriteShiftCounter != 0) shiftLeft(false, true);

@@ -15,7 +15,7 @@
  *                  
  *
  *****************************************************************************************************************************************************/
- #define _MAXMATRIX_SOURCE_
+#define _MAXMATRIX_SOURCE_
 
 /******************************************************************************************************************************************************
  * INCLUDES
@@ -79,6 +79,7 @@ MaxMatrix::~MaxMatrix()
 void MaxMatrix::init()
 {
     State = MAXMATRIX_STATE_INIT;
+
 #if(MAXMATRIX_USE_SPI == STD_ON)
 	SPI.begin();
 	SPI.beginTransaction(SPISettings(14000000, MSBFIRST, SPI_MODE0));
@@ -436,9 +437,9 @@ stdReturnType MaxMatrix::setRow(byte Row, const rowType* Value)
 stdReturnType MaxMatrix::setRow(byte Module, byte Row, byte Value)
 {
 	if(Orientation == MAXMATRIX_MODULE_ORIENTATION_0) return setRowLL(Module, Row, Value);
-	if(Orientation == MAXMATRIX_MODULE_ORIENTATION_90) return setColumnLL(Module, MAXMATRIX_COLUMN_NUMBER_OF_MODULE - Row - 1, Value); // FALSCH ? 
+	if(Orientation == MAXMATRIX_MODULE_ORIENTATION_90) return setColumnLL(Module, MAXMATRIX_COLUMN_NUMBER_OF_MODULE - Row - 1, Value);
 	if(Orientation == MAXMATRIX_MODULE_ORIENTATION_180) return setRowLL(Module, MAXMATRIX_ROW_NUMBER_OF_MODULE - Row - 1, reverseByte(Value));
-	if(Orientation == MAXMATRIX_MODULE_ORIENTATION_270) return setColumnLL(Module, Row, reverseByte(Value)); // FALSCH ?
+	if(Orientation == MAXMATRIX_MODULE_ORIENTATION_270) return setColumnLL(Module, Row, reverseByte(Value));
 
 	return E_NOT_OK;
 } /* setRow */
@@ -756,7 +757,7 @@ void MaxMatrix::setSprite(int X, int Y, const spriteType* Sprite)
  *  \param[in]      sOrientation	orientation in degree
  *  \return         -
  *****************************************************************************************************************************************************/
-void MaxMatrix::setOrientation(MaxMatrixModuleOrientationType sOrientation)
+void MaxMatrix::setModuleOrientation(MaxMatrixModuleOrientationType sOrientation)
 {
 	byte MatrixBufferRotated[MAXMATRIX_BUFFER_SIZE];
 	byte ColumnRotated = 0, RowRotated = 0;
@@ -1434,6 +1435,7 @@ void MaxMatrix::shiftDownLL(bool Rotate, bool ShiftToNeighbourModule)
 	}
     reload();
 } /* shiftDownLL */
+
 
 /******************************************************************************************************************************************************
  *  E N D   O F   F I L E

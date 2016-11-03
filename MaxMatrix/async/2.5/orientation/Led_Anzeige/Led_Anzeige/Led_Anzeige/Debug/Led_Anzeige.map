@@ -920,9 +920,9 @@ END GROUP
  .text._ZN9MaxMatrix6reloadEv
                 0x00000a66       0x80 src/MaxMatrix.o
                 0x00000a66                _ZN9MaxMatrix6reloadEv
- .text._ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType
+ .text._ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType
                 0x00000ae6      0x38c src/MaxMatrix.o
-                0x00000ae6                _ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType
+                0x00000ae6                _ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType
  .text._ZN9MaxMatrix19convertCharToSpriteEcPh
                 0x00000e72       0x44 src/MaxMatrix.o
                 0x00000e72                _ZN9MaxMatrix19convertCharToSpriteEcPh
@@ -1366,29 +1366,29 @@ END GROUP
  .debug_frame   0x000012dc       0x7c C:\Users\virskl\DOCUME~1\GitHub\MAXMAT~1\async\2.5\ORIENT~1\LED_AN~1\LED_AN~1\ARDUIN~1\Debug\libArduinoCore.a(wiring_digital.o)
  .debug_frame   0x00001358       0x8c C:\Users\virskl\DOCUME~1\GitHub\MAXMAT~1\async\2.5\ORIENT~1\LED_AN~1\LED_AN~1\ARDUIN~1\Debug\libArduinoCore.a(wiring_shift.o)
 
-.debug_str      0x00000000     0x2c1e
+.debug_str      0x00000000     0x2c2a
  *(.debug_str)
- .debug_str     0x00000000     0x1048 Sketch.o
-                               0x1187 (size before relaxing)
- .debug_str     0x00001048      0x28a src/MaxMatrix.o
-                                0xed5 (size before relaxing)
- .debug_str     0x000012d2       0x4f src/TimerOne.o
+ .debug_str     0x00000000     0x1054 Sketch.o
+                               0x1193 (size before relaxing)
+ .debug_str     0x00001054      0x28a src/MaxMatrix.o
+                                0xee1 (size before relaxing)
+ .debug_str     0x000012de       0x4f src/TimerOne.o
                                 0x3f6 (size before relaxing)
- .debug_str     0x00001321      0x405 src/TimerTwo.o
+ .debug_str     0x0000132d      0x405 src/TimerTwo.o
                                 0x786 (size before relaxing)
- .debug_str     0x00001726      0xeca C:\Users\virskl\DOCUME~1\GitHub\MAXMAT~1\async\2.5\ORIENT~1\LED_AN~1\LED_AN~1\ARDUIN~1\Debug\libArduinoCore.a(HardwareSerial.o)
+ .debug_str     0x00001732      0xeca C:\Users\virskl\DOCUME~1\GitHub\MAXMAT~1\async\2.5\ORIENT~1\LED_AN~1\LED_AN~1\ARDUIN~1\Debug\libArduinoCore.a(HardwareSerial.o)
                                0x11a1 (size before relaxing)
- .debug_str     0x000025f0       0x47 C:\Users\virskl\DOCUME~1\GitHub\MAXMAT~1\async\2.5\ORIENT~1\LED_AN~1\LED_AN~1\ARDUIN~1\Debug\libArduinoCore.a(HardwareSerial0.o)
+ .debug_str     0x000025fc       0x47 C:\Users\virskl\DOCUME~1\GitHub\MAXMAT~1\async\2.5\ORIENT~1\LED_AN~1\LED_AN~1\ARDUIN~1\Debug\libArduinoCore.a(HardwareSerial0.o)
                                 0xf9b (size before relaxing)
- .debug_str     0x00002637       0x32 C:\Users\virskl\DOCUME~1\GitHub\MAXMAT~1\async\2.5\ORIENT~1\LED_AN~1\LED_AN~1\ARDUIN~1\Debug\libArduinoCore.a(main.o)
+ .debug_str     0x00002643       0x32 C:\Users\virskl\DOCUME~1\GitHub\MAXMAT~1\async\2.5\ORIENT~1\LED_AN~1\LED_AN~1\ARDUIN~1\Debug\libArduinoCore.a(main.o)
                                 0x267 (size before relaxing)
- .debug_str     0x00002669      0x373 C:\Users\virskl\DOCUME~1\GitHub\MAXMAT~1\async\2.5\ORIENT~1\LED_AN~1\LED_AN~1\ARDUIN~1\Debug\libArduinoCore.a(Print.o)
+ .debug_str     0x00002675      0x373 C:\Users\virskl\DOCUME~1\GitHub\MAXMAT~1\async\2.5\ORIENT~1\LED_AN~1\LED_AN~1\ARDUIN~1\Debug\libArduinoCore.a(Print.o)
                                 0xe98 (size before relaxing)
- .debug_str     0x000029dc      0x13e C:\Users\virskl\DOCUME~1\GitHub\MAXMAT~1\async\2.5\ORIENT~1\LED_AN~1\LED_AN~1\ARDUIN~1\Debug\libArduinoCore.a(wiring.o)
+ .debug_str     0x000029e8      0x13e C:\Users\virskl\DOCUME~1\GitHub\MAXMAT~1\async\2.5\ORIENT~1\LED_AN~1\LED_AN~1\ARDUIN~1\Debug\libArduinoCore.a(wiring.o)
                                 0x24a (size before relaxing)
- .debug_str     0x00002b1a       0xc7 C:\Users\virskl\DOCUME~1\GitHub\MAXMAT~1\async\2.5\ORIENT~1\LED_AN~1\LED_AN~1\ARDUIN~1\Debug\libArduinoCore.a(wiring_digital.o)
+ .debug_str     0x00002b26       0xc7 C:\Users\virskl\DOCUME~1\GitHub\MAXMAT~1\async\2.5\ORIENT~1\LED_AN~1\LED_AN~1\ARDUIN~1\Debug\libArduinoCore.a(wiring_digital.o)
                                 0x2b8 (size before relaxing)
- .debug_str     0x00002be1       0x3d C:\Users\virskl\DOCUME~1\GitHub\MAXMAT~1\async\2.5\ORIENT~1\LED_AN~1\LED_AN~1\ARDUIN~1\Debug\libArduinoCore.a(wiring_shift.o)
+ .debug_str     0x00002bed       0x3d C:\Users\virskl\DOCUME~1\GitHub\MAXMAT~1\async\2.5\ORIENT~1\LED_AN~1\LED_AN~1\ARDUIN~1\Debug\libArduinoCore.a(wiring_shift.o)
                                 0x215 (size before relaxing)
 
 .debug_loc      0x00000000     0x89c8

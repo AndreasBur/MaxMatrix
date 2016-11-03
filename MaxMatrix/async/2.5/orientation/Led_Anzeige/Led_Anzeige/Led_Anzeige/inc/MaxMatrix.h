@@ -330,7 +330,7 @@ class MaxMatrix
 	stdReturnType setText(const char*);
 	stdReturnType setTextWithShift(char*);
 	void setSprite(int, int, const spriteType*);
-	void setOrientation(MaxMatrixModuleOrientationType);
+	void setModuleOrientation(MaxMatrixModuleOrientationType);
 
 
     // methods

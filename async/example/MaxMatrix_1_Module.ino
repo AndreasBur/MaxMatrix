@@ -50,7 +50,7 @@ void loop()
     if(Matrix.getState() == MAXMATRIX_STATE_READY)
     {
         Matrix.clear();
-        Matrix.printStringWithShift("Andreas Burnickl");
+        Matrix.setTextWithShift("Andreas Burnickl");
     }
     delayMicroseconds(500);
 }

@@ -4,5 +4,5 @@ MaxMatrix
 
 
 TimerTwo
-- Kommentare in Funktionheader
+- Kommentare in Funktionsheader
 - Konzept für CTC und Pwm Pin 11 überlegen

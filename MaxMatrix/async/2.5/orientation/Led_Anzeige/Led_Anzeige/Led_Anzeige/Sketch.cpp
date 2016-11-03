@@ -90,7 +90,7 @@ void setup()
     Serial.begin(9600);
     Matrix.init();
     
-    Matrix.setOrientation(MAXMATRIX_MODULE_ORIENTATION_90);
+    Matrix.setModuleOrientation(MAXMATRIX_MODULE_ORIENTATION_90);
     Matrix.setText("Andreas");
     stringCopy(MaxMatrixText, "Andreas Burnickl", sizeof(MaxMatrixText));
     UartInputComplete = false;

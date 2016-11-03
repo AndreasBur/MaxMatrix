@@ -23,11 +23,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
   9 .debug_frame  000013e4  00000000  00000000  0001480c  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00002c1e  00000000  00000000  00015bf0  2**0
+ 10 .debug_str    00002c2a  00000000  00000000  00015bf0  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    000089c8  00000000  00000000  0001880e  2**0
+ 11 .debug_loc    000089c8  00000000  00000000  0001881a  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000007d8  00000000  00000000  000211d6  2**0
+ 12 .debug_ranges 000007d8  00000000  00000000  000211e2  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -292,11 +292,11 @@ void setup()
      566:	91 e0       	ldi	r25, 0x01	; 1
      568:	0e 94 b7 08 	call	0x116e	; 0x116e <_ZN9MaxMatrix4initEv>
     
-    Matrix.setOrientation(MAXMATRIX_MODULE_ORIENTATION_90);
+    Matrix.setModuleOrientation(MAXMATRIX_MODULE_ORIENTATION_90);
      56c:	61 e0       	ldi	r22, 0x01	; 1
      56e:	83 e5       	ldi	r24, 0x53	; 83
      570:	91 e0       	ldi	r25, 0x01	; 1
-     572:	0e 94 73 05 	call	0xae6	; 0xae6 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType>
+     572:	0e 94 73 05 	call	0xae6	; 0xae6 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType>
     Matrix.setText("Andreas");
      576:	60 e0       	ldi	r22, 0x00	; 0
      578:	71 e0       	ldi	r23, 0x01	; 1
@@ -320,7 +320,7 @@ inline void stringCopy(char *Destination, const char *Source, int Length)
      592:	10 92 a0 01 	sts	0x01A0, r1	; 0x8001a0 <MaxMatrixText+0x1d>
     Matrix.init();
     
-    Matrix.setOrientation(MAXMATRIX_MODULE_ORIENTATION_90);
+    Matrix.setModuleOrientation(MAXMATRIX_MODULE_ORIENTATION_90);
     Matrix.setText("Andreas");
     stringCopy(MaxMatrixText, "Andreas Burnickl", sizeof(MaxMatrixText));
     UartInputComplete = false;
@@ -1195,7 +1195,7 @@ void serialEvent()
      ae2:	df 90       	pop	r13
      ae4:	08 95       	ret
 
-00000ae6 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType>:
+00000ae6 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType>:
      ae6:	3f 92       	push	r3
      ae8:	4f 92       	push	r4
      aea:	5f 92       	push	r5
@@ -1224,33 +1224,33 @@ void serialEvent()
      b18:	fc 01       	movw	r30, r24
      b1a:	94 81       	ldd	r25, Z+4	; 0x04
      b1c:	69 17       	cp	r22, r25
-     b1e:	09 f4       	brne	.+2      	; 0xb22 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x3c>
-     b20:	90 c1       	rjmp	.+800    	; 0xe42 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x35c>
+     b1e:	09 f4       	brne	.+2      	; 0xb22 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x3c>
+     b20:	90 c1       	rjmp	.+800    	; 0xe42 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x35c>
      b22:	91 11       	cpse	r25, r1
-     b24:	04 c0       	rjmp	.+8      	; 0xb2e <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x48>
+     b24:	04 c0       	rjmp	.+8      	; 0xb2e <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x48>
      b26:	61 30       	cpi	r22, 0x01	; 1
-     b28:	a9 f0       	breq	.+42     	; 0xb54 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x6e>
+     b28:	a9 f0       	breq	.+42     	; 0xb54 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x6e>
      b2a:	80 e0       	ldi	r24, 0x00	; 0
-     b2c:	7e c0       	rjmp	.+252    	; 0xc2a <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x144>
+     b2c:	7e c0       	rjmp	.+252    	; 0xc2a <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x144>
      b2e:	91 30       	cpi	r25, 0x01	; 1
-     b30:	21 f4       	brne	.+8      	; 0xb3a <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x54>
+     b30:	21 f4       	brne	.+8      	; 0xb3a <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x54>
      b32:	62 30       	cpi	r22, 0x02	; 2
-     b34:	79 f0       	breq	.+30     	; 0xb54 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x6e>
+     b34:	79 f0       	breq	.+30     	; 0xb54 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x6e>
      b36:	80 e0       	ldi	r24, 0x00	; 0
-     b38:	7f c0       	rjmp	.+254    	; 0xc38 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x152>
+     b38:	7f c0       	rjmp	.+254    	; 0xc38 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x152>
      b3a:	92 30       	cpi	r25, 0x02	; 2
-     b3c:	21 f4       	brne	.+8      	; 0xb46 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x60>
+     b3c:	21 f4       	brne	.+8      	; 0xb46 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x60>
      b3e:	63 30       	cpi	r22, 0x03	; 3
-     b40:	49 f0       	breq	.+18     	; 0xb54 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x6e>
+     b40:	49 f0       	breq	.+18     	; 0xb54 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x6e>
      b42:	80 e0       	ldi	r24, 0x00	; 0
-     b44:	7f c0       	rjmp	.+254    	; 0xc44 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x15e>
+     b44:	7f c0       	rjmp	.+254    	; 0xc44 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x15e>
      b46:	93 30       	cpi	r25, 0x03	; 3
-     b48:	09 f0       	breq	.+2      	; 0xb4c <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x66>
-     b4a:	73 c0       	rjmp	.+230    	; 0xc32 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x14c>
+     b48:	09 f0       	breq	.+2      	; 0xb4c <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x66>
+     b4a:	73 c0       	rjmp	.+230    	; 0xc32 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x14c>
      b4c:	66 23       	and	r22, r22
-     b4e:	11 f0       	breq	.+4      	; 0xb54 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x6e>
+     b4e:	11 f0       	breq	.+4      	; 0xb54 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x6e>
      b50:	80 e0       	ldi	r24, 0x00	; 0
-     b52:	86 c0       	rjmp	.+268    	; 0xc60 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x17a>
+     b52:	86 c0       	rjmp	.+268    	; 0xc60 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x17a>
      b54:	20 e0       	ldi	r18, 0x00	; 0
      b56:	30 e0       	ldi	r19, 0x00	; 0
      b58:	41 2c       	mov	r4, r1
@@ -1270,11 +1270,11 @@ void serialEvent()
      b74:	a3 94       	inc	r10
      b76:	b1 2c       	mov	r11, r1
      b78:	04 2e       	mov	r0, r20
-     b7a:	02 c0       	rjmp	.+4      	; 0xb80 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x9a>
+     b7a:	02 c0       	rjmp	.+4      	; 0xb80 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x9a>
      b7c:	aa 0c       	add	r10, r10
      b7e:	bb 1c       	adc	r11, r11
      b80:	0a 94       	dec	r0
-     b82:	e2 f7       	brpl	.-8      	; 0xb7c <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x96>
+     b82:	e2 f7       	brpl	.-8      	; 0xb7c <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x96>
      b84:	be a2       	std	Y+38, r11	; 0x26
      b86:	ad a2       	std	Y+37, r10	; 0x25
      b88:	84 01       	movw	r16, r8
@@ -1290,7 +1290,7 @@ void serialEvent()
      b9c:	f1 1c       	adc	r15, r1
      b9e:	02 17       	cp	r16, r18
      ba0:	13 07       	cpc	r17, r19
-     ba2:	b4 f1       	brlt	.+108    	; 0xc10 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x12a>
+     ba2:	b4 f1       	brlt	.+108    	; 0xc10 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x12a>
      ba4:	df 01       	movw	r26, r30
      ba6:	a0 0f       	add	r26, r16
      ba8:	b1 1f       	adc	r27, r17
@@ -1302,35 +1302,35 @@ void serialEvent()
      bb4:	ac 21       	and	r26, r12
      bb6:	bd 21       	and	r27, r13
      bb8:	ab 2b       	or	r26, r27
-     bba:	91 f0       	breq	.+36     	; 0xbe0 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0xfa>
+     bba:	91 f0       	breq	.+36     	; 0xbe0 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0xfa>
      bbc:	d7 01       	movw	r26, r14
      bbe:	7c 91       	ld	r23, X
      bc0:	63 01       	movw	r12, r6
      bc2:	52 01       	movw	r10, r4
      bc4:	08 2e       	mov	r0, r24
-     bc6:	04 c0       	rjmp	.+8      	; 0xbd0 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0xea>
+     bc6:	04 c0       	rjmp	.+8      	; 0xbd0 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0xea>
      bc8:	aa 0c       	add	r10, r10
      bca:	bb 1c       	adc	r11, r11
      bcc:	cc 1c       	adc	r12, r12
      bce:	dd 1c       	adc	r13, r13
      bd0:	0a 94       	dec	r0
-     bd2:	d2 f7       	brpl	.-12     	; 0xbc8 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0xe2>
+     bd2:	d2 f7       	brpl	.-12     	; 0xbc8 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0xe2>
      bd4:	a9 a2       	std	Y+33, r10	; 0x21
      bd6:	ba a2       	std	Y+34, r11	; 0x22
      bd8:	cb a2       	std	Y+35, r12	; 0x23
      bda:	dc a2       	std	Y+36, r13	; 0x24
      bdc:	7a 29       	or	r23, r10
-     bde:	13 c0       	rjmp	.+38     	; 0xc06 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x120>
+     bde:	13 c0       	rjmp	.+38     	; 0xc06 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x120>
      be0:	63 01       	movw	r12, r6
      be2:	52 01       	movw	r10, r4
      be4:	08 2e       	mov	r0, r24
-     be6:	04 c0       	rjmp	.+8      	; 0xbf0 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x10a>
+     be6:	04 c0       	rjmp	.+8      	; 0xbf0 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x10a>
      be8:	aa 0c       	add	r10, r10
      bea:	bb 1c       	adc	r11, r11
      bec:	cc 1c       	adc	r12, r12
      bee:	dd 1c       	adc	r13, r13
      bf0:	0a 94       	dec	r0
-     bf2:	d2 f7       	brpl	.-12     	; 0xbe8 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x102>
+     bf2:	d2 f7       	brpl	.-12     	; 0xbe8 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x102>
      bf4:	a9 a2       	std	Y+33, r10	; 0x21
      bf6:	ba a2       	std	Y+34, r11	; 0x22
      bf8:	cb a2       	std	Y+35, r12	; 0x23
@@ -1344,35 +1344,35 @@ void serialEvent()
      c08:	81 50       	subi	r24, 0x01	; 1
      c0a:	01 50       	subi	r16, 0x01	; 1
      c0c:	11 09       	sbc	r17, r1
-     c0e:	c7 cf       	rjmp	.-114    	; 0xb9e <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0xb8>
+     c0e:	c7 cf       	rjmp	.-114    	; 0xb9e <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0xb8>
      c10:	41 50       	subi	r20, 0x01	; 1
      c12:	51 09       	sbc	r21, r1
-     c14:	08 f0       	brcs	.+2      	; 0xc18 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x132>
-     c16:	ad cf       	rjmp	.-166    	; 0xb72 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x8c>
+     c14:	08 f0       	brcs	.+2      	; 0xc18 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x132>
+     c16:	ad cf       	rjmp	.-166    	; 0xb72 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x8c>
      c18:	28 5f       	subi	r18, 0xF8	; 248
      c1a:	3f 4f       	sbci	r19, 0xFF	; 255
      c1c:	20 32       	cpi	r18, 0x20	; 32
      c1e:	31 05       	cpc	r19, r1
-     c20:	09 f0       	breq	.+2      	; 0xc24 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x13e>
-     c22:	9e cf       	rjmp	.-196    	; 0xb60 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x7a>
+     c20:	09 f0       	breq	.+2      	; 0xc24 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x13e>
+     c22:	9e cf       	rjmp	.-196    	; 0xb60 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x7a>
      c24:	80 e2       	ldi	r24, 0x20	; 32
      c26:	91 11       	cpse	r25, r1
-     c28:	05 c0       	rjmp	.+10     	; 0xc34 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x14e>
+     c28:	05 c0       	rjmp	.+10     	; 0xc34 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x14e>
      c2a:	62 30       	cpi	r22, 0x02	; 2
-     c2c:	09 f0       	breq	.+2      	; 0xc30 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x14a>
-     c2e:	68 c0       	rjmp	.+208    	; 0xd00 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x21a>
-     c30:	0b c0       	rjmp	.+22     	; 0xc48 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x162>
+     c2c:	09 f0       	breq	.+2      	; 0xc30 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x14a>
+     c2e:	68 c0       	rjmp	.+208    	; 0xd00 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x21a>
+     c30:	0b c0       	rjmp	.+22     	; 0xc48 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x162>
      c32:	80 e0       	ldi	r24, 0x00	; 0
      c34:	91 30       	cpi	r25, 0x01	; 1
-     c36:	21 f4       	brne	.+8      	; 0xc40 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x15a>
+     c36:	21 f4       	brne	.+8      	; 0xc40 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x15a>
      c38:	63 30       	cpi	r22, 0x03	; 3
-     c3a:	09 f0       	breq	.+2      	; 0xc3e <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x158>
-     c3c:	67 c0       	rjmp	.+206    	; 0xd0c <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x226>
-     c3e:	04 c0       	rjmp	.+8      	; 0xc48 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x162>
+     c3a:	09 f0       	breq	.+2      	; 0xc3e <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x158>
+     c3c:	67 c0       	rjmp	.+206    	; 0xd0c <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x226>
+     c3e:	04 c0       	rjmp	.+8      	; 0xc48 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x162>
      c40:	92 30       	cpi	r25, 0x02	; 2
-     c42:	59 f4       	brne	.+22     	; 0xc5a <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x174>
+     c42:	59 f4       	brne	.+22     	; 0xc5a <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x174>
      c44:	61 11       	cpse	r22, r1
-     c46:	67 c0       	rjmp	.+206    	; 0xd16 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x230>
+     c46:	67 c0       	rjmp	.+206    	; 0xd16 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x230>
      c48:	27 e0       	ldi	r18, 0x07	; 7
      c4a:	30 e0       	ldi	r19, 0x00	; 0
      c4c:	17 e0       	ldi	r17, 0x07	; 7
@@ -1381,20 +1381,20 @@ void serialEvent()
      c52:	51 2c       	mov	r5, r1
      c54:	32 01       	movw	r6, r4
      c56:	43 94       	inc	r4
-     c58:	0d c0       	rjmp	.+26     	; 0xc74 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x18e>
+     c58:	0d c0       	rjmp	.+26     	; 0xc74 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x18e>
      c5a:	93 30       	cpi	r25, 0x03	; 3
-     c5c:	09 f0       	breq	.+2      	; 0xc60 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x17a>
-     c5e:	4e c0       	rjmp	.+156    	; 0xcfc <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x216>
+     c5c:	09 f0       	breq	.+2      	; 0xc60 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x17a>
+     c5e:	4e c0       	rjmp	.+156    	; 0xcfc <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x216>
      c60:	61 30       	cpi	r22, 0x01	; 1
-     c62:	09 f0       	breq	.+2      	; 0xc66 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x180>
-     c64:	65 c0       	rjmp	.+202    	; 0xd30 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x24a>
-     c66:	f0 cf       	rjmp	.-32     	; 0xc48 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x162>
+     c62:	09 f0       	breq	.+2      	; 0xc66 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x180>
+     c64:	65 c0       	rjmp	.+202    	; 0xd30 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x24a>
+     c66:	f0 cf       	rjmp	.-32     	; 0xc48 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x162>
      c68:	28 5f       	subi	r18, 0xF8	; 248
      c6a:	3f 4f       	sbci	r19, 0xFF	; 255
      c6c:	27 32       	cpi	r18, 0x27	; 39
      c6e:	31 05       	cpc	r19, r1
-     c70:	09 f4       	brne	.+2      	; 0xc74 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x18e>
-     c72:	44 c0       	rjmp	.+136    	; 0xcfc <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x216>
+     c70:	09 f4       	brne	.+2      	; 0xc74 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x18e>
+     c72:	44 c0       	rjmp	.+136    	; 0xcfc <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x216>
      c74:	89 01       	movw	r16, r18
      c76:	69 01       	movw	r12, r18
      c78:	57 e0       	ldi	r21, 0x07	; 7
@@ -1402,7 +1402,7 @@ void serialEvent()
      c7c:	d1 08       	sbc	r13, r1
      c7e:	0c 15       	cp	r16, r12
      c80:	1d 05       	cpc	r17, r13
-     c82:	94 f3       	brlt	.-28     	; 0xc68 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x182>
+     c82:	94 f3       	brlt	.-28     	; 0xc68 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x182>
      c84:	df 01       	movw	r26, r30
      c86:	a0 0f       	add	r26, r16
      c88:	b1 1f       	adc	r27, r17
@@ -1421,34 +1421,34 @@ void serialEvent()
      ca2:	74 1b       	sub	r23, r20
      ca4:	57 01       	movw	r10, r14
      ca6:	04 2e       	mov	r0, r20
-     ca8:	02 c0       	rjmp	.+4      	; 0xcae <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x1c8>
+     ca8:	02 c0       	rjmp	.+4      	; 0xcae <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x1c8>
      caa:	b5 94       	asr	r11
      cac:	a7 94       	ror	r10
      cae:	0a 94       	dec	r0
-     cb0:	e2 f7       	brpl	.-8      	; 0xcaa <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x1c4>
+     cb0:	e2 f7       	brpl	.-8      	; 0xcaa <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x1c4>
      cb2:	a0 fe       	sbrs	r10, 0
-     cb4:	0c c0       	rjmp	.+24     	; 0xcce <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x1e8>
+     cb4:	0c c0       	rjmp	.+24     	; 0xcce <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x1e8>
      cb6:	53 01       	movw	r10, r6
      cb8:	42 01       	movw	r8, r4
-     cba:	04 c0       	rjmp	.+8      	; 0xcc4 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x1de>
+     cba:	04 c0       	rjmp	.+8      	; 0xcc4 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x1de>
      cbc:	88 0c       	add	r8, r8
      cbe:	99 1c       	adc	r9, r9
      cc0:	aa 1c       	adc	r10, r10
      cc2:	bb 1c       	adc	r11, r11
      cc4:	7a 95       	dec	r23
-     cc6:	d2 f7       	brpl	.-12     	; 0xcbc <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x1d6>
+     cc6:	d2 f7       	brpl	.-12     	; 0xcbc <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x1d6>
      cc8:	7c 91       	ld	r23, X
      cca:	78 29       	or	r23, r8
-     ccc:	0d c0       	rjmp	.+26     	; 0xce8 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x202>
+     ccc:	0d c0       	rjmp	.+26     	; 0xce8 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x202>
      cce:	53 01       	movw	r10, r6
      cd0:	42 01       	movw	r8, r4
-     cd2:	04 c0       	rjmp	.+8      	; 0xcdc <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x1f6>
+     cd2:	04 c0       	rjmp	.+8      	; 0xcdc <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x1f6>
      cd4:	88 0c       	add	r8, r8
      cd6:	99 1c       	adc	r9, r9
      cd8:	aa 1c       	adc	r10, r10
      cda:	bb 1c       	adc	r11, r11
      cdc:	7a 95       	dec	r23
-     cde:	d2 f7       	brpl	.-12     	; 0xcd4 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x1ee>
+     cde:	d2 f7       	brpl	.-12     	; 0xcd4 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x1ee>
      ce0:	78 2d       	mov	r23, r8
      ce2:	70 95       	com	r23
      ce4:	bc 90       	ld	r11, X
@@ -1458,49 +1458,49 @@ void serialEvent()
      cec:	5f 4f       	sbci	r21, 0xFF	; 255
      cee:	48 30       	cpi	r20, 0x08	; 8
      cf0:	51 05       	cpc	r21, r1
-     cf2:	b1 f6       	brne	.-84     	; 0xca0 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x1ba>
+     cf2:	b1 f6       	brne	.-84     	; 0xca0 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x1ba>
      cf4:	8f 5f       	subi	r24, 0xFF	; 255
      cf6:	01 50       	subi	r16, 0x01	; 1
      cf8:	11 09       	sbc	r17, r1
-     cfa:	c1 cf       	rjmp	.-126    	; 0xc7e <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x198>
+     cfa:	c1 cf       	rjmp	.-126    	; 0xc7e <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x198>
      cfc:	91 11       	cpse	r25, r1
-     cfe:	04 c0       	rjmp	.+8      	; 0xd08 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x222>
+     cfe:	04 c0       	rjmp	.+8      	; 0xd08 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x222>
      d00:	63 30       	cpi	r22, 0x03	; 3
-     d02:	09 f0       	breq	.+2      	; 0xd06 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x220>
-     d04:	72 c0       	rjmp	.+228    	; 0xdea <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x304>
-     d06:	0a c0       	rjmp	.+20     	; 0xd1c <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x236>
+     d02:	09 f0       	breq	.+2      	; 0xd06 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x220>
+     d04:	72 c0       	rjmp	.+228    	; 0xdea <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x304>
+     d06:	0a c0       	rjmp	.+20     	; 0xd1c <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x236>
      d08:	91 30       	cpi	r25, 0x01	; 1
-     d0a:	19 f4       	brne	.+6      	; 0xd12 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x22c>
+     d0a:	19 f4       	brne	.+6      	; 0xd12 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x22c>
      d0c:	66 23       	and	r22, r22
-     d0e:	31 f0       	breq	.+12     	; 0xd1c <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x236>
-     d10:	6c c0       	rjmp	.+216    	; 0xdea <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x304>
+     d0e:	31 f0       	breq	.+12     	; 0xd1c <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x236>
+     d10:	6c c0       	rjmp	.+216    	; 0xdea <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x304>
      d12:	92 30       	cpi	r25, 0x02	; 2
-     d14:	51 f4       	brne	.+20     	; 0xd2a <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x244>
+     d14:	51 f4       	brne	.+20     	; 0xd2a <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x244>
      d16:	61 30       	cpi	r22, 0x01	; 1
-     d18:	09 f0       	breq	.+2      	; 0xd1c <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x236>
-     d1a:	67 c0       	rjmp	.+206    	; 0xdea <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x304>
+     d18:	09 f0       	breq	.+2      	; 0xd1c <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x236>
+     d1a:	67 c0       	rjmp	.+206    	; 0xdea <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x304>
      d1c:	20 e0       	ldi	r18, 0x00	; 0
      d1e:	30 e0       	ldi	r19, 0x00	; 0
      d20:	41 2c       	mov	r4, r1
      d22:	51 2c       	mov	r5, r1
      d24:	32 01       	movw	r6, r4
      d26:	43 94       	inc	r4
-     d28:	2d c0       	rjmp	.+90     	; 0xd84 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x29e>
+     d28:	2d c0       	rjmp	.+90     	; 0xd84 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x29e>
      d2a:	93 30       	cpi	r25, 0x03	; 3
-     d2c:	09 f0       	breq	.+2      	; 0xd30 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x24a>
-     d2e:	5d c0       	rjmp	.+186    	; 0xdea <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x304>
+     d2c:	09 f0       	breq	.+2      	; 0xd30 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x24a>
+     d2e:	5d c0       	rjmp	.+186    	; 0xdea <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x304>
      d30:	62 30       	cpi	r22, 0x02	; 2
-     d32:	09 f0       	breq	.+2      	; 0xd36 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x250>
-     d34:	5a c0       	rjmp	.+180    	; 0xdea <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x304>
-     d36:	f2 cf       	rjmp	.-28     	; 0xd1c <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x236>
+     d32:	09 f0       	breq	.+2      	; 0xd36 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x250>
+     d34:	5a c0       	rjmp	.+180    	; 0xdea <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x304>
+     d36:	f2 cf       	rjmp	.-28     	; 0xd1c <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x236>
      d38:	a1 e0       	ldi	r26, 0x01	; 1
      d3a:	b0 e0       	ldi	r27, 0x00	; 0
      d3c:	0f a0       	ldd	r0, Y+39	; 0x27
-     d3e:	02 c0       	rjmp	.+4      	; 0xd44 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x25e>
+     d3e:	02 c0       	rjmp	.+4      	; 0xd44 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x25e>
      d40:	aa 0f       	add	r26, r26
      d42:	bb 1f       	adc	r27, r27
      d44:	0a 94       	dec	r0
-     d46:	e2 f7       	brpl	.-8      	; 0xd40 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x25a>
+     d46:	e2 f7       	brpl	.-8      	; 0xd40 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x25a>
      d48:	be a3       	std	Y+38, r27	; 0x26
      d4a:	ad a3       	std	Y+37, r26	; 0x25
      d4c:	49 2d       	mov	r20, r9
@@ -1518,7 +1518,7 @@ void serialEvent()
      d64:	94 1b       	sub	r25, r20
      d66:	42 17       	cp	r20, r18
      d68:	53 07       	cpc	r21, r19
-     d6a:	c4 f0       	brlt	.+48     	; 0xd9c <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x2b6>
+     d6a:	c4 f0       	brlt	.+48     	; 0xd9c <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x2b6>
      d6c:	4f a1       	ldd	r20, Y+39	; 0x27
      d6e:	58 a5       	ldd	r21, Y+40	; 0x28
      d70:	4f 5f       	subi	r20, 0xFF	; 255
@@ -1527,10 +1527,10 @@ void serialEvent()
      d76:	4f a3       	std	Y+39, r20	; 0x27
      d78:	48 30       	cpi	r20, 0x08	; 8
      d7a:	51 05       	cpc	r21, r1
-     d7c:	e9 f6       	brne	.-70     	; 0xd38 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x252>
+     d7c:	e9 f6       	brne	.-70     	; 0xd38 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x252>
      d7e:	20 32       	cpi	r18, 0x20	; 32
      d80:	31 05       	cpc	r19, r1
-     d82:	99 f1       	breq	.+102    	; 0xdea <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x304>
+     d82:	99 f1       	breq	.+102    	; 0xdea <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x304>
      d84:	78 2f       	mov	r23, r24
      d86:	72 0f       	add	r23, r18
      d88:	92 2e       	mov	r9, r18
@@ -1542,7 +1542,7 @@ void serialEvent()
      d94:	32 0e       	add	r3, r18
      d96:	28 5f       	subi	r18, 0xF8	; 248
      d98:	3f 4f       	sbci	r19, 0xFF	; 255
-     d9a:	ce cf       	rjmp	.-100    	; 0xd38 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x252>
+     d9a:	ce cf       	rjmp	.-100    	; 0xd38 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x252>
      d9c:	8f 01       	movw	r16, r30
      d9e:	04 0f       	add	r16, r20
      da0:	15 1f       	adc	r17, r21
@@ -1556,23 +1556,23 @@ void serialEvent()
      db0:	1b 21       	and	r17, r11
      db2:	63 01       	movw	r12, r6
      db4:	52 01       	movw	r10, r4
-     db6:	04 c0       	rjmp	.+8      	; 0xdc0 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x2da>
+     db6:	04 c0       	rjmp	.+8      	; 0xdc0 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x2da>
      db8:	aa 0c       	add	r10, r10
      dba:	bb 1c       	adc	r11, r11
      dbc:	cc 1c       	adc	r12, r12
      dbe:	dd 1c       	adc	r13, r13
      dc0:	9a 95       	dec	r25
-     dc2:	d2 f7       	brpl	.-12     	; 0xdb8 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x2d2>
+     dc2:	d2 f7       	brpl	.-12     	; 0xdb8 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x2d2>
      dc4:	a9 a2       	std	Y+33, r10	; 0x21
      dc6:	ba a2       	std	Y+34, r11	; 0x22
      dc8:	cb a2       	std	Y+35, r12	; 0x23
      dca:	dc a2       	std	Y+36, r13	; 0x24
      dcc:	01 2b       	or	r16, r17
-     dce:	21 f0       	breq	.+8      	; 0xdd8 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x2f2>
+     dce:	21 f0       	breq	.+8      	; 0xdd8 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x2f2>
      dd0:	d7 01       	movw	r26, r14
      dd2:	9c 91       	ld	r25, X
      dd4:	9a 29       	or	r25, r10
-     dd6:	05 c0       	rjmp	.+10     	; 0xde2 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x2fc>
+     dd6:	05 c0       	rjmp	.+10     	; 0xde2 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x2fc>
      dd8:	1a 2d       	mov	r17, r10
      dda:	10 95       	com	r17
      ddc:	d7 01       	movw	r26, r14
@@ -1581,7 +1581,7 @@ void serialEvent()
      de2:	9c 93       	st	X, r25
      de4:	4f 5f       	subi	r20, 0xFF	; 255
      de6:	5f 4f       	sbci	r21, 0xFF	; 255
-     de8:	bc cf       	rjmp	.-136    	; 0xd62 <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x27c>
+     de8:	bc cf       	rjmp	.-136    	; 0xd62 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x27c>
      dea:	64 83       	std	Z+4, r22	; 0x04
      dec:	be 01       	movw	r22, r28
      dee:	6f 5f       	subi	r22, 0xFF	; 255
@@ -1599,7 +1599,7 @@ void serialEvent()
      e06:	cd 01       	movw	r24, r26
      e08:	62 17       	cp	r22, r18
      e0a:	73 07       	cpc	r23, r19
-     e0c:	b9 f7       	brne	.-18     	; 0xdfc <_ZN9MaxMatrix14setOrientationE30MaxMatrixModuleOrientationType+0x316>
+     e0c:	b9 f7       	brne	.-18     	; 0xdfc <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType+0x316>
      e0e:	cf 01       	movw	r24, r30
      e10:	a8 96       	adiw	r28, 0x28	; 40
      e12:	0f b6       	in	r0, 0x3f	; 63
