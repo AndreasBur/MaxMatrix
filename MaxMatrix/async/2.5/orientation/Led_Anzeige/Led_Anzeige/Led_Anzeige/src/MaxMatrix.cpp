@@ -50,10 +50,11 @@ MaxMatrix::MaxMatrix(byte sDataInPin, byte sChipSelectPin, byte sClockPin)
     ChipSelectPin = sChipSelectPin;
     ClockPin = sClockPin;
     String = NULL;
-    SpriteShiftCounter = 0;
+    SpriteShiftCounter = MAXMATRIX_SPRITE_SHIFT_STATE_READY;
 	Orientation = MAXMATRIX_MODULE_ORIENTATION_0;
     State = MAXMATRIX_STATE_NONE;
     
+	/* initialize buffers */
     for (int i = 0; i < MAXMATRIX_NUMBER_OF_COLUMNS; i++) MatrixBuffer[i] = 0;
     for (int i = 0; i < MAXMATRIX_SPRITE_TABLE_NUMBER_OF_COLUMNS; i++) SpriteBuffer[i] = 0;
 } /* MaxMatrix */
@@ -102,7 +103,7 @@ void MaxMatrix::init()
     /* initialize registers, turn all LEDs off */
     clear();
     
-    setIntensity(0x02);    // the first 0x0f is the value you can set
+    setIntensity(0x02);
     State = MAXMATRIX_STATE_READY;
 } /* init */
 
@@ -154,11 +155,14 @@ stdReturnType MaxMatrix::setIntensity(byte Intensity)
  *****************************************************************************************************************************************************/
 void MaxMatrix::clear()
 {
-    for(int i = 0; i < MAXMATRIX_COLUMN_NUMBER_OF_MODULE; i++)
+	/* clear all LEDs on Matrix */
+    for(int i = 0; i < MAXMATRIX_COLUMN_NUMBER_OF_MODULE; i++) {
         setColumnOnAllModulesLL(i, 0);
-        
-    for(int i = 0; i < MAXMATRIX_NUMBER_OF_COLUMNS; i++)
+    }
+	/* clear Matrix buffer */
+    for(int i = 0; i < MAXMATRIX_NUMBER_OF_COLUMNS; i++) {
         MatrixBuffer[i] = 0;
+	}
 } /* clear */
 
 
@@ -460,8 +464,9 @@ stdReturnType MaxMatrix::setRow(byte Module, byte Row, byte Value)
 stdReturnType MaxMatrix::getDot(byte Column, byte Row, bool* Value)
 {
 	byte ColumnValue;
-
+	
     if(Column >= 0 && Column < MAXMATRIX_NUMBER_OF_COLUMNS && Row >= 0 && Row < MAXMATRIX_ROW_NUMBER_OF_MODULE) {
+		/* Dot means Bit in a specific column */
 		getColumn(Column, &ColumnValue);
 		*Value = bitRead(ColumnValue, Row);
 		return E_OK;
@@ -488,6 +493,7 @@ stdReturnType MaxMatrix::setDot(byte Column, byte Row, bool Value)
 	byte ColumnValue;
 
     if(Column >= 0 && Column < MAXMATRIX_NUMBER_OF_COLUMNS && Row >= 0 && Row < MAXMATRIX_ROW_NUMBER_OF_MODULE) {
+		/* Dot means Bit in a specific column */
 		getColumn(Column, &ColumnValue);
         bitWrite(ColumnValue, Row, Value);
 		return setColumn(Column, ColumnValue);
@@ -540,7 +546,7 @@ stdReturnType MaxMatrix::setCharWithShift(char Char)
     
     if(E_OK == convertCharToSprite(Char, &SpriteIndex)) {
         if(E_OK == getSprite(SpriteIndex, &SpriteBuffer)) {
-            SpriteShiftCounter = 1;
+            SpriteShiftCounter = MAXMATRIX_SPRITE_SHIFT_STATE_RUNNING;
             State = MAXMATRIX_STATE_CHAR_SHIFT;
             return E_OK;
         } else return E_NOT_OK;
@@ -599,7 +605,7 @@ stdReturnType MaxMatrix::setText(const char* String)
 stdReturnType MaxMatrix::setTextWithShift(char* sString)
 {
     if(sString != NULL) {
-        SpriteShiftCounter = 0;
+        SpriteShiftCounter = MAXMATRIX_SPRITE_SHIFT_STATE_READY;
         String = sString;
         State = MAXMATRIX_STATE_STRING_SHIFT;
         return E_OK;
@@ -898,11 +904,11 @@ void MaxMatrix::charShiftTask()
 {
     if(SpriteShiftCounter <= SpriteBuffer[ASCII_TABLE_SPRITE_WIDTH]) {
         shiftLeft(false, true);
-        setSprite(MAXMATRIX_NUMBER_OF_COLUMNS-SpriteShiftCounter, 0, &SpriteBuffer);
+        setSprite(MAXMATRIX_NUMBER_OF_COLUMNS - SpriteShiftCounter, 0, &SpriteBuffer);
         SpriteShiftCounter++;
     } else {
         if (MAXMATRIX_STATE_CHAR_SHIFT == State) State = MAXMATRIX_STATE_READY;
-        SpriteShiftCounter = 0;
+        SpriteShiftCounter = MAXMATRIX_SPRITE_SHIFT_STATE_READY;
     }
 } /* charShiftTask */
 
@@ -920,13 +926,14 @@ void MaxMatrix::stringShiftTask()
 {
     spriteIndexType SpriteIndex;
     
-    if(SpriteShiftCounter == 0)
+    if(SpriteShiftCounter == MAXMATRIX_SPRITE_SHIFT_STATE_READY)
     {
+		/* is end of string reached? */
         if(*String != '\0') {
             convertCharToSprite(*String, &SpriteIndex);
             getSprite(SpriteIndex, &SpriteBuffer);
-            if(SpriteShiftCounter != 0) shiftLeft(false, true);
-            SpriteShiftCounter = 1;
+            shiftLeft(false, true);
+            SpriteShiftCounter = MAXMATRIX_SPRITE_SHIFT_STATE_RUNNING;
             charShiftTask();
             String++;
         } else {
@@ -934,8 +941,12 @@ void MaxMatrix::stringShiftTask()
             shiftLeft(false, true);
         }
     } else {
+		/* go on shifting */
         charShiftTask();
-        if(SpriteShiftCounter == 0) shiftLeft(false, true);
+		/* after a complete char we have to shift one more time */
+        if(SpriteShiftCounter == MAXMATRIX_SPRITE_SHIFT_STATE_READY) {
+			for(byte Space = 1; Space <= MAXMATRIX_SPACE_BETWEEN_CHARS; Space++) { shiftLeft(false, true); }
+		}
     }
 } /* stringShiftTask */
 

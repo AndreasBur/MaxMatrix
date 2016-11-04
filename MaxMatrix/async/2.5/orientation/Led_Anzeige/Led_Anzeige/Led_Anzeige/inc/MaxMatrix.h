@@ -32,7 +32,7 @@
 #define MAXMATRIX_NUMBER_OF_MODULES                                 4
 #define MAXMATRIX_USE_SPI                                           STD_OFF
 #define MAXMATRIX_USE_DIGITAL_WRITE_FAST                            STD_OFF
-
+#define MAXMATRIX_SPACE_BETWEEN_CHARS								1
 
 /* MaxMatrix Parameter */
 #define MAXMATRIX_COLUMN_NUMBER_OF_MODULE                           8
@@ -45,6 +45,10 @@
 #define MAXMATRIX_ASCII_CHAR_MAX                                    126
 #define MAXMATRIX_ASCII_CHAR_MAX_WIDTH                              5
 #define MAXMATRIX_BUFFER_SIZE                                       MAXMATRIX_NUMBER_OF_COLUMNS
+
+/* MaxMatrix shift state */
+#define MAXMATRIX_SPRITE_SHIFT_STATE_READY							0
+#define MAXMATRIX_SPRITE_SHIFT_STATE_RUNNING						1
 
 
 /* Max7219 Register Address Table */
