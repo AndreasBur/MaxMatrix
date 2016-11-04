@@ -232,8 +232,7 @@ stdReturnType TimerTwo::start()
 		/* reset counter value */
 		TCNT2 = 0;
 		/* start counter */
-		TCCR2B |= ClockSelectBitGroup;
-		//writeBitGroup(TCCR2B, TIMERTWO_REG_CS_GM, TIMERTWO_REG_CS_GP, ClockSelectBitGroup);
+		writeBitGroup(TCCR2B, TIMERTWO_REG_CS_GM, TIMERTWO_REG_CS_GP, ClockSelectBitGroup);
 		/* set overflow interrupt, if callback is set */
 		if(TimerOverflowCallback != NULL) {
 			/* wait until timer moved on from zero, otherwise get phantom interrupt */
