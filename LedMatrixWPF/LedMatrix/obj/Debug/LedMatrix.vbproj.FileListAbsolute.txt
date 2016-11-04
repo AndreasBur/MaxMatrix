@@ -62,3 +62,7 @@ C:\Users\virskl\Documents\Visual Studio 2015\Projects\LedMatrixWPF\LedMatrix\obj
 C:\Users\virskl\Documents\Visual Studio 2015\Projects\LedMatrixWPF\LedMatrix\obj\Debug\LedMatrix.g.resources
 C:\Users\virskl\Documents\Visual Studio 2015\Projects\LedMatrixWPF\LedMatrix\obj\Debug\LedMatrix.Resources.resources
 C:\Users\virskl\Documents\Visual Studio 2015\Projects\LedMatrixWPF\LedMatrix\obj\Debug\LedMatrix.vbproj.GenerateResource.Cache
+C:\Users\Andreas\Documents\GitHub\MaxMatrix\LedMatrixWPF\LedMatrix\bin\Debug\LedMatrix.exe.config
+C:\Users\Andreas\Documents\GitHub\MaxMatrix\LedMatrixWPF\LedMatrix\obj\Debug\LedMatrix.exe
+C:\Users\Andreas\Documents\GitHub\MaxMatrix\LedMatrixWPF\LedMatrix\obj\Debug\LedMatrix.xml
+C:\Users\Andreas\Documents\GitHub\MaxMatrix\LedMatrixWPF\LedMatrix\obj\Debug\LedMatrix.pdb
