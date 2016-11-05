@@ -1,5 +1,5 @@
 # MaxMatrix
-This is a Arduino library for the MAx7219 and a LED dot matrix.
+This is a Arduino library for the MAX7219 and a LED dot matrix.
 
 Features:
 
