@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1470725465 source:c:\users\virskl\downloads\arraydrehen\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1470926865 source:c:\users\virskl\downloads\arraydrehenbit\main.c
+	<stdio.h>
+	<stdlib.h>
+

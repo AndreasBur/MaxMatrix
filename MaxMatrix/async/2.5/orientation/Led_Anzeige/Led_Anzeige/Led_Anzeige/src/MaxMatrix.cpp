@@ -103,7 +103,7 @@ void MaxMatrix::init()
     /* initialize registers, turn all LEDs off */
     clear();
     
-    setIntensity(0x02);
+    setIntensity(MAXMATRIX_INTENSITY_INIT_VALUE);
     State = MAXMATRIX_STATE_READY;
 } /* init */
 
@@ -156,13 +156,9 @@ stdReturnType MaxMatrix::setIntensity(byte Intensity)
 void MaxMatrix::clear()
 {
 	/* clear all LEDs on Matrix */
-    for(int i = 0; i < MAXMATRIX_COLUMN_NUMBER_OF_MODULE; i++) {
-        setColumnOnAllModulesLL(i, 0);
-    }
+    for(int i = 0; i < MAXMATRIX_COLUMN_NUMBER_OF_MODULE; i++) { setColumnOnAllModulesLL(i, 0); }
 	/* clear Matrix buffer */
-    for(int i = 0; i < MAXMATRIX_NUMBER_OF_COLUMNS; i++) {
-        MatrixBuffer[i] = 0;
-	}
+    for(int i = 0; i < MAXMATRIX_NUMBER_OF_COLUMNS; i++) { MatrixBuffer[i] = 0; }
 } /* clear */
 
 
@@ -572,7 +568,7 @@ stdReturnType MaxMatrix::setText(const char* String)
 	
 	if(String != NULL)
 	{
-		while(*String != '\0')
+		while(*String != STD_NULL_CHARACTER)
 		{
 			if(E_NOT_OK == convertCharToSprite(*String, &SpriteIndex)) { return E_NOT_OK; }
 			else if(E_NOT_OK == getSprite(SpriteIndex, &Sprite)) { return E_NOT_OK; }
@@ -587,7 +583,6 @@ stdReturnType MaxMatrix::setText(const char* String)
 	} else {
 		return E_NOT_OK;
 	}
-
 } /* setText */
 
 
@@ -631,7 +626,6 @@ void MaxMatrix::shiftLeft(bool Rotate, bool FillWithZero)
 	if(Orientation == MAXMATRIX_MODULE_ORIENTATION_90) shiftUpLL(Rotate, true);
 	if(Orientation == MAXMATRIX_MODULE_ORIENTATION_180) shiftRightLL(Rotate, FillWithZero, true);
 	if(Orientation == MAXMATRIX_MODULE_ORIENTATION_270) shiftDownLL(Rotate, true);
-
 } /* shiftLeft */
 
 
@@ -902,12 +896,14 @@ void MaxMatrix::reload()
  *****************************************************************************************************************************************************/
 void MaxMatrix::charShiftTask()
 {
-    if(SpriteShiftCounter <= SpriteBuffer[ASCII_TABLE_SPRITE_WIDTH]) {
-        shiftLeft(false, true);
-        setSprite(MAXMATRIX_NUMBER_OF_COLUMNS - SpriteShiftCounter, 0, &SpriteBuffer);
-        SpriteShiftCounter++;
-    } else {
-        if (MAXMATRIX_STATE_CHAR_SHIFT == State) State = MAXMATRIX_STATE_READY;
+    shiftLeft(false, true);
+    SpriteShiftCounter++;
+	
+	if(SpriteShiftCounter <= SpriteBuffer[ASCII_TABLE_SPRITE_WIDTH]) {
+		setSprite(MAXMATRIX_NUMBER_OF_COLUMNS - SpriteShiftCounter, 0, &SpriteBuffer);
+	}
+	else if(SpriteShiftCounter == SpriteBuffer[ASCII_TABLE_SPRITE_WIDTH] + MAXMATRIX_SPACE_BETWEEN_CHARS + 1) {
+        if(MAXMATRIX_STATE_CHAR_SHIFT == State) State = MAXMATRIX_STATE_READY;
         SpriteShiftCounter = MAXMATRIX_SPRITE_SHIFT_STATE_READY;
     }
 } /* charShiftTask */
@@ -929,10 +925,9 @@ void MaxMatrix::stringShiftTask()
     if(SpriteShiftCounter == MAXMATRIX_SPRITE_SHIFT_STATE_READY)
     {
 		/* is end of string reached? */
-        if(*String != '\0') {
+        if(*String != STD_NULL_CHARACTER) {
             convertCharToSprite(*String, &SpriteIndex);
             getSprite(SpriteIndex, &SpriteBuffer);
-            shiftLeft(false, true);
             SpriteShiftCounter = MAXMATRIX_SPRITE_SHIFT_STATE_RUNNING;
             charShiftTask();
             String++;
@@ -943,10 +938,6 @@ void MaxMatrix::stringShiftTask()
     } else {
 		/* go on shifting */
         charShiftTask();
-		/* after a complete char we have to shift one more time */
-        if(SpriteShiftCounter == MAXMATRIX_SPRITE_SHIFT_STATE_READY) {
-			for(byte Space = 1; Space <= MAXMATRIX_SPACE_BETWEEN_CHARS; Space++) { shiftLeft(false, true); }
-		}
     }
 } /* stringShiftTask */
 

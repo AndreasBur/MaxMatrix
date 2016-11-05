@@ -33,6 +33,7 @@
 #define MAXMATRIX_USE_SPI                                           STD_OFF
 #define MAXMATRIX_USE_DIGITAL_WRITE_FAST                            STD_OFF
 #define MAXMATRIX_SPACE_BETWEEN_CHARS								1
+#define MAXMATRIX_INTENSITY_INIT_VALUE								5
 
 /* MaxMatrix Parameter */
 #define MAXMATRIX_COLUMN_NUMBER_OF_MODULE                           8
@@ -49,7 +50,6 @@
 /* MaxMatrix shift state */
 #define MAXMATRIX_SPRITE_SHIFT_STATE_READY							0
 #define MAXMATRIX_SPRITE_SHIFT_STATE_RUNNING						1
-
 
 /* Max7219 Register Address Table */
 #define MAX7219_REG_NO_OP_ADDRESS                                   0x00

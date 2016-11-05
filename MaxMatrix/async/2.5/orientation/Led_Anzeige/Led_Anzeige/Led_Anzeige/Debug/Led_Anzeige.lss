@@ -9,25 +9,25 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
   2 .bss          0000012c  00800150  00800150  0000259e  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  0000259e  2**0
+  3 .comment      00000060  00000000  00000000  0000259e  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000025d0  2**2
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00002600  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000558  00000000  00000000  00002610  2**0
+  5 .debug_aranges 00000558  00000000  00000000  00002640  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   0000c8bf  00000000  00000000  00002b68  2**0
+  6 .debug_info   0000c8bf  00000000  00000000  00002b98  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00001d85  00000000  00000000  0000f427  2**0
+  7 .debug_abbrev 00001d85  00000000  00000000  0000f457  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   0000367d  00000000  00000000  000111ac  2**0
+  8 .debug_line   0000367d  00000000  00000000  000111dc  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  000013e4  00000000  00000000  0001482c  2**2
+  9 .debug_frame  000013e4  00000000  00000000  0001485c  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00002c30  00000000  00000000  00015c10  2**0
+ 10 .debug_str    00002ca6  00000000  00000000  00015c40  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    000089dc  00000000  00000000  00018840  2**0
+ 11 .debug_loc    000089dc  00000000  00000000  000188e6  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000007d8  00000000  00000000  0002121c  2**0
+ 12 .debug_ranges 000007d8  00000000  00000000  000212c2  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -239,23 +239,11 @@ Disassembly of section .text:
      524:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 00000528 <_Z8systTickv>:
- *                  Will be called from interrupt context
- *                  
- *****************************************************************************************************************************************************/
-void systTick()
-{
-    Timer1Overflow = true;
      528:	81 e0       	ldi	r24, 0x01	; 1
      52a:	80 93 82 01 	sts	0x0182, r24	; 0x800182 <Timer1Overflow>
      52e:	08 95       	ret
 
 00000530 <setup>:
-/******************************************************************************************************************************************************
- *  ARDUINO setup
- *****************************************************************************************************************************************************/
-void setup()
-{
-    Timer1.initialize(200000);
      530:	40 e4       	ldi	r20, 0x40	; 64
      532:	5d e0       	ldi	r21, 0x0D	; 13
      534:	63 e0       	ldi	r22, 0x03	; 3
@@ -263,7 +251,6 @@ void setup()
      538:	8a ec       	ldi	r24, 0xCA	; 202
      53a:	91 e0       	ldi	r25, 0x01	; 1
      53c:	0e 94 7c 0d 	call	0x1af8	; 0x1af8 <_ZN8TimerOne10initializeEl>
-    Timer1.attachInterrupt(systTick);
      540:	2f ef       	ldi	r18, 0xFF	; 255
      542:	3f ef       	ldi	r19, 0xFF	; 255
      544:	a9 01       	movw	r20, r18
@@ -272,12 +259,6 @@ void setup()
      54a:	8a ec       	ldi	r24, 0xCA	; 202
      54c:	91 e0       	ldi	r25, 0x01	; 1
      54e:	0e 94 8c 0d 	call	0x1b18	; 0x1b18 <_ZN8TimerOne15attachInterruptEPFvvEl>
-  public:
-    inline HardwareSerial(
-      volatile uint8_t *ubrrh, volatile uint8_t *ubrrl,
-      volatile uint8_t *ucsra, volatile uint8_t *ucsrb,
-      volatile uint8_t *ucsrc, volatile uint8_t *udr);
-    void begin(unsigned long baud) { begin(baud, SERIAL_8N1); }
      552:	26 e0       	ldi	r18, 0x06	; 6
      554:	40 e8       	ldi	r20, 0x80	; 128
      556:	55 e2       	ldi	r21, 0x25	; 37
@@ -286,29 +267,18 @@ void setup()
      55c:	86 ed       	ldi	r24, 0xD6	; 214
      55e:	91 e0       	ldi	r25, 0x01	; 1
      560:	0e 94 9c 0e 	call	0x1d38	; 0x1d38 <_ZN14HardwareSerial5beginEmh>
-    Serial.begin(9600);
-    Matrix.init();
      564:	83 e5       	ldi	r24, 0x53	; 83
      566:	91 e0       	ldi	r25, 0x01	; 1
      568:	0e 94 b7 08 	call	0x116e	; 0x116e <_ZN9MaxMatrix4initEv>
-    
-    Matrix.setModuleOrientation(MAXMATRIX_MODULE_ORIENTATION_90);
      56c:	61 e0       	ldi	r22, 0x01	; 1
      56e:	83 e5       	ldi	r24, 0x53	; 83
      570:	91 e0       	ldi	r25, 0x01	; 1
      572:	0e 94 73 05 	call	0xae6	; 0xae6 <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType>
-    Matrix.setText("Andreas");
      576:	60 e0       	ldi	r22, 0x00	; 0
      578:	71 e0       	ldi	r23, 0x01	; 1
      57a:	83 e5       	ldi	r24, 0x53	; 83
      57c:	91 e0       	ldi	r25, 0x01	; 1
      57e:	0e 94 71 0a 	call	0x14e2	; 0x14e2 <_ZN9MaxMatrix7setTextEPKc>
- *  \param[in]      Length              maximum characters to copy
- *                  
- *****************************************************************************************************************************************************/
-inline void stringCopy(char *Destination, const char *Source, int Length)
-{
-    strncpy(Destination, Source, Length-1);
      582:	4d e1       	ldi	r20, 0x1D	; 29
      584:	50 e0       	ldi	r21, 0x00	; 0
      586:	68 e0       	ldi	r22, 0x08	; 8
@@ -316,48 +286,29 @@ inline void stringCopy(char *Destination, const char *Source, int Length)
      58a:	83 e8       	ldi	r24, 0x83	; 131
      58c:	91 e0       	ldi	r25, 0x01	; 1
      58e:	0e 94 12 12 	call	0x2424	; 0x2424 <strncpy>
-    Destination[Length-1] = '\0';
      592:	10 92 a0 01 	sts	0x01A0, r1	; 0x8001a0 <MaxMatrixText+0x1d>
-    Matrix.init();
-    
-    Matrix.setModuleOrientation(MAXMATRIX_MODULE_ORIENTATION_90);
-    Matrix.setText("Andreas");
-    stringCopy(MaxMatrixText, "Andreas Burnickl", sizeof(MaxMatrixText));
-    UartInputComplete = false;
      596:	10 92 a1 01 	sts	0x01A1, r1	; 0x8001a1 <UartInputComplete>
-    Timer1Overflow = false;
      59a:	10 92 82 01 	sts	0x0182, r1	; 0x800182 <Timer1Overflow>
-    
-    State = LEDMATRIX_STATE_READY;
      59e:	81 e0       	ldi	r24, 0x01	; 1
      5a0:	80 93 52 01 	sts	0x0152, r24	; 0x800152 <State>
      5a4:	08 95       	ret
 
 000005a6 <_Z9printHelpv>:
- *  \details        this function prints usage of Led Matrix over UART
- *                  
- *****************************************************************************************************************************************************/
-void printHelp()
-{
-    Serial.println(F("command does not match"));
      5a6:	68 ee       	ldi	r22, 0xE8	; 232
      5a8:	70 e0       	ldi	r23, 0x00	; 0
      5aa:	86 ed       	ldi	r24, 0xD6	; 214
      5ac:	91 e0       	ldi	r25, 0x01	; 1
      5ae:	0e 94 1b 10 	call	0x2036	; 0x2036 <_ZN5Print7printlnEPK19__FlashStringHelper>
-    Serial.println(F("known commands are: text, intensity and speed"));
      5b2:	6a eb       	ldi	r22, 0xBA	; 186
      5b4:	70 e0       	ldi	r23, 0x00	; 0
      5b6:	86 ed       	ldi	r24, 0xD6	; 214
      5b8:	91 e0       	ldi	r25, 0x01	; 1
      5ba:	0e 94 1b 10 	call	0x2036	; 0x2036 <_ZN5Print7printlnEPK19__FlashStringHelper>
-    Serial.println(F("command and value has to be separated by an equal sign"));
      5be:	63 e8       	ldi	r22, 0x83	; 131
      5c0:	70 e0       	ldi	r23, 0x00	; 0
      5c2:	86 ed       	ldi	r24, 0xD6	; 214
      5c4:	91 e0       	ldi	r25, 0x01	; 1
      5c6:	0e 94 1b 10 	call	0x2036	; 0x2036 <_ZN5Print7printlnEPK19__FlashStringHelper>
-    Serial.println(F("Example: text=example text"));
      5ca:	68 e6       	ldi	r22, 0x68	; 104
      5cc:	70 e0       	ldi	r23, 0x00	; 0
      5ce:	86 ed       	ldi	r24, 0xD6	; 214
@@ -365,12 +316,6 @@ void printHelp()
      5d2:	0c 94 1b 10 	jmp	0x2036	; 0x2036 <_ZN5Print7printlnEPK19__FlashStringHelper>
 
 000005d6 <_Z15uartInputHandlev>:
- *  \details        this function handles and validates the incoming data. After splitting the data into
- *                  command and value a specific action will be called.
- *                 
- *****************************************************************************************************************************************************/
-void uartInputHandle()
-{
      5d6:	0f 93       	push	r16
      5d8:	1f 93       	push	r17
      5da:	cf 93       	push	r28
@@ -383,7 +328,6 @@ void uartInputHandle()
      5e8:	de bf       	out	0x3e, r29	; 62
      5ea:	0f be       	out	0x3f, r0	; 63
      5ec:	cd bf       	out	0x3d, r28	; 61
-    char command[COMMAND_MAX_LENGTH] = "";
      5ee:	1f 8e       	std	Y+31, r1	; 0x1f
      5f0:	18 a2       	std	Y+32, r1	; 0x20
      5f2:	19 a2       	std	Y+33, r1	; 0x21
@@ -395,7 +339,6 @@ void uartInputHandle()
      5fe:	1d 92       	st	X+, r1
      600:	8a 95       	dec	r24
      602:	e9 f7       	brne	.-6      	; 0x5fe <_Z15uartInputHandlev+0x28>
-    char valueASCII[MAXMATRIX_MAX_TEXT_LENGTH] = "";
      604:	19 82       	std	Y+1, r1	; 0x01
      606:	1a 82       	std	Y+2, r1	; 0x02
      608:	1b 82       	std	Y+3, r1	; 0x03
@@ -406,20 +349,14 @@ void uartInputHandle()
      612:	1d 92       	st	X+, r1
      614:	8a 95       	dec	r24
      616:	e9 f7       	brne	.-6      	; 0x612 <_Z15uartInputHandlev+0x3c>
-    int value = 0;
-    const char delimiterCommand[] = "=";
      618:	8d e3       	ldi	r24, 0x3D	; 61
      61a:	90 e0       	ldi	r25, 0x00	; 0
      61c:	9d ab       	std	Y+53, r25	; 0x35
      61e:	8c ab       	std	Y+52, r24	; 0x34
-    const char delimiterValue[] = ",";
      620:	8c e2       	ldi	r24, 0x2C	; 44
      622:	90 e0       	ldi	r25, 0x00	; 0
      624:	9b ab       	std	Y+51, r25	; 0x33
      626:	8a ab       	std	Y+50, r24	; 0x32
-    char *token = NULL;
-
-    if(strchr(UartInput, delimiterCommand[0]))
      628:	6d e3       	ldi	r22, 0x3D	; 61
      62a:	70 e0       	ldi	r23, 0x00	; 0
      62c:	82 ea       	ldi	r24, 0xA2	; 162
@@ -428,66 +365,36 @@ void uartInputHandle()
      634:	89 2b       	or	r24, r25
      636:	09 f4       	brne	.+2      	; 0x63a <_Z15uartInputHandlev+0x64>
      638:	26 c1       	rjmp	.+588    	; 0x886 <_Z15uartInputHandlev+0x2b0>
-    {
-        token = strtok(UartInput, delimiterCommand);
      63a:	be 01       	movw	r22, r28
      63c:	6c 5c       	subi	r22, 0xCC	; 204
      63e:	7f 4f       	sbci	r23, 0xFF	; 255
      640:	82 ea       	ldi	r24, 0xA2	; 162
      642:	91 e0       	ldi	r25, 0x01	; 1
      644:	0e 94 f9 11 	call	0x23f2	; 0x23f2 <strtok>
-        if(token != NULL) stringCopy(command, token, sizeof(command));
      648:	00 97       	sbiw	r24, 0x00	; 0
      64a:	41 f0       	breq	.+16     	; 0x65c <_Z15uartInputHandlev+0x86>
- *  \param[in]      Length              maximum characters to copy
- *                  
- *****************************************************************************************************************************************************/
-inline void stringCopy(char *Destination, const char *Source, int Length)
-{
-    strncpy(Destination, Source, Length-1);
      64c:	49 e0       	ldi	r20, 0x09	; 9
      64e:	50 e0       	ldi	r21, 0x00	; 0
      650:	bc 01       	movw	r22, r24
      652:	ce 01       	movw	r24, r28
      654:	4f 96       	adiw	r24, 0x1f	; 31
      656:	0e 94 12 12 	call	0x2424	; 0x2424 <strncpy>
-    Destination[Length-1] = '\0';
      65a:	18 a6       	std	Y+40, r1	; 0x28
-
-    if(strchr(UartInput, delimiterCommand[0]))
-    {
-        token = strtok(UartInput, delimiterCommand);
-        if(token != NULL) stringCopy(command, token, sizeof(command));
-        token = strtok(NULL, delimiterCommand);
      65c:	be 01       	movw	r22, r28
      65e:	6c 5c       	subi	r22, 0xCC	; 204
      660:	7f 4f       	sbci	r23, 0xFF	; 255
      662:	80 e0       	ldi	r24, 0x00	; 0
      664:	90 e0       	ldi	r25, 0x00	; 0
      666:	0e 94 f9 11 	call	0x23f2	; 0x23f2 <strtok>
-        if(token != NULL) stringCopy(valueASCII, token, sizeof(valueASCII));
      66a:	00 97       	sbiw	r24, 0x00	; 0
      66c:	41 f0       	breq	.+16     	; 0x67e <_Z15uartInputHandlev+0xa8>
- *  \param[in]      Length              maximum characters to copy
- *                  
- *****************************************************************************************************************************************************/
-inline void stringCopy(char *Destination, const char *Source, int Length)
-{
-    strncpy(Destination, Source, Length-1);
      66e:	4d e1       	ldi	r20, 0x1D	; 29
      670:	50 e0       	ldi	r21, 0x00	; 0
      672:	bc 01       	movw	r22, r24
      674:	ce 01       	movw	r24, r28
      676:	01 96       	adiw	r24, 0x01	; 1
      678:	0e 94 12 12 	call	0x2424	; 0x2424 <strncpy>
-    Destination[Length-1] = '\0';
      67c:	1e 8e       	std	Y+30, r1	; 0x1e
-        token = strtok(UartInput, delimiterCommand);
-        if(token != NULL) stringCopy(command, token, sizeof(command));
-        token = strtok(NULL, delimiterCommand);
-        if(token != NULL) stringCopy(valueASCII, token, sizeof(valueASCII));
-
-        if(strcmp(command, "textShift") == 0) {
      67e:	69 e1       	ldi	r22, 0x19	; 25
      680:	71 e0       	ldi	r23, 0x01	; 1
      682:	ce 01       	movw	r24, r28
@@ -495,18 +402,11 @@ inline void stringCopy(char *Destination, const char *Source, int Length)
      686:	0e 94 09 12 	call	0x2412	; 0x2412 <strcmp>
      68a:	89 2b       	or	r24, r25
      68c:	e9 f4       	brne	.+58     	; 0x6c8 <_Z15uartInputHandlev+0xf2>
-            if(LEDMATRIX_STATE_STRING_SHIFT != State) State = LEDMATRIX_STATE_STRING_SHIFT;
      68e:	80 91 52 01 	lds	r24, 0x0152	; 0x800152 <State>
      692:	82 30       	cpi	r24, 0x02	; 2
      694:	19 f0       	breq	.+6      	; 0x69c <_Z15uartInputHandlev+0xc6>
      696:	82 e0       	ldi	r24, 0x02	; 2
      698:	80 93 52 01 	sts	0x0152, r24	; 0x800152 <State>
- *  \param[in]      Length              maximum characters to copy
- *                  
- *****************************************************************************************************************************************************/
-inline void stringCopy(char *Destination, const char *Source, int Length)
-{
-    strncpy(Destination, Source, Length-1);
      69c:	4d e1       	ldi	r20, 0x1D	; 29
      69e:	50 e0       	ldi	r21, 0x00	; 0
      6a0:	be 01       	movw	r22, r28
@@ -515,26 +415,16 @@ inline void stringCopy(char *Destination, const char *Source, int Length)
      6a6:	83 e8       	ldi	r24, 0x83	; 131
      6a8:	91 e0       	ldi	r25, 0x01	; 1
      6aa:	0e 94 12 12 	call	0x2424	; 0x2424 <strncpy>
-    Destination[Length-1] = '\0';
      6ae:	10 92 a0 01 	sts	0x01A0, r1	; 0x8001a0 <MaxMatrixText+0x1d>
-        if(token != NULL) stringCopy(valueASCII, token, sizeof(valueASCII));
-
-        if(strcmp(command, "textShift") == 0) {
-            if(LEDMATRIX_STATE_STRING_SHIFT != State) State = LEDMATRIX_STATE_STRING_SHIFT;
-            stringCopy(MaxMatrixText, valueASCII, sizeof(MaxMatrixText));
-            Matrix.clear();
      6b2:	83 e5       	ldi	r24, 0x53	; 83
      6b4:	91 e0       	ldi	r25, 0x01	; 1
      6b6:	0e 94 9f 08 	call	0x113e	; 0x113e <_ZN9MaxMatrix5clearEv>
-            Matrix.setTextWithShift(MaxMatrixText);
      6ba:	63 e8       	ldi	r22, 0x83	; 131
      6bc:	71 e0       	ldi	r23, 0x01	; 1
      6be:	83 e5       	ldi	r24, 0x53	; 83
      6c0:	91 e0       	ldi	r25, 0x01	; 1
      6c2:	0e 94 03 05 	call	0xa06	; 0xa06 <_ZN9MaxMatrix16setTextWithShiftEPc>
      6c6:	e8 c0       	rjmp	.+464    	; 0x898 <_Z15uartInputHandlev+0x2c2>
-        }
-        else if(strcmp(command, "text") == 0) {
      6c8:	63 e2       	ldi	r22, 0x23	; 35
      6ca:	71 e0       	ldi	r23, 0x01	; 1
      6cc:	ce 01       	movw	r24, r28
@@ -542,18 +432,11 @@ inline void stringCopy(char *Destination, const char *Source, int Length)
      6d0:	0e 94 09 12 	call	0x2412	; 0x2412 <strcmp>
      6d4:	89 2b       	or	r24, r25
      6d6:	e9 f4       	brne	.+58     	; 0x712 <_Z15uartInputHandlev+0x13c>
-            if(LEDMATRIX_STATE_READY != State) State = LEDMATRIX_STATE_READY;
      6d8:	80 91 52 01 	lds	r24, 0x0152	; 0x800152 <State>
      6dc:	81 30       	cpi	r24, 0x01	; 1
      6de:	19 f0       	breq	.+6      	; 0x6e6 <_Z15uartInputHandlev+0x110>
      6e0:	81 e0       	ldi	r24, 0x01	; 1
      6e2:	80 93 52 01 	sts	0x0152, r24	; 0x800152 <State>
- *  \param[in]      Length              maximum characters to copy
- *                  
- *****************************************************************************************************************************************************/
-inline void stringCopy(char *Destination, const char *Source, int Length)
-{
-    strncpy(Destination, Source, Length-1);
      6e6:	4d e1       	ldi	r20, 0x1D	; 29
      6e8:	50 e0       	ldi	r21, 0x00	; 0
      6ea:	be 01       	movw	r22, r28
@@ -562,26 +445,16 @@ inline void stringCopy(char *Destination, const char *Source, int Length)
      6f0:	83 e8       	ldi	r24, 0x83	; 131
      6f2:	91 e0       	ldi	r25, 0x01	; 1
      6f4:	0e 94 12 12 	call	0x2424	; 0x2424 <strncpy>
-    Destination[Length-1] = '\0';
      6f8:	10 92 a0 01 	sts	0x01A0, r1	; 0x8001a0 <MaxMatrixText+0x1d>
-            Matrix.setTextWithShift(MaxMatrixText);
-        }
-        else if(strcmp(command, "text") == 0) {
-            if(LEDMATRIX_STATE_READY != State) State = LEDMATRIX_STATE_READY;
-            stringCopy(MaxMatrixText, valueASCII, sizeof(MaxMatrixText));
-            Matrix.clear();
      6fc:	83 e5       	ldi	r24, 0x53	; 83
      6fe:	91 e0       	ldi	r25, 0x01	; 1
      700:	0e 94 9f 08 	call	0x113e	; 0x113e <_ZN9MaxMatrix5clearEv>
-            Matrix.setText(MaxMatrixText);
      704:	63 e8       	ldi	r22, 0x83	; 131
      706:	71 e0       	ldi	r23, 0x01	; 1
      708:	83 e5       	ldi	r24, 0x53	; 83
      70a:	91 e0       	ldi	r25, 0x01	; 1
      70c:	0e 94 71 0a 	call	0x14e2	; 0x14e2 <_ZN9MaxMatrix7setTextEPKc>
      710:	c3 c0       	rjmp	.+390    	; 0x898 <_Z15uartInputHandlev+0x2c2>
-        }
-        else if(strcmp(command, "intensity") == 0) {
      712:	68 e2       	ldi	r22, 0x28	; 40
      714:	71 e0       	ldi	r23, 0x01	; 1
      716:	ce 01       	movw	r24, r28
@@ -589,38 +462,29 @@ inline void stringCopy(char *Destination, const char *Source, int Length)
      71a:	0e 94 09 12 	call	0x2412	; 0x2412 <strcmp>
      71e:	89 2b       	or	r24, r25
      720:	d1 f4       	brne	.+52     	; 0x756 <_Z15uartInputHandlev+0x180>
-            value = atoi(valueASCII);
      722:	ce 01       	movw	r24, r28
      724:	01 96       	adiw	r24, 0x01	; 1
      726:	0e 94 d2 11 	call	0x23a4	; 0x23a4 <atoi>
-            if(value >= MAXMATRIX_INTENSITY_MIN_VALUE && value <= MAXMATRIX_INTENSITY_MAX_VALUE) {
      72a:	9c 01       	movw	r18, r24
      72c:	21 50       	subi	r18, 0x01	; 1
      72e:	31 09       	sbc	r19, r1
      730:	20 31       	cpi	r18, 0x10	; 16
      732:	31 05       	cpc	r19, r1
      734:	38 f4       	brcc	.+14     	; 0x744 <_Z15uartInputHandlev+0x16e>
-                Matrix.setIntensity(value-1);
      736:	6f ef       	ldi	r22, 0xFF	; 255
      738:	68 0f       	add	r22, r24
      73a:	83 e5       	ldi	r24, 0x53	; 83
      73c:	91 e0       	ldi	r25, 0x01	; 1
      73e:	0e 94 f9 04 	call	0x9f2	; 0x9f2 <_ZN9MaxMatrix12setIntensityEh>
      742:	aa c0       	rjmp	.+340    	; 0x898 <_Z15uartInputHandlev+0x2c2>
-            } else {
-                Serial.println(F("value out of range"));
      744:	66 ea       	ldi	r22, 0xA6	; 166
      746:	71 e0       	ldi	r23, 0x01	; 1
      748:	86 ed       	ldi	r24, 0xD6	; 214
      74a:	91 e0       	ldi	r25, 0x01	; 1
      74c:	0e 94 1b 10 	call	0x2036	; 0x2036 <_ZN5Print7printlnEPK19__FlashStringHelper>
-                Serial.println(F("intensity range "TOSTRING(MAXMATRIX_INTENSITY_MIN_VALUE)" ... "TOSTRING(MAXMATRIX_INTENSITY_MAX_VALUE)));
      750:	66 e5       	ldi	r22, 0x56	; 86
      752:	71 e0       	ldi	r23, 0x01	; 1
      754:	29 c0       	rjmp	.+82     	; 0x7a8 <_Z15uartInputHandlev+0x1d2>
-            }
-        }
-        else if(strcmp(command, "speed") == 0) {
      756:	62 e3       	ldi	r22, 0x32	; 50
      758:	71 e0       	ldi	r23, 0x01	; 1
      75a:	ce 01       	movw	r24, r28
@@ -628,18 +492,15 @@ inline void stringCopy(char *Destination, const char *Source, int Length)
      75e:	0e 94 09 12 	call	0x2412	; 0x2412 <strcmp>
      762:	89 2b       	or	r24, r25
      764:	31 f5       	brne	.+76     	; 0x7b2 <_Z15uartInputHandlev+0x1dc>
-            value = atoi(valueASCII);
      766:	ce 01       	movw	r24, r28
      768:	01 96       	adiw	r24, 0x01	; 1
      76a:	0e 94 d2 11 	call	0x23a4	; 0x23a4 <atoi>
-            if(value >= MAXMATRIX_SPEED_MIN_VALUE && value <= MAXMATRIX_SPEED_MAX_VALUE) {
      76e:	9c 01       	movw	r18, r24
      770:	21 50       	subi	r18, 0x01	; 1
      772:	31 09       	sbc	r19, r1
      774:	24 31       	cpi	r18, 0x14	; 20
      776:	31 05       	cpc	r19, r1
      778:	78 f4       	brcc	.+30     	; 0x798 <_Z15uartInputHandlev+0x1c2>
-                Timer1.setPeriod(((long)(MAXMATRIX_SPEED_MAX_VALUE-value+1)*5) * 10000);
      77a:	a5 e1       	ldi	r26, 0x15	; 21
      77c:	b0 e0       	ldi	r27, 0x00	; 0
      77e:	a8 1b       	sub	r26, r24
@@ -653,23 +514,17 @@ inline void stringCopy(char *Destination, const char *Source, int Length)
      790:	91 e0       	ldi	r25, 0x01	; 1
      792:	0e 94 14 0d 	call	0x1a28	; 0x1a28 <_ZN8TimerOne9setPeriodEl>
      796:	80 c0       	rjmp	.+256    	; 0x898 <_Z15uartInputHandlev+0x2c2>
-            } else {
-                Serial.println(F("value out of range"));
      798:	63 e4       	ldi	r22, 0x43	; 67
      79a:	71 e0       	ldi	r23, 0x01	; 1
      79c:	86 ed       	ldi	r24, 0xD6	; 214
      79e:	91 e0       	ldi	r25, 0x01	; 1
      7a0:	0e 94 1b 10 	call	0x2036	; 0x2036 <_ZN5Print7printlnEPK19__FlashStringHelper>
-                Serial.println(F("speed range "TOSTRING(MAXMATRIX_SPEED_MIN_VALUE)" ... "TOSTRING(MAXMATRIX_SPEED_MAX_VALUE)));
      7a4:	6f ef       	ldi	r22, 0xFF	; 255
      7a6:	70 e0       	ldi	r23, 0x00	; 0
      7a8:	86 ed       	ldi	r24, 0xD6	; 214
      7aa:	91 e0       	ldi	r25, 0x01	; 1
      7ac:	0e 94 1b 10 	call	0x2036	; 0x2036 <_ZN5Print7printlnEPK19__FlashStringHelper>
      7b0:	73 c0       	rjmp	.+230    	; 0x898 <_Z15uartInputHandlev+0x2c2>
-            }
-        }
-        else if(strcmp(command, "setDot") == 0) {
      7b2:	68 e3       	ldi	r22, 0x38	; 56
      7b4:	71 e0       	ldi	r23, 0x01	; 1
      7b6:	ce 01       	movw	r24, r28
@@ -678,19 +533,14 @@ inline void stringCopy(char *Destination, const char *Source, int Length)
      7be:	89 2b       	or	r24, r25
      7c0:	09 f0       	breq	.+2      	; 0x7c4 <_Z15uartInputHandlev+0x1ee>
      7c2:	61 c0       	rjmp	.+194    	; 0x886 <_Z15uartInputHandlev+0x2b0>
-            if(LEDMATRIX_STATE_READY != State) {
      7c4:	80 91 52 01 	lds	r24, 0x0152	; 0x800152 <State>
      7c8:	81 30       	cpi	r24, 0x01	; 1
      7ca:	39 f0       	breq	.+14     	; 0x7da <_Z15uartInputHandlev+0x204>
-                State = LEDMATRIX_STATE_READY;
      7cc:	81 e0       	ldi	r24, 0x01	; 1
      7ce:	80 93 52 01 	sts	0x0152, r24	; 0x800152 <State>
-                Matrix.clear();
      7d2:	83 e5       	ldi	r24, 0x53	; 83
      7d4:	91 e0       	ldi	r25, 0x01	; 1
      7d6:	0e 94 9f 08 	call	0x113e	; 0x113e <_ZN9MaxMatrix5clearEv>
-            }
-            char columnASCII[3] = "", rowASCII[3] = "", valueDotASCII[3] = "";
      7da:	1f a6       	std	Y+47, r1	; 0x2f
      7dc:	18 aa       	std	Y+48, r1	; 0x30
      7de:	19 aa       	std	Y+49, r1	; 0x31
@@ -700,94 +550,51 @@ inline void stringCopy(char *Destination, const char *Source, int Length)
      7e6:	19 a6       	std	Y+41, r1	; 0x29
      7e8:	1a a6       	std	Y+42, r1	; 0x2a
      7ea:	1b a6       	std	Y+43, r1	; 0x2b
-            token = strtok(valueASCII, delimiterValue);
      7ec:	be 01       	movw	r22, r28
      7ee:	6e 5c       	subi	r22, 0xCE	; 206
      7f0:	7f 4f       	sbci	r23, 0xFF	; 255
      7f2:	ce 01       	movw	r24, r28
      7f4:	01 96       	adiw	r24, 0x01	; 1
      7f6:	0e 94 f9 11 	call	0x23f2	; 0x23f2 <strtok>
-            if(token != NULL) stringCopy(columnASCII, token, sizeof(columnASCII));
      7fa:	00 97       	sbiw	r24, 0x00	; 0
      7fc:	41 f0       	breq	.+16     	; 0x80e <_Z15uartInputHandlev+0x238>
- *  \param[in]      Length              maximum characters to copy
- *                  
- *****************************************************************************************************************************************************/
-inline void stringCopy(char *Destination, const char *Source, int Length)
-{
-    strncpy(Destination, Source, Length-1);
      7fe:	42 e0       	ldi	r20, 0x02	; 2
      800:	50 e0       	ldi	r21, 0x00	; 0
      802:	bc 01       	movw	r22, r24
      804:	ce 01       	movw	r24, r28
      806:	8f 96       	adiw	r24, 0x2f	; 47
      808:	0e 94 12 12 	call	0x2424	; 0x2424 <strncpy>
-    Destination[Length-1] = '\0';
      80c:	19 aa       	std	Y+49, r1	; 0x31
-                Matrix.clear();
-            }
-            char columnASCII[3] = "", rowASCII[3] = "", valueDotASCII[3] = "";
-            token = strtok(valueASCII, delimiterValue);
-            if(token != NULL) stringCopy(columnASCII, token, sizeof(columnASCII));
-            token = strtok(NULL, delimiterValue);
      80e:	be 01       	movw	r22, r28
      810:	6e 5c       	subi	r22, 0xCE	; 206
      812:	7f 4f       	sbci	r23, 0xFF	; 255
      814:	80 e0       	ldi	r24, 0x00	; 0
      816:	90 e0       	ldi	r25, 0x00	; 0
      818:	0e 94 f9 11 	call	0x23f2	; 0x23f2 <strtok>
-            if(token != NULL) stringCopy(rowASCII, token, sizeof(rowASCII));
      81c:	00 97       	sbiw	r24, 0x00	; 0
      81e:	41 f0       	breq	.+16     	; 0x830 <_Z15uartInputHandlev+0x25a>
- *  \param[in]      Length              maximum characters to copy
- *                  
- *****************************************************************************************************************************************************/
-inline void stringCopy(char *Destination, const char *Source, int Length)
-{
-    strncpy(Destination, Source, Length-1);
      820:	42 e0       	ldi	r20, 0x02	; 2
      822:	50 e0       	ldi	r21, 0x00	; 0
      824:	bc 01       	movw	r22, r24
      826:	ce 01       	movw	r24, r28
      828:	8c 96       	adiw	r24, 0x2c	; 44
      82a:	0e 94 12 12 	call	0x2424	; 0x2424 <strncpy>
-    Destination[Length-1] = '\0';
      82e:	1e a6       	std	Y+46, r1	; 0x2e
-            char columnASCII[3] = "", rowASCII[3] = "", valueDotASCII[3] = "";
-            token = strtok(valueASCII, delimiterValue);
-            if(token != NULL) stringCopy(columnASCII, token, sizeof(columnASCII));
-            token = strtok(NULL, delimiterValue);
-            if(token != NULL) stringCopy(rowASCII, token, sizeof(rowASCII));
-            token = strtok(NULL, delimiterValue);
      830:	be 01       	movw	r22, r28
      832:	6e 5c       	subi	r22, 0xCE	; 206
      834:	7f 4f       	sbci	r23, 0xFF	; 255
      836:	80 e0       	ldi	r24, 0x00	; 0
      838:	90 e0       	ldi	r25, 0x00	; 0
      83a:	0e 94 f9 11 	call	0x23f2	; 0x23f2 <strtok>
-            if(token != NULL) stringCopy(valueDotASCII, token, sizeof(valueDotASCII));
      83e:	00 97       	sbiw	r24, 0x00	; 0
      840:	41 f0       	breq	.+16     	; 0x852 <_Z15uartInputHandlev+0x27c>
- *  \param[in]      Length              maximum characters to copy
- *                  
- *****************************************************************************************************************************************************/
-inline void stringCopy(char *Destination, const char *Source, int Length)
-{
-    strncpy(Destination, Source, Length-1);
      842:	42 e0       	ldi	r20, 0x02	; 2
      844:	50 e0       	ldi	r21, 0x00	; 0
      846:	bc 01       	movw	r22, r24
      848:	ce 01       	movw	r24, r28
      84a:	89 96       	adiw	r24, 0x29	; 41
      84c:	0e 94 12 12 	call	0x2424	; 0x2424 <strncpy>
-    Destination[Length-1] = '\0';
      850:	1b a6       	std	Y+43, r1	; 0x2b
-            if(token != NULL) stringCopy(columnASCII, token, sizeof(columnASCII));
-            token = strtok(NULL, delimiterValue);
-            if(token != NULL) stringCopy(rowASCII, token, sizeof(rowASCII));
-            token = strtok(NULL, delimiterValue);
-            if(token != NULL) stringCopy(valueDotASCII, token, sizeof(valueDotASCII));
-            Matrix.setDot(atoi(columnASCII), atoi(rowASCII), atoi(valueDotASCII));
      852:	ce 01       	movw	r24, r28
      854:	89 96       	adiw	r24, 0x29	; 41
      856:	0e 94 d2 11 	call	0x23a4	; 0x23a4 <atoi>
@@ -810,23 +617,13 @@ inline void stringCopy(char *Destination, const char *Source, int Length)
      87e:	91 e0       	ldi	r25, 0x01	; 1
      880:	0e 94 98 09 	call	0x1330	; 0x1330 <_ZN9MaxMatrix6setDotEhhb>
      884:	09 c0       	rjmp	.+18     	; 0x898 <_Z15uartInputHandlev+0x2c2>
-        }
-        else {
-            Serial.println(command);
      886:	be 01       	movw	r22, r28
      888:	61 5e       	subi	r22, 0xE1	; 225
      88a:	7f 4f       	sbci	r23, 0xFF	; 255
      88c:	86 ed       	ldi	r24, 0xD6	; 214
      88e:	91 e0       	ldi	r25, 0x01	; 1
      890:	0e 94 2d 10 	call	0x205a	; 0x205a <_ZN5Print7printlnEPKc>
-            printHelp(); 
      894:	0e 94 d3 02 	call	0x5a6	; 0x5a6 <_Z9printHelpv>
-        }
-    } else {
-        Serial.println(command);
-        printHelp(); 
-    }
-}
      898:	e6 96       	adiw	r28, 0x36	; 54
      89a:	0f b6       	in	r0, 0x3f	; 63
      89c:	f8 94       	cli
@@ -840,64 +637,36 @@ inline void stringCopy(char *Destination, const char *Source, int Length)
      8ac:	08 95       	ret
 
 000008ae <loop>:
-/******************************************************************************************************************************************************
- *  ARDUINO loop
- *****************************************************************************************************************************************************/
-void loop()
-{ 
-    if (UartInputComplete)
      8ae:	80 91 a1 01 	lds	r24, 0x01A1	; 0x8001a1 <UartInputComplete>
      8b2:	88 23       	and	r24, r24
      8b4:	31 f0       	breq	.+12     	; 0x8c2 <loop+0x14>
-    {
-        uartInputHandle();
      8b6:	0e 94 eb 02 	call	0x5d6	; 0x5d6 <_Z15uartInputHandlev>
-        // clear the string:
-        UartInput[0] = '\0';
      8ba:	10 92 a2 01 	sts	0x01A2, r1	; 0x8001a2 <UartInput>
-        UartInputComplete = false;
      8be:	10 92 a1 01 	sts	0x01A1, r1	; 0x8001a1 <UartInputComplete>
-    }
-
-    if(Timer1Overflow && State == LEDMATRIX_STATE_STRING_SHIFT)
      8c2:	80 91 82 01 	lds	r24, 0x0182	; 0x800182 <Timer1Overflow>
      8c6:	88 23       	and	r24, r24
      8c8:	c1 f0       	breq	.+48     	; 0x8fa <loop+0x4c>
      8ca:	80 91 52 01 	lds	r24, 0x0152	; 0x800152 <State>
      8ce:	82 30       	cpi	r24, 0x02	; 2
      8d0:	a1 f4       	brne	.+40     	; 0x8fa <loop+0x4c>
-    {
-        if(Matrix.getState() == MAXMATRIX_STATE_STRING_SHIFT)
      8d2:	80 91 56 01 	lds	r24, 0x0156	; 0x800156 <Matrix+0x3>
      8d6:	83 30       	cpi	r24, 0x03	; 3
      8d8:	21 f4       	brne	.+8      	; 0x8e2 <loop+0x34>
-            Matrix.shiftTask();
      8da:	83 e5       	ldi	r24, 0x53	; 83
      8dc:	91 e0       	ldi	r25, 0x01	; 1
      8de:	0e 94 d9 0c 	call	0x19b2	; 0x19b2 <_ZN9MaxMatrix9shiftTaskEv>
-        if(Matrix.getState() == MAXMATRIX_STATE_READY)
      8e2:	80 91 56 01 	lds	r24, 0x0156	; 0x800156 <Matrix+0x3>
      8e6:	82 30       	cpi	r24, 0x02	; 2
      8e8:	31 f4       	brne	.+12     	; 0x8f6 <loop+0x48>
-        {
-            Matrix.setTextWithShift(MaxMatrixText);
      8ea:	63 e8       	ldi	r22, 0x83	; 131
      8ec:	71 e0       	ldi	r23, 0x01	; 1
      8ee:	83 e5       	ldi	r24, 0x53	; 83
      8f0:	91 e0       	ldi	r25, 0x01	; 1
      8f2:	0e 94 03 05 	call	0xa06	; 0xa06 <_ZN9MaxMatrix16setTextWithShiftEPc>
-        }
-        Timer1Overflow = false;
      8f6:	10 92 82 01 	sts	0x0182, r1	; 0x800182 <Timer1Overflow>
      8fa:	08 95       	ret
 
 000008fc <_GLOBAL__sub_I_UartInput>:
- *****************************************************************************************************************************************************/
-char UartInput[UART_INPUT_LENGTH];                  // buffer for incoming UART data
-boolean UartInputComplete;                          // flag UART string is complete
-char MaxMatrixText[MAXMATRIX_MAX_TEXT_LENGTH];      // current Matrix Text
-bool Timer1Overflow;                                // flag Timer1 overflow
-MaxMatrix Matrix(MAXMATRIX_DATA_PIN, MAXMATRIX_CS_PIN, MAXMATRIX_CLOCK_PIN);
      8fc:	2b e0       	ldi	r18, 0x0B	; 11
      8fe:	4a e0       	ldi	r20, 0x0A	; 10
      900:	6c e0       	ldi	r22, 0x0C	; 12
@@ -911,57 +680,24 @@ MaxMatrix Matrix(MAXMATRIX_DATA_PIN, MAXMATRIX_CS_PIN, MAXMATRIX_CLOCK_PIN);
      90e:	0c 94 cc 04 	jmp	0x998	; 0x998 <_ZN9MaxMatrixD1Ev>
 
 00000912 <_Z11serialEventv>:
- *  \details        this function saves incoming UART signs into UART buffer.
- *                  After receiving new line, string is complete and flag will be set.
- *  \pre            will be called at the end of the main function             
- *****************************************************************************************************************************************************/
-void serialEvent() 
-{
      912:	1f 93       	push	r17
      914:	cf 93       	push	r28
      916:	df 93       	push	r29
-        // if the incoming character is a newline, set a flag
-        if (inChar == '\n') {
-            UartInputComplete = true;
-        } else {
-            // check for free space in buffer
-            int UartInputLength = strlen(UartInput);
      918:	c2 ea       	ldi	r28, 0xA2	; 162
      91a:	d1 e0       	ldi	r29, 0x01	; 1
-    {
-        // get the new byte from UART
-        char inChar = (char) Serial.read();
-        // if the incoming character is a newline, set a flag
-        if (inChar == '\n') {
-            UartInputComplete = true;
      91c:	11 e0       	ldi	r17, 0x01	; 1
- *                  After receiving new line, string is complete and flag will be set.
- *  \pre            will be called at the end of the main function             
- *****************************************************************************************************************************************************/
-void serialEvent() 
-{
-    while (Serial.available()) 
      91e:	86 ed       	ldi	r24, 0xD6	; 214
      920:	91 e0       	ldi	r25, 0x01	; 1
      922:	0e 94 d5 0d 	call	0x1baa	; 0x1baa <_ZN14HardwareSerial9availableEv>
      926:	89 2b       	or	r24, r25
      928:	c1 f0       	breq	.+48     	; 0x95a <_Z11serialEventv+0x48>
-    {
-        // get the new byte from UART
-        char inChar = (char) Serial.read();
      92a:	86 ed       	ldi	r24, 0xD6	; 214
      92c:	91 e0       	ldi	r25, 0x01	; 1
      92e:	0e 94 ef 0d 	call	0x1bde	; 0x1bde <_ZN14HardwareSerial4readEv>
-        // if the incoming character is a newline, set a flag
-        if (inChar == '\n') {
      932:	8a 30       	cpi	r24, 0x0A	; 10
      934:	19 f4       	brne	.+6      	; 0x93c <_Z11serialEventv+0x2a>
-            UartInputComplete = true;
      936:	10 93 a1 01 	sts	0x01A1, r17	; 0x8001a1 <UartInputComplete>
      93a:	f1 cf       	rjmp	.-30     	; 0x91e <_Z11serialEventv+0xc>
-        } else {
-            // check for free space in buffer
-            int UartInputLength = strlen(UartInput);
      93c:	fe 01       	movw	r30, r28
      93e:	01 90       	ld	r0, Z+
      940:	00 20       	and	r0, r0
@@ -969,23 +705,14 @@ void serialEvent()
      944:	31 97       	sbiw	r30, 0x01	; 1
      946:	e2 5a       	subi	r30, 0xA2	; 162
      948:	f1 40       	sbci	r31, 0x01	; 1
-            if(UartInputLength < UART_INPUT_LENGTH-1)
      94a:	e7 32       	cpi	r30, 0x27	; 39
      94c:	f1 05       	cpc	r31, r1
      94e:	3c f7       	brge	.-50     	; 0x91e <_Z11serialEventv+0xc>
-            {
-                // save new char
-                UartInput[UartInputLength] = inChar;
      950:	ee 55       	subi	r30, 0x5E	; 94
      952:	fe 4f       	sbci	r31, 0xFE	; 254
      954:	80 83       	st	Z, r24
-                UartInput[UartInputLength+1] = '\0';
      956:	11 82       	std	Z+1, r1	; 0x01
      958:	e2 cf       	rjmp	.-60     	; 0x91e <_Z11serialEventv+0xc>
-            }
-        }
-    }
-} /* serialEvent */
      95a:	df 91       	pop	r29
      95c:	cf 91       	pop	r28
      95e:	1f 91       	pop	r17
@@ -3360,7 +3087,7 @@ void MaxMatrix::stringShiftTask()
     1996:	8c 91       	ld	r24, X
     1998:	81 11       	cpse	r24, r1
     199a:	05 c0       	rjmp	.+10     	; 0x19a6 <_ZN9MaxMatrix15stringShiftTaskEv+0x92>
-			for(byte Space = 1; Space <= MAXMATRIX_SPACE_BETWEEN_CHARS; Space++) { shiftLeft(false, true); }
+			for(byte Space = 0; Space < MAXMATRIX_SPACE_BETWEEN_CHARS; Space++) { shiftLeft(false, true); }
     199c:	41 e0       	ldi	r20, 0x01	; 1
     199e:	60 e0       	ldi	r22, 0x00	; 0
     19a0:	c8 01       	movw	r24, r16
@@ -3412,12 +3139,6 @@ void MaxMatrix::shiftTask()
     19d8:	08 95       	ret
 
 000019da <__vector_13>:
-  else if(pin == 2 || pin == 10) {
-    DDRB |= _BV(PORTB2);
-    TCCR1A |= _BV(COM1B1);
-  }
-  setPwmDuty(pin, duty);
-  resume();			// Lex - make sure the clock is running.  We don't want to restart the count, in case we are starting the second WGM
     19da:	1f 92       	push	r1
     19dc:	0f 92       	push	r0
     19de:	0f b6       	in	r0, 0x3f	; 63
@@ -3574,12 +3295,6 @@ void MaxMatrix::shiftTask()
     1b16:	08 95       	ret
 
 00001b18 <_ZN8TimerOne15attachInterruptEPFvvEl>:
-  if(pin == 1 || pin == 9)       TCCR1A &= ~_BV(COM1A1);   // clear the bit that enables pwm on PB1
-  else if(pin == 2 || pin == 10) TCCR1A &= ~_BV(COM1B1);   // clear the bit that enables pwm on PB2
-}
-
-void TimerOne::attachInterrupt(void (*isr)(), long microseconds)
-{
     1b18:	0f 93       	push	r16
     1b1a:	1f 93       	push	r17
     1b1c:	cf 93       	push	r28
@@ -3588,34 +3303,21 @@ void TimerOne::attachInterrupt(void (*isr)(), long microseconds)
     1b22:	8b 01       	movw	r16, r22
     1b24:	ba 01       	movw	r22, r20
     1b26:	a9 01       	movw	r20, r18
-  if(microseconds > 0) setPeriod(microseconds);
     1b28:	14 16       	cp	r1, r20
     1b2a:	15 06       	cpc	r1, r21
     1b2c:	16 06       	cpc	r1, r22
     1b2e:	17 06       	cpc	r1, r23
     1b30:	14 f4       	brge	.+4      	; 0x1b36 <_ZN8TimerOne15attachInterruptEPFvvEl+0x1e>
     1b32:	0e 94 14 0d 	call	0x1a28	; 0x1a28 <_ZN8TimerOne9setPeriodEl>
-  isrCallback = isr;                                       // register the user's callback with the real ISR
     1b36:	1d 83       	std	Y+5, r17	; 0x05
     1b38:	0c 83       	std	Y+4, r16	; 0x04
-  TIMSK1 = _BV(TOIE1);                                     // sets the timer overflow interrupt enable bit
     1b3a:	81 e0       	ldi	r24, 0x01	; 1
     1b3c:	80 93 6f 00 	sts	0x006F, r24	; 0x80006f <__TEXT_REGION_LENGTH__+0x7e006f>
-	// might be running with interrupts disabled (eg inside an ISR), so don't touch the global state
-//  sei();
-  resume();												
     1b40:	ce 01       	movw	r24, r28
-}
     1b42:	df 91       	pop	r29
     1b44:	cf 91       	pop	r28
     1b46:	1f 91       	pop	r17
     1b48:	0f 91       	pop	r16
-  if(microseconds > 0) setPeriod(microseconds);
-  isrCallback = isr;                                       // register the user's callback with the real ISR
-  TIMSK1 = _BV(TOIE1);                                     // sets the timer overflow interrupt enable bit
-	// might be running with interrupts disabled (eg inside an ISR), so don't touch the global state
-//  sei();
-  resume();												
     1b4a:	0c 94 83 0d 	jmp	0x1b06	; 0x1b06 <_ZN8TimerOne6resumeEv>
 
 00001b4e <__vector_9>:
@@ -3683,14 +3385,7 @@ TimerTwo::TimerTwo()
     1ba8:	08 95       	ret
 
 00001baa <_ZN14HardwareSerial9availableEv>:
-  // clear any received data
-  _rx_buffer_head = _rx_buffer_tail;
-}
-
-int HardwareSerial::available(void)
-{
     1baa:	fc 01       	movw	r30, r24
-  return ((unsigned int)(SERIAL_RX_BUFFER_SIZE + _rx_buffer_head - _rx_buffer_tail)) % SERIAL_RX_BUFFER_SIZE;
     1bac:	91 8d       	ldd	r25, Z+25	; 0x19
     1bae:	22 8d       	ldd	r18, Z+26	; 0x1a
     1bb0:	89 2f       	mov	r24, r25
@@ -3699,95 +3394,49 @@ int HardwareSerial::available(void)
     1bb6:	9f 4f       	sbci	r25, 0xFF	; 255
     1bb8:	82 1b       	sub	r24, r18
     1bba:	91 09       	sbc	r25, r1
-}
     1bbc:	8f 73       	andi	r24, 0x3F	; 63
     1bbe:	99 27       	eor	r25, r25
     1bc0:	08 95       	ret
 
 00001bc2 <_ZN14HardwareSerial4peekEv>:
-
-int HardwareSerial::peek(void)
-{
     1bc2:	fc 01       	movw	r30, r24
-  if (_rx_buffer_head == _rx_buffer_tail) {
     1bc4:	91 8d       	ldd	r25, Z+25	; 0x19
     1bc6:	82 8d       	ldd	r24, Z+26	; 0x1a
     1bc8:	98 17       	cp	r25, r24
     1bca:	31 f0       	breq	.+12     	; 0x1bd8 <_ZN14HardwareSerial4peekEv+0x16>
-    return -1;
-  } else {
-    return _rx_buffer[_rx_buffer_tail];
     1bcc:	82 8d       	ldd	r24, Z+26	; 0x1a
     1bce:	e8 0f       	add	r30, r24
     1bd0:	f1 1d       	adc	r31, r1
     1bd2:	85 8d       	ldd	r24, Z+29	; 0x1d
     1bd4:	90 e0       	ldi	r25, 0x00	; 0
     1bd6:	08 95       	ret
-}
-
-int HardwareSerial::peek(void)
-{
-  if (_rx_buffer_head == _rx_buffer_tail) {
-    return -1;
     1bd8:	8f ef       	ldi	r24, 0xFF	; 255
     1bda:	9f ef       	ldi	r25, 0xFF	; 255
-  } else {
-    return _rx_buffer[_rx_buffer_tail];
-  }
-}
     1bdc:	08 95       	ret
 
 00001bde <_ZN14HardwareSerial4readEv>:
-
-int HardwareSerial::read(void)
-{
     1bde:	fc 01       	movw	r30, r24
-  // if the head isn't ahead of the tail, we don't have any characters
-  if (_rx_buffer_head == _rx_buffer_tail) {
     1be0:	91 8d       	ldd	r25, Z+25	; 0x19
     1be2:	82 8d       	ldd	r24, Z+26	; 0x1a
     1be4:	98 17       	cp	r25, r24
     1be6:	61 f0       	breq	.+24     	; 0x1c00 <_ZN14HardwareSerial4readEv+0x22>
-    return -1;
-  } else {
-    unsigned char c = _rx_buffer[_rx_buffer_tail];
     1be8:	82 8d       	ldd	r24, Z+26	; 0x1a
     1bea:	df 01       	movw	r26, r30
     1bec:	a8 0f       	add	r26, r24
     1bee:	b1 1d       	adc	r27, r1
     1bf0:	5d 96       	adiw	r26, 0x1d	; 29
     1bf2:	8c 91       	ld	r24, X
-    _rx_buffer_tail = (rx_buffer_index_t)(_rx_buffer_tail + 1) % SERIAL_RX_BUFFER_SIZE;
     1bf4:	92 8d       	ldd	r25, Z+26	; 0x1a
     1bf6:	9f 5f       	subi	r25, 0xFF	; 255
     1bf8:	9f 73       	andi	r25, 0x3F	; 63
     1bfa:	92 8f       	std	Z+26, r25	; 0x1a
-    return c;
     1bfc:	90 e0       	ldi	r25, 0x00	; 0
     1bfe:	08 95       	ret
-
-int HardwareSerial::read(void)
-{
-  // if the head isn't ahead of the tail, we don't have any characters
-  if (_rx_buffer_head == _rx_buffer_tail) {
-    return -1;
     1c00:	8f ef       	ldi	r24, 0xFF	; 255
     1c02:	9f ef       	ldi	r25, 0xFF	; 255
-  } else {
-    unsigned char c = _rx_buffer[_rx_buffer_tail];
-    _rx_buffer_tail = (rx_buffer_index_t)(_rx_buffer_tail + 1) % SERIAL_RX_BUFFER_SIZE;
-    return c;
-  }
-}
     1c04:	08 95       	ret
 
 00001c06 <_Z14serialEventRunv>:
-#endif
-
-void serialEventRun(void)
-{
-#if defined(HAVE_HWSERIAL0)
-  if (Serial0_available && serialEvent && Serial0_available()) serialEvent();
     1c06:	89 e5       	ldi	r24, 0x59	; 89
     1c08:	9f e0       	ldi	r25, 0x0F	; 15
     1c0a:	89 2b       	or	r24, r25
@@ -3802,16 +3451,7 @@ void serialEventRun(void)
     1c20:	08 95       	ret
 
 00001c22 <_ZN14HardwareSerial17_tx_udr_empty_irqEv>:
-}
-
-// Actual interrupt handlers //////////////////////////////////////////////////////////////
-
-void HardwareSerial::_tx_udr_empty_irq(void)
-{
     1c22:	fc 01       	movw	r30, r24
-  // If interrupts are enabled, there must be more data in the output
-  // buffer. Send the next byte
-  unsigned char c = _tx_buffer[_tx_buffer_tail];
     1c24:	84 8d       	ldd	r24, Z+28	; 0x1c
     1c26:	df 01       	movw	r26, r30
     1c28:	a8 0f       	add	r26, r24
@@ -3819,36 +3459,24 @@ void HardwareSerial::_tx_udr_empty_irq(void)
     1c2c:	a3 5a       	subi	r26, 0xA3	; 163
     1c2e:	bf 4f       	sbci	r27, 0xFF	; 255
     1c30:	2c 91       	ld	r18, X
-  _tx_buffer_tail = (_tx_buffer_tail + 1) % SERIAL_TX_BUFFER_SIZE;
     1c32:	84 8d       	ldd	r24, Z+28	; 0x1c
     1c34:	90 e0       	ldi	r25, 0x00	; 0
     1c36:	01 96       	adiw	r24, 0x01	; 1
     1c38:	8f 73       	andi	r24, 0x3F	; 63
     1c3a:	99 27       	eor	r25, r25
     1c3c:	84 8f       	std	Z+28, r24	; 0x1c
-
-  *_udr = c;
     1c3e:	a6 89       	ldd	r26, Z+22	; 0x16
     1c40:	b7 89       	ldd	r27, Z+23	; 0x17
     1c42:	2c 93       	st	X, r18
-
-  // clear the TXC bit -- "can be cleared by writing a one to its bit
-  // location". This makes sure flush() won't return until the bytes
-  // actually got written
-  sbi(*_ucsra, TXC0);
     1c44:	a0 89       	ldd	r26, Z+16	; 0x10
     1c46:	b1 89       	ldd	r27, Z+17	; 0x11
     1c48:	8c 91       	ld	r24, X
     1c4a:	80 64       	ori	r24, 0x40	; 64
     1c4c:	8c 93       	st	X, r24
-
-  if (_tx_buffer_head == _tx_buffer_tail) {
     1c4e:	93 8d       	ldd	r25, Z+27	; 0x1b
     1c50:	84 8d       	ldd	r24, Z+28	; 0x1c
     1c52:	98 13       	cpse	r25, r24
     1c54:	06 c0       	rjmp	.+12     	; 0x1c62 <_ZN14HardwareSerial17_tx_udr_empty_irqEv+0x40>
-    // Buffer empty, so disable interrupts
-    cbi(*_ucsrb, UDRIE0);
     1c56:	02 88       	ldd	r0, Z+18	; 0x12
     1c58:	f3 89       	ldd	r31, Z+19	; 0x13
     1c5a:	e0 2d       	mov	r30, r0
@@ -3858,25 +3486,12 @@ void HardwareSerial::_tx_udr_empty_irq(void)
     1c62:	08 95       	ret
 
 00001c64 <_ZN14HardwareSerial5flushEv>:
-  if (head >= tail) return SERIAL_TX_BUFFER_SIZE - 1 - head + tail;
-  return tail - head - 1;
-}
-
-void HardwareSerial::flush()
-{
     1c64:	cf 93       	push	r28
     1c66:	df 93       	push	r29
     1c68:	ec 01       	movw	r28, r24
-  // If we have never written a byte, no need to flush. This special
-  // case is needed since there is no way to force the TXC (transmit
-  // complete) bit to 1 during initialization
-  if (!_written)
     1c6a:	88 8d       	ldd	r24, Y+24	; 0x18
     1c6c:	88 23       	and	r24, r24
     1c6e:	c9 f0       	breq	.+50     	; 0x1ca2 <_ZN14HardwareSerial5flushEv+0x3e>
-    return;
-
-  while (bit_is_set(*_ucsrb, UDRIE0) || bit_is_clear(*_ucsra, TXC0)) {
     1c70:	ea 89       	ldd	r30, Y+18	; 0x12
     1c72:	fb 89       	ldd	r31, Y+19	; 0x13
     1c74:	80 81       	ld	r24, Z
@@ -3887,38 +3502,25 @@ void HardwareSerial::flush()
     1c7e:	8c 91       	ld	r24, X
     1c80:	86 fd       	sbrc	r24, 6
     1c82:	0f c0       	rjmp	.+30     	; 0x1ca2 <_ZN14HardwareSerial5flushEv+0x3e>
-    if (bit_is_clear(SREG, SREG_I) && bit_is_set(*_ucsrb, UDRIE0))
     1c84:	0f b6       	in	r0, 0x3f	; 63
     1c86:	07 fc       	sbrc	r0, 7
     1c88:	f5 cf       	rjmp	.-22     	; 0x1c74 <_ZN14HardwareSerial5flushEv+0x10>
     1c8a:	80 81       	ld	r24, Z
     1c8c:	85 ff       	sbrs	r24, 5
     1c8e:	f2 cf       	rjmp	.-28     	; 0x1c74 <_ZN14HardwareSerial5flushEv+0x10>
-	// Interrupts are globally disabled, but the DR empty
-	// interrupt should be enabled, so poll the DR empty flag to
-	// prevent deadlock
-	if (bit_is_set(*_ucsra, UDRE0))
     1c90:	a8 89       	ldd	r26, Y+16	; 0x10
     1c92:	b9 89       	ldd	r27, Y+17	; 0x11
     1c94:	8c 91       	ld	r24, X
     1c96:	85 ff       	sbrs	r24, 5
     1c98:	ed cf       	rjmp	.-38     	; 0x1c74 <_ZN14HardwareSerial5flushEv+0x10>
-	  _tx_udr_empty_irq();
     1c9a:	ce 01       	movw	r24, r28
     1c9c:	0e 94 11 0e 	call	0x1c22	; 0x1c22 <_ZN14HardwareSerial17_tx_udr_empty_irqEv>
     1ca0:	e7 cf       	rjmp	.-50     	; 0x1c70 <_ZN14HardwareSerial5flushEv+0xc>
-  }
-  // If we get here, nothing is queued anymore (DRIE is disabled) and
-  // the hardware finished tranmission (TXC is set).
-}
     1ca2:	df 91       	pop	r29
     1ca4:	cf 91       	pop	r28
     1ca6:	08 95       	ret
 
 00001ca8 <_ZN14HardwareSerial5writeEh>:
-
-size_t HardwareSerial::write(uint8_t c)
-{
     1ca8:	ef 92       	push	r14
     1caa:	ff 92       	push	r15
     1cac:	0f 93       	push	r16
@@ -3926,11 +3528,6 @@ size_t HardwareSerial::write(uint8_t c)
     1cb0:	cf 93       	push	r28
     1cb2:	df 93       	push	r29
     1cb4:	ec 01       	movw	r28, r24
-  // If the buffer and the data register is empty, just write the byte
-  // to the data register and be done. This shortcut helps
-  // significantly improve the effective datarate at high (>
-  // 500kbit/s) bitrates, where interrupt overhead becomes a slowdown.
-  if (_tx_buffer_head == _tx_buffer_tail && bit_is_set(*_ucsra, UDRE0)) {
     1cb6:	9b 8d       	ldd	r25, Y+27	; 0x1b
     1cb8:	8c 8d       	ldd	r24, Y+28	; 0x1c
     1cba:	98 13       	cpse	r25, r24
@@ -3941,11 +3538,6 @@ size_t HardwareSerial::write(uint8_t c)
     1cc4:	85 fd       	sbrc	r24, 5
     1cc6:	27 c0       	rjmp	.+78     	; 0x1d16 <_ZN14HardwareSerial5writeEh+0x6e>
     1cc8:	f6 2e       	mov	r15, r22
-    *_udr = c;
-    sbi(*_ucsra, TXC0);
-    return 1;
-  }
-  tx_buffer_index_t i = (_tx_buffer_head + 1) % SERIAL_TX_BUFFER_SIZE;
     1cca:	0b 8d       	ldd	r16, Y+27	; 0x1b
     1ccc:	10 e0       	ldi	r17, 0x00	; 0
     1cce:	0f 5f       	subi	r16, 0xFF	; 255
@@ -3953,37 +3545,20 @@ size_t HardwareSerial::write(uint8_t c)
     1cd2:	0f 73       	andi	r16, 0x3F	; 63
     1cd4:	11 27       	eor	r17, r17
     1cd6:	e0 2e       	mov	r14, r16
-	
-  // If the output buffer is full, there's nothing for it other than to 
-  // wait for the interrupt handler to empty it a bit
-  while (i == _tx_buffer_tail) {
     1cd8:	8c 8d       	ldd	r24, Y+28	; 0x1c
     1cda:	e8 12       	cpse	r14, r24
     1cdc:	0c c0       	rjmp	.+24     	; 0x1cf6 <_ZN14HardwareSerial5writeEh+0x4e>
-    if (bit_is_clear(SREG, SREG_I)) {
     1cde:	0f b6       	in	r0, 0x3f	; 63
     1ce0:	07 fc       	sbrc	r0, 7
     1ce2:	fa cf       	rjmp	.-12     	; 0x1cd8 <_ZN14HardwareSerial5writeEh+0x30>
-      // Interrupts are disabled, so we'll have to poll the data
-      // register empty flag ourselves. If it is set, pretend an
-      // interrupt has happened and call the handler to free up
-      // space for us.
-      if(bit_is_set(*_ucsra, UDRE0))
     1ce4:	e8 89       	ldd	r30, Y+16	; 0x10
     1ce6:	f9 89       	ldd	r31, Y+17	; 0x11
     1ce8:	80 81       	ld	r24, Z
     1cea:	85 ff       	sbrs	r24, 5
     1cec:	f5 cf       	rjmp	.-22     	; 0x1cd8 <_ZN14HardwareSerial5writeEh+0x30>
-	_tx_udr_empty_irq();
     1cee:	ce 01       	movw	r24, r28
     1cf0:	0e 94 11 0e 	call	0x1c22	; 0x1c22 <_ZN14HardwareSerial17_tx_udr_empty_irqEv>
     1cf4:	f1 cf       	rjmp	.-30     	; 0x1cd8 <_ZN14HardwareSerial5writeEh+0x30>
-    } else {
-      // nop, the interrupt handler will free up space for us
-    }
-  }
-
-  _tx_buffer[_tx_buffer_head] = c;
     1cf6:	8b 8d       	ldd	r24, Y+27	; 0x1b
     1cf8:	fe 01       	movw	r30, r28
     1cfa:	e8 0f       	add	r30, r24
@@ -3991,40 +3566,23 @@ size_t HardwareSerial::write(uint8_t c)
     1cfe:	e3 5a       	subi	r30, 0xA3	; 163
     1d00:	ff 4f       	sbci	r31, 0xFF	; 255
     1d02:	f0 82       	st	Z, r15
-  _tx_buffer_head = i;
     1d04:	0b 8f       	std	Y+27, r16	; 0x1b
-	
-  sbi(*_ucsrb, UDRIE0);
     1d06:	ea 89       	ldd	r30, Y+18	; 0x12
     1d08:	fb 89       	ldd	r31, Y+19	; 0x13
     1d0a:	80 81       	ld	r24, Z
     1d0c:	80 62       	ori	r24, 0x20	; 32
     1d0e:	80 83       	st	Z, r24
-  _written = true;
     1d10:	81 e0       	ldi	r24, 0x01	; 1
     1d12:	88 8f       	std	Y+24, r24	; 0x18
     1d14:	08 c0       	rjmp	.+16     	; 0x1d26 <_ZN14HardwareSerial5writeEh+0x7e>
-  // If the buffer and the data register is empty, just write the byte
-  // to the data register and be done. This shortcut helps
-  // significantly improve the effective datarate at high (>
-  // 500kbit/s) bitrates, where interrupt overhead becomes a slowdown.
-  if (_tx_buffer_head == _tx_buffer_tail && bit_is_set(*_ucsra, UDRE0)) {
-    *_udr = c;
     1d16:	ee 89       	ldd	r30, Y+22	; 0x16
     1d18:	ff 89       	ldd	r31, Y+23	; 0x17
     1d1a:	60 83       	st	Z, r22
-    sbi(*_ucsra, TXC0);
     1d1c:	e8 89       	ldd	r30, Y+16	; 0x10
     1d1e:	f9 89       	ldd	r31, Y+17	; 0x11
     1d20:	80 81       	ld	r24, Z
     1d22:	80 64       	ori	r24, 0x40	; 64
     1d24:	80 83       	st	Z, r24
-	
-  sbi(*_ucsrb, UDRIE0);
-  _written = true;
-  
-  return 1;
-}
     1d26:	81 e0       	ldi	r24, 0x01	; 1
     1d28:	90 e0       	ldi	r25, 0x00	; 0
     1d2a:	df 91       	pop	r29
@@ -4036,12 +3594,6 @@ size_t HardwareSerial::write(uint8_t c)
     1d36:	08 95       	ret
 
 00001d38 <_ZN14HardwareSerial5beginEmh>:
-}
-
-// Public Methods //////////////////////////////////////////////////////////////
-
-void HardwareSerial::begin(unsigned long baud, byte config)
-{
     1d38:	cf 92       	push	r12
     1d3a:	df 92       	push	r13
     1d3c:	ef 92       	push	r14
@@ -4053,30 +3605,15 @@ void HardwareSerial::begin(unsigned long baud, byte config)
     1d48:	6a 01       	movw	r12, r20
     1d4a:	7b 01       	movw	r14, r22
     1d4c:	12 2f       	mov	r17, r18
-  // Try u2x mode first
-  uint16_t baud_setting = (F_CPU / 4 / baud - 1) / 2;
-  *_ucsra = 1 << U2X0;
     1d4e:	e8 89       	ldd	r30, Y+16	; 0x10
     1d50:	f9 89       	ldd	r31, Y+17	; 0x11
     1d52:	82 e0       	ldi	r24, 0x02	; 2
     1d54:	80 83       	st	Z, r24
-  // hardcoded exception for 57600 for compatibility with the bootloader
-  // shipped with the Duemilanove and previous boards and the firmware
-  // on the 8U2 on the Uno and Mega 2560. Also, The baud_setting cannot
-  // be > 4095, so switch back to non-u2x mode if the baud rate is too
-  // low.
-  if (((F_CPU == 16000000UL) && (baud == 57600)) || (baud_setting >4095))
     1d56:	41 15       	cp	r20, r1
     1d58:	51 4e       	sbci	r21, 0xE1	; 225
     1d5a:	61 05       	cpc	r22, r1
     1d5c:	71 05       	cpc	r23, r1
     1d5e:	b1 f0       	breq	.+44     	; 0x1d8c <_ZN14HardwareSerial5beginEmh+0x54>
-// Public Methods //////////////////////////////////////////////////////////////
-
-void HardwareSerial::begin(unsigned long baud, byte config)
-{
-  // Try u2x mode first
-  uint16_t baud_setting = (F_CPU / 4 / baud - 1) / 2;
     1d60:	60 e0       	ldi	r22, 0x00	; 0
     1d62:	79 e0       	ldi	r23, 0x09	; 9
     1d64:	8d e3       	ldi	r24, 0x3D	; 61
@@ -4094,22 +3631,13 @@ void HardwareSerial::begin(unsigned long baud, byte config)
     1d7e:	97 95       	ror	r25
     1d80:	87 95       	ror	r24
     1d82:	ac 01       	movw	r20, r24
-  // hardcoded exception for 57600 for compatibility with the bootloader
-  // shipped with the Duemilanove and previous boards and the firmware
-  // on the 8U2 on the Uno and Mega 2560. Also, The baud_setting cannot
-  // be > 4095, so switch back to non-u2x mode if the baud rate is too
-  // low.
-  if (((F_CPU == 16000000UL) && (baud == 57600)) || (baud_setting >4095))
     1d84:	41 15       	cp	r20, r1
     1d86:	80 e1       	ldi	r24, 0x10	; 16
     1d88:	58 07       	cpc	r21, r24
     1d8a:	a8 f0       	brcs	.+42     	; 0x1db6 <_ZN14HardwareSerial5beginEmh+0x7e>
-  {
-    *_ucsra = 0;
     1d8c:	e8 89       	ldd	r30, Y+16	; 0x10
     1d8e:	f9 89       	ldd	r31, Y+17	; 0x11
     1d90:	10 82       	st	Z, r1
-    baud_setting = (F_CPU / 8 / baud - 1) / 2;
     1d92:	60 e8       	ldi	r22, 0x80	; 128
     1d94:	74 e8       	ldi	r23, 0x84	; 132
     1d96:	8e e1       	ldi	r24, 0x1E	; 30
@@ -4127,55 +3655,36 @@ void HardwareSerial::begin(unsigned long baud, byte config)
     1db0:	67 95       	ror	r22
     1db2:	57 95       	ror	r21
     1db4:	47 95       	ror	r20
-  }
-
-  // assign the baud_setting, a.k.a. ubrr (USART Baud Rate Register)
-  *_ubrrh = baud_setting >> 8;
     1db6:	ec 85       	ldd	r30, Y+12	; 0x0c
     1db8:	fd 85       	ldd	r31, Y+13	; 0x0d
     1dba:	50 83       	st	Z, r21
-  *_ubrrl = baud_setting;
     1dbc:	ee 85       	ldd	r30, Y+14	; 0x0e
     1dbe:	ff 85       	ldd	r31, Y+15	; 0x0f
     1dc0:	40 83       	st	Z, r20
-
-  _written = false;
     1dc2:	18 8e       	std	Y+24, r1	; 0x18
-
-  //set the data bits, parity, and stop bits
-#if defined(__AVR_ATmega8__)
-  config |= 0x80; // select UCSRC register (shared with UBRRH)
-#endif
-  *_ucsrc = config;
     1dc4:	ec 89       	ldd	r30, Y+20	; 0x14
     1dc6:	fd 89       	ldd	r31, Y+21	; 0x15
     1dc8:	10 83       	st	Z, r17
-  
-  sbi(*_ucsrb, RXEN0);
     1dca:	ea 89       	ldd	r30, Y+18	; 0x12
     1dcc:	fb 89       	ldd	r31, Y+19	; 0x13
     1dce:	80 81       	ld	r24, Z
     1dd0:	80 61       	ori	r24, 0x10	; 16
     1dd2:	80 83       	st	Z, r24
-  sbi(*_ucsrb, TXEN0);
     1dd4:	ea 89       	ldd	r30, Y+18	; 0x12
     1dd6:	fb 89       	ldd	r31, Y+19	; 0x13
     1dd8:	80 81       	ld	r24, Z
     1dda:	88 60       	ori	r24, 0x08	; 8
     1ddc:	80 83       	st	Z, r24
-  sbi(*_ucsrb, RXCIE0);
     1dde:	ea 89       	ldd	r30, Y+18	; 0x12
     1de0:	fb 89       	ldd	r31, Y+19	; 0x13
     1de2:	80 81       	ld	r24, Z
     1de4:	80 68       	ori	r24, 0x80	; 128
     1de6:	80 83       	st	Z, r24
-  cbi(*_ucsrb, UDRIE0);
     1de8:	ea 89       	ldd	r30, Y+18	; 0x12
     1dea:	fb 89       	ldd	r31, Y+19	; 0x13
     1dec:	80 81       	ld	r24, Z
     1dee:	8f 7d       	andi	r24, 0xDF	; 223
     1df0:	80 83       	st	Z, r24
-}
     1df2:	df 91       	pop	r29
     1df4:	cf 91       	pop	r28
     1df6:	1f 91       	pop	r17
@@ -4186,12 +3695,6 @@ void HardwareSerial::begin(unsigned long baud, byte config)
     1e00:	08 95       	ret
 
 00001e02 <__vector_18>:
-#elif defined(USART_RXC_vect)
-  ISR(USART_RXC_vect) // ATmega8
-#else
-  #error "Don't know what the Data Received vector is called for Serial"
-#endif
-  {
     1e02:	1f 92       	push	r1
     1e04:	0f 92       	push	r0
     1e06:	0f b6       	in	r0, 0x3f	; 63
@@ -4202,12 +3705,6 @@ void HardwareSerial::begin(unsigned long baud, byte config)
     1e10:	9f 93       	push	r25
     1e12:	ef 93       	push	r30
     1e14:	ff 93       	push	r31
-
-// Actual interrupt handlers //////////////////////////////////////////////////////////////
-
-void HardwareSerial::_rx_complete_irq(void)
-{
-  if (bit_is_clear(*_ucsra, UPE0)) {
     1e16:	e0 91 e6 01 	lds	r30, 0x01E6	; 0x8001e6 <Serial+0x10>
     1e1a:	f0 91 e7 01 	lds	r31, 0x01E7	; 0x8001e7 <Serial+0x11>
     1e1e:	80 81       	ld	r24, Z
@@ -4215,39 +3712,21 @@ void HardwareSerial::_rx_complete_irq(void)
     1e24:	f0 91 ed 01 	lds	r31, 0x01ED	; 0x8001ed <Serial+0x17>
     1e28:	82 fd       	sbrc	r24, 2
     1e2a:	12 c0       	rjmp	.+36     	; 0x1e50 <__vector_18+0x4e>
-    // No Parity error, read byte and store it in the buffer if there is
-    // room
-    unsigned char c = *_udr;
     1e2c:	90 81       	ld	r25, Z
-    rx_buffer_index_t i = (unsigned int)(_rx_buffer_head + 1) % SERIAL_RX_BUFFER_SIZE;
     1e2e:	80 91 ef 01 	lds	r24, 0x01EF	; 0x8001ef <Serial+0x19>
     1e32:	8f 5f       	subi	r24, 0xFF	; 255
     1e34:	8f 73       	andi	r24, 0x3F	; 63
-
-    // if we should be storing the received character into the location
-    // just before the tail (meaning that the head would advance to the
-    // current location of the tail), we're about to overflow the buffer
-    // and so we don't write the character or advance the head.
-    if (i != _rx_buffer_tail) {
     1e36:	20 91 f0 01 	lds	r18, 0x01F0	; 0x8001f0 <Serial+0x1a>
     1e3a:	82 17       	cp	r24, r18
     1e3c:	51 f0       	breq	.+20     	; 0x1e52 <__vector_18+0x50>
-      _rx_buffer[_rx_buffer_head] = c;
     1e3e:	e0 91 ef 01 	lds	r30, 0x01EF	; 0x8001ef <Serial+0x19>
     1e42:	f0 e0       	ldi	r31, 0x00	; 0
     1e44:	ea 52       	subi	r30, 0x2A	; 42
     1e46:	fe 4f       	sbci	r31, 0xFE	; 254
     1e48:	95 8f       	std	Z+29, r25	; 0x1d
-      _rx_buffer_head = i;
     1e4a:	80 93 ef 01 	sts	0x01EF, r24	; 0x8001ef <Serial+0x19>
     1e4e:	01 c0       	rjmp	.+2      	; 0x1e52 <__vector_18+0x50>
-    }
-  } else {
-    // Parity error, read byte but discard it
-    *_udr;
     1e50:	80 81       	ld	r24, Z
-    Serial._rx_complete_irq();
-  }
     1e52:	ff 91       	pop	r31
     1e54:	ef 91       	pop	r30
     1e56:	9f 91       	pop	r25
@@ -4260,12 +3739,6 @@ void HardwareSerial::_rx_complete_irq(void)
     1e64:	18 95       	reti
 
 00001e66 <__vector_19>:
-#elif defined(USART_UDRE_vect)
-ISR(USART_UDRE_vect)
-#else
-  #error "Don't know what the Data Register Empty vector is called for Serial"
-#endif
-{
     1e66:	1f 92       	push	r1
     1e68:	0f 92       	push	r0
     1e6a:	0f b6       	in	r0, 0x3f	; 63
@@ -4283,11 +3756,9 @@ ISR(USART_UDRE_vect)
     1e82:	bf 93       	push	r27
     1e84:	ef 93       	push	r30
     1e86:	ff 93       	push	r31
-  Serial._tx_udr_empty_irq();
     1e88:	86 ed       	ldi	r24, 0xD6	; 214
     1e8a:	91 e0       	ldi	r25, 0x01	; 1
     1e8c:	0e 94 11 0e 	call	0x1c22	; 0x1c22 <_ZN14HardwareSerial17_tx_udr_empty_irqEv>
-}
     1e90:	ff 91       	pop	r31
     1e92:	ef 91       	pop	r30
     1e94:	bf 91       	pop	r27
@@ -4307,12 +3778,6 @@ ISR(USART_UDRE_vect)
     1eb0:	18 95       	reti
 
 00001eb2 <_Z17Serial0_availablev>:
-#endif
-
-// Function that can be weakly referenced by serialEventRun to prevent
-// pulling in this file if it's not otherwise used.
-bool Serial0_available() {
-  return Serial.available();
     1eb2:	86 ed       	ldi	r24, 0xD6	; 214
     1eb4:	91 e0       	ldi	r25, 0x01	; 1
     1eb6:	0e 94 d5 0d 	call	0x1baa	; 0x1baa <_ZN14HardwareSerial9availableEv>
@@ -4320,27 +3785,14 @@ bool Serial0_available() {
     1ebc:	89 2b       	or	r24, r25
     1ebe:	09 f4       	brne	.+2      	; 0x1ec2 <_Z17Serial0_availablev+0x10>
     1ec0:	20 e0       	ldi	r18, 0x00	; 0
-}
     1ec2:	82 2f       	mov	r24, r18
     1ec4:	08 95       	ret
 
 00001ec6 <_GLOBAL__sub_I___vector_18>:
-    size_t printNumber(unsigned long, uint8_t);
-    size_t printFloat(double, uint8_t);
-  protected:
-    void setWriteError(int err = 1) { write_error = err; }
-  public:
-    Print() : write_error(0) {}
     1ec6:	e6 ed       	ldi	r30, 0xD6	; 214
     1ec8:	f1 e0       	ldi	r31, 0x01	; 1
     1eca:	13 82       	std	Z+3, r1	; 0x03
     1ecc:	12 82       	std	Z+2, r1	; 0x02
-    virtual int available() = 0;
-    virtual int read() = 0;
-    virtual int peek() = 0;
-    virtual void flush() = 0;
-
-    Stream() {_timeout=1000;}
     1ece:	88 ee       	ldi	r24, 0xE8	; 232
     1ed0:	93 e0       	ldi	r25, 0x03	; 3
     1ed2:	a0 e0       	ldi	r26, 0x00	; 0
@@ -4349,12 +3801,6 @@ bool Serial0_available() {
     1ed8:	95 83       	std	Z+5, r25	; 0x05
     1eda:	a6 83       	std	Z+6, r26	; 0x06
     1edc:	b7 83       	std	Z+7, r27	; 0x07
-  volatile uint8_t *ucsrc, volatile uint8_t *udr) :
-    _ubrrh(ubrrh), _ubrrl(ubrrl),
-    _ucsra(ucsra), _ucsrb(ucsrb), _ucsrc(ucsrc),
-    _udr(udr),
-    _rx_buffer_head(0), _rx_buffer_tail(0),
-    _tx_buffer_head(0), _tx_buffer_tail(0)
     1ede:	83 e4       	ldi	r24, 0x43	; 67
     1ee0:	91 e0       	ldi	r25, 0x01	; 1
     1ee2:	91 83       	std	Z+1, r25	; 0x01
@@ -4390,56 +3836,21 @@ bool Serial0_available() {
     1f1e:	08 95       	ret
 
 00001f20 <initVariant>:
-int atexit(void (*func)()) { return 0; }
-
-// Weak empty variant initialization function.
-// May be redefined by variant files.
-void initVariant() __attribute__((weak));
-void initVariant() { }
     1f20:	08 95       	ret
 
 00001f22 <main>:
-
-int main(void)
-{
-	init();
     1f22:	0e 94 89 10 	call	0x2112	; 0x2112 <init>
-
-	initVariant();
     1f26:	0e 94 90 0f 	call	0x1f20	; 0x1f20 <initVariant>
-
-#if defined(USBCON)
-	USBDevice.attach();
-#endif
-	
-	setup();
     1f2a:	0e 94 98 02 	call	0x530	; 0x530 <setup>
-    
-	for (;;) {
-		loop();
-		if (serialEventRun) serialEventRun();
     1f2e:	c3 e0       	ldi	r28, 0x03	; 3
     1f30:	de e0       	ldi	r29, 0x0E	; 14
-#endif
-	
-	setup();
-    
-	for (;;) {
-		loop();
     1f32:	0e 94 57 04 	call	0x8ae	; 0x8ae <loop>
-		if (serialEventRun) serialEventRun();
     1f36:	20 97       	sbiw	r28, 0x00	; 0
     1f38:	e1 f3       	breq	.-8      	; 0x1f32 <main+0x10>
     1f3a:	0e 94 03 0e 	call	0x1c06	; 0x1c06 <_Z14serialEventRunv>
     1f3e:	f9 cf       	rjmp	.-14     	; 0x1f32 <main+0x10>
 
 00001f40 <_ZN5Print5writeEPKhj>:
-size_t Print::println(const String &s)
-{
-  size_t n = print(s);
-  n += println();
-  return n;
-}
     1f40:	cf 92       	push	r12
     1f42:	df 92       	push	r13
     1f44:	ef 92       	push	r14
@@ -4589,32 +4000,15 @@ size_t Print::println(const String &s)
     2058:	08 95       	ret
 
 0000205a <_ZN5Print7printlnEPKc>:
-
-size_t Print::println(const char c[])
-{
     205a:	0f 93       	push	r16
     205c:	1f 93       	push	r17
     205e:	cf 93       	push	r28
     2060:	df 93       	push	r29
     2062:	ec 01       	movw	r28, r24
-  return write(s.c_str(), s.length());
-}
-
-size_t Print::print(const char str[])
-{
-  return write(str);
     2064:	0e 94 c8 0f 	call	0x1f90	; 0x1f90 <_ZN5Print5writeEPKc>
     2068:	8c 01       	movw	r16, r24
-}
-
-size_t Print::println(const char c[])
-{
-  size_t n = print(c);
-  n += println();
     206a:	ce 01       	movw	r24, r28
     206c:	0e 94 07 10 	call	0x200e	; 0x200e <_ZN5Print7printlnEv>
-  return n;
-}
     2070:	80 0f       	add	r24, r16
     2072:	91 1f       	adc	r25, r17
     2074:	df 91       	pop	r29
@@ -4624,12 +4018,6 @@ size_t Print::println(const char c[])
     207c:	08 95       	ret
 
 0000207e <__vector_16>:
-	// we can't subtract any more than this or we'd overflow w/ small delays.
-	us--;
-#endif
-
-	// busy wait
-	__asm__ __volatile__ (
     207e:	1f 92       	push	r1
     2080:	0f 92       	push	r0
     2082:	0f b6       	in	r0, 0x3f	; 63
@@ -4688,144 +4076,66 @@ size_t Print::println(const char c[])
     2110:	18 95       	reti
 
 00002112 <init>:
-
-void init()
-{
-	// this needs to be called before setup() or some functions won't
-	// work there
-	sei();
     2112:	78 94       	sei
-	
-	// on the ATmega168, timer 0 is also used for fast hardware pwm
-	// (using phase-correct PWM would mean that timer 0 overflowed half as often
-	// resulting in different millis() behavior on the ATmega8 and ATmega168)
-#if defined(TCCR0A) && defined(WGM01)
-	sbi(TCCR0A, WGM01);
     2114:	84 b5       	in	r24, 0x24	; 36
     2116:	82 60       	ori	r24, 0x02	; 2
     2118:	84 bd       	out	0x24, r24	; 36
-	sbi(TCCR0A, WGM00);
     211a:	84 b5       	in	r24, 0x24	; 36
     211c:	81 60       	ori	r24, 0x01	; 1
     211e:	84 bd       	out	0x24, r24	; 36
-	// this combination is for the standard atmega8
-	sbi(TCCR0, CS01);
-	sbi(TCCR0, CS00);
-#elif defined(TCCR0B) && defined(CS01) && defined(CS00)
-	// this combination is for the standard 168/328/1280/2560
-	sbi(TCCR0B, CS01);
     2120:	85 b5       	in	r24, 0x25	; 37
     2122:	82 60       	ori	r24, 0x02	; 2
     2124:	85 bd       	out	0x25, r24	; 37
-	sbi(TCCR0B, CS00);
     2126:	85 b5       	in	r24, 0x25	; 37
     2128:	81 60       	ori	r24, 0x01	; 1
     212a:	85 bd       	out	0x25, r24	; 37
-
-	// enable timer 0 overflow interrupt
-#if defined(TIMSK) && defined(TOIE0)
-	sbi(TIMSK, TOIE0);
-#elif defined(TIMSK0) && defined(TOIE0)
-	sbi(TIMSK0, TOIE0);
     212c:	ee e6       	ldi	r30, 0x6E	; 110
     212e:	f0 e0       	ldi	r31, 0x00	; 0
     2130:	80 81       	ld	r24, Z
     2132:	81 60       	ori	r24, 0x01	; 1
     2134:	80 83       	st	Z, r24
-	// this is better for motors as it ensures an even waveform
-	// note, however, that fast pwm mode can achieve a frequency of up
-	// 8 MHz (with a 16 MHz clock) at 50% duty cycle
-
-#if defined(TCCR1B) && defined(CS11) && defined(CS10)
-	TCCR1B = 0;
     2136:	e1 e8       	ldi	r30, 0x81	; 129
     2138:	f0 e0       	ldi	r31, 0x00	; 0
     213a:	10 82       	st	Z, r1
-
-	// set timer 1 prescale factor to 64
-	sbi(TCCR1B, CS11);
     213c:	80 81       	ld	r24, Z
     213e:	82 60       	ori	r24, 0x02	; 2
     2140:	80 83       	st	Z, r24
-#if F_CPU >= 8000000L
-	sbi(TCCR1B, CS10);
     2142:	80 81       	ld	r24, Z
     2144:	81 60       	ori	r24, 0x01	; 1
     2146:	80 83       	st	Z, r24
-	sbi(TCCR1, CS10);
-#endif
-#endif
-	// put timer 1 in 8-bit phase correct pwm mode
-#if defined(TCCR1A) && defined(WGM10)
-	sbi(TCCR1A, WGM10);
     2148:	e0 e8       	ldi	r30, 0x80	; 128
     214a:	f0 e0       	ldi	r31, 0x00	; 0
     214c:	80 81       	ld	r24, Z
     214e:	81 60       	ori	r24, 0x01	; 1
     2150:	80 83       	st	Z, r24
-
-	// set timer 2 prescale factor to 64
-#if defined(TCCR2) && defined(CS22)
-	sbi(TCCR2, CS22);
-#elif defined(TCCR2B) && defined(CS22)
-	sbi(TCCR2B, CS22);
     2152:	e1 eb       	ldi	r30, 0xB1	; 177
     2154:	f0 e0       	ldi	r31, 0x00	; 0
     2156:	80 81       	ld	r24, Z
     2158:	84 60       	ori	r24, 0x04	; 4
     215a:	80 83       	st	Z, r24
-
-	// configure timer 2 for phase correct pwm (8-bit)
-#if defined(TCCR2) && defined(WGM20)
-	sbi(TCCR2, WGM20);
-#elif defined(TCCR2A) && defined(WGM20)
-	sbi(TCCR2A, WGM20);
     215c:	e0 eb       	ldi	r30, 0xB0	; 176
     215e:	f0 e0       	ldi	r31, 0x00	; 0
     2160:	80 81       	ld	r24, Z
     2162:	81 60       	ori	r24, 0x01	; 1
     2164:	80 83       	st	Z, r24
-#if defined(ADCSRA)
-	// set a2d prescale factor to 128
-	// 16 MHz / 128 = 125 KHz, inside the desired 50-200 KHz range.
-	// XXX: this will not work properly for other clock speeds, and
-	// this code should use F_CPU to determine the prescale factor.
-	sbi(ADCSRA, ADPS2);
     2166:	ea e7       	ldi	r30, 0x7A	; 122
     2168:	f0 e0       	ldi	r31, 0x00	; 0
     216a:	80 81       	ld	r24, Z
     216c:	84 60       	ori	r24, 0x04	; 4
     216e:	80 83       	st	Z, r24
-	sbi(ADCSRA, ADPS1);
     2170:	80 81       	ld	r24, Z
     2172:	82 60       	ori	r24, 0x02	; 2
     2174:	80 83       	st	Z, r24
-	sbi(ADCSRA, ADPS0);
     2176:	80 81       	ld	r24, Z
     2178:	81 60       	ori	r24, 0x01	; 1
     217a:	80 83       	st	Z, r24
-
-	// enable a2d conversions
-	sbi(ADCSRA, ADEN);
     217c:	80 81       	ld	r24, Z
     217e:	80 68       	ori	r24, 0x80	; 128
     2180:	80 83       	st	Z, r24
-	// here so they can be used as normal digital i/o; they will be
-	// reconnected in Serial.begin()
-#if defined(UCSRB)
-	UCSRB = 0;
-#elif defined(UCSR0B)
-	UCSR0B = 0;
     2182:	10 92 c1 00 	sts	0x00C1, r1	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7e00c1>
     2186:	08 95       	ret
 
 00002188 <turnOffPWM>:
-//
-//static inline void turnOffPWM(uint8_t timer) __attribute__ ((always_inline));
-//static inline void turnOffPWM(uint8_t timer)
-static void turnOffPWM(uint8_t timer)
-{
-	switch (timer)
     2188:	83 30       	cpi	r24, 0x03	; 3
     218a:	81 f0       	breq	.+32     	; 0x21ac <turnOffPWM+0x24>
     218c:	28 f4       	brcc	.+10     	; 0x2198 <turnOffPWM+0x10>
@@ -4840,87 +4150,42 @@ static void turnOffPWM(uint8_t timer)
     219e:	b9 f0       	breq	.+46     	; 0x21ce <turnOffPWM+0x46>
     21a0:	84 30       	cpi	r24, 0x04	; 4
     21a2:	d1 f4       	brne	.+52     	; 0x21d8 <turnOffPWM+0x50>
-	{
-		#if defined(TCCR1A) && defined(COM1A1)
-		case TIMER1A:   cbi(TCCR1A, COM1A1);    break;
-		#endif
-		#if defined(TCCR1A) && defined(COM1B1)
-		case TIMER1B:   cbi(TCCR1A, COM1B1);    break;
     21a4:	80 91 80 00 	lds	r24, 0x0080	; 0x800080 <__TEXT_REGION_LENGTH__+0x7e0080>
     21a8:	8f 7d       	andi	r24, 0xDF	; 223
     21aa:	03 c0       	rjmp	.+6      	; 0x21b2 <turnOffPWM+0x2a>
-static void turnOffPWM(uint8_t timer)
-{
-	switch (timer)
-	{
-		#if defined(TCCR1A) && defined(COM1A1)
-		case TIMER1A:   cbi(TCCR1A, COM1A1);    break;
     21ac:	80 91 80 00 	lds	r24, 0x0080	; 0x800080 <__TEXT_REGION_LENGTH__+0x7e0080>
     21b0:	8f 77       	andi	r24, 0x7F	; 127
-		#endif
-		#if defined(TCCR1A) && defined(COM1B1)
-		case TIMER1B:   cbi(TCCR1A, COM1B1);    break;
     21b2:	80 93 80 00 	sts	0x0080, r24	; 0x800080 <__TEXT_REGION_LENGTH__+0x7e0080>
     21b6:	08 95       	ret
-		#if defined(TCCR2) && defined(COM21)
-		case  TIMER2:   cbi(TCCR2, COM21);      break;
-		#endif
-		
-		#if defined(TCCR0A) && defined(COM0A1)
-		case  TIMER0A:  cbi(TCCR0A, COM0A1);    break;
     21b8:	84 b5       	in	r24, 0x24	; 36
     21ba:	8f 77       	andi	r24, 0x7F	; 127
     21bc:	02 c0       	rjmp	.+4      	; 0x21c2 <turnOffPWM+0x3a>
-		#endif
-		
-		#if defined(TIMER0B) && defined(COM0B1)
-		case  TIMER0B:  cbi(TCCR0A, COM0B1);    break;
     21be:	84 b5       	in	r24, 0x24	; 36
     21c0:	8f 7d       	andi	r24, 0xDF	; 223
     21c2:	84 bd       	out	0x24, r24	; 36
     21c4:	08 95       	ret
-		#endif
-		#if defined(TCCR2A) && defined(COM2A1)
-		case  TIMER2A:  cbi(TCCR2A, COM2A1);    break;
     21c6:	80 91 b0 00 	lds	r24, 0x00B0	; 0x8000b0 <__TEXT_REGION_LENGTH__+0x7e00b0>
     21ca:	8f 77       	andi	r24, 0x7F	; 127
     21cc:	03 c0       	rjmp	.+6      	; 0x21d4 <turnOffPWM+0x4c>
-		#endif
-		#if defined(TCCR2A) && defined(COM2B1)
-		case  TIMER2B:  cbi(TCCR2A, COM2B1);    break;
     21ce:	80 91 b0 00 	lds	r24, 0x00B0	; 0x8000b0 <__TEXT_REGION_LENGTH__+0x7e00b0>
     21d2:	8f 7d       	andi	r24, 0xDF	; 223
     21d4:	80 93 b0 00 	sts	0x00B0, r24	; 0x8000b0 <__TEXT_REGION_LENGTH__+0x7e00b0>
     21d8:	08 95       	ret
 
 000021da <pinMode>:
-#define ARDUINO_MAIN
-#include "wiring_private.h"
-#include "pins_arduino.h"
-
-void pinMode(uint8_t pin, uint8_t mode)
-{
     21da:	cf 93       	push	r28
     21dc:	df 93       	push	r29
-	uint8_t bit = digitalPinToBitMask(pin);
     21de:	90 e0       	ldi	r25, 0x00	; 0
     21e0:	fc 01       	movw	r30, r24
     21e2:	e0 57       	subi	r30, 0x70	; 112
     21e4:	fb 4f       	sbci	r31, 0xFB	; 251
     21e6:	24 91       	lpm	r18, Z
-	uint8_t port = digitalPinToPort(pin);
     21e8:	fc 01       	movw	r30, r24
     21ea:	ec 55       	subi	r30, 0x5C	; 92
     21ec:	fb 4f       	sbci	r31, 0xFB	; 251
     21ee:	84 91       	lpm	r24, Z
-	volatile uint8_t *reg, *out;
-
-	if (port == NOT_A_PIN) return;
     21f0:	88 23       	and	r24, r24
     21f2:	61 f1       	breq	.+88     	; 0x224c <pinMode+0x72>
-
-	// JWS: can I let the optimizer do this?
-	reg = portModeRegister(port);
     21f4:	90 e0       	ldi	r25, 0x00	; 0
     21f6:	88 0f       	add	r24, r24
     21f8:	99 1f       	adc	r25, r25
@@ -4929,108 +4194,69 @@ void pinMode(uint8_t pin, uint8_t mode)
     21fe:	fb 4f       	sbci	r31, 0xFB	; 251
     2200:	c5 91       	lpm	r28, Z+
     2202:	d4 91       	lpm	r29, Z
-	out = portOutputRegister(port);
     2204:	fc 01       	movw	r30, r24
     2206:	e8 54       	subi	r30, 0x48	; 72
     2208:	fb 4f       	sbci	r31, 0xFB	; 251
     220a:	a5 91       	lpm	r26, Z+
     220c:	b4 91       	lpm	r27, Z
-
-	if (mode == INPUT) { 
     220e:	61 11       	cpse	r22, r1
     2210:	09 c0       	rjmp	.+18     	; 0x2224 <pinMode+0x4a>
-		uint8_t oldSREG = SREG;
     2212:	9f b7       	in	r25, 0x3f	; 63
-                cli();
     2214:	f8 94       	cli
-		*reg &= ~bit;
     2216:	88 81       	ld	r24, Y
     2218:	20 95       	com	r18
     221a:	82 23       	and	r24, r18
     221c:	88 83       	st	Y, r24
-		*out &= ~bit;
     221e:	ec 91       	ld	r30, X
     2220:	2e 23       	and	r18, r30
     2222:	0b c0       	rjmp	.+22     	; 0x223a <pinMode+0x60>
-		SREG = oldSREG;
-	} else if (mode == INPUT_PULLUP) {
     2224:	62 30       	cpi	r22, 0x02	; 2
     2226:	61 f4       	brne	.+24     	; 0x2240 <pinMode+0x66>
-		uint8_t oldSREG = SREG;
     2228:	9f b7       	in	r25, 0x3f	; 63
-                cli();
     222a:	f8 94       	cli
-		*reg &= ~bit;
     222c:	38 81       	ld	r19, Y
     222e:	82 2f       	mov	r24, r18
     2230:	80 95       	com	r24
     2232:	83 23       	and	r24, r19
     2234:	88 83       	st	Y, r24
-		*out |= bit;
     2236:	ec 91       	ld	r30, X
     2238:	2e 2b       	or	r18, r30
     223a:	2c 93       	st	X, r18
-		SREG = oldSREG;
     223c:	9f bf       	out	0x3f, r25	; 63
     223e:	06 c0       	rjmp	.+12     	; 0x224c <pinMode+0x72>
-	} else {
-		uint8_t oldSREG = SREG;
     2240:	8f b7       	in	r24, 0x3f	; 63
-                cli();
     2242:	f8 94       	cli
-		*reg |= bit;
     2244:	e8 81       	ld	r30, Y
     2246:	2e 2b       	or	r18, r30
     2248:	28 83       	st	Y, r18
-		SREG = oldSREG;
     224a:	8f bf       	out	0x3f, r24	; 63
-	}
-}
     224c:	df 91       	pop	r29
     224e:	cf 91       	pop	r28
     2250:	08 95       	ret
 
 00002252 <digitalWrite>:
-		#endif
-	}
-}
-
-void digitalWrite(uint8_t pin, uint8_t val)
-{
     2252:	1f 93       	push	r17
     2254:	cf 93       	push	r28
     2256:	df 93       	push	r29
-	uint8_t timer = digitalPinToTimer(pin);
     2258:	28 2f       	mov	r18, r24
     225a:	30 e0       	ldi	r19, 0x00	; 0
     225c:	f9 01       	movw	r30, r18
     225e:	e4 58       	subi	r30, 0x84	; 132
     2260:	fb 4f       	sbci	r31, 0xFB	; 251
     2262:	84 91       	lpm	r24, Z
-	uint8_t bit = digitalPinToBitMask(pin);
     2264:	f9 01       	movw	r30, r18
     2266:	e0 57       	subi	r30, 0x70	; 112
     2268:	fb 4f       	sbci	r31, 0xFB	; 251
     226a:	d4 91       	lpm	r29, Z
-	uint8_t port = digitalPinToPort(pin);
     226c:	f9 01       	movw	r30, r18
     226e:	ec 55       	subi	r30, 0x5C	; 92
     2270:	fb 4f       	sbci	r31, 0xFB	; 251
     2272:	c4 91       	lpm	r28, Z
-	volatile uint8_t *out;
-
-	if (port == NOT_A_PIN) return;
     2274:	cc 23       	and	r28, r28
     2276:	c9 f0       	breq	.+50     	; 0x22aa <digitalWrite+0x58>
     2278:	16 2f       	mov	r17, r22
-
-	// If the pin that support PWM output, we need to turn it off
-	// before doing a digital write.
-	if (timer != NOT_ON_TIMER) turnOffPWM(timer);
     227a:	81 11       	cpse	r24, r1
     227c:	0e 94 c4 10 	call	0x2188	; 0x2188 <turnOffPWM>
-
-	out = portOutputRegister(port);
     2280:	ec 2f       	mov	r30, r28
     2282:	f0 e0       	ldi	r31, 0x00	; 0
     2284:	ee 0f       	add	r30, r30
@@ -5039,43 +4265,25 @@ void digitalWrite(uint8_t pin, uint8_t val)
     228a:	fb 4f       	sbci	r31, 0xFB	; 251
     228c:	a5 91       	lpm	r26, Z+
     228e:	b4 91       	lpm	r27, Z
-
-	uint8_t oldSREG = SREG;
     2290:	8f b7       	in	r24, 0x3f	; 63
-	cli();
     2292:	f8 94       	cli
-
-	if (val == LOW) {
     2294:	11 11       	cpse	r17, r1
     2296:	05 c0       	rjmp	.+10     	; 0x22a2 <digitalWrite+0x50>
-		*out &= ~bit;
     2298:	9c 91       	ld	r25, X
     229a:	ed 2f       	mov	r30, r29
     229c:	e0 95       	com	r30
     229e:	e9 23       	and	r30, r25
     22a0:	02 c0       	rjmp	.+4      	; 0x22a6 <digitalWrite+0x54>
-	} else {
-		*out |= bit;
     22a2:	ec 91       	ld	r30, X
     22a4:	ed 2b       	or	r30, r29
     22a6:	ec 93       	st	X, r30
-	}
-
-	SREG = oldSREG;
     22a8:	8f bf       	out	0x3f, r24	; 63
-}
     22aa:	df 91       	pop	r29
     22ac:	cf 91       	pop	r28
     22ae:	1f 91       	pop	r17
     22b0:	08 95       	ret
 
 000022b2 <shiftOut>:
-	}
-	return value;
-}
-
-void shiftOut(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder, uint8_t val)
-{
     22b2:	bf 92       	push	r11
     22b4:	cf 92       	push	r12
     22b6:	df 92       	push	r13
@@ -5095,20 +4303,13 @@ void shiftOut(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder, uint8_t val)
     22d2:	87 e0       	ldi	r24, 0x07	; 7
     22d4:	e8 2e       	mov	r14, r24
     22d6:	f1 2c       	mov	r15, r1
-	uint8_t i;
-
-	for (i = 0; i < 8; i++)  {
-		if (bitOrder == LSBFIRST)
     22d8:	b1 10       	cpse	r11, r1
     22da:	05 c0       	rjmp	.+10     	; 0x22e6 <shiftOut+0x34>
     22dc:	c7 01       	movw	r24, r14
     22de:	8c 1b       	sub	r24, r28
     22e0:	9d 0b       	sbc	r25, r29
-			digitalWrite(dataPin, !!(val & (1 << i)));
     22e2:	98 01       	movw	r18, r16
     22e4:	02 c0       	rjmp	.+4      	; 0x22ea <shiftOut+0x38>
-		else	
-			digitalWrite(dataPin, !!(val & (1 << (7 - i))));
     22e6:	98 01       	movw	r18, r16
     22e8:	8c 2f       	mov	r24, r28
     22ea:	02 c0       	rjmp	.+4      	; 0x22f0 <shiftOut+0x3e>
@@ -5121,19 +4322,14 @@ void shiftOut(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder, uint8_t val)
     22f8:	77 27       	eor	r23, r23
     22fa:	8c 2d       	mov	r24, r12
     22fc:	0e 94 29 11 	call	0x2252	; 0x2252 <digitalWrite>
-			
-		digitalWrite(clockPin, HIGH);
     2300:	61 e0       	ldi	r22, 0x01	; 1
     2302:	8d 2d       	mov	r24, r13
     2304:	0e 94 29 11 	call	0x2252	; 0x2252 <digitalWrite>
-		digitalWrite(clockPin, LOW);		
     2308:	60 e0       	ldi	r22, 0x00	; 0
     230a:	8d 2d       	mov	r24, r13
     230c:	0e 94 29 11 	call	0x2252	; 0x2252 <digitalWrite>
     2310:	21 97       	sbiw	r28, 0x01	; 1
     2312:	10 f7       	brcc	.-60     	; 0x22d8 <shiftOut+0x26>
-	}
-}
     2314:	df 91       	pop	r29
     2316:	cf 91       	pop	r28
     2318:	1f 91       	pop	r17
