@@ -22,24 +22,28 @@
 #include <MaxMatrix.h>
 #include <avr/pgmspace.h>
 #include <TimerOne.h>
+#include <StandardTypes.h>
 
 
 /******************************************************************************************************************************************************
  *  LOCAL CONSTANT MACROS
  *****************************************************************************************************************************************************/
-#define UART_INPUT_LENGTH                   40
-#define COMMAND_MAX_LENGTH                  10
-#define MAXMATRIX_MAX_TEXT_LENGTH           (UART_INPUT_LENGTH - COMMAND_MAX_LENGTH)
+#define UART_INPUT_LENGTH								100
+#define COMMAND_MAX_LENGTH								10
+#define MAXMATRIX_MAX_TEXT_LENGTH						(UART_INPUT_LENGTH - COMMAND_MAX_LENGTH)
 
-#define MAXMATRIX_CS_PIN                    10
-#define MAXMATRIX_CLOCK_PIN                 11
-#define MAXMATRIX_DATA_PIN                  12
+#define MAXMATRIX_CS_PIN								10
+#define MAXMATRIX_CLOCK_PIN								11
+#define MAXMATRIX_DATA_PIN								12
 
-#define MAXMATRIX_SPEED_MIN_VALUE           1
-#define MAXMATRIX_SPEED_MAX_VALUE           20
+#define MAXMATRIX_SPEED_MIN_VALUE						1
+#define MAXMATRIX_SPEED_MAX_VALUE						20
 
-#define MAXMATRIX_INTENSITY_MIN_VALUE       1
-#define MAXMATRIX_INTENSITY_MAX_VALUE       16
+#define MAXMATRIX_INTENSITY_MIN_VALUE					1
+#define MAXMATRIX_INTENSITY_MAX_VALUE					16
+
+#define MAXMATRIX_SPACE_BETWEEN_CHARS_MIN_VALUE			0
+#define MAXMATRIX_SPACE_BETWEEN_CHARS_MAX_VALUE			255
 
 
 /******************************************************************************************************************************************************
@@ -110,7 +114,7 @@ void loop()
     {
         uartInputHandle();
         // clear the string:
-        UartInput[0] = '\0';
+        UartInput[0] = STD_NULL_CHARACTER;
         UartInputComplete = false;
     }
 
@@ -166,7 +170,7 @@ void uartInputHandle()
         else if(strcmp(command, "intensity") == 0) {
             value = atoi(valueASCII);
             if(value >= MAXMATRIX_INTENSITY_MIN_VALUE && value <= MAXMATRIX_INTENSITY_MAX_VALUE) {
-                Matrix.setIntensity(value-1);
+                Matrix.setIntensity(value - 1);
             } else {
                 Serial.println(F("value out of range"));
                 Serial.println(F("intensity range "TOSTRING(MAXMATRIX_INTENSITY_MIN_VALUE)" ... "TOSTRING(MAXMATRIX_INTENSITY_MAX_VALUE)));
@@ -175,11 +179,20 @@ void uartInputHandle()
         else if(strcmp(command, "speed") == 0) {
             value = atoi(valueASCII);
             if(value >= MAXMATRIX_SPEED_MIN_VALUE && value <= MAXMATRIX_SPEED_MAX_VALUE) {
-                Timer1.setPeriod(((long)(MAXMATRIX_SPEED_MAX_VALUE-value+1)*5) * 10000);
+                Timer1.setPeriod(((long)(MAXMATRIX_SPEED_MAX_VALUE - value + 1) * 5) * 10000);
             } else {
                 Serial.println(F("value out of range"));
                 Serial.println(F("speed range "TOSTRING(MAXMATRIX_SPEED_MIN_VALUE)" ... "TOSTRING(MAXMATRIX_SPEED_MAX_VALUE)));
             }
+        }
+        else if(strcmp(command, "spaceBetweenChars") == 0) {
+	        value = atoi(valueASCII);
+	        if(value >= MAXMATRIX_SPACE_BETWEEN_CHARS_MIN_VALUE && value <= MAXMATRIX_SPACE_BETWEEN_CHARS_MAX_VALUE) {
+					Matrix.setSpaceBetweenChars(value);
+		        } else {
+		        Serial.println(F("value out of range"));
+		        Serial.println(F("spaceBetweenChars range "TOSTRING(MAXMATRIX_SPACE_BETWEEN_CHARS_MIN_VALUE)" ... "TOSTRING(MAXMATRIX_SPACE_BETWEEN_CHARS_MAX_VALUE)));
+	        }
         }
         else if(strcmp(command, "setDot") == 0) {
             if(LEDMATRIX_STATE_READY != State) {
@@ -230,7 +243,7 @@ void serialEvent()
             {
                 // save new char
                 UartInput[UartInputLength] = inChar;
-                UartInput[UartInputLength+1] = '\0';
+                UartInput[UartInputLength+1] = STD_NULL_CHARACTER;
             }
         }
     }
@@ -267,8 +280,8 @@ void printHelp()
  *****************************************************************************************************************************************************/
 inline void stringCopy(char *Destination, const char *Source, int Length)
 {
-    strncpy(Destination, Source, Length-1);
-    Destination[Length-1] = '\0';
+    strncpy(Destination, Source, Length - 1);
+    Destination[Length-1] = STD_NULL_CHARACTER;
 }
 
 
@@ -277,8 +290,8 @@ inline void stringCopy(char *Destination, const char *Source, int Length)
  *****************************************************************************************************************************************************/
 /*! \brief          set timer1 flag
  *  \details        this function sets the timer1 overflow flag. 
- *                  Will be called from interrupt context
  *                  
+ *  \pre            will be called from interrupt context by an Hardware Timer
  *****************************************************************************************************************************************************/
 void systTick()
 {

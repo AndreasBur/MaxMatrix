@@ -32,7 +32,7 @@
 #define MAXMATRIX_NUMBER_OF_MODULES                                 4
 #define MAXMATRIX_USE_SPI                                           STD_OFF
 #define MAXMATRIX_USE_DIGITAL_WRITE_FAST                            STD_OFF
-#define MAXMATRIX_SPACE_BETWEEN_CHARS								1
+#define MAXMATRIX_SPACE_BETWEEN_CHARS_INIT_VALUE					1
 #define MAXMATRIX_INTENSITY_INIT_VALUE								5
 
 /* MaxMatrix Parameter */
@@ -270,6 +270,7 @@ class MaxMatrix
     byte MatrixBuffer[MAXMATRIX_BUFFER_SIZE];
     spriteType SpriteBuffer;
     byte SpriteShiftCounter;
+	byte SpaceBetweenChars;
     char* String;
 
 	// functions
@@ -313,6 +314,7 @@ class MaxMatrix
     byte getChipSelectPin() { return ChipSelectPin; }
     byte getClockPin() { return ClockPin; }
 	MaxMatrixModuleOrientationType getOrientation() { return Orientation; }
+	byte getSpaceBetweenChars() { return SpaceBetweenChars; }
 
 	stdReturnType getColumn(byte, byte*);
 	stdReturnType getColumn(byte, byte, byte*);
@@ -333,6 +335,7 @@ class MaxMatrix
 	stdReturnType setCharWithShift(char);
 	stdReturnType setText(const char*);
 	stdReturnType setTextWithShift(char*);
+	stdReturnType setSpaceBetweenChars(byte);
 	void setSprite(int, int, const spriteType*);
 	void setModuleOrientation(MaxMatrixModuleOrientationType);
 

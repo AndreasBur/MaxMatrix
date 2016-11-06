@@ -51,6 +51,7 @@ MaxMatrix::MaxMatrix(byte sDataInPin, byte sChipSelectPin, byte sClockPin)
     ClockPin = sClockPin;
     String = NULL;
     SpriteShiftCounter = MAXMATRIX_SPRITE_SHIFT_STATE_READY;
+	SpaceBetweenChars = MAXMATRIX_SPACE_BETWEEN_CHARS_INIT_VALUE;
 	Orientation = MAXMATRIX_MODULE_ORIENTATION_0;
     State = MAXMATRIX_STATE_NONE;
     
@@ -748,6 +749,27 @@ void MaxMatrix::setSprite(int X, int Y, const spriteType* Sprite)
 
 
 /******************************************************************************************************************************************************
+  setSpaceBetweenChars()
+******************************************************************************************************************************************************/
+/*! \brief          set space between chars
+ *  \details        this function sets the number of spaces between chars
+ *                  
+ *  \param[in]      sSpaceBetweenChars		number of spaces
+ *  \return         E_OK
+ *                  E_NOT_OK
+ *****************************************************************************************************************************************************/
+stdReturnType MaxMatrix::setSpaceBetweenChars(byte sSpaceBetweenChars)
+{
+	if(sSpaceBetweenChars > 0) {
+		SpaceBetweenChars = sSpaceBetweenChars;
+		return E_OK;
+	} else {
+		return E_NOT_OK;
+	}
+} /* setSpaceBetweenChars */
+
+
+/******************************************************************************************************************************************************
   setOrientation()
 ******************************************************************************************************************************************************/
 /*! \brief          set Orientation of matrix
@@ -771,8 +793,8 @@ void MaxMatrix::setModuleOrientation(MaxMatrixModuleOrientationType sOrientation
 		   (Orientation == MAXMATRIX_MODULE_ORIENTATION_270 && sOrientation == MAXMATRIX_MODULE_ORIENTATION_0)) 
 		{
 			for(byte Module = 1; Module <= MAXMATRIX_NUMBER_OF_MODULES; Module++) {
-				for(int Row = MAXMATRIX_ROW_NUMBER_OF_MODULE-1; Row >= 0; Row--) {
-					RowRotated = MAXMATRIX_ROW_NUMBER_OF_MODULE-1;
+				for(int Row = MAXMATRIX_ROW_NUMBER_OF_MODULE - 1; Row >= 0; Row--) {
+					RowRotated = MAXMATRIX_ROW_NUMBER_OF_MODULE - 1;
 					for(int Column = MAXMATRIX_COLUMN_NUMBER_OF_MODULE*Module-1; Column >= MAXMATRIX_COLUMN_NUMBER_OF_MODULE*(Module-1); Column--) {
 						bitWrite(MatrixBufferRotated[ColumnRotated], RowRotated, bitRead(MatrixBuffer[Column], Row));
 						RowRotated--;
@@ -789,8 +811,8 @@ void MaxMatrix::setModuleOrientation(MaxMatrixModuleOrientationType sOrientation
 		{
 			for(byte Module = 1; Module <= MAXMATRIX_NUMBER_OF_MODULES; Module++) {
 				for(int Column = MAXMATRIX_COLUMN_NUMBER_OF_MODULE*Module-1; Column >= MAXMATRIX_COLUMN_NUMBER_OF_MODULE*(Module-1); Column--) {
-					RowRotated = MAXMATRIX_ROW_NUMBER_OF_MODULE-1;
-					for(int Row = 0; Row <= MAXMATRIX_ROW_NUMBER_OF_MODULE-1; Row++) {
+					RowRotated = MAXMATRIX_ROW_NUMBER_OF_MODULE - 1;
+					for(int Row = 0; Row <= MAXMATRIX_ROW_NUMBER_OF_MODULE - 1; Row++) {
 						bitWrite(MatrixBufferRotated[ColumnRotated], RowRotated, bitRead(MatrixBuffer[Column], Row));
 						RowRotated--;
 					}
@@ -805,9 +827,9 @@ void MaxMatrix::setModuleOrientation(MaxMatrixModuleOrientationType sOrientation
 		  (Orientation == MAXMATRIX_MODULE_ORIENTATION_270 && sOrientation == MAXMATRIX_MODULE_ORIENTATION_180))
 		{
 			for(byte Module = 1; Module <= MAXMATRIX_NUMBER_OF_MODULES; Module++) {
-				for(int Row = 0; Row <= MAXMATRIX_ROW_NUMBER_OF_MODULE-1; Row++) {
-					RowRotated = MAXMATRIX_ROW_NUMBER_OF_MODULE-1;
-					for(int Column = MAXMATRIX_COLUMN_NUMBER_OF_MODULE*(Module-1); Column <= MAXMATRIX_COLUMN_NUMBER_OF_MODULE*Module-1; Column++) {
+				for(int Row = 0; Row <= MAXMATRIX_ROW_NUMBER_OF_MODULE - 1; Row++) {
+					RowRotated = MAXMATRIX_ROW_NUMBER_OF_MODULE - 1;
+					for(int Column = MAXMATRIX_COLUMN_NUMBER_OF_MODULE *(Module-1); Column <= MAXMATRIX_COLUMN_NUMBER_OF_MODULE*Module-1; Column++) {
 					   bitWrite(MatrixBufferRotated[ColumnRotated], RowRotated, bitRead(MatrixBuffer[Column], Row));
 					   RowRotated--;
 					}
@@ -902,7 +924,7 @@ void MaxMatrix::charShiftTask()
 	if(SpriteShiftCounter <= SpriteBuffer[ASCII_TABLE_SPRITE_WIDTH]) {
 		setSprite(MAXMATRIX_NUMBER_OF_COLUMNS - SpriteShiftCounter, 0, &SpriteBuffer);
 	}
-	else if(SpriteShiftCounter == SpriteBuffer[ASCII_TABLE_SPRITE_WIDTH] + MAXMATRIX_SPACE_BETWEEN_CHARS + 1) {
+	else if(SpriteShiftCounter == SpriteBuffer[ASCII_TABLE_SPRITE_WIDTH] + SpaceBetweenChars + 1) {
         if(MAXMATRIX_STATE_CHAR_SHIFT == State) State = MAXMATRIX_STATE_READY;
         SpriteShiftCounter = MAXMATRIX_SPRITE_SHIFT_STATE_READY;
     }
@@ -1294,11 +1316,11 @@ stdReturnType MaxMatrix::setRowOnAllModulesLL(byte Row, byte Value)
 void MaxMatrix::shiftLeftLL(bool Rotate, bool FillWithZero, bool ShiftToNeighbourModule)
 {
 	if(ShiftToNeighbourModule) {
-		byte old = MatrixBuffer[0];
+		byte ColumnLeft = MatrixBuffer[0];
 		for(int Column = 0; Column < MAXMATRIX_NUMBER_OF_COLUMNS - 1; Column++) {
 			MatrixBuffer[Column] = MatrixBuffer[Column + 1]; 
 		}
-		if(Rotate) MatrixBuffer[MAXMATRIX_NUMBER_OF_COLUMNS - 1] = old;
+		if(Rotate) MatrixBuffer[MAXMATRIX_NUMBER_OF_COLUMNS - 1] = ColumnLeft;
 		else if(FillWithZero) MatrixBuffer[MAXMATRIX_NUMBER_OF_COLUMNS - 1] = 0;
 	} else {
 		for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++) {
@@ -1331,11 +1353,11 @@ void MaxMatrix::shiftLeftLL(bool Rotate, bool FillWithZero, bool ShiftToNeighbou
 void MaxMatrix::shiftRightLL(bool Rotate, bool FillWithZero, bool ShiftToNeighbourModule)
 {
 	if(ShiftToNeighbourModule) {
-	    byte old = MatrixBuffer[MAXMATRIX_NUMBER_OF_COLUMNS - 1];
+	    byte ColumnRight = MatrixBuffer[MAXMATRIX_NUMBER_OF_COLUMNS - 1];
 	    for(int Column = MAXMATRIX_NUMBER_OF_COLUMNS - 1; Column > 0; Column--) { 
 			MatrixBuffer[Column] = MatrixBuffer[Column - 1]; 
 		}
-	    if(Rotate) MatrixBuffer[0] = old;
+	    if(Rotate) MatrixBuffer[0] = ColumnRight;
 	    else if(FillWithZero) MatrixBuffer[0] = 0;
 	} else {
 		for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++) {

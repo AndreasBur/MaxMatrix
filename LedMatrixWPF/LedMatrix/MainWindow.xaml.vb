@@ -57,9 +57,9 @@ Class MainWindow
         'SpeedValue.IsEnabled = EnableState
         DeleteButton.IsEnabled = EnableState
         SendButton.IsEnabled = EnableState
-        ShiftCheckBox.IsEnabled = EnableState
-        ShiftCheckBox.IsEnabled = EnableState
+        Shift.IsEnabled = EnableState
         LedMatrixModuleComboBox.IsEnabled = EnableState
+        Space.IsEnabled = EnableState
 
         For LedModule = 0 To LedMatrixModuleComboBox.Items.Count - 1 Step 1
             For Column = 0 To LedMatrixNumberOfColumns - 1 Step 1
@@ -80,7 +80,7 @@ Class MainWindow
     End Sub
 #End Region
 
-#Region "control elements"
+#Region "Control Elements"
 
     Private Sub Window_Loaded(sender As Object, e As RoutedEventArgs)
         PortOpenState = False
@@ -130,17 +130,19 @@ Class MainWindow
         End If
 
         If PortOpenState = True Then
-            MsgBox("setDot=" + Led.Tag.LedModule.ToString + "," + Led.Tag.Column.ToString + "," + Led.Tag.Row.ToString)
+            Dim Column As Integer
+            Column = (Led.Tag.LedModule * LedMatrixNumberOfColumns) + Led.Tag.Column.ToString
+            'MsgBox("setDot=" + Led.Tag.LedModule.ToString + "," + Led.Tag.Column.ToString + "," + Led.Tag.Row.ToString)
             If Led.Tag.LedOnState Then
-                Serial.WriteLine("setDot=" + Led.Tag.Column.ToString + "," + Led.Tag.Row.ToString + "," + "1")
+                Serial.WriteLine("setDot=" + Column.ToString + "," + Led.Tag.Row.ToString + "," + "1")
             Else
-                Serial.WriteLine("setDot=" + Led.Tag.Column.ToString + "," + Led.Tag.Row.ToString + "," + "0")
+                Serial.WriteLine("setDot=" + Column.ToString + "," + Led.Tag.Row.ToString + "," + "0")
             End If
         End If
     End Sub
 
     Private Sub SendButton_Click(sender As Object, e As RoutedEventArgs) Handles SendButton.Click
-        If ShiftCheckBox.IsChecked Then
+        If Shift.SelectedItem.Content.ToString() = "Ein" Then
             Serial.WriteLine("textShift=" + LedMatrixText.Text)
         Else
             Serial.WriteLine("text=" + LedMatrixText.Text)
@@ -198,8 +200,12 @@ Class MainWindow
         SerialComs()
     End Sub
 
-    Private Sub ShiftCheckBox_Click(sender As Object, e As RoutedEventArgs) Handles ShiftCheckBox.Click
-        If ShiftCheckBox.IsChecked And PortOpenState = True Then
+    Private Sub LedMatrixModuleComboBox_DropDownClosed(sender As Object, e As EventArgs) Handles LedMatrixModuleComboBox.DropDownClosed
+        PrintLedMatrix(LedMatrixModuleComboBox.SelectedIndex)
+    End Sub
+
+    Private Sub Shift_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles Shift.SelectionChanged
+        If Shift.SelectedItem.Content.ToString = "Ein" And PortOpenState = True Then
             SpeedSlider.IsEnabled = True
             SpeedValue.IsEnabled = True
         Else
@@ -208,10 +214,11 @@ Class MainWindow
         End If
     End Sub
 
-    Private Sub LedMatrixModuleComboBox_DropDownClosed(sender As Object, e As EventArgs) Handles LedMatrixModuleComboBox.DropDownClosed
-        PrintLedMatrix(LedMatrixModuleComboBox.SelectedIndex)
+    Private Sub Space_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles Space.SelectionChanged
+        If PortOpenState = True Then
+            Serial.WriteLine("space=" + Space.SelectedItem.Content.ToString)
+        End If
     End Sub
-
 #End Region
 
 End Class
