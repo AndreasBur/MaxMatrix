@@ -57,9 +57,9 @@ Class MainWindow
         'SpeedValue.IsEnabled = EnableState
         DeleteButton.IsEnabled = EnableState
         SendButton.IsEnabled = EnableState
-        Shift.IsEnabled = EnableState
+        ShiftComboBox.IsEnabled = EnableState
         LedMatrixModuleComboBox.IsEnabled = EnableState
-        Space.IsEnabled = EnableState
+        SpaceComboBox.IsEnabled = EnableState
 
         For LedModule = 0 To LedMatrixModuleComboBox.Items.Count - 1 Step 1
             For Column = 0 To LedMatrixNumberOfColumns - 1 Step 1
@@ -142,7 +142,7 @@ Class MainWindow
     End Sub
 
     Private Sub SendButton_Click(sender As Object, e As RoutedEventArgs) Handles SendButton.Click
-        If Shift.SelectedItem.Content.ToString() = "Ein" Then
+        If ShiftComboBox.SelectedItem.Content.ToString() = "Ein" Then
             Serial.WriteLine("textShift=" + LedMatrixText.Text)
         Else
             Serial.WriteLine("text=" + LedMatrixText.Text)
@@ -204,8 +204,8 @@ Class MainWindow
         PrintLedMatrix(LedMatrixModuleComboBox.SelectedIndex)
     End Sub
 
-    Private Sub Shift_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles Shift.SelectionChanged
-        If Shift.SelectedItem.Content.ToString = "Ein" And PortOpenState = True Then
+    Private Sub Shift_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles ShiftComboBox.SelectionChanged
+        If ShiftComboBox.SelectedItem.Content.ToString = "Ein" And PortOpenState = True Then
             SpeedSlider.IsEnabled = True
             SpeedValue.IsEnabled = True
         Else
@@ -214,9 +214,9 @@ Class MainWindow
         End If
     End Sub
 
-    Private Sub Space_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles Space.SelectionChanged
+    Private Sub Space_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles SpaceComboBox.SelectionChanged
         If PortOpenState = True Then
-            Serial.WriteLine("space=" + Space.SelectedItem.Content.ToString)
+            Serial.WriteLine("space=" + SpaceComboBox.SelectedItem.Content.ToString)
         End If
     End Sub
 #End Region
