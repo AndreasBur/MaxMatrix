@@ -566,7 +566,8 @@ stdReturnType MaxMatrix::setText(const char* String)
 	spriteIndexType SpriteIndex;
 	spriteType Sprite;
 	int CharColumn = 0;
-	
+
+	/* check for valid string */
 	if(String != NULL)
 	{
 		while(*String != STD_NULL_CHARACTER)
@@ -726,6 +727,7 @@ void MaxMatrix::setSprite(int X, int Y, const spriteType* Sprite)
     int SpriteWidth = (*Sprite)[ASCII_TABLE_SPRITE_WIDTH];
     int SpriteHeight = (*Sprite)[ASCII_TABLE_SPRITE_HEIGHT];
     
+	/* If height of Sprite = height of Matrix set whole column */
     if(SpriteHeight == MAXMATRIX_ROW_NUMBER_OF_MODULE && Y == 0) {
         for(int i = 0; i < SpriteWidth; i++)
         {
@@ -733,7 +735,7 @@ void MaxMatrix::setSprite(int X, int Y, const spriteType* Sprite)
             if(Column >= 0 && Column < MAXMATRIX_NUMBER_OF_COLUMNS)
                 setColumn(Column, (*Sprite)[i + ASCII_TABLE_SPRITE_COLUMN1]);
         } 
-    } else {
+    } else { /* otherwise we have to set every single dot */
         for(int i = 0; i < SpriteWidth; i++)
         {
             for(int j = 0; j < SpriteHeight; j++)
@@ -791,8 +793,9 @@ void MaxMatrix::setModuleOrientation(MaxMatrixModuleOrientationType sOrientation
 		   (Orientation == MAXMATRIX_MODULE_ORIENTATION_90  && sOrientation == MAXMATRIX_MODULE_ORIENTATION_180) ||
 		   (Orientation == MAXMATRIX_MODULE_ORIENTATION_180 && sOrientation == MAXMATRIX_MODULE_ORIENTATION_270) ||
 		   (Orientation == MAXMATRIX_MODULE_ORIENTATION_270 && sOrientation == MAXMATRIX_MODULE_ORIENTATION_0)) 
-		{
+		{	/* rotate every module */
 			for(byte Module = 1; Module <= MAXMATRIX_NUMBER_OF_MODULES; Module++) {
+				/* Bit in Column 7 and Row 7 will set to Column 0 and Row 7 so on */
 				for(int Row = MAXMATRIX_ROW_NUMBER_OF_MODULE - 1; Row >= 0; Row--) {
 					RowRotated = MAXMATRIX_ROW_NUMBER_OF_MODULE - 1;
 					for(int Column = MAXMATRIX_COLUMN_NUMBER_OF_MODULE*Module-1; Column >= MAXMATRIX_COLUMN_NUMBER_OF_MODULE*(Module-1); Column--) {
@@ -808,8 +811,9 @@ void MaxMatrix::setModuleOrientation(MaxMatrixModuleOrientationType sOrientation
 		  (Orientation == MAXMATRIX_MODULE_ORIENTATION_90  && sOrientation == MAXMATRIX_MODULE_ORIENTATION_270) ||
 		  (Orientation == MAXMATRIX_MODULE_ORIENTATION_180 && sOrientation == MAXMATRIX_MODULE_ORIENTATION_0)   ||
 		  (Orientation == MAXMATRIX_MODULE_ORIENTATION_270 && sOrientation == MAXMATRIX_MODULE_ORIENTATION_90))
-		{
+		{	/* rotate every module */
 			for(byte Module = 1; Module <= MAXMATRIX_NUMBER_OF_MODULES; Module++) {
+				/* Bit in Column 7 and Row 0 will set to Column 0 and Row 7 so on */
 				for(int Column = MAXMATRIX_COLUMN_NUMBER_OF_MODULE*Module-1; Column >= MAXMATRIX_COLUMN_NUMBER_OF_MODULE*(Module-1); Column--) {
 					RowRotated = MAXMATRIX_ROW_NUMBER_OF_MODULE - 1;
 					for(int Row = 0; Row <= MAXMATRIX_ROW_NUMBER_OF_MODULE - 1; Row++) {
@@ -825,8 +829,9 @@ void MaxMatrix::setModuleOrientation(MaxMatrixModuleOrientationType sOrientation
 		  (Orientation == MAXMATRIX_MODULE_ORIENTATION_90  && sOrientation == MAXMATRIX_MODULE_ORIENTATION_0)   ||
 		  (Orientation == MAXMATRIX_MODULE_ORIENTATION_180 && sOrientation == MAXMATRIX_MODULE_ORIENTATION_90)  ||
 		  (Orientation == MAXMATRIX_MODULE_ORIENTATION_270 && sOrientation == MAXMATRIX_MODULE_ORIENTATION_180))
-		{
+		{	/* rotate every module */
 			for(byte Module = 1; Module <= MAXMATRIX_NUMBER_OF_MODULES; Module++) {
+				/* Bit in Column 0 and Row 0 will set to Column 0 and Row 7 so on */
 				for(int Row = 0; Row <= MAXMATRIX_ROW_NUMBER_OF_MODULE - 1; Row++) {
 					RowRotated = MAXMATRIX_ROW_NUMBER_OF_MODULE - 1;
 					for(int Column = MAXMATRIX_COLUMN_NUMBER_OF_MODULE *(Module-1); Column <= MAXMATRIX_COLUMN_NUMBER_OF_MODULE*Module-1; Column++) {
@@ -921,9 +926,11 @@ void MaxMatrix::charShiftTask()
     shiftLeft(false, true);
     SpriteShiftCounter++;
 	
+	/* if sprite is completed set only spaces */
 	if(SpriteShiftCounter <= SpriteBuffer[ASCII_TABLE_SPRITE_WIDTH]) {
 		setSprite(MAXMATRIX_NUMBER_OF_COLUMNS - SpriteShiftCounter, 0, &SpriteBuffer);
 	}
+	/* if sprite and spaces are completed task has finished */
 	else if(SpriteShiftCounter == SpriteBuffer[ASCII_TABLE_SPRITE_WIDTH] + SpaceBetweenChars + 1) {
         if(MAXMATRIX_STATE_CHAR_SHIFT == State) State = MAXMATRIX_STATE_READY;
         SpriteShiftCounter = MAXMATRIX_SPRITE_SHIFT_STATE_READY;
@@ -944,21 +951,22 @@ void MaxMatrix::stringShiftTask()
 {
     spriteIndexType SpriteIndex;
     
+	/* has char shift task finished shifting sprite or char */
     if(SpriteShiftCounter == MAXMATRIX_SPRITE_SHIFT_STATE_READY)
     {
-		/* is end of string reached? */
+		/* If end of string is not reached, load next char */
         if(*String != STD_NULL_CHARACTER) {
             convertCharToSprite(*String, &SpriteIndex);
             getSprite(SpriteIndex, &SpriteBuffer);
             SpriteShiftCounter = MAXMATRIX_SPRITE_SHIFT_STATE_RUNNING;
             charShiftTask();
             String++;
-        } else {
+        } else { /* otherwise task has finished */
             State = MAXMATRIX_STATE_READY;
             shiftLeft(false, true);
         }
     } else {
-		/* go on shifting */
+		/* go on shifting Sprite */
         charShiftTask();
     }
 } /* stringShiftTask */
@@ -979,6 +987,7 @@ stdReturnType MaxMatrix::convertCharToSprite(char Char, spriteIndexType* SpriteI
 {
     stdReturnType ReturnValue = E_NOT_OK;
 
+	/* for umlauts we need a special treatment */
     if('Ä' == Char) { *SpriteIndex = 95; ReturnValue = E_OK; }
     else if('Ö' == Char) { *SpriteIndex = 96; ReturnValue = E_OK; }
     else if('Ü' == Char) { *SpriteIndex = 97; ReturnValue = E_OK; }
@@ -994,6 +1003,10 @@ stdReturnType MaxMatrix::convertCharToSprite(char Char, spriteIndexType* SpriteI
 
 /******************************************************************************************************************************************************
  * P R I V A T E   F U N C T I O N S   L O W   L E V E L
+ *****************************************************************************************************************************************************/
+/*!  \details       low level functions do not take care of the orientation of the Matrix modules
+ *					So the high level function has to call the right low level functions depending
+					on the orientation of the matrix modules
  *****************************************************************************************************************************************************/
 
 /******************************************************************************************************************************************************
