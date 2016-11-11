@@ -994,6 +994,7 @@ stdReturnType MaxMatrix::convertCharToSprite(char Char, spriteIndexType* SpriteI
     else if('ä' == Char) { *SpriteIndex = 98; ReturnValue = E_OK; }
     else if('ö' == Char) { *SpriteIndex = 99; ReturnValue = E_OK; }
     else if('ü' == Char) { *SpriteIndex = 100; ReturnValue = E_OK; }
+	/* for all others only add offset */
     else if(Char >= MAXMATRIX_ASCII_CHAR_MIN && Char <= MAXMATRIX_ASCII_CHAR_MAX)
         { *SpriteIndex = Char + MAXMATRIX_ASCII_TABLE_OFFSET; ReturnValue = E_OK; }
 
@@ -1331,7 +1332,7 @@ void MaxMatrix::shiftLeftLL(bool Rotate, bool FillWithZero, bool ShiftToNeighbou
 	if(ShiftToNeighbourModule) {
 		byte ColumnLeft = MatrixBuffer[0];
 		for(int Column = 0; Column < MAXMATRIX_NUMBER_OF_COLUMNS - 1; Column++) {
-			MatrixBuffer[Column] = MatrixBuffer[Column + 1]; 
+			MatrixBuffer[Column] = MatrixBuffer[Column + 1];
 		}
 		if(Rotate) MatrixBuffer[MAXMATRIX_NUMBER_OF_COLUMNS - 1] = ColumnLeft;
 		else if(FillWithZero) MatrixBuffer[MAXMATRIX_NUMBER_OF_COLUMNS - 1] = 0;
