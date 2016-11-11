@@ -4,7 +4,7 @@
 winexe
 VB
 .vb
-C:\Users\Andreas\Documents\GitHub\MaxMatrix\LedMatrixWPF\LedMatrix\obj\Debug\
+C:\Users\Andreas\Documents\GitHub\MaxMatrix\LedMatrixWPF\LedMatrix\obj\Release\
 LedMatrix
 none
 false
@@ -12,9 +12,9 @@ false
 C:\Users\Andreas\Documents\GitHub\MaxMatrix\LedMatrixWPF\LedMatrix\Application.xaml
 22112506696
 
-8-334117809
+7327975013
 12-1871599920
 MainWindow.xaml;AboutWindow.xaml;
 
-True
+False
 

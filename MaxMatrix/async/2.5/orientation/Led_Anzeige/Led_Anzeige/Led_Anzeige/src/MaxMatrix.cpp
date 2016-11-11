@@ -795,7 +795,7 @@ void MaxMatrix::setModuleOrientation(MaxMatrixModuleOrientationType sOrientation
 		   (Orientation == MAXMATRIX_MODULE_ORIENTATION_270 && sOrientation == MAXMATRIX_MODULE_ORIENTATION_0)) 
 		{	/* rotate every module */
 			for(byte Module = 1; Module <= MAXMATRIX_NUMBER_OF_MODULES; Module++) {
-				/* Bit in Column 7 and Row 7 will set to Column 0 and Row 7 so on */
+				/* Bit in Column 7 and Row 7 will set to Column 0 and Row 7 ... */
 				for(int Row = MAXMATRIX_ROW_NUMBER_OF_MODULE - 1; Row >= 0; Row--) {
 					RowRotated = MAXMATRIX_ROW_NUMBER_OF_MODULE - 1;
 					for(int Column = MAXMATRIX_COLUMN_NUMBER_OF_MODULE*Module-1; Column >= MAXMATRIX_COLUMN_NUMBER_OF_MODULE*(Module-1); Column--) {
@@ -813,7 +813,7 @@ void MaxMatrix::setModuleOrientation(MaxMatrixModuleOrientationType sOrientation
 		  (Orientation == MAXMATRIX_MODULE_ORIENTATION_270 && sOrientation == MAXMATRIX_MODULE_ORIENTATION_90))
 		{	/* rotate every module */
 			for(byte Module = 1; Module <= MAXMATRIX_NUMBER_OF_MODULES; Module++) {
-				/* Bit in Column 7 and Row 0 will set to Column 0 and Row 7 so on */
+				/* Bit in Column 7 and Row 0 will set to Column 0 and Row 7 ... */
 				for(int Column = MAXMATRIX_COLUMN_NUMBER_OF_MODULE*Module-1; Column >= MAXMATRIX_COLUMN_NUMBER_OF_MODULE*(Module-1); Column--) {
 					RowRotated = MAXMATRIX_ROW_NUMBER_OF_MODULE - 1;
 					for(int Row = 0; Row <= MAXMATRIX_ROW_NUMBER_OF_MODULE - 1; Row++) {
@@ -831,7 +831,7 @@ void MaxMatrix::setModuleOrientation(MaxMatrixModuleOrientationType sOrientation
 		  (Orientation == MAXMATRIX_MODULE_ORIENTATION_270 && sOrientation == MAXMATRIX_MODULE_ORIENTATION_180))
 		{	/* rotate every module */
 			for(byte Module = 1; Module <= MAXMATRIX_NUMBER_OF_MODULES; Module++) {
-				/* Bit in Column 0 and Row 0 will set to Column 0 and Row 7 so on */
+				/* Bit in Column 0 and Row 0 will set to Column 0 and Row 7 ... */
 				for(int Row = 0; Row <= MAXMATRIX_ROW_NUMBER_OF_MODULE - 1; Row++) {
 					RowRotated = MAXMATRIX_ROW_NUMBER_OF_MODULE - 1;
 					for(int Column = MAXMATRIX_COLUMN_NUMBER_OF_MODULE *(Module-1); Column <= MAXMATRIX_COLUMN_NUMBER_OF_MODULE*Module-1; Column++) {
@@ -1478,4 +1478,3 @@ void MaxMatrix::shiftDownLL(bool Rotate, bool ShiftToNeighbourModule)
 /******************************************************************************************************************************************************
  *  E N D   O F   F I L E
  *****************************************************************************************************************************************************/
- 
