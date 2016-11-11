@@ -35,7 +35,7 @@
                             <TextBox x:Name="LedMatrixText" Height="23" Margin="30,32,30,0" VerticalAlignment="Top" FontSize="16" MaxLength="100"/>
                             <Button x:Name="SendButton" Content="Senden" HorizontalAlignment="Left" Margin="323,231,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.515,-0.365" IsEnabled="False"/>
                             <Button x:Name="DeleteButton" Content="Löschen" HorizontalAlignment="Left" Margin="323,197,0,0" VerticalAlignment="Top" Width="75" IsEnabled="False"/>
-                            <ComboBox x:Name="SpaceComboBox" Margin="323,143,30,0" Height="22" VerticalAlignment="Top" SelectedIndex="0" IsEnabled="False">
+                            <ComboBox x:Name="SpaceComboBox" Margin="323,143,26,0" Height="22" VerticalAlignment="Top" SelectedIndex="0" IsEnabled="False">
                                 <ComboBoxItem Visibility="Collapsed" Content="Abstand"/>
                                 <ComboBoxItem Content="0"/>
                                 <ComboBoxItem Content="1"/>
@@ -49,7 +49,7 @@
                                 <ComboBoxItem Content="9"/>
                                 <ComboBoxItem Content="10"/>
                             </ComboBox>
-                            <ComboBox x:Name="ShiftComboBox" Margin="323,105,30,0" Height="22" VerticalAlignment="Top" SelectedIndex="0" IsEnabled="False">
+                            <ComboBox x:Name="ShiftComboBox" Margin="323,105,26,0" Height="22" VerticalAlignment="Top" SelectedIndex="0" IsEnabled="False">
                                 <ComboBoxItem Visibility="Collapsed" Content="Schieben"/>
                                 <ComboBoxItem Content="Ein"/>
                                 <ComboBoxItem Content="Aus"/>
