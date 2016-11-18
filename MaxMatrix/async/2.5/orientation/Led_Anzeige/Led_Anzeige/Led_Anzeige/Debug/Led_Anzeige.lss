@@ -23,11 +23,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
   9 .debug_frame  000013f4  00000000  00000000  00014aec  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00002db6  00000000  00000000  00015ee0  2**0
+ 10 .debug_str    00002dc2  00000000  00000000  00015ee0  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00008a62  00000000  00000000  00018c96  2**0
+ 11 .debug_loc    00008a62  00000000  00000000  00018ca2  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000007f8  00000000  00000000  000216f8  2**0
+ 12 .debug_ranges 000007f8  00000000  00000000  00021704  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -252,23 +252,11 @@ Disassembly of section .text:
      5a4:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 000005a8 <_Z8systTickv>:
- *                  
- *  \pre            will be called from interrupt context by an Hardware Timer
- *****************************************************************************************************************************************************/
-void systTick()
-{
-    Timer1Overflow = true;
      5a8:	81 e0       	ldi	r24, 0x01	; 1
      5aa:	80 93 95 01 	sts	0x0195, r24	; 0x800195 <Timer1Overflow>
      5ae:	08 95       	ret
 
 000005b0 <setup>:
-/******************************************************************************************************************************************************
- *  ARDUINO setup
- *****************************************************************************************************************************************************/
-void setup()
-{
-    Timer1.initialize(200000);
      5b0:	40 e4       	ldi	r20, 0x40	; 64
      5b2:	5d e0       	ldi	r21, 0x0D	; 13
      5b4:	63 e0       	ldi	r22, 0x03	; 3
@@ -276,7 +264,6 @@ void setup()
      5b8:	85 e5       	ldi	r24, 0x55	; 85
      5ba:	92 e0       	ldi	r25, 0x02	; 2
      5bc:	0e 94 0c 0e 	call	0x1c18	; 0x1c18 <_ZN8TimerOne10initializeEl>
-    Timer1.attachInterrupt(systTick);
      5c0:	2f ef       	ldi	r18, 0xFF	; 255
      5c2:	3f ef       	ldi	r19, 0xFF	; 255
      5c4:	a9 01       	movw	r20, r18
@@ -285,12 +272,6 @@ void setup()
      5ca:	85 e5       	ldi	r24, 0x55	; 85
      5cc:	92 e0       	ldi	r25, 0x02	; 2
      5ce:	0e 94 1c 0e 	call	0x1c38	; 0x1c38 <_ZN8TimerOne15attachInterruptEPFvvEl>
-  public:
-    inline HardwareSerial(
-      volatile uint8_t *ubrrh, volatile uint8_t *ubrrl,
-      volatile uint8_t *ucsra, volatile uint8_t *ucsrb,
-      volatile uint8_t *ucsrc, volatile uint8_t *udr);
-    void begin(unsigned long baud) { begin(baud, SERIAL_8N1); }
      5d2:	26 e0       	ldi	r18, 0x06	; 6
      5d4:	40 e8       	ldi	r20, 0x80	; 128
      5d6:	55 e2       	ldi	r21, 0x25	; 37
@@ -299,29 +280,18 @@ void setup()
      5dc:	81 e6       	ldi	r24, 0x61	; 97
      5de:	92 e0       	ldi	r25, 0x02	; 2
      5e0:	0e 94 2c 0f 	call	0x1e58	; 0x1e58 <_ZN14HardwareSerial5beginEmh>
-    Serial.begin(9600);
-    Matrix.init();
      5e4:	85 e6       	ldi	r24, 0x65	; 101
      5e6:	91 e0       	ldi	r25, 0x01	; 1
      5e8:	0e 94 49 09 	call	0x1292	; 0x1292 <_ZN9MaxMatrix4initEv>
-    
-    Matrix.setModuleOrientation(MAXMATRIX_MODULE_ORIENTATION_90);
      5ec:	61 e0       	ldi	r22, 0x01	; 1
      5ee:	85 e6       	ldi	r24, 0x65	; 101
      5f0:	91 e0       	ldi	r25, 0x01	; 1
      5f2:	0e 94 05 06 	call	0xc0a	; 0xc0a <_ZN9MaxMatrix20setModuleOrientationE30MaxMatrixModuleOrientationType>
-    Matrix.setText("Andreas");
      5f6:	60 e0       	ldi	r22, 0x00	; 0
      5f8:	71 e0       	ldi	r23, 0x01	; 1
      5fa:	85 e6       	ldi	r24, 0x65	; 101
      5fc:	91 e0       	ldi	r25, 0x01	; 1
      5fe:	0e 94 03 0b 	call	0x1606	; 0x1606 <_ZN9MaxMatrix7setTextEPKc>
- *  \param[in]      Length              maximum characters to copy
- *                  
- *****************************************************************************************************************************************************/
-inline void stringCopy(char *Destination, const char *Source, int Length)
-{
-    strncpy(Destination, Source, Length - 1);
      602:	49 e5       	ldi	r20, 0x59	; 89
      604:	50 e0       	ldi	r21, 0x00	; 0
      606:	68 e0       	ldi	r22, 0x08	; 8
@@ -329,48 +299,29 @@ inline void stringCopy(char *Destination, const char *Source, int Length)
      60a:	86 e9       	ldi	r24, 0x96	; 150
      60c:	91 e0       	ldi	r25, 0x01	; 1
      60e:	0e 94 a2 12 	call	0x2544	; 0x2544 <strncpy>
-    Destination[Length-1] = STD_NULL_CHARACTER;
      612:	10 92 ef 01 	sts	0x01EF, r1	; 0x8001ef <MaxMatrixText+0x59>
-    Matrix.init();
-    
-    Matrix.setModuleOrientation(MAXMATRIX_MODULE_ORIENTATION_90);
-    Matrix.setText("Andreas");
-    stringCopy(MaxMatrixText, "Andreas Burnickl", sizeof(MaxMatrixText));
-    UartInputComplete = false;
      616:	10 92 f0 01 	sts	0x01F0, r1	; 0x8001f0 <UartInputComplete>
-    Timer1Overflow = false;
      61a:	10 92 95 01 	sts	0x0195, r1	; 0x800195 <Timer1Overflow>
-    
-    State = LEDMATRIX_STATE_READY;
      61e:	81 e0       	ldi	r24, 0x01	; 1
      620:	80 93 64 01 	sts	0x0164, r24	; 0x800164 <State>
      624:	08 95       	ret
 
 00000626 <_Z9printHelpv>:
- *  \details        this function prints usage of Led Matrix over UART
- *                  
- *****************************************************************************************************************************************************/
-void printHelp()
-{
-    Serial.println(F("command does not match"));
      626:	68 ee       	ldi	r22, 0xE8	; 232
      628:	70 e0       	ldi	r23, 0x00	; 0
      62a:	81 e6       	ldi	r24, 0x61	; 97
      62c:	92 e0       	ldi	r25, 0x02	; 2
      62e:	0e 94 ab 10 	call	0x2156	; 0x2156 <_ZN5Print7printlnEPK19__FlashStringHelper>
-    Serial.println(F("known commands are: text, intensity and speed"));
      632:	6a eb       	ldi	r22, 0xBA	; 186
      634:	70 e0       	ldi	r23, 0x00	; 0
      636:	81 e6       	ldi	r24, 0x61	; 97
      638:	92 e0       	ldi	r25, 0x02	; 2
      63a:	0e 94 ab 10 	call	0x2156	; 0x2156 <_ZN5Print7printlnEPK19__FlashStringHelper>
-    Serial.println(F("command and value has to be separated by an equal sign"));
      63e:	63 e8       	ldi	r22, 0x83	; 131
      640:	70 e0       	ldi	r23, 0x00	; 0
      642:	81 e6       	ldi	r24, 0x61	; 97
      644:	92 e0       	ldi	r25, 0x02	; 2
      646:	0e 94 ab 10 	call	0x2156	; 0x2156 <_ZN5Print7printlnEPK19__FlashStringHelper>
-    Serial.println(F("Example: text=example text"));
      64a:	68 e6       	ldi	r22, 0x68	; 104
      64c:	70 e0       	ldi	r23, 0x00	; 0
      64e:	81 e6       	ldi	r24, 0x61	; 97
@@ -378,12 +329,6 @@ void printHelp()
      652:	0c 94 ab 10 	jmp	0x2156	; 0x2156 <_ZN5Print7printlnEPK19__FlashStringHelper>
 
 00000656 <_Z15uartInputHandlev>:
- *  \details        this function handles and validates the incoming data. After splitting the data into
- *                  command and value a specific action will be called.
- *                 
- *****************************************************************************************************************************************************/
-void uartInputHandle()
-{
      656:	0f 93       	push	r16
      658:	1f 93       	push	r17
      65a:	cf 93       	push	r28
@@ -397,7 +342,6 @@ void uartInputHandle()
      66a:	de bf       	out	0x3e, r29	; 62
      66c:	0f be       	out	0x3f, r0	; 63
      66e:	cd bf       	out	0x3d, r28	; 61
-    char command[COMMAND_MAX_LENGTH] = "";
      670:	fe 01       	movw	r30, r28
      672:	e5 5a       	subi	r30, 0xA5	; 165
      674:	ff 4f       	sbci	r31, 0xFF	; 255
@@ -410,7 +354,6 @@ void uartInputHandle()
      682:	1d 92       	st	X+, r1
      684:	8a 95       	dec	r24
      686:	e9 f7       	brne	.-6      	; 0x682 <_Z15uartInputHandlev+0x2c>
-    char valueASCII[MAXMATRIX_MAX_TEXT_LENGTH] = "";
      688:	19 82       	std	Y+1, r1	; 0x01
      68a:	1a 82       	std	Y+2, r1	; 0x02
      68c:	1b 82       	std	Y+3, r1	; 0x03
@@ -422,24 +365,18 @@ void uartInputHandle()
      698:	1d 92       	st	X+, r1
      69a:	8a 95       	dec	r24
      69c:	e9 f7       	brne	.-6      	; 0x698 <_Z15uartInputHandlev+0x42>
-    int value = 0;
-    const char delimiterCommand[] = "=";
      69e:	8d e3       	ldi	r24, 0x3D	; 61
      6a0:	90 e0       	ldi	r25, 0x00	; 0
      6a2:	e2 96       	adiw	r28, 0x32	; 50
      6a4:	9f af       	std	Y+63, r25	; 0x3f
      6a6:	8e af       	std	Y+62, r24	; 0x3e
      6a8:	e2 97       	sbiw	r28, 0x32	; 50
-    const char delimiterValue[] = ",";
      6aa:	8c e2       	ldi	r24, 0x2C	; 44
      6ac:	90 e0       	ldi	r25, 0x00	; 0
      6ae:	e0 96       	adiw	r28, 0x30	; 48
      6b0:	9f af       	std	Y+63, r25	; 0x3f
      6b2:	8e af       	std	Y+62, r24	; 0x3e
      6b4:	e0 97       	sbiw	r28, 0x30	; 48
-    char *token = NULL;
-
-    if(strchr(UartInput, delimiterCommand[0]))
      6b6:	6d e3       	ldi	r22, 0x3D	; 61
      6b8:	70 e0       	ldi	r23, 0x00	; 0
      6ba:	81 ef       	ldi	r24, 0xF1	; 241
@@ -448,23 +385,14 @@ void uartInputHandle()
      6c2:	89 2b       	or	r24, r25
      6c4:	09 f4       	brne	.+2      	; 0x6c8 <_Z15uartInputHandlev+0x72>
      6c6:	66 c1       	rjmp	.+716    	; 0x994 <__stack+0x95>
-    {
-        token = strtok(UartInput, delimiterCommand);
      6c8:	be 01       	movw	r22, r28
      6ca:	60 59       	subi	r22, 0x90	; 144
      6cc:	7f 4f       	sbci	r23, 0xFF	; 255
      6ce:	81 ef       	ldi	r24, 0xF1	; 241
      6d0:	91 e0       	ldi	r25, 0x01	; 1
      6d2:	0e 94 89 12 	call	0x2512	; 0x2512 <strtok>
-        if(token != NULL) stringCopy(command, token, sizeof(command));
      6d6:	00 97       	sbiw	r24, 0x00	; 0
      6d8:	59 f0       	breq	.+22     	; 0x6f0 <_Z15uartInputHandlev+0x9a>
- *  \param[in]      Length              maximum characters to copy
- *                  
- *****************************************************************************************************************************************************/
-inline void stringCopy(char *Destination, const char *Source, int Length)
-{
-    strncpy(Destination, Source, Length - 1);
      6da:	49 e0       	ldi	r20, 0x09	; 9
      6dc:	50 e0       	ldi	r21, 0x00	; 0
      6de:	bc 01       	movw	r22, r24
@@ -472,47 +400,26 @@ inline void stringCopy(char *Destination, const char *Source, int Length)
      6e2:	85 5a       	subi	r24, 0xA5	; 165
      6e4:	9f 4f       	sbci	r25, 0xFF	; 255
      6e6:	0e 94 a2 12 	call	0x2544	; 0x2544 <strncpy>
-    Destination[Length-1] = STD_NULL_CHARACTER;
      6ea:	a5 96       	adiw	r28, 0x25	; 37
      6ec:	1f ae       	std	Y+63, r1	; 0x3f
      6ee:	a5 97       	sbiw	r28, 0x25	; 37
-
-    if(strchr(UartInput, delimiterCommand[0]))
-    {
-        token = strtok(UartInput, delimiterCommand);
-        if(token != NULL) stringCopy(command, token, sizeof(command));
-        token = strtok(NULL, delimiterCommand);
      6f0:	be 01       	movw	r22, r28
      6f2:	60 59       	subi	r22, 0x90	; 144
      6f4:	7f 4f       	sbci	r23, 0xFF	; 255
      6f6:	80 e0       	ldi	r24, 0x00	; 0
      6f8:	90 e0       	ldi	r25, 0x00	; 0
      6fa:	0e 94 89 12 	call	0x2512	; 0x2512 <strtok>
-        if(token != NULL) stringCopy(valueASCII, token, sizeof(valueASCII));
      6fe:	00 97       	sbiw	r24, 0x00	; 0
      700:	51 f0       	breq	.+20     	; 0x716 <_Z15uartInputHandlev+0xc0>
- *  \param[in]      Length              maximum characters to copy
- *                  
- *****************************************************************************************************************************************************/
-inline void stringCopy(char *Destination, const char *Source, int Length)
-{
-    strncpy(Destination, Source, Length - 1);
      702:	49 e5       	ldi	r20, 0x59	; 89
      704:	50 e0       	ldi	r21, 0x00	; 0
      706:	bc 01       	movw	r22, r24
      708:	ce 01       	movw	r24, r28
      70a:	01 96       	adiw	r24, 0x01	; 1
      70c:	0e 94 a2 12 	call	0x2544	; 0x2544 <strncpy>
-    Destination[Length-1] = STD_NULL_CHARACTER;
      710:	6b 96       	adiw	r28, 0x1b	; 27
      712:	1f ae       	std	Y+63, r1	; 0x3f
      714:	6b 97       	sbiw	r28, 0x1b	; 27
-        token = strtok(UartInput, delimiterCommand);
-        if(token != NULL) stringCopy(command, token, sizeof(command));
-        token = strtok(NULL, delimiterCommand);
-        if(token != NULL) stringCopy(valueASCII, token, sizeof(valueASCII));
-
-        if(strcmp(command, "textShift") == 0) {
      716:	69 e1       	ldi	r22, 0x19	; 25
      718:	71 e0       	ldi	r23, 0x01	; 1
      71a:	ce 01       	movw	r24, r28
@@ -521,18 +428,11 @@ inline void stringCopy(char *Destination, const char *Source, int Length)
      720:	0e 94 99 12 	call	0x2532	; 0x2532 <strcmp>
      724:	89 2b       	or	r24, r25
      726:	e9 f4       	brne	.+58     	; 0x762 <_Z15uartInputHandlev+0x10c>
-            if(LEDMATRIX_STATE_STRING_SHIFT != State) State = LEDMATRIX_STATE_STRING_SHIFT;
      728:	80 91 64 01 	lds	r24, 0x0164	; 0x800164 <State>
      72c:	82 30       	cpi	r24, 0x02	; 2
      72e:	19 f0       	breq	.+6      	; 0x736 <_Z15uartInputHandlev+0xe0>
      730:	82 e0       	ldi	r24, 0x02	; 2
      732:	80 93 64 01 	sts	0x0164, r24	; 0x800164 <State>
- *  \param[in]      Length              maximum characters to copy
- *                  
- *****************************************************************************************************************************************************/
-inline void stringCopy(char *Destination, const char *Source, int Length)
-{
-    strncpy(Destination, Source, Length - 1);
      736:	49 e5       	ldi	r20, 0x59	; 89
      738:	50 e0       	ldi	r21, 0x00	; 0
      73a:	be 01       	movw	r22, r28
@@ -541,26 +441,16 @@ inline void stringCopy(char *Destination, const char *Source, int Length)
      740:	86 e9       	ldi	r24, 0x96	; 150
      742:	91 e0       	ldi	r25, 0x01	; 1
      744:	0e 94 a2 12 	call	0x2544	; 0x2544 <strncpy>
-    Destination[Length-1] = STD_NULL_CHARACTER;
      748:	10 92 ef 01 	sts	0x01EF, r1	; 0x8001ef <MaxMatrixText+0x59>
-        if(token != NULL) stringCopy(valueASCII, token, sizeof(valueASCII));
-
-        if(strcmp(command, "textShift") == 0) {
-            if(LEDMATRIX_STATE_STRING_SHIFT != State) State = LEDMATRIX_STATE_STRING_SHIFT;
-            stringCopy(MaxMatrixText, valueASCII, sizeof(MaxMatrixText));
-            Matrix.clear();
      74c:	85 e6       	ldi	r24, 0x65	; 101
      74e:	91 e0       	ldi	r25, 0x01	; 1
      750:	0e 94 31 09 	call	0x1262	; 0x1262 <_ZN9MaxMatrix5clearEv>
-            Matrix.setTextWithShift(MaxMatrixText);
      754:	66 e9       	ldi	r22, 0x96	; 150
      756:	71 e0       	ldi	r23, 0x01	; 1
      758:	85 e6       	ldi	r24, 0x65	; 101
      75a:	91 e0       	ldi	r25, 0x01	; 1
      75c:	0e 94 8d 05 	call	0xb1a	; 0xb1a <_ZN9MaxMatrix16setTextWithShiftEPc>
      760:	22 c1       	rjmp	.+580    	; 0x9a6 <__stack+0xa7>
-        }
-        else if(strcmp(command, "text") == 0) {
      762:	63 e2       	ldi	r22, 0x23	; 35
      764:	71 e0       	ldi	r23, 0x01	; 1
      766:	ce 01       	movw	r24, r28
@@ -569,18 +459,11 @@ inline void stringCopy(char *Destination, const char *Source, int Length)
      76c:	0e 94 99 12 	call	0x2532	; 0x2532 <strcmp>
      770:	89 2b       	or	r24, r25
      772:	e9 f4       	brne	.+58     	; 0x7ae <_Z15uartInputHandlev+0x158>
-            if(LEDMATRIX_STATE_READY != State) State = LEDMATRIX_STATE_READY;
      774:	80 91 64 01 	lds	r24, 0x0164	; 0x800164 <State>
      778:	81 30       	cpi	r24, 0x01	; 1
      77a:	19 f0       	breq	.+6      	; 0x782 <_Z15uartInputHandlev+0x12c>
      77c:	81 e0       	ldi	r24, 0x01	; 1
      77e:	80 93 64 01 	sts	0x0164, r24	; 0x800164 <State>
- *  \param[in]      Length              maximum characters to copy
- *                  
- *****************************************************************************************************************************************************/
-inline void stringCopy(char *Destination, const char *Source, int Length)
-{
-    strncpy(Destination, Source, Length - 1);
      782:	49 e5       	ldi	r20, 0x59	; 89
      784:	50 e0       	ldi	r21, 0x00	; 0
      786:	be 01       	movw	r22, r28
@@ -589,26 +472,16 @@ inline void stringCopy(char *Destination, const char *Source, int Length)
      78c:	86 e9       	ldi	r24, 0x96	; 150
      78e:	91 e0       	ldi	r25, 0x01	; 1
      790:	0e 94 a2 12 	call	0x2544	; 0x2544 <strncpy>
-    Destination[Length-1] = STD_NULL_CHARACTER;
      794:	10 92 ef 01 	sts	0x01EF, r1	; 0x8001ef <MaxMatrixText+0x59>
-            Matrix.setTextWithShift(MaxMatrixText);
-        }
-        else if(strcmp(command, "text") == 0) {
-            if(LEDMATRIX_STATE_READY != State) State = LEDMATRIX_STATE_READY;
-            stringCopy(MaxMatrixText, valueASCII, sizeof(MaxMatrixText));
-            Matrix.clear();
      798:	85 e6       	ldi	r24, 0x65	; 101
      79a:	91 e0       	ldi	r25, 0x01	; 1
      79c:	0e 94 31 09 	call	0x1262	; 0x1262 <_ZN9MaxMatrix5clearEv>
-            Matrix.setText(MaxMatrixText);
      7a0:	66 e9       	ldi	r22, 0x96	; 150
      7a2:	71 e0       	ldi	r23, 0x01	; 1
      7a4:	85 e6       	ldi	r24, 0x65	; 101
      7a6:	91 e0       	ldi	r25, 0x01	; 1
      7a8:	0e 94 03 0b 	call	0x1606	; 0x1606 <_ZN9MaxMatrix7setTextEPKc>
      7ac:	fc c0       	rjmp	.+504    	; 0x9a6 <__stack+0xa7>
-        }
-        else if(strcmp(command, "intensity") == 0) {
      7ae:	68 e2       	ldi	r22, 0x28	; 40
      7b0:	71 e0       	ldi	r23, 0x01	; 1
      7b2:	ce 01       	movw	r24, r28
@@ -617,38 +490,29 @@ inline void stringCopy(char *Destination, const char *Source, int Length)
      7b8:	0e 94 99 12 	call	0x2532	; 0x2532 <strcmp>
      7bc:	89 2b       	or	r24, r25
      7be:	d1 f4       	brne	.+52     	; 0x7f4 <_Z15uartInputHandlev+0x19e>
-            value = atoi(valueASCII);
      7c0:	ce 01       	movw	r24, r28
      7c2:	01 96       	adiw	r24, 0x01	; 1
      7c4:	0e 94 62 12 	call	0x24c4	; 0x24c4 <atoi>
-            if(value >= MAXMATRIX_INTENSITY_MIN_VALUE && value <= MAXMATRIX_INTENSITY_MAX_VALUE) {
      7c8:	9c 01       	movw	r18, r24
      7ca:	21 50       	subi	r18, 0x01	; 1
      7cc:	31 09       	sbc	r19, r1
      7ce:	20 31       	cpi	r18, 0x10	; 16
      7d0:	31 05       	cpc	r19, r1
      7d2:	38 f4       	brcc	.+14     	; 0x7e2 <_Z15uartInputHandlev+0x18c>
-                Matrix.setIntensity(value - 1);
      7d4:	6f ef       	ldi	r22, 0xFF	; 255
      7d6:	68 0f       	add	r22, r24
      7d8:	85 e6       	ldi	r24, 0x65	; 101
      7da:	91 e0       	ldi	r25, 0x01	; 1
      7dc:	0e 94 83 05 	call	0xb06	; 0xb06 <_ZN9MaxMatrix12setIntensityEh>
      7e0:	e2 c0       	rjmp	.+452    	; 0x9a6 <__stack+0xa7>
-            } else {
-                Serial.println(F("value out of range"));
      7e2:	65 e2       	ldi	r22, 0x25	; 37
      7e4:	72 e0       	ldi	r23, 0x02	; 2
      7e6:	81 e6       	ldi	r24, 0x61	; 97
      7e8:	92 e0       	ldi	r25, 0x02	; 2
      7ea:	0e 94 ab 10 	call	0x2156	; 0x2156 <_ZN5Print7printlnEPK19__FlashStringHelper>
-                Serial.println(F("intensity range "TOSTRING(MAXMATRIX_INTENSITY_MIN_VALUE)" ... "TOSTRING(MAXMATRIX_INTENSITY_MAX_VALUE)));
      7ee:	65 ed       	ldi	r22, 0xD5	; 213
      7f0:	71 e0       	ldi	r23, 0x01	; 1
      7f2:	4a c0       	rjmp	.+148    	; 0x888 <_Z15uartInputHandlev+0x232>
-            }
-        }
-        else if(strcmp(command, "speed") == 0) {
      7f4:	62 e3       	ldi	r22, 0x32	; 50
      7f6:	71 e0       	ldi	r23, 0x01	; 1
      7f8:	ce 01       	movw	r24, r28
@@ -657,18 +521,15 @@ inline void stringCopy(char *Destination, const char *Source, int Length)
      7fe:	0e 94 99 12 	call	0x2532	; 0x2532 <strcmp>
      802:	89 2b       	or	r24, r25
      804:	11 f5       	brne	.+68     	; 0x84a <_Z15uartInputHandlev+0x1f4>
-            value = atoi(valueASCII);
      806:	ce 01       	movw	r24, r28
      808:	01 96       	adiw	r24, 0x01	; 1
      80a:	0e 94 62 12 	call	0x24c4	; 0x24c4 <atoi>
-            if(value >= MAXMATRIX_SPEED_MIN_VALUE && value <= MAXMATRIX_SPEED_MAX_VALUE) {
      80e:	9c 01       	movw	r18, r24
      810:	21 50       	subi	r18, 0x01	; 1
      812:	31 09       	sbc	r19, r1
      814:	24 31       	cpi	r18, 0x14	; 20
      816:	31 05       	cpc	r19, r1
      818:	78 f4       	brcc	.+30     	; 0x838 <_Z15uartInputHandlev+0x1e2>
-                Timer1.setPeriod(((long)(MAXMATRIX_SPEED_MAX_VALUE - value + 1) * 5) * 10000);
      81a:	a5 e1       	ldi	r26, 0x15	; 21
      81c:	b0 e0       	ldi	r27, 0x00	; 0
      81e:	a8 1b       	sub	r26, r24
@@ -682,20 +543,14 @@ inline void stringCopy(char *Destination, const char *Source, int Length)
      830:	92 e0       	ldi	r25, 0x02	; 2
      832:	0e 94 a4 0d 	call	0x1b48	; 0x1b48 <_ZN8TimerOne9setPeriodEl>
      836:	b7 c0       	rjmp	.+366    	; 0x9a6 <__stack+0xa7>
-            } else {
-                Serial.println(F("value out of range"));
      838:	62 ec       	ldi	r22, 0xC2	; 194
      83a:	71 e0       	ldi	r23, 0x01	; 1
      83c:	81 e6       	ldi	r24, 0x61	; 97
      83e:	92 e0       	ldi	r25, 0x02	; 2
      840:	0e 94 ab 10 	call	0x2156	; 0x2156 <_ZN5Print7printlnEPK19__FlashStringHelper>
-                Serial.println(F("speed range "TOSTRING(MAXMATRIX_SPEED_MIN_VALUE)" ... "TOSTRING(MAXMATRIX_SPEED_MAX_VALUE)));
      844:	6e e7       	ldi	r22, 0x7E	; 126
      846:	71 e0       	ldi	r23, 0x01	; 1
      848:	1f c0       	rjmp	.+62     	; 0x888 <_Z15uartInputHandlev+0x232>
-            }
-        }
-        else if(strcmp(command, "spaceBetweenChars") == 0) {
      84a:	68 e3       	ldi	r22, 0x38	; 56
      84c:	71 e0       	ldi	r23, 0x01	; 1
      84e:	ce 01       	movw	r24, r28
@@ -704,38 +559,29 @@ inline void stringCopy(char *Destination, const char *Source, int Length)
      854:	0e 94 99 12 	call	0x2532	; 0x2532 <strcmp>
      858:	89 2b       	or	r24, r25
      85a:	d9 f4       	brne	.+54     	; 0x892 <_Z15uartInputHandlev+0x23c>
-	        value = atoi(valueASCII);
      85c:	ce 01       	movw	r24, r28
      85e:	01 96       	adiw	r24, 0x01	; 1
      860:	0e 94 62 12 	call	0x24c4	; 0x24c4 <atoi>
-	        if(value >= MAXMATRIX_SPACE_BETWEEN_CHARS_MIN_VALUE && value <= MAXMATRIX_SPACE_BETWEEN_CHARS_MAX_VALUE) {
      864:	8f 3f       	cpi	r24, 0xFF	; 255
      866:	91 05       	cpc	r25, r1
      868:	09 f0       	breq	.+2      	; 0x86c <_Z15uartInputHandlev+0x216>
      86a:	30 f4       	brcc	.+12     	; 0x878 <_Z15uartInputHandlev+0x222>
-					Matrix.setSpaceBetweenChars(value);
      86c:	68 2f       	mov	r22, r24
      86e:	85 e6       	ldi	r24, 0x65	; 101
      870:	91 e0       	ldi	r25, 0x01	; 1
      872:	0e 94 ab 05 	call	0xb56	; 0xb56 <_ZN9MaxMatrix20setSpaceBetweenCharsEh>
      876:	97 c0       	rjmp	.+302    	; 0x9a6 <__stack+0xa7>
-		        } else {
-		        Serial.println(F("value out of range"));
      878:	6b e6       	ldi	r22, 0x6B	; 107
      87a:	71 e0       	ldi	r23, 0x01	; 1
      87c:	81 e6       	ldi	r24, 0x61	; 97
      87e:	92 e0       	ldi	r25, 0x02	; 2
      880:	0e 94 ab 10 	call	0x2156	; 0x2156 <_ZN5Print7printlnEPK19__FlashStringHelper>
-		        Serial.println(F("spaceBetweenChars range "TOSTRING(MAXMATRIX_SPACE_BETWEEN_CHARS_MIN_VALUE)" ... "TOSTRING(MAXMATRIX_SPACE_BETWEEN_CHARS_MAX_VALUE)));
      884:	6f ef       	ldi	r22, 0xFF	; 255
      886:	70 e0       	ldi	r23, 0x00	; 0
      888:	81 e6       	ldi	r24, 0x61	; 97
      88a:	92 e0       	ldi	r25, 0x02	; 2
      88c:	0e 94 ab 10 	call	0x2156	; 0x2156 <_ZN5Print7printlnEPK19__FlashStringHelper>
      890:	8a c0       	rjmp	.+276    	; 0x9a6 <__stack+0xa7>
-	        }
-        }
-        else if(strcmp(command, "setDot") == 0) {
      892:	6a e4       	ldi	r22, 0x4A	; 74
      894:	71 e0       	ldi	r23, 0x01	; 1
      896:	ce 01       	movw	r24, r28
@@ -745,19 +591,14 @@ inline void stringCopy(char *Destination, const char *Source, int Length)
      8a0:	89 2b       	or	r24, r25
      8a2:	09 f0       	breq	.+2      	; 0x8a6 <_Z15uartInputHandlev+0x250>
      8a4:	77 c0       	rjmp	.+238    	; 0x994 <__stack+0x95>
-            if(LEDMATRIX_STATE_READY != State) {
      8a6:	80 91 64 01 	lds	r24, 0x0164	; 0x800164 <State>
      8aa:	81 30       	cpi	r24, 0x01	; 1
      8ac:	39 f0       	breq	.+14     	; 0x8bc <_Z15uartInputHandlev+0x266>
-                State = LEDMATRIX_STATE_READY;
      8ae:	81 e0       	ldi	r24, 0x01	; 1
      8b0:	80 93 64 01 	sts	0x0164, r24	; 0x800164 <State>
-                Matrix.clear();
      8b4:	85 e6       	ldi	r24, 0x65	; 101
      8b6:	91 e0       	ldi	r25, 0x01	; 1
      8b8:	0e 94 31 09 	call	0x1262	; 0x1262 <_ZN9MaxMatrix5clearEv>
-            }
-            char columnASCII[3] = "", rowASCII[3] = "", valueDotASCII[3] = "";
      8bc:	ae 96       	adiw	r28, 0x2e	; 46
      8be:	1d ae       	std	Y+61, r1	; 0x3d
      8c0:	1e ae       	std	Y+62, r1	; 0x3e
@@ -773,22 +614,14 @@ inline void stringCopy(char *Destination, const char *Source, int Length)
      8d4:	1e ae       	std	Y+62, r1	; 0x3e
      8d6:	1f ae       	std	Y+63, r1	; 0x3f
      8d8:	a8 97       	sbiw	r28, 0x28	; 40
-            token = strtok(valueASCII, delimiterValue);
      8da:	be 01       	movw	r22, r28
      8dc:	62 59       	subi	r22, 0x92	; 146
      8de:	7f 4f       	sbci	r23, 0xFF	; 255
      8e0:	ce 01       	movw	r24, r28
      8e2:	01 96       	adiw	r24, 0x01	; 1
      8e4:	0e 94 89 12 	call	0x2512	; 0x2512 <strtok>
-            if(token != NULL) stringCopy(columnASCII, token, sizeof(columnASCII));
      8e8:	00 97       	sbiw	r24, 0x00	; 0
      8ea:	59 f0       	breq	.+22     	; 0x902 <__stack+0x3>
- *  \param[in]      Length              maximum characters to copy
- *                  
- *****************************************************************************************************************************************************/
-inline void stringCopy(char *Destination, const char *Source, int Length)
-{
-    strncpy(Destination, Source, Length - 1);
      8ec:	42 e0       	ldi	r20, 0x02	; 2
      8ee:	50 e0       	ldi	r21, 0x00	; 0
      8f0:	bc 01       	movw	r22, r24
@@ -796,31 +629,17 @@ inline void stringCopy(char *Destination, const char *Source, int Length)
      8f4:	85 59       	subi	r24, 0x95	; 149
      8f6:	9f 4f       	sbci	r25, 0xFF	; 255
      8f8:	0e 94 a2 12 	call	0x2544	; 0x2544 <strncpy>
-    Destination[Length-1] = STD_NULL_CHARACTER;
      8fc:	ae 96       	adiw	r28, 0x2e	; 46
      8fe:	1f ae       	std	Y+63, r1	; 0x3f
      900:	ae 97       	sbiw	r28, 0x2e	; 46
-                Matrix.clear();
-            }
-            char columnASCII[3] = "", rowASCII[3] = "", valueDotASCII[3] = "";
-            token = strtok(valueASCII, delimiterValue);
-            if(token != NULL) stringCopy(columnASCII, token, sizeof(columnASCII));
-            token = strtok(NULL, delimiterValue);
      902:	be 01       	movw	r22, r28
      904:	62 59       	subi	r22, 0x92	; 146
      906:	7f 4f       	sbci	r23, 0xFF	; 255
      908:	80 e0       	ldi	r24, 0x00	; 0
      90a:	90 e0       	ldi	r25, 0x00	; 0
      90c:	0e 94 89 12 	call	0x2512	; 0x2512 <strtok>
-            if(token != NULL) stringCopy(rowASCII, token, sizeof(rowASCII));
      910:	00 97       	sbiw	r24, 0x00	; 0
      912:	59 f0       	breq	.+22     	; 0x92a <__stack+0x2b>
- *  \param[in]      Length              maximum characters to copy
- *                  
- *****************************************************************************************************************************************************/
-inline void stringCopy(char *Destination, const char *Source, int Length)
-{
-    strncpy(Destination, Source, Length - 1);
      914:	42 e0       	ldi	r20, 0x02	; 2
      916:	50 e0       	ldi	r21, 0x00	; 0
      918:	bc 01       	movw	r22, r24
@@ -828,31 +647,17 @@ inline void stringCopy(char *Destination, const char *Source, int Length)
      91c:	88 59       	subi	r24, 0x98	; 152
      91e:	9f 4f       	sbci	r25, 0xFF	; 255
      920:	0e 94 a2 12 	call	0x2544	; 0x2544 <strncpy>
-    Destination[Length-1] = STD_NULL_CHARACTER;
      924:	ab 96       	adiw	r28, 0x2b	; 43
      926:	1f ae       	std	Y+63, r1	; 0x3f
      928:	ab 97       	sbiw	r28, 0x2b	; 43
-            char columnASCII[3] = "", rowASCII[3] = "", valueDotASCII[3] = "";
-            token = strtok(valueASCII, delimiterValue);
-            if(token != NULL) stringCopy(columnASCII, token, sizeof(columnASCII));
-            token = strtok(NULL, delimiterValue);
-            if(token != NULL) stringCopy(rowASCII, token, sizeof(rowASCII));
-            token = strtok(NULL, delimiterValue);
      92a:	be 01       	movw	r22, r28
      92c:	62 59       	subi	r22, 0x92	; 146
      92e:	7f 4f       	sbci	r23, 0xFF	; 255
      930:	80 e0       	ldi	r24, 0x00	; 0
      932:	90 e0       	ldi	r25, 0x00	; 0
      934:	0e 94 89 12 	call	0x2512	; 0x2512 <strtok>
-            if(token != NULL) stringCopy(valueDotASCII, token, sizeof(valueDotASCII));
      938:	00 97       	sbiw	r24, 0x00	; 0
      93a:	59 f0       	breq	.+22     	; 0x952 <__stack+0x53>
- *  \param[in]      Length              maximum characters to copy
- *                  
- *****************************************************************************************************************************************************/
-inline void stringCopy(char *Destination, const char *Source, int Length)
-{
-    strncpy(Destination, Source, Length - 1);
      93c:	42 e0       	ldi	r20, 0x02	; 2
      93e:	50 e0       	ldi	r21, 0x00	; 0
      940:	bc 01       	movw	r22, r24
@@ -860,16 +665,9 @@ inline void stringCopy(char *Destination, const char *Source, int Length)
      944:	8b 59       	subi	r24, 0x9B	; 155
      946:	9f 4f       	sbci	r25, 0xFF	; 255
      948:	0e 94 a2 12 	call	0x2544	; 0x2544 <strncpy>
-    Destination[Length-1] = STD_NULL_CHARACTER;
      94c:	a8 96       	adiw	r28, 0x28	; 40
      94e:	1f ae       	std	Y+63, r1	; 0x3f
      950:	a8 97       	sbiw	r28, 0x28	; 40
-            if(token != NULL) stringCopy(columnASCII, token, sizeof(columnASCII));
-            token = strtok(NULL, delimiterValue);
-            if(token != NULL) stringCopy(rowASCII, token, sizeof(rowASCII));
-            token = strtok(NULL, delimiterValue);
-            if(token != NULL) stringCopy(valueDotASCII, token, sizeof(valueDotASCII));
-            Matrix.setDot(atoi(columnASCII), atoi(rowASCII), atoi(valueDotASCII));
      952:	ce 01       	movw	r24, r28
      954:	8b 59       	subi	r24, 0x9B	; 155
      956:	9f 4f       	sbci	r25, 0xFF	; 255
@@ -899,23 +697,13 @@ inline void stringCopy(char *Destination, const char *Source, int Length)
      98c:	91 e0       	ldi	r25, 0x01	; 1
      98e:	0e 94 2a 0a 	call	0x1454	; 0x1454 <_ZN9MaxMatrix6setDotEhhb>
      992:	09 c0       	rjmp	.+18     	; 0x9a6 <__stack+0xa7>
-        }
-        else {
-            Serial.println(command);
      994:	be 01       	movw	r22, r28
      996:	65 5a       	subi	r22, 0xA5	; 165
      998:	7f 4f       	sbci	r23, 0xFF	; 255
      99a:	81 e6       	ldi	r24, 0x61	; 97
      99c:	92 e0       	ldi	r25, 0x02	; 2
      99e:	0e 94 bd 10 	call	0x217a	; 0x217a <_ZN5Print7printlnEPKc>
-            printHelp(); 
      9a2:	0e 94 13 03 	call	0x626	; 0x626 <_Z9printHelpv>
-        }
-    } else {
-        Serial.println(command);
-        printHelp(); 
-    }
-}
      9a6:	ce 58       	subi	r28, 0x8E	; 142
      9a8:	df 4f       	sbci	r29, 0xFF	; 255
      9aa:	0f b6       	in	r0, 0x3f	; 63
@@ -930,64 +718,36 @@ inline void stringCopy(char *Destination, const char *Source, int Length)
      9bc:	08 95       	ret
 
 000009be <loop>:
-/******************************************************************************************************************************************************
- *  ARDUINO loop
- *****************************************************************************************************************************************************/
-void loop()
-{ 
-    if (UartInputComplete)
      9be:	80 91 f0 01 	lds	r24, 0x01F0	; 0x8001f0 <UartInputComplete>
      9c2:	88 23       	and	r24, r24
      9c4:	31 f0       	breq	.+12     	; 0x9d2 <loop+0x14>
-    {
-        uartInputHandle();
      9c6:	0e 94 2b 03 	call	0x656	; 0x656 <_Z15uartInputHandlev>
-        // clear the string:
-        UartInput[0] = STD_NULL_CHARACTER;
      9ca:	10 92 f1 01 	sts	0x01F1, r1	; 0x8001f1 <UartInput>
-        UartInputComplete = false;
      9ce:	10 92 f0 01 	sts	0x01F0, r1	; 0x8001f0 <UartInputComplete>
-    }
-
-    if(Timer1Overflow && State == LEDMATRIX_STATE_STRING_SHIFT)
      9d2:	80 91 95 01 	lds	r24, 0x0195	; 0x800195 <Timer1Overflow>
      9d6:	88 23       	and	r24, r24
      9d8:	c1 f0       	breq	.+48     	; 0xa0a <loop+0x4c>
      9da:	80 91 64 01 	lds	r24, 0x0164	; 0x800164 <State>
      9de:	82 30       	cpi	r24, 0x02	; 2
      9e0:	a1 f4       	brne	.+40     	; 0xa0a <loop+0x4c>
-    {
-        if(Matrix.getState() == MAXMATRIX_STATE_STRING_SHIFT)
      9e2:	80 91 68 01 	lds	r24, 0x0168	; 0x800168 <Matrix+0x3>
      9e6:	83 30       	cpi	r24, 0x03	; 3
      9e8:	21 f4       	brne	.+8      	; 0x9f2 <loop+0x34>
-            Matrix.shiftTask();
      9ea:	85 e6       	ldi	r24, 0x65	; 101
      9ec:	91 e0       	ldi	r25, 0x01	; 1
      9ee:	0e 94 69 0d 	call	0x1ad2	; 0x1ad2 <_ZN9MaxMatrix9shiftTaskEv>
-        if(Matrix.getState() == MAXMATRIX_STATE_READY)
      9f2:	80 91 68 01 	lds	r24, 0x0168	; 0x800168 <Matrix+0x3>
      9f6:	82 30       	cpi	r24, 0x02	; 2
      9f8:	31 f4       	brne	.+12     	; 0xa06 <loop+0x48>
-        {
-            Matrix.setTextWithShift(MaxMatrixText);
      9fa:	66 e9       	ldi	r22, 0x96	; 150
      9fc:	71 e0       	ldi	r23, 0x01	; 1
      9fe:	85 e6       	ldi	r24, 0x65	; 101
      a00:	91 e0       	ldi	r25, 0x01	; 1
      a02:	0e 94 8d 05 	call	0xb1a	; 0xb1a <_ZN9MaxMatrix16setTextWithShiftEPc>
-        }
-        Timer1Overflow = false;
      a06:	10 92 95 01 	sts	0x0195, r1	; 0x800195 <Timer1Overflow>
      a0a:	08 95       	ret
 
 00000a0c <_GLOBAL__sub_I_UartInput>:
- *****************************************************************************************************************************************************/
-char UartInput[UART_INPUT_LENGTH];                  // buffer for incoming UART data
-boolean UartInputComplete;                          // flag UART string is complete
-char MaxMatrixText[MAXMATRIX_MAX_TEXT_LENGTH];      // current Matrix Text
-bool Timer1Overflow;                                // flag Timer1 overflow
-MaxMatrix Matrix(MAXMATRIX_DATA_PIN, MAXMATRIX_CS_PIN, MAXMATRIX_CLOCK_PIN);
      a0c:	2b e0       	ldi	r18, 0x0B	; 11
      a0e:	4a e0       	ldi	r20, 0x0A	; 10
      a10:	6c e0       	ldi	r22, 0x0C	; 12
@@ -1001,57 +761,24 @@ MaxMatrix Matrix(MAXMATRIX_DATA_PIN, MAXMATRIX_CS_PIN, MAXMATRIX_CLOCK_PIN);
      a1e:	0c 94 56 05 	jmp	0xaac	; 0xaac <_ZN9MaxMatrixD1Ev>
 
 00000a22 <_Z11serialEventv>:
- *  \details        this function saves incoming UART signs into UART buffer.
- *                  After receiving new line, string is complete and flag will be set.
- *  \pre            will be called at the end of the main function             
- *****************************************************************************************************************************************************/
-void serialEvent() 
-{
      a22:	1f 93       	push	r17
      a24:	cf 93       	push	r28
      a26:	df 93       	push	r29
-        // if the incoming character is a newline, set a flag
-        if (inChar == '\n') {
-            UartInputComplete = true;
-        } else {
-            // check for free space in buffer
-            int UartInputLength = strlen(UartInput);
      a28:	c1 ef       	ldi	r28, 0xF1	; 241
      a2a:	d1 e0       	ldi	r29, 0x01	; 1
-    {
-        // get the new byte from UART
-        char inChar = (char) Serial.read();
-        // if the incoming character is a newline, set a flag
-        if (inChar == '\n') {
-            UartInputComplete = true;
      a2c:	11 e0       	ldi	r17, 0x01	; 1
- *                  After receiving new line, string is complete and flag will be set.
- *  \pre            will be called at the end of the main function             
- *****************************************************************************************************************************************************/
-void serialEvent() 
-{
-    while (Serial.available()) 
      a2e:	81 e6       	ldi	r24, 0x61	; 97
      a30:	92 e0       	ldi	r25, 0x02	; 2
      a32:	0e 94 65 0e 	call	0x1cca	; 0x1cca <_ZN14HardwareSerial9availableEv>
      a36:	89 2b       	or	r24, r25
      a38:	c1 f0       	breq	.+48     	; 0xa6a <_Z11serialEventv+0x48>
-    {
-        // get the new byte from UART
-        char inChar = (char) Serial.read();
      a3a:	81 e6       	ldi	r24, 0x61	; 97
      a3c:	92 e0       	ldi	r25, 0x02	; 2
      a3e:	0e 94 7f 0e 	call	0x1cfe	; 0x1cfe <_ZN14HardwareSerial4readEv>
-        // if the incoming character is a newline, set a flag
-        if (inChar == '\n') {
      a42:	8a 30       	cpi	r24, 0x0A	; 10
      a44:	19 f4       	brne	.+6      	; 0xa4c <_Z11serialEventv+0x2a>
-            UartInputComplete = true;
      a46:	10 93 f0 01 	sts	0x01F0, r17	; 0x8001f0 <UartInputComplete>
      a4a:	f1 cf       	rjmp	.-30     	; 0xa2e <_Z11serialEventv+0xc>
-        } else {
-            // check for free space in buffer
-            int UartInputLength = strlen(UartInput);
      a4c:	fe 01       	movw	r30, r28
      a4e:	01 90       	ld	r0, Z+
      a50:	00 20       	and	r0, r0
@@ -1059,34 +786,25 @@ void serialEvent()
      a54:	31 97       	sbiw	r30, 0x01	; 1
      a56:	e1 5f       	subi	r30, 0xF1	; 241
      a58:	f1 40       	sbci	r31, 0x01	; 1
-            if(UartInputLength < UART_INPUT_LENGTH-1)
      a5a:	e3 36       	cpi	r30, 0x63	; 99
      a5c:	f1 05       	cpc	r31, r1
      a5e:	3c f7       	brge	.-50     	; 0xa2e <_Z11serialEventv+0xc>
-            {
-                // save new char
-                UartInput[UartInputLength] = inChar;
      a60:	ef 50       	subi	r30, 0x0F	; 15
      a62:	fe 4f       	sbci	r31, 0xFE	; 254
      a64:	80 83       	st	Z, r24
-                UartInput[UartInputLength+1] = STD_NULL_CHARACTER;
      a66:	11 82       	std	Z+1, r1	; 0x01
      a68:	e2 cf       	rjmp	.-60     	; 0xa2e <_Z11serialEventv+0xc>
-            }
-        }
-    }
-} /* serialEvent */
      a6a:	df 91       	pop	r29
      a6c:	cf 91       	pop	r28
      a6e:	1f 91       	pop	r17
      a70:	08 95       	ret
 
 00000a72 <_ZN9MaxMatrixC1Ehhh>:
-		}
-		return E_OK;
-	} else {
-		return E_NOT_OK;
-	}
+        }
+        return E_OK;
+    } else {
+        return E_NOT_OK;
+    }
 } /* setRowOnAllModulesLL */
      a72:	cf 93       	push	r28
      a74:	df 93       	push	r29
@@ -2657,40 +2375,45 @@ void MaxMatrix::shiftLeftLL(bool Rotate, bool FillWithZero, bool ShiftToNeighbou
     16b0:	1f 93       	push	r17
     16b2:	cf 93       	push	r28
     16b4:	df 93       	push	r29
-	if(ShiftToNeighbourModule) {
+	/* should we shift the state to the next module? */
+    if(ShiftToNeighbourModule) {
     16b6:	22 23       	and	r18, r18
     16b8:	b9 f0       	breq	.+46     	; 0x16e8 <_ZN9MaxMatrix11shiftLeftLLEbbb+0x3e>
-		byte ColumnLeft = MatrixBuffer[0];
+		/* save left column will be wrapped around later if rotation is active */
+        byte ColumnLeft = MatrixBuffer[0];
     16ba:	ec 01       	movw	r28, r24
     16bc:	2d 81       	ldd	r18, Y+5	; 0x05
     16be:	fc 01       	movw	r30, r24
     16c0:	36 96       	adiw	r30, 0x06	; 6
     16c2:	dc 01       	movw	r26, r24
     16c4:	95 96       	adiw	r26, 0x25	; 37
-		for(int Column = 0; Column < MAXMATRIX_NUMBER_OF_COLUMNS - 1; Column++) {
-			MatrixBuffer[Column] = MatrixBuffer[Column + 1]; 
+		/* shift every column one step left */
+        for(int Column = 0; Column < MAXMATRIX_NUMBER_OF_COLUMNS - 1; Column++) {
+            MatrixBuffer[Column] = MatrixBuffer[Column + 1];
     16c6:	31 91       	ld	r19, Z+
     16c8:	ef 01       	movw	r28, r30
     16ca:	22 97       	sbiw	r28, 0x02	; 2
     16cc:	38 83       	st	Y, r19
- *****************************************************************************************************************************************************/
-void MaxMatrix::shiftLeftLL(bool Rotate, bool FillWithZero, bool ShiftToNeighbourModule)
-{
-	if(ShiftToNeighbourModule) {
-		byte ColumnLeft = MatrixBuffer[0];
-		for(int Column = 0; Column < MAXMATRIX_NUMBER_OF_COLUMNS - 1; Column++) {
+	/* should we shift the state to the next module? */
+    if(ShiftToNeighbourModule) {
+		/* save left column will be wrapped around later if rotation is active */
+        byte ColumnLeft = MatrixBuffer[0];
+		/* shift every column one step left */
+        for(int Column = 0; Column < MAXMATRIX_NUMBER_OF_COLUMNS - 1; Column++) {
     16ce:	ea 17       	cp	r30, r26
     16d0:	fb 07       	cpc	r31, r27
     16d2:	c9 f7       	brne	.-14     	; 0x16c6 <_ZN9MaxMatrix11shiftLeftLLEbbb+0x1c>
-			MatrixBuffer[Column] = MatrixBuffer[Column + 1]; 
-		}
-		if(Rotate) MatrixBuffer[MAXMATRIX_NUMBER_OF_COLUMNS - 1] = ColumnLeft;
+            MatrixBuffer[Column] = MatrixBuffer[Column + 1];
+        }
+		/* wrap around saved left column to the right */
+        if(Rotate) MatrixBuffer[MAXMATRIX_NUMBER_OF_COLUMNS - 1] = ColumnLeft;
     16d4:	66 23       	and	r22, r22
     16d6:	19 f0       	breq	.+6      	; 0x16de <_ZN9MaxMatrix11shiftLeftLLEbbb+0x34>
     16d8:	fc 01       	movw	r30, r24
     16da:	24 a3       	std	Z+36, r18	; 0x24
     16dc:	26 c0       	rjmp	.+76     	; 0x172a <_ZN9MaxMatrix11shiftLeftLLEbbb+0x80>
-		else if(FillWithZero) MatrixBuffer[MAXMATRIX_NUMBER_OF_COLUMNS - 1] = 0;
+		/* otherwise initialize right column */
+        else if(FillWithZero) MatrixBuffer[MAXMATRIX_NUMBER_OF_COLUMNS - 1] = 0;
     16de:	44 23       	and	r20, r20
     16e0:	21 f1       	breq	.+72     	; 0x172a <_ZN9MaxMatrix11shiftLeftLLEbbb+0x80>
     16e2:	ec 01       	movw	r28, r24
@@ -2704,58 +2427,63 @@ void MaxMatrix::shiftLeftLL(bool Rotate, bool FillWithZero, bool ShiftToNeighbou
     16f2:	f1 1c       	adc	r15, r1
     16f4:	df 01       	movw	r26, r30
     16f6:	17 97       	sbiw	r26, 0x07	; 7
-	} else {
-		for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++) {
-			byte old = MatrixBuffer[MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module];
+    } else {
+		/* no shift to neighbor module is more complicated, we have to iterate over every module */
+        for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++) {
+			/* save left column on module will be wrapped around later if rotation is active */
+            byte ModuleColumnLeft = MatrixBuffer[MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module];
     16f8:	5c 91       	ld	r21, X
     16fa:	11 96       	adiw	r26, 0x01	; 1
-			for(int Column = 0; Column < MAXMATRIX_COLUMN_NUMBER_OF_MODULE - 1; Column++) {
+			/* shift every column of the module one step left */
+            for(int Column = 0; Column < MAXMATRIX_COLUMN_NUMBER_OF_MODULE - 1; Column++) {
     16fc:	20 e0       	ldi	r18, 0x00	; 0
     16fe:	30 e0       	ldi	r19, 0x00	; 0
-				MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module)] = 
-				MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module) + 1];
+                MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module)] = 
+                MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module) + 1];
     1700:	7d 91       	ld	r23, X+
     1702:	8d 01       	movw	r16, r26
     1704:	02 50       	subi	r16, 0x02	; 2
     1706:	11 09       	sbc	r17, r1
     1708:	e8 01       	movw	r28, r16
     170a:	78 83       	st	Y, r23
-		if(Rotate) MatrixBuffer[MAXMATRIX_NUMBER_OF_COLUMNS - 1] = ColumnLeft;
-		else if(FillWithZero) MatrixBuffer[MAXMATRIX_NUMBER_OF_COLUMNS - 1] = 0;
-	} else {
-		for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++) {
-			byte old = MatrixBuffer[MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module];
-			for(int Column = 0; Column < MAXMATRIX_COLUMN_NUMBER_OF_MODULE - 1; Column++) {
+		/* no shift to neighbor module is more complicated, we have to iterate over every module */
+        for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++) {
+			/* save left column on module will be wrapped around later if rotation is active */
+            byte ModuleColumnLeft = MatrixBuffer[MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module];
+			/* shift every column of the module one step left */
+            for(int Column = 0; Column < MAXMATRIX_COLUMN_NUMBER_OF_MODULE - 1; Column++) {
     170c:	2f 5f       	subi	r18, 0xFF	; 255
     170e:	3f 4f       	sbci	r19, 0xFF	; 255
     1710:	27 30       	cpi	r18, 0x07	; 7
     1712:	31 05       	cpc	r19, r1
     1714:	a9 f7       	brne	.-22     	; 0x1700 <_ZN9MaxMatrix11shiftLeftLLEbbb+0x56>
-				MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module)] = 
-				MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module) + 1];
-			}
-			if(Rotate) MatrixBuffer[MAXMATRIX_COLUMN_NUMBER_OF_MODULE * (Module + 1) - 1] = old;
+                MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module)] = 
+                MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module) + 1];
+            }
+			/* wrap around saved left module column to the right */
+            if(Rotate) MatrixBuffer[MAXMATRIX_COLUMN_NUMBER_OF_MODULE * (Module + 1) - 1] = ModuleColumnLeft;
     1716:	66 23       	and	r22, r22
     1718:	11 f0       	breq	.+4      	; 0x171e <_ZN9MaxMatrix11shiftLeftLLEbbb+0x74>
     171a:	50 83       	st	Z, r21
     171c:	02 c0       	rjmp	.+4      	; 0x1722 <_ZN9MaxMatrix11shiftLeftLLEbbb+0x78>
-			else if(FillWithZero) MatrixBuffer[(Module + 1) * MAXMATRIX_COLUMN_NUMBER_OF_MODULE - 1] = 0;
+			/* otherwise initialize right module column */
+            else if(FillWithZero) MatrixBuffer[(Module + 1) * MAXMATRIX_COLUMN_NUMBER_OF_MODULE - 1] = 0;
     171e:	41 11       	cpse	r20, r1
     1720:	10 82       	st	Z, r1
     1722:	38 96       	adiw	r30, 0x08	; 8
-			MatrixBuffer[Column] = MatrixBuffer[Column + 1]; 
-		}
-		if(Rotate) MatrixBuffer[MAXMATRIX_NUMBER_OF_COLUMNS - 1] = ColumnLeft;
-		else if(FillWithZero) MatrixBuffer[MAXMATRIX_NUMBER_OF_COLUMNS - 1] = 0;
-	} else {
-		for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++) {
+        if(Rotate) MatrixBuffer[MAXMATRIX_NUMBER_OF_COLUMNS - 1] = ColumnLeft;
+		/* otherwise initialize right column */
+        else if(FillWithZero) MatrixBuffer[MAXMATRIX_NUMBER_OF_COLUMNS - 1] = 0;
+    } else {
+		/* no shift to neighbor module is more complicated, we have to iterate over every module */
+        for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++) {
     1724:	ee 15       	cp	r30, r14
     1726:	ff 05       	cpc	r31, r15
     1728:	29 f7       	brne	.-54     	; 0x16f4 <_ZN9MaxMatrix11shiftLeftLLEbbb+0x4a>
-			if(Rotate) MatrixBuffer[MAXMATRIX_COLUMN_NUMBER_OF_MODULE * (Module + 1) - 1] = old;
-			else if(FillWithZero) MatrixBuffer[(Module + 1) * MAXMATRIX_COLUMN_NUMBER_OF_MODULE - 1] = 0;
-		}
-	}
+			/* otherwise initialize right module column */
+            else if(FillWithZero) MatrixBuffer[(Module + 1) * MAXMATRIX_COLUMN_NUMBER_OF_MODULE - 1] = 0;
+        }
+    }
     reload();
 } /* shiftLeftLL */
     172a:	df 91       	pop	r29
@@ -2764,11 +2492,11 @@ void MaxMatrix::shiftLeftLL(bool Rotate, bool FillWithZero, bool ShiftToNeighbou
     1730:	0f 91       	pop	r16
     1732:	ff 90       	pop	r15
     1734:	ef 90       	pop	r14
-			}
-			if(Rotate) MatrixBuffer[MAXMATRIX_COLUMN_NUMBER_OF_MODULE * (Module + 1) - 1] = old;
-			else if(FillWithZero) MatrixBuffer[(Module + 1) * MAXMATRIX_COLUMN_NUMBER_OF_MODULE - 1] = 0;
-		}
-	}
+            if(Rotate) MatrixBuffer[MAXMATRIX_COLUMN_NUMBER_OF_MODULE * (Module + 1) - 1] = ModuleColumnLeft;
+			/* otherwise initialize right module column */
+            else if(FillWithZero) MatrixBuffer[(Module + 1) * MAXMATRIX_COLUMN_NUMBER_OF_MODULE - 1] = 0;
+        }
+    }
     reload();
     1736:	0c 94 c5 05 	jmp	0xb8a	; 0xb8a <_ZN9MaxMatrix6reloadEv>
 
@@ -2790,46 +2518,51 @@ void MaxMatrix::shiftRightLL(bool Rotate, bool FillWithZero, bool ShiftToNeighbo
     174a:	dc 01       	movw	r26, r24
     174c:	95 96       	adiw	r26, 0x25	; 37
     174e:	6d 01       	movw	r12, r26
-	if(ShiftToNeighbourModule) {
-	    byte ColumnRight = MatrixBuffer[MAXMATRIX_NUMBER_OF_COLUMNS - 1];
+	/* should we shift the state to the next module? */
+    if(ShiftToNeighbourModule) {
+		/* save right column will be wrapped around later if rotation is active */
+        byte ColumnRight = MatrixBuffer[MAXMATRIX_NUMBER_OF_COLUMNS - 1];
     1750:	fc 01       	movw	r30, r24
- *  \param[in]      ShiftToNeighbourModule      shift led states to neighbour module
  *  \return         -
  *****************************************************************************************************************************************************/
 void MaxMatrix::shiftRightLL(bool Rotate, bool FillWithZero, bool ShiftToNeighbourModule)
 {
-	if(ShiftToNeighbourModule) {
+	/* should we shift the state to the next module? */
+    if(ShiftToNeighbourModule) {
     1752:	22 23       	and	r18, r18
     1754:	a9 f0       	breq	.+42     	; 0x1780 <_ZN9MaxMatrix12shiftRightLLEbbb+0x46>
-	    byte ColumnRight = MatrixBuffer[MAXMATRIX_NUMBER_OF_COLUMNS - 1];
+		/* save right column will be wrapped around later if rotation is active */
+        byte ColumnRight = MatrixBuffer[MAXMATRIX_NUMBER_OF_COLUMNS - 1];
     1756:	24 a1       	ldd	r18, Z+36	; 0x24
     1758:	fd 01       	movw	r30, r26
     175a:	5f 97       	sbiw	r26, 0x1f	; 31
     175c:	ef 01       	movw	r28, r30
     175e:	22 97       	sbiw	r28, 0x02	; 2
-	    for(int Column = MAXMATRIX_NUMBER_OF_COLUMNS - 1; Column > 0; Column--) { 
-			MatrixBuffer[Column] = MatrixBuffer[Column - 1]; 
+        for(int Column = MAXMATRIX_NUMBER_OF_COLUMNS - 1; Column > 0; Column--) { 
+            MatrixBuffer[Column] = MatrixBuffer[Column - 1]; 
     1760:	38 81       	ld	r19, Y
     1762:	32 93       	st	-Z, r19
- *****************************************************************************************************************************************************/
-void MaxMatrix::shiftRightLL(bool Rotate, bool FillWithZero, bool ShiftToNeighbourModule)
 {
-	if(ShiftToNeighbourModule) {
-	    byte ColumnRight = MatrixBuffer[MAXMATRIX_NUMBER_OF_COLUMNS - 1];
-	    for(int Column = MAXMATRIX_NUMBER_OF_COLUMNS - 1; Column > 0; Column--) { 
+	/* should we shift the state to the next module? */
+    if(ShiftToNeighbourModule) {
+		/* save right column will be wrapped around later if rotation is active */
+        byte ColumnRight = MatrixBuffer[MAXMATRIX_NUMBER_OF_COLUMNS - 1];
+        for(int Column = MAXMATRIX_NUMBER_OF_COLUMNS - 1; Column > 0; Column--) { 
     1764:	ea 17       	cp	r30, r26
     1766:	fb 07       	cpc	r31, r27
     1768:	c9 f7       	brne	.-14     	; 0x175c <_ZN9MaxMatrix12shiftRightLLEbbb+0x22>
-			MatrixBuffer[Column] = MatrixBuffer[Column - 1]; 
-		}
-	    if(Rotate) MatrixBuffer[0] = ColumnRight;
+            MatrixBuffer[Column] = MatrixBuffer[Column - 1]; 
+        }
+		/* wrap around saved right column to the left */
+        if(Rotate) MatrixBuffer[0] = ColumnRight;
     176a:	66 23       	and	r22, r22
     176c:	21 f0       	breq	.+8      	; 0x1776 <_ZN9MaxMatrix12shiftRightLLEbbb+0x3c>
     176e:	dc 01       	movw	r26, r24
     1770:	15 96       	adiw	r26, 0x05	; 5
     1772:	2c 93       	st	X, r18
     1774:	22 c0       	rjmp	.+68     	; 0x17ba <_ZN9MaxMatrix12shiftRightLLEbbb+0x80>
-	    else if(FillWithZero) MatrixBuffer[0] = 0;
+		/* otherwise initialize right column */
+        else if(FillWithZero) MatrixBuffer[0] = 0;
     1776:	44 23       	and	r20, r20
     1778:	01 f1       	breq	.+64     	; 0x17ba <_ZN9MaxMatrix12shiftRightLLEbbb+0x80>
     177a:	fc 01       	movw	r30, r24
@@ -2837,60 +2570,64 @@ void MaxMatrix::shiftRightLL(bool Rotate, bool FillWithZero, bool ShiftToNeighbo
     177e:	1d c0       	rjmp	.+58     	; 0x17ba <_ZN9MaxMatrix12shiftRightLLEbbb+0x80>
     1780:	35 96       	adiw	r30, 0x05	; 5
     1782:	8f 01       	movw	r16, r30
-	} else {
-		for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++) {
-			byte old = MatrixBuffer[MAXMATRIX_COLUMN_NUMBER_OF_MODULE * (Module + 1) - 1];
+    } else {
+		/* no shift to neighbor module is more complicated, we have to iterate over every module */
+        for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++) {
+            byte ModuleColumnRight = MatrixBuffer[MAXMATRIX_COLUMN_NUMBER_OF_MODULE * (Module + 1) - 1];
     1784:	57 81       	ldd	r21, Z+7	; 0x07
     1786:	38 96       	adiw	r30, 0x08	; 8
     1788:	ef 01       	movw	r28, r30
-			for(int Column = MAXMATRIX_COLUMN_NUMBER_OF_MODULE - 1; Column > 0; Column--) {
+			/* shift every column of the module one step right */
+            for(int Column = MAXMATRIX_COLUMN_NUMBER_OF_MODULE - 1; Column > 0; Column--) {
     178a:	27 e0       	ldi	r18, 0x07	; 7
     178c:	30 e0       	ldi	r19, 0x00	; 0
     178e:	7e 01       	movw	r14, r28
     1790:	72 e0       	ldi	r23, 0x02	; 2
     1792:	e7 1a       	sub	r14, r23
     1794:	f1 08       	sbc	r15, r1
-				MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module)] = 
-				MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module) - 1];
+                MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module)] = 
+                MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module) - 1];
     1796:	d7 01       	movw	r26, r14
     1798:	7c 91       	ld	r23, X
     179a:	7a 93       	st	-Y, r23
-	    if(Rotate) MatrixBuffer[0] = ColumnRight;
-	    else if(FillWithZero) MatrixBuffer[0] = 0;
-	} else {
-		for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++) {
-			byte old = MatrixBuffer[MAXMATRIX_COLUMN_NUMBER_OF_MODULE * (Module + 1) - 1];
-			for(int Column = MAXMATRIX_COLUMN_NUMBER_OF_MODULE - 1; Column > 0; Column--) {
+    } else {
+		/* no shift to neighbor module is more complicated, we have to iterate over every module */
+        for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++) {
+            byte ModuleColumnRight = MatrixBuffer[MAXMATRIX_COLUMN_NUMBER_OF_MODULE * (Module + 1) - 1];
+			/* shift every column of the module one step right */
+            for(int Column = MAXMATRIX_COLUMN_NUMBER_OF_MODULE - 1; Column > 0; Column--) {
     179c:	21 50       	subi	r18, 0x01	; 1
     179e:	31 09       	sbc	r19, r1
     17a0:	b1 f7       	brne	.-20     	; 0x178e <_ZN9MaxMatrix12shiftRightLLEbbb+0x54>
-				MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module)] = 
-				MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module) - 1];
-			}
-			if(Rotate) MatrixBuffer[Module * MAXMATRIX_COLUMN_NUMBER_OF_MODULE] = old;
+                MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module)] = 
+                MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module) - 1];
+            }
+			/* wrap around saved left module column to the left */
+            if(Rotate) MatrixBuffer[Module * MAXMATRIX_COLUMN_NUMBER_OF_MODULE] = ModuleColumnRight;
     17a2:	66 23       	and	r22, r22
     17a4:	19 f0       	breq	.+6      	; 0x17ac <_ZN9MaxMatrix12shiftRightLLEbbb+0x72>
     17a6:	d8 01       	movw	r26, r16
     17a8:	5c 93       	st	X, r21
     17aa:	04 c0       	rjmp	.+8      	; 0x17b4 <_ZN9MaxMatrix12shiftRightLLEbbb+0x7a>
-			else if(FillWithZero) MatrixBuffer[Module * MAXMATRIX_COLUMN_NUMBER_OF_MODULE] = 0;
+			/* otherwise initialize left module column */
+            else if(FillWithZero) MatrixBuffer[Module * MAXMATRIX_COLUMN_NUMBER_OF_MODULE] = 0;
     17ac:	44 23       	and	r20, r20
     17ae:	11 f0       	breq	.+4      	; 0x17b4 <_ZN9MaxMatrix12shiftRightLLEbbb+0x7a>
     17b0:	d8 01       	movw	r26, r16
     17b2:	1c 92       	st	X, r1
-			MatrixBuffer[Column] = MatrixBuffer[Column - 1]; 
-		}
-	    if(Rotate) MatrixBuffer[0] = ColumnRight;
-	    else if(FillWithZero) MatrixBuffer[0] = 0;
-	} else {
-		for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++) {
+        if(Rotate) MatrixBuffer[0] = ColumnRight;
+		/* otherwise initialize right column */
+        else if(FillWithZero) MatrixBuffer[0] = 0;
+    } else {
+		/* no shift to neighbor module is more complicated, we have to iterate over every module */
+        for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++) {
     17b4:	ec 15       	cp	r30, r12
     17b6:	fd 05       	cpc	r31, r13
     17b8:	21 f7       	brne	.-56     	; 0x1782 <_ZN9MaxMatrix12shiftRightLLEbbb+0x48>
-			if(Rotate) MatrixBuffer[Module * MAXMATRIX_COLUMN_NUMBER_OF_MODULE] = old;
-			else if(FillWithZero) MatrixBuffer[Module * MAXMATRIX_COLUMN_NUMBER_OF_MODULE] = 0;
-		}
-	}
+			/* otherwise initialize left module column */
+            else if(FillWithZero) MatrixBuffer[Module * MAXMATRIX_COLUMN_NUMBER_OF_MODULE] = 0;
+        }
+    }
     reload();
 } /* shiftRightLL */
     17ba:	df 91       	pop	r29
@@ -2901,11 +2638,11 @@ void MaxMatrix::shiftRightLL(bool Rotate, bool FillWithZero, bool ShiftToNeighbo
     17c4:	ef 90       	pop	r14
     17c6:	df 90       	pop	r13
     17c8:	cf 90       	pop	r12
-			}
-			if(Rotate) MatrixBuffer[Module * MAXMATRIX_COLUMN_NUMBER_OF_MODULE] = old;
-			else if(FillWithZero) MatrixBuffer[Module * MAXMATRIX_COLUMN_NUMBER_OF_MODULE] = 0;
-		}
-	}
+            if(Rotate) MatrixBuffer[Module * MAXMATRIX_COLUMN_NUMBER_OF_MODULE] = ModuleColumnRight;
+			/* otherwise initialize left module column */
+            else if(FillWithZero) MatrixBuffer[Module * MAXMATRIX_COLUMN_NUMBER_OF_MODULE] = 0;
+        }
+    }
     reload();
     17ca:	0c 94 c5 05 	jmp	0xb8a	; 0xb8a <_ZN9MaxMatrix6reloadEv>
 
@@ -2915,7 +2652,7 @@ void MaxMatrix::shiftRightLL(bool Rotate, bool FillWithZero, bool ShiftToNeighbo
  *  \return         -
  *****************************************************************************************************************************************************/
 void MaxMatrix::shiftUpLL(bool Rotate, bool ShiftToNeighbourModule)
-{	
+{   
     17ce:	bf 92       	push	r11
     17d0:	cf 92       	push	r12
     17d2:	df 92       	push	r13
@@ -2930,21 +2667,21 @@ void MaxMatrix::shiftUpLL(bool Rotate, bool ShiftToNeighbourModule)
     17e4:	de b7       	in	r29, 0x3e	; 62
     17e6:	7c 01       	movw	r14, r24
     17e8:	c6 2e       	mov	r12, r22
-	byte ModuleTopRow = 0;
+    byte ModuleTopRow = 0;
     17ea:	1a 82       	std	Y+2, r1	; 0x02
-	byte MatrixTopRow = 0;
+    byte MatrixTopRow = 0;
     17ec:	19 82       	std	Y+1, r1	; 0x01
     17ee:	fc 01       	movw	r30, r24
     17f0:	35 96       	adiw	r30, 0x05	; 5
 
-	if(ShiftToNeighbourModule) {
+    if(ShiftToNeighbourModule) {
     17f2:	44 23       	and	r20, r20
     17f4:	e1 f1       	breq	.+120    	; 0x186e <_ZN9MaxMatrix9shiftUpLLEbb+0xa0>
     17f6:	8f 01       	movw	r16, r30
     17f8:	d1 2c       	mov	r13, r1
-		for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++)
-		{
-			if(Module == 0 && Rotate) getRowLL(0, 0, &MatrixTopRow);
+        for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++)
+        {
+            if(Module == 0 && Rotate) getRowLL(0, 0, &MatrixTopRow);
     17fa:	d1 10       	cpse	r13, r1
     17fc:	0a c0       	rjmp	.+20     	; 0x1812 <_ZN9MaxMatrix9shiftUpLLEbb+0x44>
     17fe:	cc 20       	and	r12, r12
@@ -2956,7 +2693,7 @@ void MaxMatrix::shiftUpLL(bool Rotate, bool ShiftToNeighbourModule)
     180a:	60 e0       	ldi	r22, 0x00	; 0
     180c:	c7 01       	movw	r24, r14
     180e:	0e 94 ed 07 	call	0xfda	; 0xfda <_ZN9MaxMatrix8getRowLLEhhPh>
-			getRowLL(Module + 1, 0, &ModuleTopRow);
+            getRowLL(Module + 1, 0, &ModuleTopRow);
     1812:	bb 24       	eor	r11, r11
     1814:	b3 94       	inc	r11
     1816:	bd 0c       	add	r11, r13
@@ -2968,42 +2705,42 @@ void MaxMatrix::shiftUpLL(bool Rotate, bool ShiftToNeighbourModule)
     1822:	c7 01       	movw	r24, r14
     1824:	0e 94 ed 07 	call	0xfda	; 0xfda <_ZN9MaxMatrix8getRowLLEhhPh>
     1828:	f8 01       	movw	r30, r16
-			
-			for(int Column = 0; Column < MAXMATRIX_COLUMN_NUMBER_OF_MODULE; Column++) 
+            
+            for(int Column = 0; Column < MAXMATRIX_COLUMN_NUMBER_OF_MODULE; Column++) 
     182a:	20 e0       	ldi	r18, 0x00	; 0
     182c:	30 e0       	ldi	r19, 0x00	; 0
-				MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module)] >>= 1;
+                MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module)] >>= 1;
     182e:	80 81       	ld	r24, Z
     1830:	90 e0       	ldi	r25, 0x00	; 0
     1832:	95 95       	asr	r25
     1834:	87 95       	ror	r24
     1836:	81 93       	st	Z+, r24
-		for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++)
-		{
-			if(Module == 0 && Rotate) getRowLL(0, 0, &MatrixTopRow);
-			getRowLL(Module + 1, 0, &ModuleTopRow);
-			
-			for(int Column = 0; Column < MAXMATRIX_COLUMN_NUMBER_OF_MODULE; Column++) 
+        for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++)
+        {
+            if(Module == 0 && Rotate) getRowLL(0, 0, &MatrixTopRow);
+            getRowLL(Module + 1, 0, &ModuleTopRow);
+            
+            for(int Column = 0; Column < MAXMATRIX_COLUMN_NUMBER_OF_MODULE; Column++) 
     1838:	2f 5f       	subi	r18, 0xFF	; 255
     183a:	3f 4f       	sbci	r19, 0xFF	; 255
     183c:	28 30       	cpi	r18, 0x08	; 8
     183e:	31 05       	cpc	r19, r1
     1840:	b1 f7       	brne	.-20     	; 0x182e <_ZN9MaxMatrix9shiftUpLLEbb+0x60>
-				MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module)] >>= 1;
-			
-			if(Module == MAXMATRIX_NUMBER_OF_MODULES - 1) {
+                MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module)] >>= 1;
+            
+            if(Module == MAXMATRIX_NUMBER_OF_MODULES - 1) {
     1842:	83 e0       	ldi	r24, 0x03	; 3
     1844:	d8 12       	cpse	r13, r24
     1846:	06 c0       	rjmp	.+12     	; 0x1854 <_ZN9MaxMatrix9shiftUpLLEbb+0x86>
-				if(Rotate) setRowLL(Module, MAXMATRIX_ROW_NUMBER_OF_MODULE - 1, MatrixTopRow);
+                if(Rotate) setRowLL(Module, MAXMATRIX_ROW_NUMBER_OF_MODULE - 1, MatrixTopRow);
     1848:	cc 20       	and	r12, r12
     184a:	51 f0       	breq	.+20     	; 0x1860 <_ZN9MaxMatrix9shiftUpLLEbb+0x92>
     184c:	29 81       	ldd	r18, Y+1	; 0x01
     184e:	47 e0       	ldi	r20, 0x07	; 7
     1850:	63 e0       	ldi	r22, 0x03	; 3
     1852:	03 c0       	rjmp	.+6      	; 0x185a <_ZN9MaxMatrix9shiftUpLLEbb+0x8c>
-			} else {
-				setRowLL(Module, MAXMATRIX_ROW_NUMBER_OF_MODULE - 1, ModuleTopRow);
+            } else {
+                setRowLL(Module, MAXMATRIX_ROW_NUMBER_OF_MODULE - 1, ModuleTopRow);
     1854:	2a 81       	ldd	r18, Y+2	; 0x02
     1856:	47 e0       	ldi	r20, 0x07	; 7
     1858:	6d 2d       	mov	r22, r13
@@ -3011,12 +2748,12 @@ void MaxMatrix::shiftUpLL(bool Rotate, bool ShiftToNeighbourModule)
     185c:	0e 94 7e 09 	call	0x12fc	; 0x12fc <_ZN9MaxMatrix8setRowLLEhhh>
     1860:	08 5f       	subi	r16, 0xF8	; 248
     1862:	1f 4f       	sbci	r17, 0xFF	; 255
-{	
-	byte ModuleTopRow = 0;
-	byte MatrixTopRow = 0;
+{   
+    byte ModuleTopRow = 0;
+    byte MatrixTopRow = 0;
 
-	if(ShiftToNeighbourModule) {
-		for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++)
+    if(ShiftToNeighbourModule) {
+        for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++)
     1864:	84 e0       	ldi	r24, 0x04	; 4
     1866:	b8 16       	cp	r11, r24
     1868:	89 f0       	breq	.+34     	; 0x188c <_ZN9MaxMatrix9shiftUpLLEbb+0xbe>
@@ -3025,37 +2762,37 @@ void MaxMatrix::shiftUpLL(bool Rotate, bool ShiftToNeighbourModule)
     186e:	ac 01       	movw	r20, r24
     1870:	4b 5d       	subi	r20, 0xDB	; 219
     1872:	5f 4f       	sbci	r21, 0xFF	; 255
-			}
-		}
-	} else {
-		for(int Column = 0; Column < MAXMATRIX_NUMBER_OF_COLUMNS; Column++) 
-		{
-			bool TopBit = bitRead(MatrixBuffer[Column], 0);
+            }
+        }
+    } else {
+        for(int Column = 0; Column < MAXMATRIX_NUMBER_OF_COLUMNS; Column++) 
+        {
+            bool TopBit = bitRead(MatrixBuffer[Column], 0);
     1874:	20 81       	ld	r18, Z
-			MatrixBuffer[Column] >>= 1;
+            MatrixBuffer[Column] >>= 1;
     1876:	82 2f       	mov	r24, r18
     1878:	90 e0       	ldi	r25, 0x00	; 0
     187a:	95 95       	asr	r25
     187c:	87 95       	ror	r24
-			if(Rotate) bitWrite(MatrixBuffer[Column], MAXMATRIX_ROW_NUMBER_OF_MODULE - 1, TopBit);
+            if(Rotate) bitWrite(MatrixBuffer[Column], MAXMATRIX_ROW_NUMBER_OF_MODULE - 1, TopBit);
     187e:	c1 10       	cpse	r12, r1
     1880:	14 c0       	rjmp	.+40     	; 0x18aa <_ZN9MaxMatrix9shiftUpLLEbb+0xdc>
     1882:	80 83       	st	Z, r24
     1884:	31 96       	adiw	r30, 0x01	; 1
-			} else {
-				setRowLL(Module, MAXMATRIX_ROW_NUMBER_OF_MODULE - 1, ModuleTopRow);
-			}
-		}
-	} else {
-		for(int Column = 0; Column < MAXMATRIX_NUMBER_OF_COLUMNS; Column++) 
+            } else {
+                setRowLL(Module, MAXMATRIX_ROW_NUMBER_OF_MODULE - 1, ModuleTopRow);
+            }
+        }
+    } else {
+        for(int Column = 0; Column < MAXMATRIX_NUMBER_OF_COLUMNS; Column++) 
     1886:	e4 17       	cp	r30, r20
     1888:	f5 07       	cpc	r31, r21
     188a:	a1 f7       	brne	.-24     	; 0x1874 <_ZN9MaxMatrix9shiftUpLLEbb+0xa6>
-			bool TopBit = bitRead(MatrixBuffer[Column], 0);
-			MatrixBuffer[Column] >>= 1;
-			if(Rotate) bitWrite(MatrixBuffer[Column], MAXMATRIX_ROW_NUMBER_OF_MODULE - 1, TopBit);
-		}		
-	}
+            bool TopBit = bitRead(MatrixBuffer[Column], 0);
+            MatrixBuffer[Column] >>= 1;
+            if(Rotate) bitWrite(MatrixBuffer[Column], MAXMATRIX_ROW_NUMBER_OF_MODULE - 1, TopBit);
+        }       
+    }
     reload();
     188c:	c7 01       	movw	r24, r14
     188e:	0e 94 c5 05 	call	0xb8a	; 0xb8a <_ZN9MaxMatrix6reloadEv>
@@ -3072,12 +2809,12 @@ void MaxMatrix::shiftUpLL(bool Rotate, bool ShiftToNeighbourModule)
     18a4:	cf 90       	pop	r12
     18a6:	bf 90       	pop	r11
     18a8:	08 95       	ret
-	} else {
-		for(int Column = 0; Column < MAXMATRIX_NUMBER_OF_COLUMNS; Column++) 
-		{
-			bool TopBit = bitRead(MatrixBuffer[Column], 0);
-			MatrixBuffer[Column] >>= 1;
-			if(Rotate) bitWrite(MatrixBuffer[Column], MAXMATRIX_ROW_NUMBER_OF_MODULE - 1, TopBit);
+    } else {
+        for(int Column = 0; Column < MAXMATRIX_NUMBER_OF_COLUMNS; Column++) 
+        {
+            bool TopBit = bitRead(MatrixBuffer[Column], 0);
+            MatrixBuffer[Column] >>= 1;
+            if(Rotate) bitWrite(MatrixBuffer[Column], MAXMATRIX_ROW_NUMBER_OF_MODULE - 1, TopBit);
     18aa:	20 ff       	sbrs	r18, 0
     18ac:	ea cf       	rjmp	.-44     	; 0x1882 <_ZN9MaxMatrix9shiftUpLLEbb+0xb4>
     18ae:	80 68       	ori	r24, 0x80	; 128
@@ -3104,21 +2841,21 @@ void MaxMatrix::shiftDownLL(bool Rotate, bool ShiftToNeighbourModule)
     18c8:	de b7       	in	r29, 0x3e	; 62
     18ca:	7c 01       	movw	r14, r24
     18cc:	c6 2e       	mov	r12, r22
-	byte ModuleBottomRow = 0;
+    byte ModuleBottomRow = 0;
     18ce:	1a 82       	std	Y+2, r1	; 0x02
-	byte MatrixBottomRow = 0;
+    byte MatrixBottomRow = 0;
     18d0:	19 82       	std	Y+1, r1	; 0x01
     18d2:	fc 01       	movw	r30, r24
     18d4:	35 96       	adiw	r30, 0x05	; 5
 
-	if(ShiftToNeighbourModule) {
+    if(ShiftToNeighbourModule) {
     18d6:	44 23       	and	r20, r20
     18d8:	c9 f1       	breq	.+114    	; 0x194c <_ZN9MaxMatrix11shiftDownLLEbb+0x9a>
     18da:	8f 01       	movw	r16, r30
     18dc:	d1 2c       	mov	r13, r1
-		for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++)
-		{
-			if(Module == 0 && Rotate) getRowLL(0, MAXMATRIX_ROW_NUMBER_OF_MODULE - 1, &MatrixBottomRow);
+        for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++)
+        {
+            if(Module == 0 && Rotate) getRowLL(0, MAXMATRIX_ROW_NUMBER_OF_MODULE - 1, &MatrixBottomRow);
     18de:	d1 10       	cpse	r13, r1
     18e0:	0a c0       	rjmp	.+20     	; 0x18f6 <_ZN9MaxMatrix11shiftDownLLEbb+0x44>
     18e2:	cc 20       	and	r12, r12
@@ -3130,7 +2867,7 @@ void MaxMatrix::shiftDownLL(bool Rotate, bool ShiftToNeighbourModule)
     18ee:	60 e0       	ldi	r22, 0x00	; 0
     18f0:	c7 01       	movw	r24, r14
     18f2:	0e 94 ed 07 	call	0xfda	; 0xfda <_ZN9MaxMatrix8getRowLLEhhPh>
-			getRowLL(Module + 1, MAXMATRIX_ROW_NUMBER_OF_MODULE - 1, &ModuleBottomRow);
+            getRowLL(Module + 1, MAXMATRIX_ROW_NUMBER_OF_MODULE - 1, &ModuleBottomRow);
     18f6:	bb 24       	eor	r11, r11
     18f8:	b3 94       	inc	r11
     18fa:	bd 0c       	add	r11, r13
@@ -3142,39 +2879,39 @@ void MaxMatrix::shiftDownLL(bool Rotate, bool ShiftToNeighbourModule)
     1906:	c7 01       	movw	r24, r14
     1908:	0e 94 ed 07 	call	0xfda	; 0xfda <_ZN9MaxMatrix8getRowLLEhhPh>
     190c:	f8 01       	movw	r30, r16
-			
-			for(int Column = 0; Column < MAXMATRIX_COLUMN_NUMBER_OF_MODULE; Column++)
+            
+            for(int Column = 0; Column < MAXMATRIX_COLUMN_NUMBER_OF_MODULE; Column++)
     190e:	80 e0       	ldi	r24, 0x00	; 0
     1910:	90 e0       	ldi	r25, 0x00	; 0
-			MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module)] <<= 1;
+            MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module)] <<= 1;
     1912:	20 81       	ld	r18, Z
     1914:	22 0f       	add	r18, r18
     1916:	21 93       	st	Z+, r18
-		for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++)
-		{
-			if(Module == 0 && Rotate) getRowLL(0, MAXMATRIX_ROW_NUMBER_OF_MODULE - 1, &MatrixBottomRow);
-			getRowLL(Module + 1, MAXMATRIX_ROW_NUMBER_OF_MODULE - 1, &ModuleBottomRow);
-			
-			for(int Column = 0; Column < MAXMATRIX_COLUMN_NUMBER_OF_MODULE; Column++)
+        for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++)
+        {
+            if(Module == 0 && Rotate) getRowLL(0, MAXMATRIX_ROW_NUMBER_OF_MODULE - 1, &MatrixBottomRow);
+            getRowLL(Module + 1, MAXMATRIX_ROW_NUMBER_OF_MODULE - 1, &ModuleBottomRow);
+            
+            for(int Column = 0; Column < MAXMATRIX_COLUMN_NUMBER_OF_MODULE; Column++)
     1918:	01 96       	adiw	r24, 0x01	; 1
     191a:	88 30       	cpi	r24, 0x08	; 8
     191c:	91 05       	cpc	r25, r1
     191e:	c9 f7       	brne	.-14     	; 0x1912 <_ZN9MaxMatrix11shiftDownLLEbb+0x60>
-			MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module)] <<= 1;
-			
-			if(Module == MAXMATRIX_NUMBER_OF_MODULES - 1) {
+            MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module)] <<= 1;
+            
+            if(Module == MAXMATRIX_NUMBER_OF_MODULES - 1) {
     1920:	83 e0       	ldi	r24, 0x03	; 3
     1922:	d8 12       	cpse	r13, r24
     1924:	06 c0       	rjmp	.+12     	; 0x1932 <_ZN9MaxMatrix11shiftDownLLEbb+0x80>
-				if(Rotate) setRowLL(Module, 0, MatrixBottomRow);
+                if(Rotate) setRowLL(Module, 0, MatrixBottomRow);
     1926:	cc 20       	and	r12, r12
     1928:	51 f0       	breq	.+20     	; 0x193e <_ZN9MaxMatrix11shiftDownLLEbb+0x8c>
     192a:	29 81       	ldd	r18, Y+1	; 0x01
     192c:	40 e0       	ldi	r20, 0x00	; 0
     192e:	63 e0       	ldi	r22, 0x03	; 3
     1930:	03 c0       	rjmp	.+6      	; 0x1938 <_ZN9MaxMatrix11shiftDownLLEbb+0x86>
-			} else {
-				setRowLL(Module, 0, ModuleBottomRow);
+            } else {
+                setRowLL(Module, 0, ModuleBottomRow);
     1932:	2a 81       	ldd	r18, Y+2	; 0x02
     1934:	40 e0       	ldi	r20, 0x00	; 0
     1936:	6d 2d       	mov	r22, r13
@@ -3183,11 +2920,11 @@ void MaxMatrix::shiftDownLL(bool Rotate, bool ShiftToNeighbourModule)
     193e:	08 5f       	subi	r16, 0xF8	; 248
     1940:	1f 4f       	sbci	r17, 0xFF	; 255
 {
-	byte ModuleBottomRow = 0;
-	byte MatrixBottomRow = 0;
+    byte ModuleBottomRow = 0;
+    byte MatrixBottomRow = 0;
 
-	if(ShiftToNeighbourModule) {
-		for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++)
+    if(ShiftToNeighbourModule) {
+        for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++)
     1942:	84 e0       	ldi	r24, 0x04	; 4
     1944:	b8 16       	cp	r11, r24
     1946:	79 f0       	breq	.+30     	; 0x1966 <_ZN9MaxMatrix11shiftDownLLEbb+0xb4>
@@ -3196,35 +2933,35 @@ void MaxMatrix::shiftDownLL(bool Rotate, bool ShiftToNeighbourModule)
     194c:	9c 01       	movw	r18, r24
     194e:	2b 5d       	subi	r18, 0xDB	; 219
     1950:	3f 4f       	sbci	r19, 0xFF	; 255
-			}
-		}
-	} else {
-	    for(int Column = 0; Column < MAXMATRIX_NUMBER_OF_COLUMNS; Column++) 
-		{
-		    bool BottomBit = bitRead(MatrixBuffer[Column], MAXMATRIX_ROW_NUMBER_OF_MODULE - 1);
+            }
+        }
+    } else {
+        for(int Column = 0; Column < MAXMATRIX_NUMBER_OF_COLUMNS; Column++) 
+        {
+            bool BottomBit = bitRead(MatrixBuffer[Column], MAXMATRIX_ROW_NUMBER_OF_MODULE - 1);
     1952:	90 81       	ld	r25, Z
-		    MatrixBuffer[Column] <<= 1;
+            MatrixBuffer[Column] <<= 1;
     1954:	89 2f       	mov	r24, r25
     1956:	88 0f       	add	r24, r24
-		    if(Rotate) bitWrite(MatrixBuffer[Column], 0, BottomBit);
+            if(Rotate) bitWrite(MatrixBuffer[Column], 0, BottomBit);
     1958:	c1 10       	cpse	r12, r1
     195a:	14 c0       	rjmp	.+40     	; 0x1984 <_ZN9MaxMatrix11shiftDownLLEbb+0xd2>
     195c:	80 83       	st	Z, r24
     195e:	31 96       	adiw	r30, 0x01	; 1
-			} else {
-				setRowLL(Module, 0, ModuleBottomRow);
-			}
-		}
-	} else {
-	    for(int Column = 0; Column < MAXMATRIX_NUMBER_OF_COLUMNS; Column++) 
+            } else {
+                setRowLL(Module, 0, ModuleBottomRow);
+            }
+        }
+    } else {
+        for(int Column = 0; Column < MAXMATRIX_NUMBER_OF_COLUMNS; Column++) 
     1960:	e2 17       	cp	r30, r18
     1962:	f3 07       	cpc	r31, r19
     1964:	b1 f7       	brne	.-20     	; 0x1952 <_ZN9MaxMatrix11shiftDownLLEbb+0xa0>
-		    bool BottomBit = bitRead(MatrixBuffer[Column], MAXMATRIX_ROW_NUMBER_OF_MODULE - 1);
-		    MatrixBuffer[Column] <<= 1;
-		    if(Rotate) bitWrite(MatrixBuffer[Column], 0, BottomBit);
-		}
-	}
+            bool BottomBit = bitRead(MatrixBuffer[Column], MAXMATRIX_ROW_NUMBER_OF_MODULE - 1);
+            MatrixBuffer[Column] <<= 1;
+            if(Rotate) bitWrite(MatrixBuffer[Column], 0, BottomBit);
+        }
+    }
     reload();
     1966:	c7 01       	movw	r24, r14
     1968:	0e 94 c5 05 	call	0xb8a	; 0xb8a <_ZN9MaxMatrix6reloadEv>
@@ -3241,12 +2978,12 @@ void MaxMatrix::shiftDownLL(bool Rotate, bool ShiftToNeighbourModule)
     197e:	cf 90       	pop	r12
     1980:	bf 90       	pop	r11
     1982:	08 95       	ret
-	} else {
-	    for(int Column = 0; Column < MAXMATRIX_NUMBER_OF_COLUMNS; Column++) 
-		{
-		    bool BottomBit = bitRead(MatrixBuffer[Column], MAXMATRIX_ROW_NUMBER_OF_MODULE - 1);
-		    MatrixBuffer[Column] <<= 1;
-		    if(Rotate) bitWrite(MatrixBuffer[Column], 0, BottomBit);
+    } else {
+        for(int Column = 0; Column < MAXMATRIX_NUMBER_OF_COLUMNS; Column++) 
+        {
+            bool BottomBit = bitRead(MatrixBuffer[Column], MAXMATRIX_ROW_NUMBER_OF_MODULE - 1);
+            MatrixBuffer[Column] <<= 1;
+            if(Rotate) bitWrite(MatrixBuffer[Column], 0, BottomBit);
     1984:	97 ff       	sbrs	r25, 7
     1986:	ea cf       	rjmp	.-44     	; 0x195c <_ZN9MaxMatrix11shiftDownLLEbb+0xaa>
     1988:	81 60       	ori	r24, 0x01	; 1
@@ -3266,14 +3003,14 @@ void MaxMatrix::shiftLeft(bool Rotate, bool FillWithZero)
     1994:	ec 01       	movw	r28, r24
     1996:	16 2f       	mov	r17, r22
     1998:	04 2f       	mov	r16, r20
-	if(Orientation == MAXMATRIX_MODULE_ORIENTATION_0) shiftLeftLL(Rotate, FillWithZero, true);
+    if(Orientation == MAXMATRIX_MODULE_ORIENTATION_0) shiftLeftLL(Rotate, FillWithZero, true);
     199a:	8c 81       	ldd	r24, Y+4	; 0x04
     199c:	81 11       	cpse	r24, r1
     199e:	04 c0       	rjmp	.+8      	; 0x19a8 <_ZN9MaxMatrix9shiftLeftEbb+0x1c>
     19a0:	21 e0       	ldi	r18, 0x01	; 1
     19a2:	ce 01       	movw	r24, r28
     19a4:	0e 94 55 0b 	call	0x16aa	; 0x16aa <_ZN9MaxMatrix11shiftLeftLLEbbb>
-	if(Orientation == MAXMATRIX_MODULE_ORIENTATION_90) shiftUpLL(Rotate, true);
+    if(Orientation == MAXMATRIX_MODULE_ORIENTATION_90) shiftUpLL(Rotate, true);
     19a8:	8c 81       	ldd	r24, Y+4	; 0x04
     19aa:	81 30       	cpi	r24, 0x01	; 1
     19ac:	29 f4       	brne	.+10     	; 0x19b8 <_ZN9MaxMatrix9shiftLeftEbb+0x2c>
@@ -3281,7 +3018,7 @@ void MaxMatrix::shiftLeft(bool Rotate, bool FillWithZero)
     19b0:	61 2f       	mov	r22, r17
     19b2:	ce 01       	movw	r24, r28
     19b4:	0e 94 e7 0b 	call	0x17ce	; 0x17ce <_ZN9MaxMatrix9shiftUpLLEbb>
-	if(Orientation == MAXMATRIX_MODULE_ORIENTATION_180) shiftRightLL(Rotate, FillWithZero, true);
+    if(Orientation == MAXMATRIX_MODULE_ORIENTATION_180) shiftRightLL(Rotate, FillWithZero, true);
     19b8:	8c 81       	ldd	r24, Y+4	; 0x04
     19ba:	82 30       	cpi	r24, 0x02	; 2
     19bc:	31 f4       	brne	.+12     	; 0x19ca <_ZN9MaxMatrix9shiftLeftEbb+0x3e>
@@ -3290,7 +3027,7 @@ void MaxMatrix::shiftLeft(bool Rotate, bool FillWithZero)
     19c2:	61 2f       	mov	r22, r17
     19c4:	ce 01       	movw	r24, r28
     19c6:	0e 94 9d 0b 	call	0x173a	; 0x173a <_ZN9MaxMatrix12shiftRightLLEbbb>
-	if(Orientation == MAXMATRIX_MODULE_ORIENTATION_270) shiftDownLL(Rotate, true);
+    if(Orientation == MAXMATRIX_MODULE_ORIENTATION_270) shiftDownLL(Rotate, true);
     19ca:	8c 81       	ldd	r24, Y+4	; 0x04
     19cc:	83 30       	cpi	r24, 0x03	; 3
     19ce:	49 f4       	brne	.+18     	; 0x19e2 <_ZN9MaxMatrix9shiftLeftEbb+0x56>
@@ -3304,10 +3041,10 @@ void MaxMatrix::shiftLeft(bool Rotate, bool FillWithZero)
     19dc:	0f 91       	pop	r16
 void MaxMatrix::shiftLeft(bool Rotate, bool FillWithZero)
 {
-	if(Orientation == MAXMATRIX_MODULE_ORIENTATION_0) shiftLeftLL(Rotate, FillWithZero, true);
-	if(Orientation == MAXMATRIX_MODULE_ORIENTATION_90) shiftUpLL(Rotate, true);
-	if(Orientation == MAXMATRIX_MODULE_ORIENTATION_180) shiftRightLL(Rotate, FillWithZero, true);
-	if(Orientation == MAXMATRIX_MODULE_ORIENTATION_270) shiftDownLL(Rotate, true);
+    if(Orientation == MAXMATRIX_MODULE_ORIENTATION_0) shiftLeftLL(Rotate, FillWithZero, true);
+    if(Orientation == MAXMATRIX_MODULE_ORIENTATION_90) shiftUpLL(Rotate, true);
+    if(Orientation == MAXMATRIX_MODULE_ORIENTATION_180) shiftRightLL(Rotate, FillWithZero, true);
+    if(Orientation == MAXMATRIX_MODULE_ORIENTATION_270) shiftDownLL(Rotate, true);
     19de:	0c 94 59 0c 	jmp	0x18b2	; 0x18b2 <_ZN9MaxMatrix11shiftDownLLEbb>
 } /* shiftLeft */
     19e2:	df 91       	pop	r29
@@ -3334,14 +3071,15 @@ void MaxMatrix::charShiftTask()
     19fa:	8c a5       	ldd	r24, Y+44	; 0x2c
     19fc:	8f 5f       	subi	r24, 0xFF	; 255
     19fe:	8c a7       	std	Y+44, r24	; 0x2c
-	
-	if(SpriteShiftCounter <= SpriteBuffer[ASCII_TABLE_SPRITE_WIDTH]) {
+    
+    /* if sprite is completed set only spaces */
+    if(SpriteShiftCounter <= SpriteBuffer[ASCII_TABLE_SPRITE_WIDTH]) {
     1a00:	2d a1       	ldd	r18, Y+37	; 0x25
     1a02:	48 2f       	mov	r20, r24
     1a04:	50 e0       	ldi	r21, 0x00	; 0
     1a06:	28 17       	cp	r18, r24
     1a08:	70 f0       	brcs	.+28     	; 0x1a26 <_ZN9MaxMatrix13charShiftTaskEv+0x3a>
-		setSprite(MAXMATRIX_NUMBER_OF_COLUMNS - SpriteShiftCounter, 0, &SpriteBuffer);
+        setSprite(MAXMATRIX_NUMBER_OF_COLUMNS - SpriteShiftCounter, 0, &SpriteBuffer);
     1a0a:	9e 01       	movw	r18, r28
     1a0c:	2b 5d       	subi	r18, 0xDB	; 219
     1a0e:	3f 4f       	sbci	r19, 0xFF	; 255
@@ -3352,23 +3090,24 @@ void MaxMatrix::charShiftTask()
     1a18:	40 e0       	ldi	r20, 0x00	; 0
     1a1a:	50 e0       	ldi	r21, 0x00	; 0
     1a1c:	ce 01       	movw	r24, r28
-	}
-	else if(SpriteShiftCounter == SpriteBuffer[ASCII_TABLE_SPRITE_WIDTH] + SpaceBetweenChars + 1) {
+    /* if sprite and spaces are completed task has finished */
+    else if(SpriteShiftCounter == SpriteBuffer[ASCII_TABLE_SPRITE_WIDTH] + SpaceBetweenChars + 1) {
         if(MAXMATRIX_STATE_CHAR_SHIFT == State) State = MAXMATRIX_STATE_READY;
         SpriteShiftCounter = MAXMATRIX_SPRITE_SHIFT_STATE_READY;
     }
 } /* charShiftTask */
     1a1e:	df 91       	pop	r29
     1a20:	cf 91       	pop	r28
-{
     shiftLeft(false, true);
     SpriteShiftCounter++;
-	
-	if(SpriteShiftCounter <= SpriteBuffer[ASCII_TABLE_SPRITE_WIDTH]) {
-		setSprite(MAXMATRIX_NUMBER_OF_COLUMNS - SpriteShiftCounter, 0, &SpriteBuffer);
+    
+    /* if sprite is completed set only spaces */
+    if(SpriteShiftCounter <= SpriteBuffer[ASCII_TABLE_SPRITE_WIDTH]) {
+        setSprite(MAXMATRIX_NUMBER_OF_COLUMNS - SpriteShiftCounter, 0, &SpriteBuffer);
     1a22:	0c 94 70 0a 	jmp	0x14e0	; 0x14e0 <_ZN9MaxMatrix9setSpriteEiiPA7_Kh>
-	}
-	else if(SpriteShiftCounter == SpriteBuffer[ASCII_TABLE_SPRITE_WIDTH] + SpaceBetweenChars + 1) {
+    }
+    /* if sprite and spaces are completed task has finished */
+    else if(SpriteShiftCounter == SpriteBuffer[ASCII_TABLE_SPRITE_WIDTH] + SpaceBetweenChars + 1) {
     1a26:	8d a5       	ldd	r24, Y+45	; 0x2d
     1a28:	90 e0       	ldi	r25, 0x00	; 0
     1a2a:	82 0f       	add	r24, r18
@@ -3408,6 +3147,7 @@ void MaxMatrix::stringShiftTask()
     1a56:	8c 01       	movw	r16, r24
     spriteIndexType SpriteIndex;
     
+    /* has char shift task finished shifting sprite or char */
     if(SpriteShiftCounter == MAXMATRIX_SPRITE_SHIFT_STATE_READY)
     1a58:	dc 01       	movw	r26, r24
     1a5a:	9c 96       	adiw	r26, 0x2c	; 44
@@ -3416,7 +3156,7 @@ void MaxMatrix::stringShiftTask()
     1a60:	81 11       	cpse	r24, r1
     1a62:	2e c0       	rjmp	.+92     	; 0x1ac0 <_ZN9MaxMatrix15stringShiftTaskEv+0x78>
     {
-		/* is end of string reached? */
+        /* If end of string is not reached, load next char */
         if(*String != STD_NULL_CHARACTER) {
     1a64:	9e 96       	adiw	r26, 0x2e	; 46
     1a66:	ed 91       	ld	r30, X+
@@ -3457,7 +3197,7 @@ void MaxMatrix::stringShiftTask()
     1aa8:	8e 93       	st	-X, r24
     1aaa:	9e 97       	sbiw	r26, 0x2e	; 46
     1aac:	0c c0       	rjmp	.+24     	; 0x1ac6 <_ZN9MaxMatrix15stringShiftTaskEv+0x7e>
-        } else {
+        } else { /* otherwise task has finished */
             State = MAXMATRIX_STATE_READY;
     1aae:	82 e0       	ldi	r24, 0x02	; 2
     1ab0:	f8 01       	movw	r30, r16
@@ -3470,7 +3210,7 @@ void MaxMatrix::stringShiftTask()
     1abe:	03 c0       	rjmp	.+6      	; 0x1ac6 <_ZN9MaxMatrix15stringShiftTaskEv+0x7e>
         }
     } else {
-		/* go on shifting */
+        /* go on shifting Sprite */
         charShiftTask();
     1ac0:	c8 01       	movw	r24, r16
     1ac2:	0e 94 f6 0c 	call	0x19ec	; 0x19ec <_ZN9MaxMatrix13charShiftTaskEv>
@@ -3520,6 +3260,12 @@ void MaxMatrix::shiftTask()
     1af8:	08 95       	ret
 
 00001afa <__vector_13>:
+  else if(pin == 2 || pin == 10) {
+    DDRB |= _BV(PORTB2);
+    TCCR1A |= _BV(COM1B1);
+  }
+  setPwmDuty(pin, duty);
+  resume();			// Lex - make sure the clock is running.  We don't want to restart the count, in case we are starting the second WGM
     1afa:	1f 92       	push	r1
     1afc:	0f 92       	push	r0
     1afe:	0f b6       	in	r0, 0x3f	; 63
@@ -3676,6 +3422,12 @@ void MaxMatrix::shiftTask()
     1c36:	08 95       	ret
 
 00001c38 <_ZN8TimerOne15attachInterruptEPFvvEl>:
+  if(pin == 1 || pin == 9)       TCCR1A &= ~_BV(COM1A1);   // clear the bit that enables pwm on PB1
+  else if(pin == 2 || pin == 10) TCCR1A &= ~_BV(COM1B1);   // clear the bit that enables pwm on PB2
+}
+
+void TimerOne::attachInterrupt(void (*isr)(), long microseconds)
+{
     1c38:	0f 93       	push	r16
     1c3a:	1f 93       	push	r17
     1c3c:	cf 93       	push	r28
@@ -3684,30 +3436,37 @@ void MaxMatrix::shiftTask()
     1c42:	8b 01       	movw	r16, r22
     1c44:	ba 01       	movw	r22, r20
     1c46:	a9 01       	movw	r20, r18
+  if(microseconds > 0) setPeriod(microseconds);
     1c48:	14 16       	cp	r1, r20
     1c4a:	15 06       	cpc	r1, r21
     1c4c:	16 06       	cpc	r1, r22
     1c4e:	17 06       	cpc	r1, r23
     1c50:	14 f4       	brge	.+4      	; 0x1c56 <_ZN8TimerOne15attachInterruptEPFvvEl+0x1e>
     1c52:	0e 94 a4 0d 	call	0x1b48	; 0x1b48 <_ZN8TimerOne9setPeriodEl>
+  isrCallback = isr;                                       // register the user's callback with the real ISR
     1c56:	1d 83       	std	Y+5, r17	; 0x05
     1c58:	0c 83       	std	Y+4, r16	; 0x04
+  TIMSK1 = _BV(TOIE1);                                     // sets the timer overflow interrupt enable bit
     1c5a:	81 e0       	ldi	r24, 0x01	; 1
     1c5c:	80 93 6f 00 	sts	0x006F, r24	; 0x80006f <__TEXT_REGION_LENGTH__+0x7e006f>
+	// might be running with interrupts disabled (eg inside an ISR), so don't touch the global state
+//  sei();
+  resume();												
     1c60:	ce 01       	movw	r24, r28
+}
     1c62:	df 91       	pop	r29
     1c64:	cf 91       	pop	r28
     1c66:	1f 91       	pop	r17
     1c68:	0f 91       	pop	r16
+  if(microseconds > 0) setPeriod(microseconds);
+  isrCallback = isr;                                       // register the user's callback with the real ISR
+  TIMSK1 = _BV(TOIE1);                                     // sets the timer overflow interrupt enable bit
+	// might be running with interrupts disabled (eg inside an ISR), so don't touch the global state
+//  sei();
+  resume();												
     1c6a:	0c 94 13 0e 	jmp	0x1c26	; 0x1c26 <_ZN8TimerOne6resumeEv>
 
 00001c6e <__vector_9>:
-
-/******************************************************************************************************************************************************
-  I S R   F U N C T I O N S
-******************************************************************************************************************************************************/
-ISR(TIMER2_OVF_vect)
-{
     1c6e:	1f 92       	push	r1
     1c70:	0f 92       	push	r0
     1c72:	0f b6       	in	r0, 0x3f	; 63
@@ -3725,11 +3484,9 @@ ISR(TIMER2_OVF_vect)
     1c8a:	bf 93       	push	r27
     1c8c:	ef 93       	push	r30
     1c8e:	ff 93       	push	r31
-	Timer2.TimerOverflowCallback();
     1c90:	e0 91 5f 02 	lds	r30, 0x025F	; 0x80025f <Timer2+0x4>
     1c94:	f0 91 60 02 	lds	r31, 0x0260	; 0x800260 <Timer2+0x5>
     1c98:	09 95       	icall
-}
     1c9a:	ff 91       	pop	r31
     1c9c:	ef 91       	pop	r30
     1c9e:	bf 91       	pop	r27
@@ -3749,31 +3506,16 @@ ISR(TIMER2_OVF_vect)
     1cba:	18 95       	reti
 
 00001cbc <_GLOBAL__sub_I_Timer2>:
- *    
- *  \return         -
- *****************************************************************************************************************************************************/
-TimerTwo::TimerTwo()
-{
-	State = TIMERTWO_STATE_NONE;
     1cbc:	eb e5       	ldi	r30, 0x5B	; 91
     1cbe:	f2 e0       	ldi	r31, 0x02	; 2
     1cc0:	10 82       	st	Z, r1
-	TimerOverflowCallback = NULL;
     1cc2:	15 82       	std	Z+5, r1	; 0x05
     1cc4:	14 82       	std	Z+4, r1	; 0x04
-	ClockSelectBitGroup = TIMERTWO_REG_CS_NO_CLOCK;
     1cc6:	11 82       	std	Z+1, r1	; 0x01
     1cc8:	08 95       	ret
 
 00001cca <_ZN14HardwareSerial9availableEv>:
-  // clear any received data
-  _rx_buffer_head = _rx_buffer_tail;
-}
-
-int HardwareSerial::available(void)
-{
     1cca:	fc 01       	movw	r30, r24
-  return ((unsigned int)(SERIAL_RX_BUFFER_SIZE + _rx_buffer_head - _rx_buffer_tail)) % SERIAL_RX_BUFFER_SIZE;
     1ccc:	91 8d       	ldd	r25, Z+25	; 0x19
     1cce:	22 8d       	ldd	r18, Z+26	; 0x1a
     1cd0:	89 2f       	mov	r24, r25
@@ -3782,95 +3524,49 @@ int HardwareSerial::available(void)
     1cd6:	9f 4f       	sbci	r25, 0xFF	; 255
     1cd8:	82 1b       	sub	r24, r18
     1cda:	91 09       	sbc	r25, r1
-}
     1cdc:	8f 73       	andi	r24, 0x3F	; 63
     1cde:	99 27       	eor	r25, r25
     1ce0:	08 95       	ret
 
 00001ce2 <_ZN14HardwareSerial4peekEv>:
-
-int HardwareSerial::peek(void)
-{
     1ce2:	fc 01       	movw	r30, r24
-  if (_rx_buffer_head == _rx_buffer_tail) {
     1ce4:	91 8d       	ldd	r25, Z+25	; 0x19
     1ce6:	82 8d       	ldd	r24, Z+26	; 0x1a
     1ce8:	98 17       	cp	r25, r24
     1cea:	31 f0       	breq	.+12     	; 0x1cf8 <_ZN14HardwareSerial4peekEv+0x16>
-    return -1;
-  } else {
-    return _rx_buffer[_rx_buffer_tail];
     1cec:	82 8d       	ldd	r24, Z+26	; 0x1a
     1cee:	e8 0f       	add	r30, r24
     1cf0:	f1 1d       	adc	r31, r1
     1cf2:	85 8d       	ldd	r24, Z+29	; 0x1d
     1cf4:	90 e0       	ldi	r25, 0x00	; 0
     1cf6:	08 95       	ret
-}
-
-int HardwareSerial::peek(void)
-{
-  if (_rx_buffer_head == _rx_buffer_tail) {
-    return -1;
     1cf8:	8f ef       	ldi	r24, 0xFF	; 255
     1cfa:	9f ef       	ldi	r25, 0xFF	; 255
-  } else {
-    return _rx_buffer[_rx_buffer_tail];
-  }
-}
     1cfc:	08 95       	ret
 
 00001cfe <_ZN14HardwareSerial4readEv>:
-
-int HardwareSerial::read(void)
-{
     1cfe:	fc 01       	movw	r30, r24
-  // if the head isn't ahead of the tail, we don't have any characters
-  if (_rx_buffer_head == _rx_buffer_tail) {
     1d00:	91 8d       	ldd	r25, Z+25	; 0x19
     1d02:	82 8d       	ldd	r24, Z+26	; 0x1a
     1d04:	98 17       	cp	r25, r24
     1d06:	61 f0       	breq	.+24     	; 0x1d20 <_ZN14HardwareSerial4readEv+0x22>
-    return -1;
-  } else {
-    unsigned char c = _rx_buffer[_rx_buffer_tail];
     1d08:	82 8d       	ldd	r24, Z+26	; 0x1a
     1d0a:	df 01       	movw	r26, r30
     1d0c:	a8 0f       	add	r26, r24
     1d0e:	b1 1d       	adc	r27, r1
     1d10:	5d 96       	adiw	r26, 0x1d	; 29
     1d12:	8c 91       	ld	r24, X
-    _rx_buffer_tail = (rx_buffer_index_t)(_rx_buffer_tail + 1) % SERIAL_RX_BUFFER_SIZE;
     1d14:	92 8d       	ldd	r25, Z+26	; 0x1a
     1d16:	9f 5f       	subi	r25, 0xFF	; 255
     1d18:	9f 73       	andi	r25, 0x3F	; 63
     1d1a:	92 8f       	std	Z+26, r25	; 0x1a
-    return c;
     1d1c:	90 e0       	ldi	r25, 0x00	; 0
     1d1e:	08 95       	ret
-
-int HardwareSerial::read(void)
-{
-  // if the head isn't ahead of the tail, we don't have any characters
-  if (_rx_buffer_head == _rx_buffer_tail) {
-    return -1;
     1d20:	8f ef       	ldi	r24, 0xFF	; 255
     1d22:	9f ef       	ldi	r25, 0xFF	; 255
-  } else {
-    unsigned char c = _rx_buffer[_rx_buffer_tail];
-    _rx_buffer_tail = (rx_buffer_index_t)(_rx_buffer_tail + 1) % SERIAL_RX_BUFFER_SIZE;
-    return c;
-  }
-}
     1d24:	08 95       	ret
 
 00001d26 <_Z14serialEventRunv>:
-#endif
-
-void serialEventRun(void)
-{
-#if defined(HAVE_HWSERIAL0)
-  if (Serial0_available && serialEvent && Serial0_available()) serialEvent();
     1d26:	89 ee       	ldi	r24, 0xE9	; 233
     1d28:	9f e0       	ldi	r25, 0x0F	; 15
     1d2a:	89 2b       	or	r24, r25
@@ -3885,16 +3581,7 @@ void serialEventRun(void)
     1d40:	08 95       	ret
 
 00001d42 <_ZN14HardwareSerial17_tx_udr_empty_irqEv>:
-}
-
-// Actual interrupt handlers //////////////////////////////////////////////////////////////
-
-void HardwareSerial::_tx_udr_empty_irq(void)
-{
     1d42:	fc 01       	movw	r30, r24
-  // If interrupts are enabled, there must be more data in the output
-  // buffer. Send the next byte
-  unsigned char c = _tx_buffer[_tx_buffer_tail];
     1d44:	84 8d       	ldd	r24, Z+28	; 0x1c
     1d46:	df 01       	movw	r26, r30
     1d48:	a8 0f       	add	r26, r24
@@ -3902,36 +3589,24 @@ void HardwareSerial::_tx_udr_empty_irq(void)
     1d4c:	a3 5a       	subi	r26, 0xA3	; 163
     1d4e:	bf 4f       	sbci	r27, 0xFF	; 255
     1d50:	2c 91       	ld	r18, X
-  _tx_buffer_tail = (_tx_buffer_tail + 1) % SERIAL_TX_BUFFER_SIZE;
     1d52:	84 8d       	ldd	r24, Z+28	; 0x1c
     1d54:	90 e0       	ldi	r25, 0x00	; 0
     1d56:	01 96       	adiw	r24, 0x01	; 1
     1d58:	8f 73       	andi	r24, 0x3F	; 63
     1d5a:	99 27       	eor	r25, r25
     1d5c:	84 8f       	std	Z+28, r24	; 0x1c
-
-  *_udr = c;
     1d5e:	a6 89       	ldd	r26, Z+22	; 0x16
     1d60:	b7 89       	ldd	r27, Z+23	; 0x17
     1d62:	2c 93       	st	X, r18
-
-  // clear the TXC bit -- "can be cleared by writing a one to its bit
-  // location". This makes sure flush() won't return until the bytes
-  // actually got written
-  sbi(*_ucsra, TXC0);
     1d64:	a0 89       	ldd	r26, Z+16	; 0x10
     1d66:	b1 89       	ldd	r27, Z+17	; 0x11
     1d68:	8c 91       	ld	r24, X
     1d6a:	80 64       	ori	r24, 0x40	; 64
     1d6c:	8c 93       	st	X, r24
-
-  if (_tx_buffer_head == _tx_buffer_tail) {
     1d6e:	93 8d       	ldd	r25, Z+27	; 0x1b
     1d70:	84 8d       	ldd	r24, Z+28	; 0x1c
     1d72:	98 13       	cpse	r25, r24
     1d74:	06 c0       	rjmp	.+12     	; 0x1d82 <_ZN14HardwareSerial17_tx_udr_empty_irqEv+0x40>
-    // Buffer empty, so disable interrupts
-    cbi(*_ucsrb, UDRIE0);
     1d76:	02 88       	ldd	r0, Z+18	; 0x12
     1d78:	f3 89       	ldd	r31, Z+19	; 0x13
     1d7a:	e0 2d       	mov	r30, r0
@@ -3941,25 +3616,12 @@ void HardwareSerial::_tx_udr_empty_irq(void)
     1d82:	08 95       	ret
 
 00001d84 <_ZN14HardwareSerial5flushEv>:
-  if (head >= tail) return SERIAL_TX_BUFFER_SIZE - 1 - head + tail;
-  return tail - head - 1;
-}
-
-void HardwareSerial::flush()
-{
     1d84:	cf 93       	push	r28
     1d86:	df 93       	push	r29
     1d88:	ec 01       	movw	r28, r24
-  // If we have never written a byte, no need to flush. This special
-  // case is needed since there is no way to force the TXC (transmit
-  // complete) bit to 1 during initialization
-  if (!_written)
     1d8a:	88 8d       	ldd	r24, Y+24	; 0x18
     1d8c:	88 23       	and	r24, r24
     1d8e:	c9 f0       	breq	.+50     	; 0x1dc2 <_ZN14HardwareSerial5flushEv+0x3e>
-    return;
-
-  while (bit_is_set(*_ucsrb, UDRIE0) || bit_is_clear(*_ucsra, TXC0)) {
     1d90:	ea 89       	ldd	r30, Y+18	; 0x12
     1d92:	fb 89       	ldd	r31, Y+19	; 0x13
     1d94:	80 81       	ld	r24, Z
@@ -3970,38 +3632,25 @@ void HardwareSerial::flush()
     1d9e:	8c 91       	ld	r24, X
     1da0:	86 fd       	sbrc	r24, 6
     1da2:	0f c0       	rjmp	.+30     	; 0x1dc2 <_ZN14HardwareSerial5flushEv+0x3e>
-    if (bit_is_clear(SREG, SREG_I) && bit_is_set(*_ucsrb, UDRIE0))
     1da4:	0f b6       	in	r0, 0x3f	; 63
     1da6:	07 fc       	sbrc	r0, 7
     1da8:	f5 cf       	rjmp	.-22     	; 0x1d94 <_ZN14HardwareSerial5flushEv+0x10>
     1daa:	80 81       	ld	r24, Z
     1dac:	85 ff       	sbrs	r24, 5
     1dae:	f2 cf       	rjmp	.-28     	; 0x1d94 <_ZN14HardwareSerial5flushEv+0x10>
-	// Interrupts are globally disabled, but the DR empty
-	// interrupt should be enabled, so poll the DR empty flag to
-	// prevent deadlock
-	if (bit_is_set(*_ucsra, UDRE0))
     1db0:	a8 89       	ldd	r26, Y+16	; 0x10
     1db2:	b9 89       	ldd	r27, Y+17	; 0x11
     1db4:	8c 91       	ld	r24, X
     1db6:	85 ff       	sbrs	r24, 5
     1db8:	ed cf       	rjmp	.-38     	; 0x1d94 <_ZN14HardwareSerial5flushEv+0x10>
-	  _tx_udr_empty_irq();
     1dba:	ce 01       	movw	r24, r28
     1dbc:	0e 94 a1 0e 	call	0x1d42	; 0x1d42 <_ZN14HardwareSerial17_tx_udr_empty_irqEv>
     1dc0:	e7 cf       	rjmp	.-50     	; 0x1d90 <_ZN14HardwareSerial5flushEv+0xc>
-  }
-  // If we get here, nothing is queued anymore (DRIE is disabled) and
-  // the hardware finished tranmission (TXC is set).
-}
     1dc2:	df 91       	pop	r29
     1dc4:	cf 91       	pop	r28
     1dc6:	08 95       	ret
 
 00001dc8 <_ZN14HardwareSerial5writeEh>:
-
-size_t HardwareSerial::write(uint8_t c)
-{
     1dc8:	ef 92       	push	r14
     1dca:	ff 92       	push	r15
     1dcc:	0f 93       	push	r16
@@ -4009,11 +3658,6 @@ size_t HardwareSerial::write(uint8_t c)
     1dd0:	cf 93       	push	r28
     1dd2:	df 93       	push	r29
     1dd4:	ec 01       	movw	r28, r24
-  // If the buffer and the data register is empty, just write the byte
-  // to the data register and be done. This shortcut helps
-  // significantly improve the effective datarate at high (>
-  // 500kbit/s) bitrates, where interrupt overhead becomes a slowdown.
-  if (_tx_buffer_head == _tx_buffer_tail && bit_is_set(*_ucsra, UDRE0)) {
     1dd6:	9b 8d       	ldd	r25, Y+27	; 0x1b
     1dd8:	8c 8d       	ldd	r24, Y+28	; 0x1c
     1dda:	98 13       	cpse	r25, r24
@@ -4024,11 +3668,6 @@ size_t HardwareSerial::write(uint8_t c)
     1de4:	85 fd       	sbrc	r24, 5
     1de6:	27 c0       	rjmp	.+78     	; 0x1e36 <_ZN14HardwareSerial5writeEh+0x6e>
     1de8:	f6 2e       	mov	r15, r22
-    *_udr = c;
-    sbi(*_ucsra, TXC0);
-    return 1;
-  }
-  tx_buffer_index_t i = (_tx_buffer_head + 1) % SERIAL_TX_BUFFER_SIZE;
     1dea:	0b 8d       	ldd	r16, Y+27	; 0x1b
     1dec:	10 e0       	ldi	r17, 0x00	; 0
     1dee:	0f 5f       	subi	r16, 0xFF	; 255
@@ -4036,37 +3675,20 @@ size_t HardwareSerial::write(uint8_t c)
     1df2:	0f 73       	andi	r16, 0x3F	; 63
     1df4:	11 27       	eor	r17, r17
     1df6:	e0 2e       	mov	r14, r16
-	
-  // If the output buffer is full, there's nothing for it other than to 
-  // wait for the interrupt handler to empty it a bit
-  while (i == _tx_buffer_tail) {
     1df8:	8c 8d       	ldd	r24, Y+28	; 0x1c
     1dfa:	e8 12       	cpse	r14, r24
     1dfc:	0c c0       	rjmp	.+24     	; 0x1e16 <_ZN14HardwareSerial5writeEh+0x4e>
-    if (bit_is_clear(SREG, SREG_I)) {
     1dfe:	0f b6       	in	r0, 0x3f	; 63
     1e00:	07 fc       	sbrc	r0, 7
     1e02:	fa cf       	rjmp	.-12     	; 0x1df8 <_ZN14HardwareSerial5writeEh+0x30>
-      // Interrupts are disabled, so we'll have to poll the data
-      // register empty flag ourselves. If it is set, pretend an
-      // interrupt has happened and call the handler to free up
-      // space for us.
-      if(bit_is_set(*_ucsra, UDRE0))
     1e04:	e8 89       	ldd	r30, Y+16	; 0x10
     1e06:	f9 89       	ldd	r31, Y+17	; 0x11
     1e08:	80 81       	ld	r24, Z
     1e0a:	85 ff       	sbrs	r24, 5
     1e0c:	f5 cf       	rjmp	.-22     	; 0x1df8 <_ZN14HardwareSerial5writeEh+0x30>
-	_tx_udr_empty_irq();
     1e0e:	ce 01       	movw	r24, r28
     1e10:	0e 94 a1 0e 	call	0x1d42	; 0x1d42 <_ZN14HardwareSerial17_tx_udr_empty_irqEv>
     1e14:	f1 cf       	rjmp	.-30     	; 0x1df8 <_ZN14HardwareSerial5writeEh+0x30>
-    } else {
-      // nop, the interrupt handler will free up space for us
-    }
-  }
-
-  _tx_buffer[_tx_buffer_head] = c;
     1e16:	8b 8d       	ldd	r24, Y+27	; 0x1b
     1e18:	fe 01       	movw	r30, r28
     1e1a:	e8 0f       	add	r30, r24
@@ -4074,40 +3696,23 @@ size_t HardwareSerial::write(uint8_t c)
     1e1e:	e3 5a       	subi	r30, 0xA3	; 163
     1e20:	ff 4f       	sbci	r31, 0xFF	; 255
     1e22:	f0 82       	st	Z, r15
-  _tx_buffer_head = i;
     1e24:	0b 8f       	std	Y+27, r16	; 0x1b
-	
-  sbi(*_ucsrb, UDRIE0);
     1e26:	ea 89       	ldd	r30, Y+18	; 0x12
     1e28:	fb 89       	ldd	r31, Y+19	; 0x13
     1e2a:	80 81       	ld	r24, Z
     1e2c:	80 62       	ori	r24, 0x20	; 32
     1e2e:	80 83       	st	Z, r24
-  _written = true;
     1e30:	81 e0       	ldi	r24, 0x01	; 1
     1e32:	88 8f       	std	Y+24, r24	; 0x18
     1e34:	08 c0       	rjmp	.+16     	; 0x1e46 <_ZN14HardwareSerial5writeEh+0x7e>
-  // If the buffer and the data register is empty, just write the byte
-  // to the data register and be done. This shortcut helps
-  // significantly improve the effective datarate at high (>
-  // 500kbit/s) bitrates, where interrupt overhead becomes a slowdown.
-  if (_tx_buffer_head == _tx_buffer_tail && bit_is_set(*_ucsra, UDRE0)) {
-    *_udr = c;
     1e36:	ee 89       	ldd	r30, Y+22	; 0x16
     1e38:	ff 89       	ldd	r31, Y+23	; 0x17
     1e3a:	60 83       	st	Z, r22
-    sbi(*_ucsra, TXC0);
     1e3c:	e8 89       	ldd	r30, Y+16	; 0x10
     1e3e:	f9 89       	ldd	r31, Y+17	; 0x11
     1e40:	80 81       	ld	r24, Z
     1e42:	80 64       	ori	r24, 0x40	; 64
     1e44:	80 83       	st	Z, r24
-	
-  sbi(*_ucsrb, UDRIE0);
-  _written = true;
-  
-  return 1;
-}
     1e46:	81 e0       	ldi	r24, 0x01	; 1
     1e48:	90 e0       	ldi	r25, 0x00	; 0
     1e4a:	df 91       	pop	r29
@@ -4119,12 +3724,6 @@ size_t HardwareSerial::write(uint8_t c)
     1e56:	08 95       	ret
 
 00001e58 <_ZN14HardwareSerial5beginEmh>:
-}
-
-// Public Methods //////////////////////////////////////////////////////////////
-
-void HardwareSerial::begin(unsigned long baud, byte config)
-{
     1e58:	cf 92       	push	r12
     1e5a:	df 92       	push	r13
     1e5c:	ef 92       	push	r14
@@ -4136,30 +3735,15 @@ void HardwareSerial::begin(unsigned long baud, byte config)
     1e68:	6a 01       	movw	r12, r20
     1e6a:	7b 01       	movw	r14, r22
     1e6c:	12 2f       	mov	r17, r18
-  // Try u2x mode first
-  uint16_t baud_setting = (F_CPU / 4 / baud - 1) / 2;
-  *_ucsra = 1 << U2X0;
     1e6e:	e8 89       	ldd	r30, Y+16	; 0x10
     1e70:	f9 89       	ldd	r31, Y+17	; 0x11
     1e72:	82 e0       	ldi	r24, 0x02	; 2
     1e74:	80 83       	st	Z, r24
-  // hardcoded exception for 57600 for compatibility with the bootloader
-  // shipped with the Duemilanove and previous boards and the firmware
-  // on the 8U2 on the Uno and Mega 2560. Also, The baud_setting cannot
-  // be > 4095, so switch back to non-u2x mode if the baud rate is too
-  // low.
-  if (((F_CPU == 16000000UL) && (baud == 57600)) || (baud_setting >4095))
     1e76:	41 15       	cp	r20, r1
     1e78:	51 4e       	sbci	r21, 0xE1	; 225
     1e7a:	61 05       	cpc	r22, r1
     1e7c:	71 05       	cpc	r23, r1
     1e7e:	b1 f0       	breq	.+44     	; 0x1eac <_ZN14HardwareSerial5beginEmh+0x54>
-// Public Methods //////////////////////////////////////////////////////////////
-
-void HardwareSerial::begin(unsigned long baud, byte config)
-{
-  // Try u2x mode first
-  uint16_t baud_setting = (F_CPU / 4 / baud - 1) / 2;
     1e80:	60 e0       	ldi	r22, 0x00	; 0
     1e82:	79 e0       	ldi	r23, 0x09	; 9
     1e84:	8d e3       	ldi	r24, 0x3D	; 61
@@ -4177,22 +3761,13 @@ void HardwareSerial::begin(unsigned long baud, byte config)
     1e9e:	97 95       	ror	r25
     1ea0:	87 95       	ror	r24
     1ea2:	ac 01       	movw	r20, r24
-  // hardcoded exception for 57600 for compatibility with the bootloader
-  // shipped with the Duemilanove and previous boards and the firmware
-  // on the 8U2 on the Uno and Mega 2560. Also, The baud_setting cannot
-  // be > 4095, so switch back to non-u2x mode if the baud rate is too
-  // low.
-  if (((F_CPU == 16000000UL) && (baud == 57600)) || (baud_setting >4095))
     1ea4:	41 15       	cp	r20, r1
     1ea6:	80 e1       	ldi	r24, 0x10	; 16
     1ea8:	58 07       	cpc	r21, r24
     1eaa:	a8 f0       	brcs	.+42     	; 0x1ed6 <_ZN14HardwareSerial5beginEmh+0x7e>
-  {
-    *_ucsra = 0;
     1eac:	e8 89       	ldd	r30, Y+16	; 0x10
     1eae:	f9 89       	ldd	r31, Y+17	; 0x11
     1eb0:	10 82       	st	Z, r1
-    baud_setting = (F_CPU / 8 / baud - 1) / 2;
     1eb2:	60 e8       	ldi	r22, 0x80	; 128
     1eb4:	74 e8       	ldi	r23, 0x84	; 132
     1eb6:	8e e1       	ldi	r24, 0x1E	; 30
@@ -4210,55 +3785,36 @@ void HardwareSerial::begin(unsigned long baud, byte config)
     1ed0:	67 95       	ror	r22
     1ed2:	57 95       	ror	r21
     1ed4:	47 95       	ror	r20
-  }
-
-  // assign the baud_setting, a.k.a. ubrr (USART Baud Rate Register)
-  *_ubrrh = baud_setting >> 8;
     1ed6:	ec 85       	ldd	r30, Y+12	; 0x0c
     1ed8:	fd 85       	ldd	r31, Y+13	; 0x0d
     1eda:	50 83       	st	Z, r21
-  *_ubrrl = baud_setting;
     1edc:	ee 85       	ldd	r30, Y+14	; 0x0e
     1ede:	ff 85       	ldd	r31, Y+15	; 0x0f
     1ee0:	40 83       	st	Z, r20
-
-  _written = false;
     1ee2:	18 8e       	std	Y+24, r1	; 0x18
-
-  //set the data bits, parity, and stop bits
-#if defined(__AVR_ATmega8__)
-  config |= 0x80; // select UCSRC register (shared with UBRRH)
-#endif
-  *_ucsrc = config;
     1ee4:	ec 89       	ldd	r30, Y+20	; 0x14
     1ee6:	fd 89       	ldd	r31, Y+21	; 0x15
     1ee8:	10 83       	st	Z, r17
-  
-  sbi(*_ucsrb, RXEN0);
     1eea:	ea 89       	ldd	r30, Y+18	; 0x12
     1eec:	fb 89       	ldd	r31, Y+19	; 0x13
     1eee:	80 81       	ld	r24, Z
     1ef0:	80 61       	ori	r24, 0x10	; 16
     1ef2:	80 83       	st	Z, r24
-  sbi(*_ucsrb, TXEN0);
     1ef4:	ea 89       	ldd	r30, Y+18	; 0x12
     1ef6:	fb 89       	ldd	r31, Y+19	; 0x13
     1ef8:	80 81       	ld	r24, Z
     1efa:	88 60       	ori	r24, 0x08	; 8
     1efc:	80 83       	st	Z, r24
-  sbi(*_ucsrb, RXCIE0);
     1efe:	ea 89       	ldd	r30, Y+18	; 0x12
     1f00:	fb 89       	ldd	r31, Y+19	; 0x13
     1f02:	80 81       	ld	r24, Z
     1f04:	80 68       	ori	r24, 0x80	; 128
     1f06:	80 83       	st	Z, r24
-  cbi(*_ucsrb, UDRIE0);
     1f08:	ea 89       	ldd	r30, Y+18	; 0x12
     1f0a:	fb 89       	ldd	r31, Y+19	; 0x13
     1f0c:	80 81       	ld	r24, Z
     1f0e:	8f 7d       	andi	r24, 0xDF	; 223
     1f10:	80 83       	st	Z, r24
-}
     1f12:	df 91       	pop	r29
     1f14:	cf 91       	pop	r28
     1f16:	1f 91       	pop	r17
@@ -4269,12 +3825,6 @@ void HardwareSerial::begin(unsigned long baud, byte config)
     1f20:	08 95       	ret
 
 00001f22 <__vector_18>:
-#elif defined(USART_RXC_vect)
-  ISR(USART_RXC_vect) // ATmega8
-#else
-  #error "Don't know what the Data Received vector is called for Serial"
-#endif
-  {
     1f22:	1f 92       	push	r1
     1f24:	0f 92       	push	r0
     1f26:	0f b6       	in	r0, 0x3f	; 63
@@ -4285,12 +3835,6 @@ void HardwareSerial::begin(unsigned long baud, byte config)
     1f30:	9f 93       	push	r25
     1f32:	ef 93       	push	r30
     1f34:	ff 93       	push	r31
-
-// Actual interrupt handlers //////////////////////////////////////////////////////////////
-
-void HardwareSerial::_rx_complete_irq(void)
-{
-  if (bit_is_clear(*_ucsra, UPE0)) {
     1f36:	e0 91 71 02 	lds	r30, 0x0271	; 0x800271 <Serial+0x10>
     1f3a:	f0 91 72 02 	lds	r31, 0x0272	; 0x800272 <Serial+0x11>
     1f3e:	80 81       	ld	r24, Z
@@ -4298,39 +3842,21 @@ void HardwareSerial::_rx_complete_irq(void)
     1f44:	f0 91 78 02 	lds	r31, 0x0278	; 0x800278 <Serial+0x17>
     1f48:	82 fd       	sbrc	r24, 2
     1f4a:	12 c0       	rjmp	.+36     	; 0x1f70 <__vector_18+0x4e>
-    // No Parity error, read byte and store it in the buffer if there is
-    // room
-    unsigned char c = *_udr;
     1f4c:	90 81       	ld	r25, Z
-    rx_buffer_index_t i = (unsigned int)(_rx_buffer_head + 1) % SERIAL_RX_BUFFER_SIZE;
     1f4e:	80 91 7a 02 	lds	r24, 0x027A	; 0x80027a <Serial+0x19>
     1f52:	8f 5f       	subi	r24, 0xFF	; 255
     1f54:	8f 73       	andi	r24, 0x3F	; 63
-
-    // if we should be storing the received character into the location
-    // just before the tail (meaning that the head would advance to the
-    // current location of the tail), we're about to overflow the buffer
-    // and so we don't write the character or advance the head.
-    if (i != _rx_buffer_tail) {
     1f56:	20 91 7b 02 	lds	r18, 0x027B	; 0x80027b <Serial+0x1a>
     1f5a:	82 17       	cp	r24, r18
     1f5c:	51 f0       	breq	.+20     	; 0x1f72 <__vector_18+0x50>
-      _rx_buffer[_rx_buffer_head] = c;
     1f5e:	e0 91 7a 02 	lds	r30, 0x027A	; 0x80027a <Serial+0x19>
     1f62:	f0 e0       	ldi	r31, 0x00	; 0
     1f64:	ef 59       	subi	r30, 0x9F	; 159
     1f66:	fd 4f       	sbci	r31, 0xFD	; 253
     1f68:	95 8f       	std	Z+29, r25	; 0x1d
-      _rx_buffer_head = i;
     1f6a:	80 93 7a 02 	sts	0x027A, r24	; 0x80027a <Serial+0x19>
     1f6e:	01 c0       	rjmp	.+2      	; 0x1f72 <__vector_18+0x50>
-    }
-  } else {
-    // Parity error, read byte but discard it
-    *_udr;
     1f70:	80 81       	ld	r24, Z
-    Serial._rx_complete_irq();
-  }
     1f72:	ff 91       	pop	r31
     1f74:	ef 91       	pop	r30
     1f76:	9f 91       	pop	r25
@@ -4343,12 +3869,6 @@ void HardwareSerial::_rx_complete_irq(void)
     1f84:	18 95       	reti
 
 00001f86 <__vector_19>:
-#elif defined(USART_UDRE_vect)
-ISR(USART_UDRE_vect)
-#else
-  #error "Don't know what the Data Register Empty vector is called for Serial"
-#endif
-{
     1f86:	1f 92       	push	r1
     1f88:	0f 92       	push	r0
     1f8a:	0f b6       	in	r0, 0x3f	; 63
@@ -4366,11 +3886,9 @@ ISR(USART_UDRE_vect)
     1fa2:	bf 93       	push	r27
     1fa4:	ef 93       	push	r30
     1fa6:	ff 93       	push	r31
-  Serial._tx_udr_empty_irq();
     1fa8:	81 e6       	ldi	r24, 0x61	; 97
     1faa:	92 e0       	ldi	r25, 0x02	; 2
     1fac:	0e 94 a1 0e 	call	0x1d42	; 0x1d42 <_ZN14HardwareSerial17_tx_udr_empty_irqEv>
-}
     1fb0:	ff 91       	pop	r31
     1fb2:	ef 91       	pop	r30
     1fb4:	bf 91       	pop	r27
@@ -4390,12 +3908,6 @@ ISR(USART_UDRE_vect)
     1fd0:	18 95       	reti
 
 00001fd2 <_Z17Serial0_availablev>:
-#endif
-
-// Function that can be weakly referenced by serialEventRun to prevent
-// pulling in this file if it's not otherwise used.
-bool Serial0_available() {
-  return Serial.available();
     1fd2:	81 e6       	ldi	r24, 0x61	; 97
     1fd4:	92 e0       	ldi	r25, 0x02	; 2
     1fd6:	0e 94 65 0e 	call	0x1cca	; 0x1cca <_ZN14HardwareSerial9availableEv>
@@ -4403,27 +3915,14 @@ bool Serial0_available() {
     1fdc:	89 2b       	or	r24, r25
     1fde:	09 f4       	brne	.+2      	; 0x1fe2 <_Z17Serial0_availablev+0x10>
     1fe0:	20 e0       	ldi	r18, 0x00	; 0
-}
     1fe2:	82 2f       	mov	r24, r18
     1fe4:	08 95       	ret
 
 00001fe6 <_GLOBAL__sub_I___vector_18>:
-    size_t printNumber(unsigned long, uint8_t);
-    size_t printFloat(double, uint8_t);
-  protected:
-    void setWriteError(int err = 1) { write_error = err; }
-  public:
-    Print() : write_error(0) {}
     1fe6:	e1 e6       	ldi	r30, 0x61	; 97
     1fe8:	f2 e0       	ldi	r31, 0x02	; 2
     1fea:	13 82       	std	Z+3, r1	; 0x03
     1fec:	12 82       	std	Z+2, r1	; 0x02
-    virtual int available() = 0;
-    virtual int read() = 0;
-    virtual int peek() = 0;
-    virtual void flush() = 0;
-
-    Stream() {_timeout=1000;}
     1fee:	88 ee       	ldi	r24, 0xE8	; 232
     1ff0:	93 e0       	ldi	r25, 0x03	; 3
     1ff2:	a0 e0       	ldi	r26, 0x00	; 0
@@ -4432,12 +3931,6 @@ bool Serial0_available() {
     1ff8:	95 83       	std	Z+5, r25	; 0x05
     1ffa:	a6 83       	std	Z+6, r26	; 0x06
     1ffc:	b7 83       	std	Z+7, r27	; 0x07
-  volatile uint8_t *ucsrc, volatile uint8_t *udr) :
-    _ubrrh(ubrrh), _ubrrl(ubrrl),
-    _ucsra(ucsra), _ucsrb(ucsrb), _ucsrc(ucsrc),
-    _udr(udr),
-    _rx_buffer_head(0), _rx_buffer_tail(0),
-    _tx_buffer_head(0), _tx_buffer_tail(0)
     1ffe:	85 e5       	ldi	r24, 0x55	; 85
     2000:	91 e0       	ldi	r25, 0x01	; 1
     2002:	91 83       	std	Z+1, r25	; 0x01
@@ -4473,56 +3966,21 @@ bool Serial0_available() {
     203e:	08 95       	ret
 
 00002040 <initVariant>:
-int atexit(void (*func)()) { return 0; }
-
-// Weak empty variant initialization function.
-// May be redefined by variant files.
-void initVariant() __attribute__((weak));
-void initVariant() { }
     2040:	08 95       	ret
 
 00002042 <main>:
-
-int main(void)
-{
-	init();
     2042:	0e 94 19 11 	call	0x2232	; 0x2232 <init>
-
-	initVariant();
     2046:	0e 94 20 10 	call	0x2040	; 0x2040 <initVariant>
-
-#if defined(USBCON)
-	USBDevice.attach();
-#endif
-	
-	setup();
     204a:	0e 94 d8 02 	call	0x5b0	; 0x5b0 <setup>
-    
-	for (;;) {
-		loop();
-		if (serialEventRun) serialEventRun();
     204e:	c3 e9       	ldi	r28, 0x93	; 147
     2050:	de e0       	ldi	r29, 0x0E	; 14
-#endif
-	
-	setup();
-    
-	for (;;) {
-		loop();
     2052:	0e 94 df 04 	call	0x9be	; 0x9be <loop>
-		if (serialEventRun) serialEventRun();
     2056:	20 97       	sbiw	r28, 0x00	; 0
     2058:	e1 f3       	breq	.-8      	; 0x2052 <main+0x10>
     205a:	0e 94 93 0e 	call	0x1d26	; 0x1d26 <_Z14serialEventRunv>
     205e:	f9 cf       	rjmp	.-14     	; 0x2052 <main+0x10>
 
 00002060 <_ZN5Print5writeEPKhj>:
-size_t Print::println(const String &s)
-{
-  size_t n = print(s);
-  n += println();
-  return n;
-}
     2060:	cf 92       	push	r12
     2062:	df 92       	push	r13
     2064:	ef 92       	push	r14
@@ -4672,32 +4130,15 @@ size_t Print::println(const String &s)
     2178:	08 95       	ret
 
 0000217a <_ZN5Print7printlnEPKc>:
-
-size_t Print::println(const char c[])
-{
     217a:	0f 93       	push	r16
     217c:	1f 93       	push	r17
     217e:	cf 93       	push	r28
     2180:	df 93       	push	r29
     2182:	ec 01       	movw	r28, r24
-  return write(s.c_str(), s.length());
-}
-
-size_t Print::print(const char str[])
-{
-  return write(str);
     2184:	0e 94 58 10 	call	0x20b0	; 0x20b0 <_ZN5Print5writeEPKc>
     2188:	8c 01       	movw	r16, r24
-}
-
-size_t Print::println(const char c[])
-{
-  size_t n = print(c);
-  n += println();
     218a:	ce 01       	movw	r24, r28
     218c:	0e 94 97 10 	call	0x212e	; 0x212e <_ZN5Print7printlnEv>
-  return n;
-}
     2190:	80 0f       	add	r24, r16
     2192:	91 1f       	adc	r25, r17
     2194:	df 91       	pop	r29
@@ -4707,6 +4148,12 @@ size_t Print::println(const char c[])
     219c:	08 95       	ret
 
 0000219e <__vector_16>:
+	// we can't subtract any more than this or we'd overflow w/ small delays.
+	us--;
+#endif
+
+	// busy wait
+	__asm__ __volatile__ (
     219e:	1f 92       	push	r1
     21a0:	0f 92       	push	r0
     21a2:	0f b6       	in	r0, 0x3f	; 63
@@ -4765,66 +4212,144 @@ size_t Print::println(const char c[])
     2230:	18 95       	reti
 
 00002232 <init>:
+
+void init()
+{
+	// this needs to be called before setup() or some functions won't
+	// work there
+	sei();
     2232:	78 94       	sei
+	
+	// on the ATmega168, timer 0 is also used for fast hardware pwm
+	// (using phase-correct PWM would mean that timer 0 overflowed half as often
+	// resulting in different millis() behavior on the ATmega8 and ATmega168)
+#if defined(TCCR0A) && defined(WGM01)
+	sbi(TCCR0A, WGM01);
     2234:	84 b5       	in	r24, 0x24	; 36
     2236:	82 60       	ori	r24, 0x02	; 2
     2238:	84 bd       	out	0x24, r24	; 36
+	sbi(TCCR0A, WGM00);
     223a:	84 b5       	in	r24, 0x24	; 36
     223c:	81 60       	ori	r24, 0x01	; 1
     223e:	84 bd       	out	0x24, r24	; 36
+	// this combination is for the standard atmega8
+	sbi(TCCR0, CS01);
+	sbi(TCCR0, CS00);
+#elif defined(TCCR0B) && defined(CS01) && defined(CS00)
+	// this combination is for the standard 168/328/1280/2560
+	sbi(TCCR0B, CS01);
     2240:	85 b5       	in	r24, 0x25	; 37
     2242:	82 60       	ori	r24, 0x02	; 2
     2244:	85 bd       	out	0x25, r24	; 37
+	sbi(TCCR0B, CS00);
     2246:	85 b5       	in	r24, 0x25	; 37
     2248:	81 60       	ori	r24, 0x01	; 1
     224a:	85 bd       	out	0x25, r24	; 37
+
+	// enable timer 0 overflow interrupt
+#if defined(TIMSK) && defined(TOIE0)
+	sbi(TIMSK, TOIE0);
+#elif defined(TIMSK0) && defined(TOIE0)
+	sbi(TIMSK0, TOIE0);
     224c:	ee e6       	ldi	r30, 0x6E	; 110
     224e:	f0 e0       	ldi	r31, 0x00	; 0
     2250:	80 81       	ld	r24, Z
     2252:	81 60       	ori	r24, 0x01	; 1
     2254:	80 83       	st	Z, r24
+	// this is better for motors as it ensures an even waveform
+	// note, however, that fast pwm mode can achieve a frequency of up
+	// 8 MHz (with a 16 MHz clock) at 50% duty cycle
+
+#if defined(TCCR1B) && defined(CS11) && defined(CS10)
+	TCCR1B = 0;
     2256:	e1 e8       	ldi	r30, 0x81	; 129
     2258:	f0 e0       	ldi	r31, 0x00	; 0
     225a:	10 82       	st	Z, r1
+
+	// set timer 1 prescale factor to 64
+	sbi(TCCR1B, CS11);
     225c:	80 81       	ld	r24, Z
     225e:	82 60       	ori	r24, 0x02	; 2
     2260:	80 83       	st	Z, r24
+#if F_CPU >= 8000000L
+	sbi(TCCR1B, CS10);
     2262:	80 81       	ld	r24, Z
     2264:	81 60       	ori	r24, 0x01	; 1
     2266:	80 83       	st	Z, r24
+	sbi(TCCR1, CS10);
+#endif
+#endif
+	// put timer 1 in 8-bit phase correct pwm mode
+#if defined(TCCR1A) && defined(WGM10)
+	sbi(TCCR1A, WGM10);
     2268:	e0 e8       	ldi	r30, 0x80	; 128
     226a:	f0 e0       	ldi	r31, 0x00	; 0
     226c:	80 81       	ld	r24, Z
     226e:	81 60       	ori	r24, 0x01	; 1
     2270:	80 83       	st	Z, r24
+
+	// set timer 2 prescale factor to 64
+#if defined(TCCR2) && defined(CS22)
+	sbi(TCCR2, CS22);
+#elif defined(TCCR2B) && defined(CS22)
+	sbi(TCCR2B, CS22);
     2272:	e1 eb       	ldi	r30, 0xB1	; 177
     2274:	f0 e0       	ldi	r31, 0x00	; 0
     2276:	80 81       	ld	r24, Z
     2278:	84 60       	ori	r24, 0x04	; 4
     227a:	80 83       	st	Z, r24
+
+	// configure timer 2 for phase correct pwm (8-bit)
+#if defined(TCCR2) && defined(WGM20)
+	sbi(TCCR2, WGM20);
+#elif defined(TCCR2A) && defined(WGM20)
+	sbi(TCCR2A, WGM20);
     227c:	e0 eb       	ldi	r30, 0xB0	; 176
     227e:	f0 e0       	ldi	r31, 0x00	; 0
     2280:	80 81       	ld	r24, Z
     2282:	81 60       	ori	r24, 0x01	; 1
     2284:	80 83       	st	Z, r24
+#if defined(ADCSRA)
+	// set a2d prescale factor to 128
+	// 16 MHz / 128 = 125 KHz, inside the desired 50-200 KHz range.
+	// XXX: this will not work properly for other clock speeds, and
+	// this code should use F_CPU to determine the prescale factor.
+	sbi(ADCSRA, ADPS2);
     2286:	ea e7       	ldi	r30, 0x7A	; 122
     2288:	f0 e0       	ldi	r31, 0x00	; 0
     228a:	80 81       	ld	r24, Z
     228c:	84 60       	ori	r24, 0x04	; 4
     228e:	80 83       	st	Z, r24
+	sbi(ADCSRA, ADPS1);
     2290:	80 81       	ld	r24, Z
     2292:	82 60       	ori	r24, 0x02	; 2
     2294:	80 83       	st	Z, r24
+	sbi(ADCSRA, ADPS0);
     2296:	80 81       	ld	r24, Z
     2298:	81 60       	ori	r24, 0x01	; 1
     229a:	80 83       	st	Z, r24
+
+	// enable a2d conversions
+	sbi(ADCSRA, ADEN);
     229c:	80 81       	ld	r24, Z
     229e:	80 68       	ori	r24, 0x80	; 128
     22a0:	80 83       	st	Z, r24
+	// here so they can be used as normal digital i/o; they will be
+	// reconnected in Serial.begin()
+#if defined(UCSRB)
+	UCSRB = 0;
+#elif defined(UCSR0B)
+	UCSR0B = 0;
     22a2:	10 92 c1 00 	sts	0x00C1, r1	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7e00c1>
     22a6:	08 95       	ret
 
 000022a8 <turnOffPWM>:
+//
+//static inline void turnOffPWM(uint8_t timer) __attribute__ ((always_inline));
+//static inline void turnOffPWM(uint8_t timer)
+static void turnOffPWM(uint8_t timer)
+{
+	switch (timer)
     22a8:	83 30       	cpi	r24, 0x03	; 3
     22aa:	81 f0       	breq	.+32     	; 0x22cc <turnOffPWM+0x24>
     22ac:	28 f4       	brcc	.+10     	; 0x22b8 <turnOffPWM+0x10>
@@ -4839,42 +4364,87 @@ size_t Print::println(const char c[])
     22be:	b9 f0       	breq	.+46     	; 0x22ee <turnOffPWM+0x46>
     22c0:	84 30       	cpi	r24, 0x04	; 4
     22c2:	d1 f4       	brne	.+52     	; 0x22f8 <turnOffPWM+0x50>
+	{
+		#if defined(TCCR1A) && defined(COM1A1)
+		case TIMER1A:   cbi(TCCR1A, COM1A1);    break;
+		#endif
+		#if defined(TCCR1A) && defined(COM1B1)
+		case TIMER1B:   cbi(TCCR1A, COM1B1);    break;
     22c4:	80 91 80 00 	lds	r24, 0x0080	; 0x800080 <__TEXT_REGION_LENGTH__+0x7e0080>
     22c8:	8f 7d       	andi	r24, 0xDF	; 223
     22ca:	03 c0       	rjmp	.+6      	; 0x22d2 <turnOffPWM+0x2a>
+static void turnOffPWM(uint8_t timer)
+{
+	switch (timer)
+	{
+		#if defined(TCCR1A) && defined(COM1A1)
+		case TIMER1A:   cbi(TCCR1A, COM1A1);    break;
     22cc:	80 91 80 00 	lds	r24, 0x0080	; 0x800080 <__TEXT_REGION_LENGTH__+0x7e0080>
     22d0:	8f 77       	andi	r24, 0x7F	; 127
+		#endif
+		#if defined(TCCR1A) && defined(COM1B1)
+		case TIMER1B:   cbi(TCCR1A, COM1B1);    break;
     22d2:	80 93 80 00 	sts	0x0080, r24	; 0x800080 <__TEXT_REGION_LENGTH__+0x7e0080>
     22d6:	08 95       	ret
+		#if defined(TCCR2) && defined(COM21)
+		case  TIMER2:   cbi(TCCR2, COM21);      break;
+		#endif
+		
+		#if defined(TCCR0A) && defined(COM0A1)
+		case  TIMER0A:  cbi(TCCR0A, COM0A1);    break;
     22d8:	84 b5       	in	r24, 0x24	; 36
     22da:	8f 77       	andi	r24, 0x7F	; 127
     22dc:	02 c0       	rjmp	.+4      	; 0x22e2 <turnOffPWM+0x3a>
+		#endif
+		
+		#if defined(TIMER0B) && defined(COM0B1)
+		case  TIMER0B:  cbi(TCCR0A, COM0B1);    break;
     22de:	84 b5       	in	r24, 0x24	; 36
     22e0:	8f 7d       	andi	r24, 0xDF	; 223
     22e2:	84 bd       	out	0x24, r24	; 36
     22e4:	08 95       	ret
+		#endif
+		#if defined(TCCR2A) && defined(COM2A1)
+		case  TIMER2A:  cbi(TCCR2A, COM2A1);    break;
     22e6:	80 91 b0 00 	lds	r24, 0x00B0	; 0x8000b0 <__TEXT_REGION_LENGTH__+0x7e00b0>
     22ea:	8f 77       	andi	r24, 0x7F	; 127
     22ec:	03 c0       	rjmp	.+6      	; 0x22f4 <turnOffPWM+0x4c>
+		#endif
+		#if defined(TCCR2A) && defined(COM2B1)
+		case  TIMER2B:  cbi(TCCR2A, COM2B1);    break;
     22ee:	80 91 b0 00 	lds	r24, 0x00B0	; 0x8000b0 <__TEXT_REGION_LENGTH__+0x7e00b0>
     22f2:	8f 7d       	andi	r24, 0xDF	; 223
     22f4:	80 93 b0 00 	sts	0x00B0, r24	; 0x8000b0 <__TEXT_REGION_LENGTH__+0x7e00b0>
     22f8:	08 95       	ret
 
 000022fa <pinMode>:
+#define ARDUINO_MAIN
+#include "wiring_private.h"
+#include "pins_arduino.h"
+
+void pinMode(uint8_t pin, uint8_t mode)
+{
     22fa:	cf 93       	push	r28
     22fc:	df 93       	push	r29
+	uint8_t bit = digitalPinToBitMask(pin);
     22fe:	90 e0       	ldi	r25, 0x00	; 0
     2300:	fc 01       	movw	r30, r24
     2302:	e1 5f       	subi	r30, 0xF1	; 241
     2304:	fa 4f       	sbci	r31, 0xFA	; 250
     2306:	24 91       	lpm	r18, Z
+	uint8_t port = digitalPinToPort(pin);
     2308:	fc 01       	movw	r30, r24
     230a:	ed 5d       	subi	r30, 0xDD	; 221
     230c:	fa 4f       	sbci	r31, 0xFA	; 250
     230e:	84 91       	lpm	r24, Z
+	volatile uint8_t *reg, *out;
+
+	if (port == NOT_A_PIN) return;
     2310:	88 23       	and	r24, r24
     2312:	61 f1       	breq	.+88     	; 0x236c <pinMode+0x72>
+
+	// JWS: can I let the optimizer do this?
+	reg = portModeRegister(port);
     2314:	90 e0       	ldi	r25, 0x00	; 0
     2316:	88 0f       	add	r24, r24
     2318:	99 1f       	adc	r25, r25
@@ -4883,69 +4453,108 @@ size_t Print::println(const char c[])
     231e:	fa 4f       	sbci	r31, 0xFA	; 250
     2320:	c5 91       	lpm	r28, Z+
     2322:	d4 91       	lpm	r29, Z
+	out = portOutputRegister(port);
     2324:	fc 01       	movw	r30, r24
     2326:	e9 5c       	subi	r30, 0xC9	; 201
     2328:	fa 4f       	sbci	r31, 0xFA	; 250
     232a:	a5 91       	lpm	r26, Z+
     232c:	b4 91       	lpm	r27, Z
+
+	if (mode == INPUT) { 
     232e:	61 11       	cpse	r22, r1
     2330:	09 c0       	rjmp	.+18     	; 0x2344 <pinMode+0x4a>
+		uint8_t oldSREG = SREG;
     2332:	9f b7       	in	r25, 0x3f	; 63
+                cli();
     2334:	f8 94       	cli
+		*reg &= ~bit;
     2336:	88 81       	ld	r24, Y
     2338:	20 95       	com	r18
     233a:	82 23       	and	r24, r18
     233c:	88 83       	st	Y, r24
+		*out &= ~bit;
     233e:	ec 91       	ld	r30, X
     2340:	2e 23       	and	r18, r30
     2342:	0b c0       	rjmp	.+22     	; 0x235a <pinMode+0x60>
+		SREG = oldSREG;
+	} else if (mode == INPUT_PULLUP) {
     2344:	62 30       	cpi	r22, 0x02	; 2
     2346:	61 f4       	brne	.+24     	; 0x2360 <pinMode+0x66>
+		uint8_t oldSREG = SREG;
     2348:	9f b7       	in	r25, 0x3f	; 63
+                cli();
     234a:	f8 94       	cli
+		*reg &= ~bit;
     234c:	38 81       	ld	r19, Y
     234e:	82 2f       	mov	r24, r18
     2350:	80 95       	com	r24
     2352:	83 23       	and	r24, r19
     2354:	88 83       	st	Y, r24
+		*out |= bit;
     2356:	ec 91       	ld	r30, X
     2358:	2e 2b       	or	r18, r30
     235a:	2c 93       	st	X, r18
+		SREG = oldSREG;
     235c:	9f bf       	out	0x3f, r25	; 63
     235e:	06 c0       	rjmp	.+12     	; 0x236c <pinMode+0x72>
+	} else {
+		uint8_t oldSREG = SREG;
     2360:	8f b7       	in	r24, 0x3f	; 63
+                cli();
     2362:	f8 94       	cli
+		*reg |= bit;
     2364:	e8 81       	ld	r30, Y
     2366:	2e 2b       	or	r18, r30
     2368:	28 83       	st	Y, r18
+		SREG = oldSREG;
     236a:	8f bf       	out	0x3f, r24	; 63
+	}
+}
     236c:	df 91       	pop	r29
     236e:	cf 91       	pop	r28
     2370:	08 95       	ret
 
 00002372 <digitalWrite>:
+		#endif
+	}
+}
+
+void digitalWrite(uint8_t pin, uint8_t val)
+{
     2372:	1f 93       	push	r17
     2374:	cf 93       	push	r28
     2376:	df 93       	push	r29
+	uint8_t timer = digitalPinToTimer(pin);
     2378:	28 2f       	mov	r18, r24
     237a:	30 e0       	ldi	r19, 0x00	; 0
     237c:	f9 01       	movw	r30, r18
     237e:	e5 50       	subi	r30, 0x05	; 5
     2380:	fb 4f       	sbci	r31, 0xFB	; 251
     2382:	84 91       	lpm	r24, Z
+	uint8_t bit = digitalPinToBitMask(pin);
     2384:	f9 01       	movw	r30, r18
     2386:	e1 5f       	subi	r30, 0xF1	; 241
     2388:	fa 4f       	sbci	r31, 0xFA	; 250
     238a:	d4 91       	lpm	r29, Z
+	uint8_t port = digitalPinToPort(pin);
     238c:	f9 01       	movw	r30, r18
     238e:	ed 5d       	subi	r30, 0xDD	; 221
     2390:	fa 4f       	sbci	r31, 0xFA	; 250
     2392:	c4 91       	lpm	r28, Z
+	volatile uint8_t *out;
+
+	if (port == NOT_A_PIN) return;
     2394:	cc 23       	and	r28, r28
     2396:	c9 f0       	breq	.+50     	; 0x23ca <digitalWrite+0x58>
     2398:	16 2f       	mov	r17, r22
+
+	// If the pin that support PWM output, we need to turn it off
+	// before doing a digital write.
+	if (timer != NOT_ON_TIMER) turnOffPWM(timer);
     239a:	81 11       	cpse	r24, r1
     239c:	0e 94 54 11 	call	0x22a8	; 0x22a8 <turnOffPWM>
+
+	out = portOutputRegister(port);
     23a0:	ec 2f       	mov	r30, r28
     23a2:	f0 e0       	ldi	r31, 0x00	; 0
     23a4:	ee 0f       	add	r30, r30
@@ -4954,25 +4563,43 @@ size_t Print::println(const char c[])
     23aa:	fa 4f       	sbci	r31, 0xFA	; 250
     23ac:	a5 91       	lpm	r26, Z+
     23ae:	b4 91       	lpm	r27, Z
+
+	uint8_t oldSREG = SREG;
     23b0:	8f b7       	in	r24, 0x3f	; 63
+	cli();
     23b2:	f8 94       	cli
+
+	if (val == LOW) {
     23b4:	11 11       	cpse	r17, r1
     23b6:	05 c0       	rjmp	.+10     	; 0x23c2 <digitalWrite+0x50>
+		*out &= ~bit;
     23b8:	9c 91       	ld	r25, X
     23ba:	ed 2f       	mov	r30, r29
     23bc:	e0 95       	com	r30
     23be:	e9 23       	and	r30, r25
     23c0:	02 c0       	rjmp	.+4      	; 0x23c6 <digitalWrite+0x54>
+	} else {
+		*out |= bit;
     23c2:	ec 91       	ld	r30, X
     23c4:	ed 2b       	or	r30, r29
     23c6:	ec 93       	st	X, r30
+	}
+
+	SREG = oldSREG;
     23c8:	8f bf       	out	0x3f, r24	; 63
+}
     23ca:	df 91       	pop	r29
     23cc:	cf 91       	pop	r28
     23ce:	1f 91       	pop	r17
     23d0:	08 95       	ret
 
 000023d2 <shiftOut>:
+	}
+	return value;
+}
+
+void shiftOut(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder, uint8_t val)
+{
     23d2:	bf 92       	push	r11
     23d4:	cf 92       	push	r12
     23d6:	df 92       	push	r13
@@ -4992,13 +4619,20 @@ size_t Print::println(const char c[])
     23f2:	87 e0       	ldi	r24, 0x07	; 7
     23f4:	e8 2e       	mov	r14, r24
     23f6:	f1 2c       	mov	r15, r1
+	uint8_t i;
+
+	for (i = 0; i < 8; i++)  {
+		if (bitOrder == LSBFIRST)
     23f8:	b1 10       	cpse	r11, r1
     23fa:	05 c0       	rjmp	.+10     	; 0x2406 <shiftOut+0x34>
     23fc:	c7 01       	movw	r24, r14
     23fe:	8c 1b       	sub	r24, r28
     2400:	9d 0b       	sbc	r25, r29
+			digitalWrite(dataPin, !!(val & (1 << i)));
     2402:	98 01       	movw	r18, r16
     2404:	02 c0       	rjmp	.+4      	; 0x240a <shiftOut+0x38>
+		else	
+			digitalWrite(dataPin, !!(val & (1 << (7 - i))));
     2406:	98 01       	movw	r18, r16
     2408:	8c 2f       	mov	r24, r28
     240a:	02 c0       	rjmp	.+4      	; 0x2410 <shiftOut+0x3e>
@@ -5011,14 +4645,19 @@ size_t Print::println(const char c[])
     2418:	77 27       	eor	r23, r23
     241a:	8c 2d       	mov	r24, r12
     241c:	0e 94 b9 11 	call	0x2372	; 0x2372 <digitalWrite>
+			
+		digitalWrite(clockPin, HIGH);
     2420:	61 e0       	ldi	r22, 0x01	; 1
     2422:	8d 2d       	mov	r24, r13
     2424:	0e 94 b9 11 	call	0x2372	; 0x2372 <digitalWrite>
+		digitalWrite(clockPin, LOW);		
     2428:	60 e0       	ldi	r22, 0x00	; 0
     242a:	8d 2d       	mov	r24, r13
     242c:	0e 94 b9 11 	call	0x2372	; 0x2372 <digitalWrite>
     2430:	21 97       	sbiw	r28, 0x01	; 1
     2432:	10 f7       	brcc	.-60     	; 0x23f8 <shiftOut+0x26>
+	}
+}
     2434:	df 91       	pop	r29
     2436:	cf 91       	pop	r28
     2438:	1f 91       	pop	r17

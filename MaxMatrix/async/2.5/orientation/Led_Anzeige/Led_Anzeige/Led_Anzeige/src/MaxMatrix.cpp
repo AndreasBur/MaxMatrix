@@ -1329,21 +1329,31 @@ stdReturnType MaxMatrix::setRowOnAllModulesLL(byte Row, byte Value)
  *****************************************************************************************************************************************************/
 void MaxMatrix::shiftLeftLL(bool Rotate, bool FillWithZero, bool ShiftToNeighbourModule)
 {
+	/* should we shift the state to the next module? */
     if(ShiftToNeighbourModule) {
+		/* save left column will be wrapped around later if rotation is active */
         byte ColumnLeft = MatrixBuffer[0];
+		/* shift every column one step left */
         for(int Column = 0; Column < MAXMATRIX_NUMBER_OF_COLUMNS - 1; Column++) {
             MatrixBuffer[Column] = MatrixBuffer[Column + 1];
         }
+		/* wrap around saved left column to the right */
         if(Rotate) MatrixBuffer[MAXMATRIX_NUMBER_OF_COLUMNS - 1] = ColumnLeft;
+		/* otherwise initialize right column */
         else if(FillWithZero) MatrixBuffer[MAXMATRIX_NUMBER_OF_COLUMNS - 1] = 0;
     } else {
+		/* no shift to neighbor module is more complicated, we have to iterate over every module */
         for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++) {
-            byte old = MatrixBuffer[MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module];
+			/* save left column on module will be wrapped around later if rotation is active */
+            byte ModuleColumnLeft = MatrixBuffer[MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module];
+			/* shift every column of the module one step left */
             for(int Column = 0; Column < MAXMATRIX_COLUMN_NUMBER_OF_MODULE - 1; Column++) {
                 MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module)] = 
                 MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module) + 1];
             }
-            if(Rotate) MatrixBuffer[MAXMATRIX_COLUMN_NUMBER_OF_MODULE * (Module + 1) - 1] = old;
+			/* wrap around saved left module column to the right */
+            if(Rotate) MatrixBuffer[MAXMATRIX_COLUMN_NUMBER_OF_MODULE * (Module + 1) - 1] = ModuleColumnLeft;
+			/* otherwise initialize right module column */
             else if(FillWithZero) MatrixBuffer[(Module + 1) * MAXMATRIX_COLUMN_NUMBER_OF_MODULE - 1] = 0;
         }
     }
@@ -1366,21 +1376,30 @@ void MaxMatrix::shiftLeftLL(bool Rotate, bool FillWithZero, bool ShiftToNeighbou
  *****************************************************************************************************************************************************/
 void MaxMatrix::shiftRightLL(bool Rotate, bool FillWithZero, bool ShiftToNeighbourModule)
 {
+	/* should we shift the state to the next module? */
     if(ShiftToNeighbourModule) {
+		/* save right column, will be wrapped around later if rotation is active */
         byte ColumnRight = MatrixBuffer[MAXMATRIX_NUMBER_OF_COLUMNS - 1];
+		/* shift every column of the module one step right */
         for(int Column = MAXMATRIX_NUMBER_OF_COLUMNS - 1; Column > 0; Column--) { 
             MatrixBuffer[Column] = MatrixBuffer[Column - 1]; 
         }
+		/* wrap around saved right column to the left */
         if(Rotate) MatrixBuffer[0] = ColumnRight;
+		/* otherwise initialize right column */
         else if(FillWithZero) MatrixBuffer[0] = 0;
     } else {
+		/* no shift to neighbor module is more complicated, we have to iterate over every module */
         for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++) {
-            byte old = MatrixBuffer[MAXMATRIX_COLUMN_NUMBER_OF_MODULE * (Module + 1) - 1];
+            byte ModuleColumnRight = MatrixBuffer[MAXMATRIX_COLUMN_NUMBER_OF_MODULE * (Module + 1) - 1];
+			/* shift every column of the module one step right */
             for(int Column = MAXMATRIX_COLUMN_NUMBER_OF_MODULE - 1; Column > 0; Column--) {
                 MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module)] = 
                 MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module) - 1];
             }
-            if(Rotate) MatrixBuffer[Module * MAXMATRIX_COLUMN_NUMBER_OF_MODULE] = old;
+			/* wrap around saved left module column to the left */
+            if(Rotate) MatrixBuffer[Module * MAXMATRIX_COLUMN_NUMBER_OF_MODULE] = ModuleColumnRight;
+			/* otherwise initialize left module column */
             else if(FillWithZero) MatrixBuffer[Module * MAXMATRIX_COLUMN_NUMBER_OF_MODULE] = 0;
         }
     }
@@ -1397,7 +1416,7 @@ void MaxMatrix::shiftRightLL(bool Rotate, bool FillWithZero, bool ShiftToNeighbo
  *                  By activating rotation, the last row will be first.
  
  *  \param[in]      Rotate                      activate rotation of the matrix LED states
- *  \param[in]      ShiftToNeighbourModule      shift led states to neighbour module
+ *  \param[in]      ShiftToNeighbourModule      shift led states to neighbor module
  *  \return         -
  *****************************************************************************************************************************************************/
 void MaxMatrix::shiftUpLL(bool Rotate, bool ShiftToNeighbourModule)
@@ -1405,15 +1424,18 @@ void MaxMatrix::shiftUpLL(bool Rotate, bool ShiftToNeighbourModule)
     byte ModuleTopRow = 0;
     byte MatrixTopRow = 0;
 
+	/* should we shift the state to the next module? */
     if(ShiftToNeighbourModule) {
+		/* shift to neighbor module is more complicated, we have to iterate over every module */
         for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++)
         {
+			/* save top Row, will be wrapped around later if rotation is active */
             if(Module == 0 && Rotate) getRowLL(0, 0, &MatrixTopRow);
             getRowLL(Module + 1, 0, &ModuleTopRow);
-            
+            /* shift every bit in column one step right conforms to shift up */
             for(int Column = 0; Column < MAXMATRIX_COLUMN_NUMBER_OF_MODULE; Column++) 
                 MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module)] >>= 1;
-            
+            /* last module  */
             if(Module == MAXMATRIX_NUMBER_OF_MODULES - 1) {
                 if(Rotate) setRowLL(Module, MAXMATRIX_ROW_NUMBER_OF_MODULE - 1, MatrixTopRow);
             } else {
@@ -1421,12 +1443,16 @@ void MaxMatrix::shiftUpLL(bool Rotate, bool ShiftToNeighbourModule)
             }
         }
     } else {
+		/* iterate over all Columns and shift the bits */
         for(int Column = 0; Column < MAXMATRIX_NUMBER_OF_COLUMNS; Column++) 
         {
+			/* save top Row, will be wrapped around later if rotation is active */
             bool TopBit = bitRead(MatrixBuffer[Column], 0);
+			/* shift every bit one step right conforms to shift up */
             MatrixBuffer[Column] >>= 1;
+			/* wrap around saved top Row to bottom Row */
             if(Rotate) bitWrite(MatrixBuffer[Column], MAXMATRIX_ROW_NUMBER_OF_MODULE - 1, TopBit);
-        }       
+        }
     }
     reload();
 } /* shiftModuleUpLL */
@@ -1440,7 +1466,7 @@ void MaxMatrix::shiftUpLL(bool Rotate, bool ShiftToNeighbourModule)
  *                  The row on the top will be initialized with LED off. By activating rotation, the last row will be first.
  *                  
  *  \param[in]      Rotate                      activate rotation of the matrix LED states
- *  \param[in]      ShiftToNeighbourModule      shift led states to neighbour module
+ *  \param[in]      ShiftToNeighbourModule      shift led states to neighbor module
  *  \return         -
  *****************************************************************************************************************************************************/
 void MaxMatrix::shiftDownLL(bool Rotate, bool ShiftToNeighbourModule)
@@ -1448,7 +1474,9 @@ void MaxMatrix::shiftDownLL(bool Rotate, bool ShiftToNeighbourModule)
     byte ModuleBottomRow = 0;
     byte MatrixBottomRow = 0;
 
+	/* should we shift the state to the next module? */
     if(ShiftToNeighbourModule) {
+		/* shift to neighbor module is more complicated, we have to iterate over every module */
         for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++)
         {
             if(Module == 0 && Rotate) getRowLL(0, MAXMATRIX_ROW_NUMBER_OF_MODULE - 1, &MatrixBottomRow);
@@ -1464,10 +1492,13 @@ void MaxMatrix::shiftDownLL(bool Rotate, bool ShiftToNeighbourModule)
             }
         }
     } else {
+		/* iterate over all Columns and shift the bits */
         for(int Column = 0; Column < MAXMATRIX_NUMBER_OF_COLUMNS; Column++) 
         {
+			/* save bottom Row, will be wrapped around later if rotation is active */
             bool BottomBit = bitRead(MatrixBuffer[Column], MAXMATRIX_ROW_NUMBER_OF_MODULE - 1);
             MatrixBuffer[Column] <<= 1;
+			/* wrap around saved top Row to top Row */
             if(Rotate) bitWrite(MatrixBuffer[Column], 0, BottomBit);
         }
     }
