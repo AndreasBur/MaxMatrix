@@ -1,0 +1,6 @@
+https://arduino-hannover.de/2013/10/03/mein-paket-ein-max7219-dot-matrix-led-bausatz/
+http://playground.arduino.cc/Main/LEDMatrix
+http://playground.arduino.cc/Main/MAX72XXHardware
+https://brainy-bits.com/tutorials/scroll-text-using-the-max7219-led-dot-matrix/
+http://www.instructables.com/id/LED-Matrix-with-Arduino/
+http://www.best-microcontroller-projects.com/max7219.html

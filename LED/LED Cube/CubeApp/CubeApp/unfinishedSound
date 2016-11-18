@@ -1,0 +1,200 @@
+//INTERACT WITH SOUND
+void sound(void){
+	
+}
+
+/*http://read.pudn.com/downloads118/sourcecode/game/500440/Game/wavread.cpp__.htm*/
+BOOL ReadMMIO(HMMIO hmmioIn, MMCKINFO* pckInRIFF, WAVEFORMATEX** ppwfxInfo){
+	MMCKINFO mmckInfo;
+	PCMWAVEFORMAT pcmWaveFormat;
+	WORD cbExtraBytes = 0L;
+	*ppwfxInfo = NULL;
+
+	if(mmioDescend(hmmioIn, pckInRIFF, NULL, 0) != 0){
+		AMEM.error = TRUE;
+		MessageBox(AMEM.hwnd, L"Error 1", L"Sound Error", MB_OK | MB_ICONERROR);
+		return FALSE;
+	}
+
+	if((pckInRIFF->ckid != FOURCC_RIFF) || (pckInRIFF->fccType != mmioFOURCC('W', 'A', 'V', 'E'))){
+		AMEM.error = TRUE;
+		MessageBox(AMEM.hwnd, L"Error 2", L"Sound Error", MB_OK | MB_ICONERROR);
+		return FALSE;
+	}
+
+	mmckInfo.ckid = mmioFOURCC('f', 'm', 't', ' ');
+
+	if(mmioDescend(hmmioIn, &mmckInfo, pckInRIFF, MMIO_FINDCHUNK) != 0){
+		AMEM.error = TRUE;
+		MessageBox(AMEM.hwnd, L"Error 3", L"Sound Error", MB_OK | MB_ICONERROR);
+		return FALSE;
+	}
+
+	if(mmckInfo.cksize < (LONG)sizeof(PCMWAVEFORMAT)){
+		AMEM.error = TRUE;
+		MessageBox(AMEM.hwnd, L"Error 4", L"Sound Error", MB_OK | MB_ICONERROR);
+		return FALSE;
+	}
+
+	if(mmioRead(hmmioIn, (HPSTR)&pcmWaveFormat, sizeof(pcmWaveFormat)) != sizeof(pcmWaveFormat)){
+		AMEM.error = TRUE;
+		MessageBox(AMEM.hwnd, L"Error 5", L"Sound Error", MB_OK | MB_ICONERROR);
+		return FALSE;
+	}
+
+	*ppwfxInfo = (WAVEFORMATEX*)malloc(sizeof(WAVEFORMATEX));
+
+	if(pcmWaveFormat.wf.wFormatTag == WAVE_FORMAT_PCM){
+		if(*ppwfxInfo == NULL){
+			AMEM.error = TRUE;
+			MessageBox(AMEM.hwnd, L"Error 6", L"Sound Error", MB_OK | MB_ICONERROR);
+			return FALSE;
+		}
+
+		memcpy(*ppwfxInfo, &pcmWaveFormat, sizeof(pcmWaveFormat));
+		(*ppwfxInfo)->cbSize = 0;
+	}else{
+		if(mmioRead(hmmioIn, (HPSTR)&cbExtraBytes, sizeof(WORD)) != sizeof(WORD)){
+			AMEM.error = TRUE;
+			MessageBox(AMEM.hwnd, L"Error 7", L"Sound Error", MB_OK | MB_ICONERROR);
+			return FALSE;
+		}
+
+		*ppwfxInfo = (WAVEFORMATEX*)malloc(sizeof(WAVEFORMATEX) + cbExtraBytes);
+		
+		if(*ppwfxInfo == NULL){
+			AMEM.error = TRUE;
+			MessageBox(AMEM.hwnd, L"Error 8", L"Sound Error", MB_OK | MB_ICONERROR);
+			return FALSE;
+		}
+
+		memcpy(ppwfxInfo, &pcmWaveFormat, sizeof(pcmWaveFormat));
+		(*ppwfxInfo)->cbSize = cbExtraBytes;
+
+		if(mmioRead(hmmioIn, (HPSTR)(((BYTE*)&((*ppwfxInfo)->cbSize)) + sizeof(WORD)), cbExtraBytes) != cbExtraBytes){
+			free(ppwfxInfo);
+			*ppwfxInfo = NULL;
+			AMEM.error = TRUE;
+			MessageBox(AMEM.hwnd, L"Error 9", L"Sound Error", MB_OK | MB_ICONERROR);
+			return FALSE;
+		}
+	}
+
+	if(mmioAscend(hmmioIn, &mmckInfo, 0)){
+		free(ppwfxInfo);
+		*ppwfxInfo = NULL;
+		AMEM.error = TRUE;
+		MessageBox(AMEM.hwnd, L"Error 10", L"Sound Error", MB_OK | MB_ICONERROR);
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+BOOL WaveOpenFile(LPWSTR fileName, HMMIO* phmmioIn, WAVEFORMATEX** ppwfxInfo, MMCKINFO pckInRIFF){
+	HMMIO hmmioIn = NULL;
+
+	if(mmioOpen(fileName, NULL, MMIO_ALLOCBUF | MMIO_READ) == NULL){
+		mmioClose(hmmioIn, 0);
+		AMEM.error = TRUE;
+		MessageBox(AMEM.hwnd, L"Error Opening File", L"Sound Error", MB_OK | MB_ICONERROR);
+		return FALSE;
+	}
+
+	*phmmioIn = hmmioIn;
+
+	return TRUE;
+}
+
+BOOL WaveStartDataRead(HMMIO* phmmioIn, MMCKINFO* pckIn, MMCKINFO* pckInRIFF){
+	if(mmioSeek(*phmmioIn, pckInRIFF->dwDataOffset + sizeof(FOURCC), SEEK_SET) == -1){
+		AMEM.error = TRUE;
+		MessageBox(AMEM.hwnd, L"No Data Chunk Found", L"Sound Error", MB_OK | MB_ICONERROR);
+		return FALSE;
+	}
+
+	pckIn->ckid = mmioFOURCC('d', 'a', 't', 'a');
+	
+	if(mmioDescend(*phmmioIn, pckIn, pckInRIFF, MMIO_FINDCHUNK)){
+		AMEM.error = TRUE;
+		MessageBox(AMEM.hwnd, L"Error Descending to Data Chunk", L"Sound Error", MB_OK | MB_ICONERROR);
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+BOOL WaveReadFile(HMMIO hmmioIn, UINT cbRead, BYTE* pbDest, MMCKINFO* pckIn, UINT* cbActualRead){
+	MMIOINFO mmioinfoIn;
+	UINT cbDataIn = cbRead;
+	UINT cT;
+
+	*cbActualRead = 0;
+
+	if(mmioGetInfo(hmmioIn, &mmioinfoIn, 0) != 0){
+		AMEM.error = TRUE;
+		MessageBox(AMEM.hwnd, L"Error Getting Info", L"Sound Error", MB_OK | MB_ICONERROR);
+		return FALSE;
+	}
+
+	if(cbDataIn > pckIn->cksize){
+		cbDataIn = pckIn->cksize;
+	}
+
+	pckIn->cksize -= cbDataIn;
+
+	for(cT = 0; cT < cbDataIn; cT++){
+		if(mmioinfoIn.pchNext == mmioinfoIn.pchEndRead){
+			if(mmioAdvance(hmmioIn, &mmioinfoIn, MMIO_READ) != 0){
+				AMEM.error = TRUE;
+				MessageBox(AMEM.hwnd, L"Error Coppying data", L"Sound Error", MB_OK | MB_ICONERROR);
+				return FALSE;
+			}
+
+			if(mmioinfoIn.pchNext == mmioinfoIn.pchEndRead){
+				AMEM.error = TRUE;
+				MessageBox(AMEM.hwnd, L"Error Coppying data", L"Sound Error", MB_OK | MB_ICONERROR);
+				return FALSE;
+			}
+		}
+
+		*((BYTE*)pbDest + cT) = *((BYTE*)mmioinfoIn.pchNext);
+		mmioinfoIn.pchNext++;
+	}
+
+	if(mmioSetInfo(hmmioIn, &mmioinfoIn, 0) != 0){
+		AMEM.error = TRUE;
+		MessageBox(AMEM.hwnd, L"Error Setting Info", L"Sound Error", MB_OK | MB_ICONERROR);
+		return FALSE;
+	}
+
+	*cbActualRead = cbDataIn;
+	return TRUE;
+}
+
+BOOL loadStatic(LPDIRECTSOUND lpds, LPWSTR fileName){
+	LPLPDIRECTSOUNDBUFFER lpdsbStatic;
+	LPDWORD lpdwBufferSize;
+
+	WAVEFORMATEX *pwfx;
+	HMMIO hmmio;
+	MMCKINFO mmckinfo;
+	MMCKINFO mmckinfoParent;
+	DSBUFFERDESC dsbdesc;
+
+	if(!WaveOpenFile(fileName, &hmmio, &pwfx, mmckinfoParent)){
+		return FALSE;
+	}
+
+	memset(&dsbdesc, 0, sizeof(DSBUFFERDESC));
+	dsbdesc.dwSize = sizeof(DSBUFFERDESC);
+	dsbdesc.dwFlags = DSBCAPS_STATIC;
+	dsbdesc.dwBufferBytes = mmckinfo.cksize;
+	dsbdesc.lpwfxFormat = pwfx;
+
+	lpds->CreateSoundBuffer(&dsbdesc, lpdsbStatic, NULL);
+
+	
+
+	return TRUE;
+}

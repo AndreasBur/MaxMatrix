@@ -1,0 +1,58 @@
+﻿Build started 2016-01-25 15:26:22.
+     1>Project "C:\Users\virskl\Downloads\LED Cube\CubeApp\CubeApp\CubeApp.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Release\CubeApp.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TC /analyze- /errorReport:prompt animations.c CUBE_APP.c images.c serial.c
+         animations.c
+     1>animations.c(170): warning C4028: formal parameter 1 different from declaration
+     1>animations.c(192): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(234) : see declaration of 'fopen'
+     1>animations.c(496): warning C4244: 'function' : conversion from 'double' to 'int', possible loss of data
+     1>animations.c(496): warning C4244: 'function' : conversion from 'double' to 'int', possible loss of data
+     1>animations.c(496): warning C4244: 'function' : conversion from 'double' to 'int', possible loss of data
+     1>animations.c(500): warning C4244: 'function' : conversion from 'double' to 'int', possible loss of data
+     1>animations.c(500): warning C4244: 'function' : conversion from 'double' to 'int', possible loss of data
+     1>animations.c(500): warning C4244: 'function' : conversion from 'double' to 'int', possible loss of data
+     1>animations.c(503): warning C4244: 'function' : conversion from 'double' to 'int', possible loss of data
+     1>animations.c(503): warning C4244: 'function' : conversion from 'double' to 'int', possible loss of data
+     1>animations.c(503): warning C4244: 'function' : conversion from 'double' to 'int', possible loss of data
+     1>animations.c(506): warning C4244: 'function' : conversion from 'double' to 'int', possible loss of data
+     1>animations.c(506): warning C4244: 'function' : conversion from 'double' to 'int', possible loss of data
+     1>animations.c(506): warning C4244: 'function' : conversion from 'double' to 'int', possible loss of data
+     1>animations.c(555): warning C4244: 'function' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>animations.c(766): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>animations.c(767): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>animations.c(834): warning C4996: 'ctime': This function or variable may be unsafe. Consider using ctime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\time.inl(86) : see declaration of 'ctime'
+     1>animations.c(846): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _itoa. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdlib.h(867) : see declaration of 'itoa'
+         CUBE_APP.c
+     1>CUBE_APP.c(19): warning C4005: 'CreateWindow' : macro redefinition
+                 C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\winuser.h(3897) : see previous definition of 'CreateWindow'
+     1>CUBE_APP.c(305): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _itoa. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdlib.h(867) : see declaration of 'itoa'
+     1>CUBE_APP.c(324): warning C4028: formal parameter 2 different from declaration
+         images.c
+         serial.c
+       ResourceCompile:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /D _UNICODE /D UNICODE /l"0x0409" /nologo /fo"Release\resource.res" resource.rc 
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\virskl\Downloads\LED Cube\CubeApp\Release\CubeApp.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\CubeApp.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\virskl\Downloads\LED Cube\CubeApp\Release\CubeApp.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\virskl\Downloads\LED Cube\CubeApp\Release\CubeApp.lib" /MACHINE:X86 Release\resource.res
+         Release\animations.obj
+         Release\CUBE_APP.obj
+         Release\images.obj
+         Release\serial.obj
+         Generating code
+         Finished generating code
+         CubeApp.vcxproj -> C:\Users\virskl\Downloads\LED Cube\CubeApp\Release\CubeApp.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\virskl\Downloads\LED Cube\CubeApp\Release\CubeApp.exe;#1" /manifest Release\CubeApp.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         Deleting file "Release\CubeApp.unsuccessfulbuild".
+         Touching "Release\CubeApp.lastbuildstate".
+     1>Done Building Project "C:\Users\virskl\Downloads\LED Cube\CubeApp\CubeApp\CubeApp.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.27

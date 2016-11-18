@@ -1,0 +1,9 @@
+1.2
+- fixed bug in space invaders, works properly now
+1.1
+- added some NOPs to the view functions, sometimes the leds on the bottom layer were
+unintentionally active otherwise (very short/weak, but noticeable).
+- fixed random selector in main.c (commented out by default)
+- added space invaders animation (some pixels act strange in the second run, not sure why)
+1.0
+initial release

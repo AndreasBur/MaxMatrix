@@ -1,0 +1,69 @@
+/*
+	LED CUbe win32 Application
+	Resource file
+	By Nicholas K Schulze
+	www.HowNotToEngineer.com
+	11/3/2011
+*/
+
+
+//sets up all resources used in the win32 app, 
+//there are apparently layout editors for this kind of thing
+//but I wrote this by hand to learn the win32API
+
+#include <windows.h>
+#include "resource.h"
+
+
+//icon
+IDR_MYICON ICON "favicon.ico"
+
+//top menu
+IDR_MAIN_MENU MENU
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&Exit", IDR_MAIN_FILE_EXIT
+    END
+
+	POPUP "&Serial"
+	BEGIN
+		MENUITEM "&COM1", IDR_MAIN_SETUP_COM1
+		MENUITEM "&COM2", IDR_MAIN_SETUP_COM2
+		MENUITEM "&COM3", IDR_MAIN_SETUP_COM3
+		MENUITEM "&COM4", IDR_MAIN_SETUP_COM4
+		MENUITEM "&COM5", IDR_MAIN_SETUP_COM5
+		MENUITEM "&COM6", IDR_MAIN_SETUP_COM6
+		MENUITEM "&COM7", IDR_MAIN_SETUP_COM7
+		MENUITEM "&COM8", IDR_MAIN_SETUP_COM8	
+	END
+
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About", IDR_MAIN_HELP_ABOUT
+    END
+END
+
+//about box
+IDR_DLG_ABOUT DIALOG
+DISCARDABLE 0, 0, 255, 66
+STYLE DS_MODALFRAME | WS_CAPTION | WS_POPUP | WS_SYSMENU
+CAPTION "About"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON "&OK", IDR_BUT_OK, 174, 18, 50, 14
+    CTEXT "Interactive LED Cube GUI\nBy Nick Schulze\nHowNotToEngineer.com",IDR_STATIC,16,18,144,33
+END
+
+//interactive toolbar
+IDR_TOOL_INT DIALOGEX 198, -30, 100, 91
+STYLE DS_MODALFRAME | WS_CAPTION | WS_POPUP
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "Interactive Animations"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON "&SNAKE", IDR_BUT_SNAKE, 7, 7, 84, 14
+	PUSHBUTTON "&MOUSE", IDR_BUT_MOUSE, 7, 28, 84, 14
+	PUSHBUTTON "&TYPE", IDR_BUT_TYPE, 7, 49, 84, 14
+	PUSHBUTTON "&CLOCK", IDR_BUT_CLOCK, 7, 70, 84, 14
+END
