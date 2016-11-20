@@ -28,22 +28,22 @@
 /******************************************************************************************************************************************************
  *  LOCAL CONSTANT MACROS
  *****************************************************************************************************************************************************/
-#define UART_INPUT_LENGTH								100
-#define COMMAND_MAX_LENGTH								10
-#define MAXMATRIX_MAX_TEXT_LENGTH						(UART_INPUT_LENGTH - COMMAND_MAX_LENGTH)
+#define UART_INPUT_LENGTH                               100
+#define COMMAND_MAX_LENGTH                              10
+#define MAXMATRIX_MAX_TEXT_LENGTH                       (UART_INPUT_LENGTH - COMMAND_MAX_LENGTH)
 
-#define MAXMATRIX_CS_PIN								10
-#define MAXMATRIX_CLOCK_PIN								11
-#define MAXMATRIX_DATA_PIN								12
+#define MAXMATRIX_CS_PIN                                10
+#define MAXMATRIX_CLOCK_PIN                             11
+#define MAXMATRIX_DATA_PIN                              12
 
-#define MAXMATRIX_SPEED_MIN_VALUE						1
-#define MAXMATRIX_SPEED_MAX_VALUE						20
+#define MAXMATRIX_SPEED_MIN_VALUE                       1
+#define MAXMATRIX_SPEED_MAX_VALUE                       20
 
-#define MAXMATRIX_INTENSITY_MIN_VALUE					1
-#define MAXMATRIX_INTENSITY_MAX_VALUE					16
+#define MAXMATRIX_INTENSITY_MIN_VALUE                   1
+#define MAXMATRIX_INTENSITY_MAX_VALUE                   16
 
-#define MAXMATRIX_SPACE_BETWEEN_CHARS_MIN_VALUE			0
-#define MAXMATRIX_SPACE_BETWEEN_CHARS_MAX_VALUE			255
+#define MAXMATRIX_SPACE_BETWEEN_CHARS_MIN_VALUE         0
+#define MAXMATRIX_SPACE_BETWEEN_CHARS_MAX_VALUE         255
 
 
 /******************************************************************************************************************************************************
@@ -186,13 +186,13 @@ void uartInputHandle()
             }
         }
         else if(strcmp(command, "spaceBetweenChars") == 0) {
-	        value = atoi(valueASCII);
-	        if(value >= MAXMATRIX_SPACE_BETWEEN_CHARS_MIN_VALUE && value <= MAXMATRIX_SPACE_BETWEEN_CHARS_MAX_VALUE) {
-					Matrix.setSpaceBetweenChars(value);
-		        } else {
-		        Serial.println(F("value out of range"));
-		        Serial.println(F("spaceBetweenChars range "TOSTRING(MAXMATRIX_SPACE_BETWEEN_CHARS_MIN_VALUE)" ... "TOSTRING(MAXMATRIX_SPACE_BETWEEN_CHARS_MAX_VALUE)));
-	        }
+            value = atoi(valueASCII);
+            if(value >= MAXMATRIX_SPACE_BETWEEN_CHARS_MIN_VALUE && value <= MAXMATRIX_SPACE_BETWEEN_CHARS_MAX_VALUE) {
+                    Matrix.setSpaceBetweenChars(value);
+                } else {
+                Serial.println(F("value out of range"));
+                Serial.println(F("spaceBetweenChars range "TOSTRING(MAXMATRIX_SPACE_BETWEEN_CHARS_MIN_VALUE)" ... "TOSTRING(MAXMATRIX_SPACE_BETWEEN_CHARS_MAX_VALUE)));
+            }
         }
         else if(strcmp(command, "setDot") == 0) {
             if(LEDMATRIX_STATE_READY != State) {
