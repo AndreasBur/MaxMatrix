@@ -1429,15 +1429,17 @@ void MaxMatrix::shiftUpLL(bool Rotate, bool ShiftToNeighbourModule)
 		/* shift to neighbor module is more complicated, we have to iterate over every module */
         for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++)
         {
-			/* save top Row, will be wrapped around later if rotation is active */
+			/* save matrix top row, will be wrapped around later if rotation is active */
             if(Module == 0 && Rotate) getRowLL(0, 0, &MatrixTopRow);
+			/* save module top row will be set to next module later */
             getRowLL(Module + 1, 0, &ModuleTopRow);
             /* shift every bit in column one step right conforms to shift up */
             for(int Column = 0; Column < MAXMATRIX_COLUMN_NUMBER_OF_MODULE; Column++) 
                 MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module)] >>= 1;
-            /* last module  */
+            /* last module wrap around saved matrix top row */
             if(Module == MAXMATRIX_NUMBER_OF_MODULES - 1) {
                 if(Rotate) setRowLL(Module, MAXMATRIX_ROW_NUMBER_OF_MODULE - 1, MatrixTopRow);
+			/* for all other modules set saved module top row */
             } else {
                 setRowLL(Module, MAXMATRIX_ROW_NUMBER_OF_MODULE - 1, ModuleTopRow);
             }
@@ -1446,11 +1448,11 @@ void MaxMatrix::shiftUpLL(bool Rotate, bool ShiftToNeighbourModule)
 		/* iterate over all Columns and shift the bits */
         for(int Column = 0; Column < MAXMATRIX_NUMBER_OF_COLUMNS; Column++) 
         {
-			/* save top Row, will be wrapped around later if rotation is active */
+			/* save top row, will be wrapped around later if rotation is active */
             bool TopBit = bitRead(MatrixBuffer[Column], 0);
 			/* shift every bit one step right conforms to shift up */
             MatrixBuffer[Column] >>= 1;
-			/* wrap around saved top Row to bottom Row */
+			/* wrap around saved top row to bottom row */
             if(Rotate) bitWrite(MatrixBuffer[Column], MAXMATRIX_ROW_NUMBER_OF_MODULE - 1, TopBit);
         }
     }
@@ -1479,15 +1481,18 @@ void MaxMatrix::shiftDownLL(bool Rotate, bool ShiftToNeighbourModule)
 		/* shift to neighbor module is more complicated, we have to iterate over every module */
         for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++)
         {
+			/* save matrix bottom row, will be wrapped around later if rotation is active */
             if(Module == 0 && Rotate) getRowLL(0, MAXMATRIX_ROW_NUMBER_OF_MODULE - 1, &MatrixBottomRow);
+			/* save module top row will be set to next module later */
             getRowLL(Module + 1, MAXMATRIX_ROW_NUMBER_OF_MODULE - 1, &ModuleBottomRow);
-            
+            /* shift every bit in column one step left conforms to shift down */
             for(int Column = 0; Column < MAXMATRIX_COLUMN_NUMBER_OF_MODULE; Column++)
-            MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module)] <<= 1;
-            
+				MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module)] <<= 1;
+            /* last module wrap around saved matrix bottom row */
             if(Module == MAXMATRIX_NUMBER_OF_MODULES - 1) {
                 if(Rotate) setRowLL(Module, 0, MatrixBottomRow);
             } else {
+			/* for all other modules set saved module bottom row */
                 setRowLL(Module, 0, ModuleBottomRow);
             }
         }
@@ -1495,10 +1500,11 @@ void MaxMatrix::shiftDownLL(bool Rotate, bool ShiftToNeighbourModule)
 		/* iterate over all Columns and shift the bits */
         for(int Column = 0; Column < MAXMATRIX_NUMBER_OF_COLUMNS; Column++) 
         {
-			/* save bottom Row, will be wrapped around later if rotation is active */
+			/* save bottom row, will be wrapped around later if rotation is active */
             bool BottomBit = bitRead(MatrixBuffer[Column], MAXMATRIX_ROW_NUMBER_OF_MODULE - 1);
+			/* shift every bit one step left conforms to shift down */
             MatrixBuffer[Column] <<= 1;
-			/* wrap around saved top Row to top Row */
+			/* wrap around saved bottom row to top row */
             if(Rotate) bitWrite(MatrixBuffer[Column], 0, BottomBit);
         }
     }
