@@ -9,25 +9,25 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
   2 .bss          000001a5  00800162  00800162  000026d0  2**0
                   ALLOC
-  3 .comment      00000060  00000000  00000000  000026d0  2**0
+  3 .comment      00000030  00000000  00000000  000026d0  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00002730  2**2
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00002700  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000560  00000000  00000000  00002770  2**0
+  5 .debug_aranges 00000560  00000000  00000000  00002740  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   0000c9da  00000000  00000000  00002cd0  2**0
+  6 .debug_info   0000c9da  00000000  00000000  00002ca0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00001d85  00000000  00000000  0000f6aa  2**0
+  7 .debug_abbrev 00001d85  00000000  00000000  0000f67a  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   000036bc  00000000  00000000  0001142f  2**0
+  8 .debug_line   000036cf  00000000  00000000  000113ff  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  000013f4  00000000  00000000  00014aec  2**2
+  9 .debug_frame  000013f4  00000000  00000000  00014ad0  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00002dc2  00000000  00000000  00015ee0  2**0
+ 10 .debug_str    00002cd6  00000000  00000000  00015ec4  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00008a62  00000000  00000000  00018ca2  2**0
+ 11 .debug_loc    00008a62  00000000  00000000  00018b9a  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000007f8  00000000  00000000  00021704  2**0
+ 12 .debug_ranges 000007f8  00000000  00000000  000215fc  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -704,36 +704,36 @@ inline void stringCopy(char *Destination, const char *Source, int Length)
      854:	0e 94 99 12 	call	0x2532	; 0x2532 <strcmp>
      858:	89 2b       	or	r24, r25
      85a:	d9 f4       	brne	.+54     	; 0x892 <_Z15uartInputHandlev+0x23c>
-	        value = atoi(valueASCII);
+            value = atoi(valueASCII);
      85c:	ce 01       	movw	r24, r28
      85e:	01 96       	adiw	r24, 0x01	; 1
      860:	0e 94 62 12 	call	0x24c4	; 0x24c4 <atoi>
-	        if(value >= MAXMATRIX_SPACE_BETWEEN_CHARS_MIN_VALUE && value <= MAXMATRIX_SPACE_BETWEEN_CHARS_MAX_VALUE) {
+            if(value >= MAXMATRIX_SPACE_BETWEEN_CHARS_MIN_VALUE && value <= MAXMATRIX_SPACE_BETWEEN_CHARS_MAX_VALUE) {
      864:	8f 3f       	cpi	r24, 0xFF	; 255
      866:	91 05       	cpc	r25, r1
      868:	09 f0       	breq	.+2      	; 0x86c <_Z15uartInputHandlev+0x216>
      86a:	30 f4       	brcc	.+12     	; 0x878 <_Z15uartInputHandlev+0x222>
-					Matrix.setSpaceBetweenChars(value);
+                    Matrix.setSpaceBetweenChars(value);
      86c:	68 2f       	mov	r22, r24
      86e:	85 e6       	ldi	r24, 0x65	; 101
      870:	91 e0       	ldi	r25, 0x01	; 1
      872:	0e 94 ab 05 	call	0xb56	; 0xb56 <_ZN9MaxMatrix20setSpaceBetweenCharsEh>
      876:	97 c0       	rjmp	.+302    	; 0x9a6 <__stack+0xa7>
-		        } else {
-		        Serial.println(F("value out of range"));
+                } else {
+                Serial.println(F("value out of range"));
      878:	6b e6       	ldi	r22, 0x6B	; 107
      87a:	71 e0       	ldi	r23, 0x01	; 1
      87c:	81 e6       	ldi	r24, 0x61	; 97
      87e:	92 e0       	ldi	r25, 0x02	; 2
      880:	0e 94 ab 10 	call	0x2156	; 0x2156 <_ZN5Print7printlnEPK19__FlashStringHelper>
-		        Serial.println(F("spaceBetweenChars range "TOSTRING(MAXMATRIX_SPACE_BETWEEN_CHARS_MIN_VALUE)" ... "TOSTRING(MAXMATRIX_SPACE_BETWEEN_CHARS_MAX_VALUE)));
+                Serial.println(F("spaceBetweenChars range "TOSTRING(MAXMATRIX_SPACE_BETWEEN_CHARS_MIN_VALUE)" ... "TOSTRING(MAXMATRIX_SPACE_BETWEEN_CHARS_MAX_VALUE)));
      884:	6f ef       	ldi	r22, 0xFF	; 255
      886:	70 e0       	ldi	r23, 0x00	; 0
      888:	81 e6       	ldi	r24, 0x61	; 97
      88a:	92 e0       	ldi	r25, 0x02	; 2
      88c:	0e 94 ab 10 	call	0x2156	; 0x2156 <_ZN5Print7printlnEPK19__FlashStringHelper>
      890:	8a c0       	rjmp	.+276    	; 0x9a6 <__stack+0xa7>
-	        }
+            }
         }
         else if(strcmp(command, "setDot") == 0) {
      892:	6a e4       	ldi	r22, 0x4A	; 74
@@ -2657,11 +2657,11 @@ void MaxMatrix::shiftLeftLL(bool Rotate, bool FillWithZero, bool ShiftToNeighbou
     16b0:	1f 93       	push	r17
     16b2:	cf 93       	push	r28
     16b4:	df 93       	push	r29
-	/* should we shift the state to the next module? */
+    /* should we shift the state to the next module? */
     if(ShiftToNeighbourModule) {
     16b6:	22 23       	and	r18, r18
     16b8:	b9 f0       	breq	.+46     	; 0x16e8 <_ZN9MaxMatrix11shiftLeftLLEbbb+0x3e>
-		/* save left column will be wrapped around later if rotation is active */
+        /* save left column will be wrapped around later if rotation is active */
         byte ColumnLeft = MatrixBuffer[0];
     16ba:	ec 01       	movw	r28, r24
     16bc:	2d 81       	ldd	r18, Y+5	; 0x05
@@ -2669,32 +2669,32 @@ void MaxMatrix::shiftLeftLL(bool Rotate, bool FillWithZero, bool ShiftToNeighbou
     16c0:	36 96       	adiw	r30, 0x06	; 6
     16c2:	dc 01       	movw	r26, r24
     16c4:	95 96       	adiw	r26, 0x25	; 37
-		/* shift every column one step left */
+        /* shift every column one step left */
         for(int Column = 0; Column < MAXMATRIX_NUMBER_OF_COLUMNS - 1; Column++) {
             MatrixBuffer[Column] = MatrixBuffer[Column + 1];
     16c6:	31 91       	ld	r19, Z+
     16c8:	ef 01       	movw	r28, r30
     16ca:	22 97       	sbiw	r28, 0x02	; 2
     16cc:	38 83       	st	Y, r19
-	/* should we shift the state to the next module? */
+    /* should we shift the state to the next module? */
     if(ShiftToNeighbourModule) {
-		/* save left column will be wrapped around later if rotation is active */
+        /* save left column will be wrapped around later if rotation is active */
         byte ColumnLeft = MatrixBuffer[0];
-		/* shift every column one step left */
+        /* shift every column one step left */
         for(int Column = 0; Column < MAXMATRIX_NUMBER_OF_COLUMNS - 1; Column++) {
     16ce:	ea 17       	cp	r30, r26
     16d0:	fb 07       	cpc	r31, r27
     16d2:	c9 f7       	brne	.-14     	; 0x16c6 <_ZN9MaxMatrix11shiftLeftLLEbbb+0x1c>
             MatrixBuffer[Column] = MatrixBuffer[Column + 1];
         }
-		/* wrap around saved left column to the right */
+        /* wrap around saved left column to the right */
         if(Rotate) MatrixBuffer[MAXMATRIX_NUMBER_OF_COLUMNS - 1] = ColumnLeft;
     16d4:	66 23       	and	r22, r22
     16d6:	19 f0       	breq	.+6      	; 0x16de <_ZN9MaxMatrix11shiftLeftLLEbbb+0x34>
     16d8:	fc 01       	movw	r30, r24
     16da:	24 a3       	std	Z+36, r18	; 0x24
     16dc:	26 c0       	rjmp	.+76     	; 0x172a <_ZN9MaxMatrix11shiftLeftLLEbbb+0x80>
-		/* otherwise initialize right column */
+        /* otherwise initialize right column */
         else if(FillWithZero) MatrixBuffer[MAXMATRIX_NUMBER_OF_COLUMNS - 1] = 0;
     16de:	44 23       	and	r20, r20
     16e0:	21 f1       	breq	.+72     	; 0x172a <_ZN9MaxMatrix11shiftLeftLLEbbb+0x80>
@@ -2710,13 +2710,13 @@ void MaxMatrix::shiftLeftLL(bool Rotate, bool FillWithZero, bool ShiftToNeighbou
     16f4:	df 01       	movw	r26, r30
     16f6:	17 97       	sbiw	r26, 0x07	; 7
     } else {
-		/* no shift to neighbor module is more complicated, we have to iterate over every module */
+        /* no shift to neighbor module is more complicated, we have to iterate over every module */
         for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++) {
-			/* save left column on module will be wrapped around later if rotation is active */
+            /* save left column on module will be wrapped around later if rotation is active */
             byte ModuleColumnLeft = MatrixBuffer[MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module];
     16f8:	5c 91       	ld	r21, X
     16fa:	11 96       	adiw	r26, 0x01	; 1
-			/* shift every column of the module one step left */
+            /* shift every column of the module one step left */
             for(int Column = 0; Column < MAXMATRIX_COLUMN_NUMBER_OF_MODULE - 1; Column++) {
     16fc:	20 e0       	ldi	r18, 0x00	; 0
     16fe:	30 e0       	ldi	r19, 0x00	; 0
@@ -2728,11 +2728,11 @@ void MaxMatrix::shiftLeftLL(bool Rotate, bool FillWithZero, bool ShiftToNeighbou
     1706:	11 09       	sbc	r17, r1
     1708:	e8 01       	movw	r28, r16
     170a:	78 83       	st	Y, r23
-		/* no shift to neighbor module is more complicated, we have to iterate over every module */
+        /* no shift to neighbor module is more complicated, we have to iterate over every module */
         for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++) {
-			/* save left column on module will be wrapped around later if rotation is active */
+            /* save left column on module will be wrapped around later if rotation is active */
             byte ModuleColumnLeft = MatrixBuffer[MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module];
-			/* shift every column of the module one step left */
+            /* shift every column of the module one step left */
             for(int Column = 0; Column < MAXMATRIX_COLUMN_NUMBER_OF_MODULE - 1; Column++) {
     170c:	2f 5f       	subi	r18, 0xFF	; 255
     170e:	3f 4f       	sbci	r19, 0xFF	; 255
@@ -2742,27 +2742,27 @@ void MaxMatrix::shiftLeftLL(bool Rotate, bool FillWithZero, bool ShiftToNeighbou
                 MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module)] = 
                 MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module) + 1];
             }
-			/* wrap around saved left module column to the right */
+            /* wrap around saved left module column to the right */
             if(Rotate) MatrixBuffer[MAXMATRIX_COLUMN_NUMBER_OF_MODULE * (Module + 1) - 1] = ModuleColumnLeft;
     1716:	66 23       	and	r22, r22
     1718:	11 f0       	breq	.+4      	; 0x171e <_ZN9MaxMatrix11shiftLeftLLEbbb+0x74>
     171a:	50 83       	st	Z, r21
     171c:	02 c0       	rjmp	.+4      	; 0x1722 <_ZN9MaxMatrix11shiftLeftLLEbbb+0x78>
-			/* otherwise initialize right module column */
+            /* otherwise initialize right module column */
             else if(FillWithZero) MatrixBuffer[(Module + 1) * MAXMATRIX_COLUMN_NUMBER_OF_MODULE - 1] = 0;
     171e:	41 11       	cpse	r20, r1
     1720:	10 82       	st	Z, r1
     1722:	38 96       	adiw	r30, 0x08	; 8
         if(Rotate) MatrixBuffer[MAXMATRIX_NUMBER_OF_COLUMNS - 1] = ColumnLeft;
-		/* otherwise initialize right column */
+        /* otherwise initialize right column */
         else if(FillWithZero) MatrixBuffer[MAXMATRIX_NUMBER_OF_COLUMNS - 1] = 0;
     } else {
-		/* no shift to neighbor module is more complicated, we have to iterate over every module */
+        /* no shift to neighbor module is more complicated, we have to iterate over every module */
         for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++) {
     1724:	ee 15       	cp	r30, r14
     1726:	ff 05       	cpc	r31, r15
     1728:	29 f7       	brne	.-54     	; 0x16f4 <_ZN9MaxMatrix11shiftLeftLLEbbb+0x4a>
-			/* otherwise initialize right module column */
+            /* otherwise initialize right module column */
             else if(FillWithZero) MatrixBuffer[(Module + 1) * MAXMATRIX_COLUMN_NUMBER_OF_MODULE - 1] = 0;
         }
     }
@@ -2775,7 +2775,7 @@ void MaxMatrix::shiftLeftLL(bool Rotate, bool FillWithZero, bool ShiftToNeighbou
     1732:	ff 90       	pop	r15
     1734:	ef 90       	pop	r14
             if(Rotate) MatrixBuffer[MAXMATRIX_COLUMN_NUMBER_OF_MODULE * (Module + 1) - 1] = ModuleColumnLeft;
-			/* otherwise initialize right module column */
+            /* otherwise initialize right module column */
             else if(FillWithZero) MatrixBuffer[(Module + 1) * MAXMATRIX_COLUMN_NUMBER_OF_MODULE - 1] = 0;
         }
     }
@@ -2800,43 +2800,43 @@ void MaxMatrix::shiftRightLL(bool Rotate, bool FillWithZero, bool ShiftToNeighbo
     174a:	dc 01       	movw	r26, r24
     174c:	95 96       	adiw	r26, 0x25	; 37
     174e:	6d 01       	movw	r12, r26
-	/* should we shift the state to the next module? */
+    /* should we shift the state to the next module? */
     if(ShiftToNeighbourModule) {
-		/* save right column, will be wrapped around later if rotation is active */
+        /* save right column, will be wrapped around later if rotation is active */
         byte ColumnRight = MatrixBuffer[MAXMATRIX_NUMBER_OF_COLUMNS - 1];
     1750:	fc 01       	movw	r30, r24
  *  \return         -
  *****************************************************************************************************************************************************/
 void MaxMatrix::shiftRightLL(bool Rotate, bool FillWithZero, bool ShiftToNeighbourModule)
 {
-	/* should we shift the state to the next module? */
+    /* should we shift the state to the next module? */
     if(ShiftToNeighbourModule) {
     1752:	22 23       	and	r18, r18
     1754:	a9 f0       	breq	.+42     	; 0x1780 <_ZN9MaxMatrix12shiftRightLLEbbb+0x46>
-		/* save right column, will be wrapped around later if rotation is active */
+        /* save right column, will be wrapped around later if rotation is active */
         byte ColumnRight = MatrixBuffer[MAXMATRIX_NUMBER_OF_COLUMNS - 1];
     1756:	24 a1       	ldd	r18, Z+36	; 0x24
     1758:	fd 01       	movw	r30, r26
     175a:	5f 97       	sbiw	r26, 0x1f	; 31
     175c:	ef 01       	movw	r28, r30
     175e:	22 97       	sbiw	r28, 0x02	; 2
-		/* shift every column of the module one step right */
+        /* shift every column of the module one step right */
         for(int Column = MAXMATRIX_NUMBER_OF_COLUMNS - 1; Column > 0; Column--) { 
             MatrixBuffer[Column] = MatrixBuffer[Column - 1]; 
     1760:	38 81       	ld	r19, Y
     1762:	32 93       	st	-Z, r19
-	/* should we shift the state to the next module? */
+    /* should we shift the state to the next module? */
     if(ShiftToNeighbourModule) {
-		/* save right column, will be wrapped around later if rotation is active */
+        /* save right column, will be wrapped around later if rotation is active */
         byte ColumnRight = MatrixBuffer[MAXMATRIX_NUMBER_OF_COLUMNS - 1];
-		/* shift every column of the module one step right */
+        /* shift every column of the module one step right */
         for(int Column = MAXMATRIX_NUMBER_OF_COLUMNS - 1; Column > 0; Column--) { 
     1764:	ea 17       	cp	r30, r26
     1766:	fb 07       	cpc	r31, r27
     1768:	c9 f7       	brne	.-14     	; 0x175c <_ZN9MaxMatrix12shiftRightLLEbbb+0x22>
             MatrixBuffer[Column] = MatrixBuffer[Column - 1]; 
         }
-		/* wrap around saved right column to the left */
+        /* wrap around saved right column to the left */
         if(Rotate) MatrixBuffer[0] = ColumnRight;
     176a:	66 23       	and	r22, r22
     176c:	21 f0       	breq	.+8      	; 0x1776 <_ZN9MaxMatrix12shiftRightLLEbbb+0x3c>
@@ -2844,7 +2844,7 @@ void MaxMatrix::shiftRightLL(bool Rotate, bool FillWithZero, bool ShiftToNeighbo
     1770:	15 96       	adiw	r26, 0x05	; 5
     1772:	2c 93       	st	X, r18
     1774:	22 c0       	rjmp	.+68     	; 0x17ba <_ZN9MaxMatrix12shiftRightLLEbbb+0x80>
-		/* otherwise initialize right column */
+        /* otherwise initialize right column */
         else if(FillWithZero) MatrixBuffer[0] = 0;
     1776:	44 23       	and	r20, r20
     1778:	01 f1       	breq	.+64     	; 0x17ba <_ZN9MaxMatrix12shiftRightLLEbbb+0x80>
@@ -2854,13 +2854,13 @@ void MaxMatrix::shiftRightLL(bool Rotate, bool FillWithZero, bool ShiftToNeighbo
     1780:	35 96       	adiw	r30, 0x05	; 5
     1782:	8f 01       	movw	r16, r30
     } else {
-		/* no shift to neighbor module is more complicated, we have to iterate over every module */
+        /* no shift to neighbor module is more complicated, we have to iterate over every module */
         for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++) {
             byte ModuleColumnRight = MatrixBuffer[MAXMATRIX_COLUMN_NUMBER_OF_MODULE * (Module + 1) - 1];
     1784:	57 81       	ldd	r21, Z+7	; 0x07
     1786:	38 96       	adiw	r30, 0x08	; 8
     1788:	ef 01       	movw	r28, r30
-			/* shift every column of the module one step right */
+            /* shift every column of the module one step right */
             for(int Column = MAXMATRIX_COLUMN_NUMBER_OF_MODULE - 1; Column > 0; Column--) {
     178a:	27 e0       	ldi	r18, 0x07	; 7
     178c:	30 e0       	ldi	r19, 0x00	; 0
@@ -2874,10 +2874,10 @@ void MaxMatrix::shiftRightLL(bool Rotate, bool FillWithZero, bool ShiftToNeighbo
     1798:	7c 91       	ld	r23, X
     179a:	7a 93       	st	-Y, r23
     } else {
-		/* no shift to neighbor module is more complicated, we have to iterate over every module */
+        /* no shift to neighbor module is more complicated, we have to iterate over every module */
         for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++) {
             byte ModuleColumnRight = MatrixBuffer[MAXMATRIX_COLUMN_NUMBER_OF_MODULE * (Module + 1) - 1];
-			/* shift every column of the module one step right */
+            /* shift every column of the module one step right */
             for(int Column = MAXMATRIX_COLUMN_NUMBER_OF_MODULE - 1; Column > 0; Column--) {
     179c:	21 50       	subi	r18, 0x01	; 1
     179e:	31 09       	sbc	r19, r1
@@ -2885,29 +2885,29 @@ void MaxMatrix::shiftRightLL(bool Rotate, bool FillWithZero, bool ShiftToNeighbo
                 MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module)] = 
                 MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module) - 1];
             }
-			/* wrap around saved left module column to the left */
+            /* wrap around saved left module column to the left */
             if(Rotate) MatrixBuffer[Module * MAXMATRIX_COLUMN_NUMBER_OF_MODULE] = ModuleColumnRight;
     17a2:	66 23       	and	r22, r22
     17a4:	19 f0       	breq	.+6      	; 0x17ac <_ZN9MaxMatrix12shiftRightLLEbbb+0x72>
     17a6:	d8 01       	movw	r26, r16
     17a8:	5c 93       	st	X, r21
     17aa:	04 c0       	rjmp	.+8      	; 0x17b4 <_ZN9MaxMatrix12shiftRightLLEbbb+0x7a>
-			/* otherwise initialize left module column */
+            /* otherwise initialize left module column */
             else if(FillWithZero) MatrixBuffer[Module * MAXMATRIX_COLUMN_NUMBER_OF_MODULE] = 0;
     17ac:	44 23       	and	r20, r20
     17ae:	11 f0       	breq	.+4      	; 0x17b4 <_ZN9MaxMatrix12shiftRightLLEbbb+0x7a>
     17b0:	d8 01       	movw	r26, r16
     17b2:	1c 92       	st	X, r1
         if(Rotate) MatrixBuffer[0] = ColumnRight;
-		/* otherwise initialize right column */
+        /* otherwise initialize right column */
         else if(FillWithZero) MatrixBuffer[0] = 0;
     } else {
-		/* no shift to neighbor module is more complicated, we have to iterate over every module */
+        /* no shift to neighbor module is more complicated, we have to iterate over every module */
         for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++) {
     17b4:	ec 15       	cp	r30, r12
     17b6:	fd 05       	cpc	r31, r13
     17b8:	21 f7       	brne	.-56     	; 0x1782 <_ZN9MaxMatrix12shiftRightLLEbbb+0x48>
-			/* otherwise initialize left module column */
+            /* otherwise initialize left module column */
             else if(FillWithZero) MatrixBuffer[Module * MAXMATRIX_COLUMN_NUMBER_OF_MODULE] = 0;
         }
     }
@@ -2922,7 +2922,7 @@ void MaxMatrix::shiftRightLL(bool Rotate, bool FillWithZero, bool ShiftToNeighbo
     17c6:	df 90       	pop	r13
     17c8:	cf 90       	pop	r12
             if(Rotate) MatrixBuffer[Module * MAXMATRIX_COLUMN_NUMBER_OF_MODULE] = ModuleColumnRight;
-			/* otherwise initialize left module column */
+            /* otherwise initialize left module column */
             else if(FillWithZero) MatrixBuffer[Module * MAXMATRIX_COLUMN_NUMBER_OF_MODULE] = 0;
         }
     }
@@ -2957,16 +2957,16 @@ void MaxMatrix::shiftUpLL(bool Rotate, bool ShiftToNeighbourModule)
     17ee:	fc 01       	movw	r30, r24
     17f0:	35 96       	adiw	r30, 0x05	; 5
 
-	/* should we shift the state to the next module? */
+    /* should we shift the state to the next module? */
     if(ShiftToNeighbourModule) {
     17f2:	44 23       	and	r20, r20
     17f4:	e1 f1       	breq	.+120    	; 0x186e <_ZN9MaxMatrix9shiftUpLLEbb+0xa0>
     17f6:	8f 01       	movw	r16, r30
     17f8:	d1 2c       	mov	r13, r1
-		/* shift to neighbor module is more complicated, we have to iterate over every module */
+        /* shift to neighbor module is more complicated, we have to iterate over every module */
         for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++)
         {
-			/* save matrix top row, will be wrapped around later if rotation is active */
+            /* save matrix top row, will be wrapped around later if rotation is active */
             if(Module == 0 && Rotate) getRowLL(0, 0, &MatrixTopRow);
     17fa:	d1 10       	cpse	r13, r1
     17fc:	0a c0       	rjmp	.+20     	; 0x1812 <_ZN9MaxMatrix9shiftUpLLEbb+0x44>
@@ -2979,7 +2979,7 @@ void MaxMatrix::shiftUpLL(bool Rotate, bool ShiftToNeighbourModule)
     180a:	60 e0       	ldi	r22, 0x00	; 0
     180c:	c7 01       	movw	r24, r14
     180e:	0e 94 ed 07 	call	0xfda	; 0xfda <_ZN9MaxMatrix8getRowLLEhhPh>
-			/* save module top row will be set to next module later */
+            /* save module top row will be set to next module later */
             getRowLL(Module + 1, 0, &ModuleTopRow);
     1812:	bb 24       	eor	r11, r11
     1814:	b3 94       	inc	r11
@@ -3002,9 +3002,9 @@ void MaxMatrix::shiftUpLL(bool Rotate, bool ShiftToNeighbourModule)
     1832:	95 95       	asr	r25
     1834:	87 95       	ror	r24
     1836:	81 93       	st	Z+, r24
-			/* save matrix top row, will be wrapped around later if rotation is active */
+            /* save matrix top row, will be wrapped around later if rotation is active */
             if(Module == 0 && Rotate) getRowLL(0, 0, &MatrixTopRow);
-			/* save module top row will be set to next module later */
+            /* save module top row will be set to next module later */
             getRowLL(Module + 1, 0, &ModuleTopRow);
             /* shift every bit in column one step right conforms to shift up */
             for(int Column = 0; Column < MAXMATRIX_COLUMN_NUMBER_OF_MODULE; Column++) 
@@ -3026,7 +3026,7 @@ void MaxMatrix::shiftUpLL(bool Rotate, bool ShiftToNeighbourModule)
     184e:	47 e0       	ldi	r20, 0x07	; 7
     1850:	63 e0       	ldi	r22, 0x03	; 3
     1852:	03 c0       	rjmp	.+6      	; 0x185a <_ZN9MaxMatrix9shiftUpLLEbb+0x8c>
-			/* for all other modules set saved module top row */
+            /* for all other modules set saved module top row */
             } else {
                 setRowLL(Module, MAXMATRIX_ROW_NUMBER_OF_MODULE - 1, ModuleTopRow);
     1854:	2a 81       	ldd	r18, Y+2	; 0x02
@@ -3038,9 +3038,9 @@ void MaxMatrix::shiftUpLL(bool Rotate, bool ShiftToNeighbourModule)
     1862:	1f 4f       	sbci	r17, 0xFF	; 255
     byte MatrixTopRow = 0;
 
-	/* should we shift the state to the next module? */
+    /* should we shift the state to the next module? */
     if(ShiftToNeighbourModule) {
-		/* shift to neighbor module is more complicated, we have to iterate over every module */
+        /* shift to neighbor module is more complicated, we have to iterate over every module */
         for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++)
     1864:	84 e0       	ldi	r24, 0x04	; 4
     1866:	b8 16       	cp	r11, r24
@@ -3051,19 +3051,19 @@ void MaxMatrix::shiftUpLL(bool Rotate, bool ShiftToNeighbourModule)
     1870:	4b 5d       	subi	r20, 0xDB	; 219
     1872:	5f 4f       	sbci	r21, 0xFF	; 255
     } else {
-		/* iterate over all Columns and shift the bits */
+        /* iterate over all Columns and shift the bits */
         for(int Column = 0; Column < MAXMATRIX_NUMBER_OF_COLUMNS; Column++) 
         {
-			/* save top row, will be wrapped around later if rotation is active */
+            /* save top row, will be wrapped around later if rotation is active */
             bool TopBit = bitRead(MatrixBuffer[Column], 0);
     1874:	20 81       	ld	r18, Z
-			/* shift every bit one step right conforms to shift up */
+            /* shift every bit one step right conforms to shift up */
             MatrixBuffer[Column] >>= 1;
     1876:	82 2f       	mov	r24, r18
     1878:	90 e0       	ldi	r25, 0x00	; 0
     187a:	95 95       	asr	r25
     187c:	87 95       	ror	r24
-			/* wrap around saved top row to bottom row */
+            /* wrap around saved top row to bottom row */
             if(Rotate) bitWrite(MatrixBuffer[Column], MAXMATRIX_ROW_NUMBER_OF_MODULE - 1, TopBit);
     187e:	c1 10       	cpse	r12, r1
     1880:	14 c0       	rjmp	.+40     	; 0x18aa <_ZN9MaxMatrix9shiftUpLLEbb+0xdc>
@@ -3073,13 +3073,13 @@ void MaxMatrix::shiftUpLL(bool Rotate, bool ShiftToNeighbourModule)
             }
         }
     } else {
-		/* iterate over all Columns and shift the bits */
+        /* iterate over all Columns and shift the bits */
         for(int Column = 0; Column < MAXMATRIX_NUMBER_OF_COLUMNS; Column++) 
     1886:	e4 17       	cp	r30, r20
     1888:	f5 07       	cpc	r31, r21
     188a:	a1 f7       	brne	.-24     	; 0x1874 <_ZN9MaxMatrix9shiftUpLLEbb+0xa6>
             MatrixBuffer[Column] >>= 1;
-			/* wrap around saved top row to bottom row */
+            /* wrap around saved top row to bottom row */
             if(Rotate) bitWrite(MatrixBuffer[Column], MAXMATRIX_ROW_NUMBER_OF_MODULE - 1, TopBit);
         }
     }
@@ -3099,11 +3099,11 @@ void MaxMatrix::shiftUpLL(bool Rotate, bool ShiftToNeighbourModule)
     18a4:	cf 90       	pop	r12
     18a6:	bf 90       	pop	r11
     18a8:	08 95       	ret
-			/* save top row, will be wrapped around later if rotation is active */
+            /* save top row, will be wrapped around later if rotation is active */
             bool TopBit = bitRead(MatrixBuffer[Column], 0);
-			/* shift every bit one step right conforms to shift up */
+            /* shift every bit one step right conforms to shift up */
             MatrixBuffer[Column] >>= 1;
-			/* wrap around saved top row to bottom row */
+            /* wrap around saved top row to bottom row */
             if(Rotate) bitWrite(MatrixBuffer[Column], MAXMATRIX_ROW_NUMBER_OF_MODULE - 1, TopBit);
     18aa:	20 ff       	sbrs	r18, 0
     18ac:	ea cf       	rjmp	.-44     	; 0x1882 <_ZN9MaxMatrix9shiftUpLLEbb+0xb4>
@@ -3138,16 +3138,16 @@ void MaxMatrix::shiftDownLL(bool Rotate, bool ShiftToNeighbourModule)
     18d2:	fc 01       	movw	r30, r24
     18d4:	35 96       	adiw	r30, 0x05	; 5
 
-	/* should we shift the state to the next module? */
+    /* should we shift the state to the next module? */
     if(ShiftToNeighbourModule) {
     18d6:	44 23       	and	r20, r20
     18d8:	c9 f1       	breq	.+114    	; 0x194c <_ZN9MaxMatrix11shiftDownLLEbb+0x9a>
     18da:	8f 01       	movw	r16, r30
     18dc:	d1 2c       	mov	r13, r1
-		/* shift to neighbor module is more complicated, we have to iterate over every module */
+        /* shift to neighbor module is more complicated, we have to iterate over every module */
         for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++)
         {
-			/* save matrix bottom row, will be wrapped around later if rotation is active */
+            /* save matrix bottom row, will be wrapped around later if rotation is active */
             if(Module == 0 && Rotate) getRowLL(0, MAXMATRIX_ROW_NUMBER_OF_MODULE - 1, &MatrixBottomRow);
     18de:	d1 10       	cpse	r13, r1
     18e0:	0a c0       	rjmp	.+20     	; 0x18f6 <_ZN9MaxMatrix11shiftDownLLEbb+0x44>
@@ -3160,7 +3160,7 @@ void MaxMatrix::shiftDownLL(bool Rotate, bool ShiftToNeighbourModule)
     18ee:	60 e0       	ldi	r22, 0x00	; 0
     18f0:	c7 01       	movw	r24, r14
     18f2:	0e 94 ed 07 	call	0xfda	; 0xfda <_ZN9MaxMatrix8getRowLLEhhPh>
-			/* save module top row will be set to next module later */
+            /* save module top row will be set to next module later */
             getRowLL(Module + 1, MAXMATRIX_ROW_NUMBER_OF_MODULE - 1, &ModuleBottomRow);
     18f6:	bb 24       	eor	r11, r11
     18f8:	b3 94       	inc	r11
@@ -3177,13 +3177,13 @@ void MaxMatrix::shiftDownLL(bool Rotate, bool ShiftToNeighbourModule)
             for(int Column = 0; Column < MAXMATRIX_COLUMN_NUMBER_OF_MODULE; Column++)
     190e:	80 e0       	ldi	r24, 0x00	; 0
     1910:	90 e0       	ldi	r25, 0x00	; 0
-				MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module)] <<= 1;
+                MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module)] <<= 1;
     1912:	20 81       	ld	r18, Z
     1914:	22 0f       	add	r18, r18
     1916:	21 93       	st	Z+, r18
-			/* save matrix bottom row, will be wrapped around later if rotation is active */
+            /* save matrix bottom row, will be wrapped around later if rotation is active */
             if(Module == 0 && Rotate) getRowLL(0, MAXMATRIX_ROW_NUMBER_OF_MODULE - 1, &MatrixBottomRow);
-			/* save module top row will be set to next module later */
+            /* save module top row will be set to next module later */
             getRowLL(Module + 1, MAXMATRIX_ROW_NUMBER_OF_MODULE - 1, &ModuleBottomRow);
             /* shift every bit in column one step left conforms to shift down */
             for(int Column = 0; Column < MAXMATRIX_COLUMN_NUMBER_OF_MODULE; Column++)
@@ -3191,7 +3191,7 @@ void MaxMatrix::shiftDownLL(bool Rotate, bool ShiftToNeighbourModule)
     191a:	88 30       	cpi	r24, 0x08	; 8
     191c:	91 05       	cpc	r25, r1
     191e:	c9 f7       	brne	.-14     	; 0x1912 <_ZN9MaxMatrix11shiftDownLLEbb+0x60>
-				MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module)] <<= 1;
+                MatrixBuffer[Column + (MAXMATRIX_COLUMN_NUMBER_OF_MODULE * Module)] <<= 1;
             /* last module wrap around saved matrix bottom row */
             if(Module == MAXMATRIX_NUMBER_OF_MODULES - 1) {
     1920:	83 e0       	ldi	r24, 0x03	; 3
@@ -3205,7 +3205,7 @@ void MaxMatrix::shiftDownLL(bool Rotate, bool ShiftToNeighbourModule)
     192e:	63 e0       	ldi	r22, 0x03	; 3
     1930:	03 c0       	rjmp	.+6      	; 0x1938 <_ZN9MaxMatrix11shiftDownLLEbb+0x86>
             } else {
-			/* for all other modules set saved module bottom row */
+            /* for all other modules set saved module bottom row */
                 setRowLL(Module, 0, ModuleBottomRow);
     1932:	2a 81       	ldd	r18, Y+2	; 0x02
     1934:	40 e0       	ldi	r20, 0x00	; 0
@@ -3216,9 +3216,9 @@ void MaxMatrix::shiftDownLL(bool Rotate, bool ShiftToNeighbourModule)
     1940:	1f 4f       	sbci	r17, 0xFF	; 255
     byte MatrixBottomRow = 0;
 
-	/* should we shift the state to the next module? */
+    /* should we shift the state to the next module? */
     if(ShiftToNeighbourModule) {
-		/* shift to neighbor module is more complicated, we have to iterate over every module */
+        /* shift to neighbor module is more complicated, we have to iterate over every module */
         for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++)
     1942:	84 e0       	ldi	r24, 0x04	; 4
     1944:	b8 16       	cp	r11, r24
@@ -3229,17 +3229,17 @@ void MaxMatrix::shiftDownLL(bool Rotate, bool ShiftToNeighbourModule)
     194e:	2b 5d       	subi	r18, 0xDB	; 219
     1950:	3f 4f       	sbci	r19, 0xFF	; 255
     } else {
-		/* iterate over all Columns and shift the bits */
+        /* iterate over all Columns and shift the bits */
         for(int Column = 0; Column < MAXMATRIX_NUMBER_OF_COLUMNS; Column++) 
         {
-			/* save bottom row, will be wrapped around later if rotation is active */
+            /* save bottom row, will be wrapped around later if rotation is active */
             bool BottomBit = bitRead(MatrixBuffer[Column], MAXMATRIX_ROW_NUMBER_OF_MODULE - 1);
     1952:	90 81       	ld	r25, Z
-			/* shift every bit one step left conforms to shift down */
+            /* shift every bit one step left conforms to shift down */
             MatrixBuffer[Column] <<= 1;
     1954:	89 2f       	mov	r24, r25
     1956:	88 0f       	add	r24, r24
-			/* wrap around saved bottom row to top row */
+            /* wrap around saved bottom row to top row */
             if(Rotate) bitWrite(MatrixBuffer[Column], 0, BottomBit);
     1958:	c1 10       	cpse	r12, r1
     195a:	14 c0       	rjmp	.+40     	; 0x1984 <_ZN9MaxMatrix11shiftDownLLEbb+0xd2>
@@ -3249,13 +3249,13 @@ void MaxMatrix::shiftDownLL(bool Rotate, bool ShiftToNeighbourModule)
             }
         }
     } else {
-		/* iterate over all Columns and shift the bits */
+        /* iterate over all Columns and shift the bits */
         for(int Column = 0; Column < MAXMATRIX_NUMBER_OF_COLUMNS; Column++) 
     1960:	e2 17       	cp	r30, r18
     1962:	f3 07       	cpc	r31, r19
     1964:	b1 f7       	brne	.-20     	; 0x1952 <_ZN9MaxMatrix11shiftDownLLEbb+0xa0>
             MatrixBuffer[Column] <<= 1;
-			/* wrap around saved bottom row to top row */
+            /* wrap around saved bottom row to top row */
             if(Rotate) bitWrite(MatrixBuffer[Column], 0, BottomBit);
         }
     }
@@ -3275,11 +3275,11 @@ void MaxMatrix::shiftDownLL(bool Rotate, bool ShiftToNeighbourModule)
     197e:	cf 90       	pop	r12
     1980:	bf 90       	pop	r11
     1982:	08 95       	ret
-			/* save bottom row, will be wrapped around later if rotation is active */
+            /* save bottom row, will be wrapped around later if rotation is active */
             bool BottomBit = bitRead(MatrixBuffer[Column], MAXMATRIX_ROW_NUMBER_OF_MODULE - 1);
-			/* shift every bit one step left conforms to shift down */
+            /* shift every bit one step left conforms to shift down */
             MatrixBuffer[Column] <<= 1;
-			/* wrap around saved bottom row to top row */
+            /* wrap around saved bottom row to top row */
             if(Rotate) bitWrite(MatrixBuffer[Column], 0, BottomBit);
     1984:	97 ff       	sbrs	r25, 7
     1986:	ea cf       	rjmp	.-44     	; 0x195c <_ZN9MaxMatrix11shiftDownLLEbb+0xaa>
@@ -3557,6 +3557,12 @@ void MaxMatrix::shiftTask()
     1af8:	08 95       	ret
 
 00001afa <__vector_13>:
+  else if(pin == 2 || pin == 10) {
+    DDRB |= _BV(PORTB2);
+    TCCR1A |= _BV(COM1B1);
+  }
+  setPwmDuty(pin, duty);
+  resume();			// Lex - make sure the clock is running.  We don't want to restart the count, in case we are starting the second WGM
     1afa:	1f 92       	push	r1
     1afc:	0f 92       	push	r0
     1afe:	0f b6       	in	r0, 0x3f	; 63
@@ -3713,6 +3719,12 @@ void MaxMatrix::shiftTask()
     1c36:	08 95       	ret
 
 00001c38 <_ZN8TimerOne15attachInterruptEPFvvEl>:
+  if(pin == 1 || pin == 9)       TCCR1A &= ~_BV(COM1A1);   // clear the bit that enables pwm on PB1
+  else if(pin == 2 || pin == 10) TCCR1A &= ~_BV(COM1B1);   // clear the bit that enables pwm on PB2
+}
+
+void TimerOne::attachInterrupt(void (*isr)(), long microseconds)
+{
     1c38:	0f 93       	push	r16
     1c3a:	1f 93       	push	r17
     1c3c:	cf 93       	push	r28
@@ -3721,21 +3733,34 @@ void MaxMatrix::shiftTask()
     1c42:	8b 01       	movw	r16, r22
     1c44:	ba 01       	movw	r22, r20
     1c46:	a9 01       	movw	r20, r18
+  if(microseconds > 0) setPeriod(microseconds);
     1c48:	14 16       	cp	r1, r20
     1c4a:	15 06       	cpc	r1, r21
     1c4c:	16 06       	cpc	r1, r22
     1c4e:	17 06       	cpc	r1, r23
     1c50:	14 f4       	brge	.+4      	; 0x1c56 <_ZN8TimerOne15attachInterruptEPFvvEl+0x1e>
     1c52:	0e 94 a4 0d 	call	0x1b48	; 0x1b48 <_ZN8TimerOne9setPeriodEl>
+  isrCallback = isr;                                       // register the user's callback with the real ISR
     1c56:	1d 83       	std	Y+5, r17	; 0x05
     1c58:	0c 83       	std	Y+4, r16	; 0x04
+  TIMSK1 = _BV(TOIE1);                                     // sets the timer overflow interrupt enable bit
     1c5a:	81 e0       	ldi	r24, 0x01	; 1
     1c5c:	80 93 6f 00 	sts	0x006F, r24	; 0x80006f <__TEXT_REGION_LENGTH__+0x7e006f>
+	// might be running with interrupts disabled (eg inside an ISR), so don't touch the global state
+//  sei();
+  resume();												
     1c60:	ce 01       	movw	r24, r28
+}
     1c62:	df 91       	pop	r29
     1c64:	cf 91       	pop	r28
     1c66:	1f 91       	pop	r17
     1c68:	0f 91       	pop	r16
+  if(microseconds > 0) setPeriod(microseconds);
+  isrCallback = isr;                                       // register the user's callback with the real ISR
+  TIMSK1 = _BV(TOIE1);                                     // sets the timer overflow interrupt enable bit
+	// might be running with interrupts disabled (eg inside an ISR), so don't touch the global state
+//  sei();
+  resume();												
     1c6a:	0c 94 13 0e 	jmp	0x1c26	; 0x1c26 <_ZN8TimerOne6resumeEv>
 
 00001c6e <__vector_9>:
@@ -4744,6 +4769,12 @@ size_t Print::println(const char c[])
     219c:	08 95       	ret
 
 0000219e <__vector_16>:
+	// we can't subtract any more than this or we'd overflow w/ small delays.
+	us--;
+#endif
+
+	// busy wait
+	__asm__ __volatile__ (
     219e:	1f 92       	push	r1
     21a0:	0f 92       	push	r0
     21a2:	0f b6       	in	r0, 0x3f	; 63
@@ -4802,66 +4833,144 @@ size_t Print::println(const char c[])
     2230:	18 95       	reti
 
 00002232 <init>:
+
+void init()
+{
+	// this needs to be called before setup() or some functions won't
+	// work there
+	sei();
     2232:	78 94       	sei
+	
+	// on the ATmega168, timer 0 is also used for fast hardware pwm
+	// (using phase-correct PWM would mean that timer 0 overflowed half as often
+	// resulting in different millis() behavior on the ATmega8 and ATmega168)
+#if defined(TCCR0A) && defined(WGM01)
+	sbi(TCCR0A, WGM01);
     2234:	84 b5       	in	r24, 0x24	; 36
     2236:	82 60       	ori	r24, 0x02	; 2
     2238:	84 bd       	out	0x24, r24	; 36
+	sbi(TCCR0A, WGM00);
     223a:	84 b5       	in	r24, 0x24	; 36
     223c:	81 60       	ori	r24, 0x01	; 1
     223e:	84 bd       	out	0x24, r24	; 36
+	// this combination is for the standard atmega8
+	sbi(TCCR0, CS01);
+	sbi(TCCR0, CS00);
+#elif defined(TCCR0B) && defined(CS01) && defined(CS00)
+	// this combination is for the standard 168/328/1280/2560
+	sbi(TCCR0B, CS01);
     2240:	85 b5       	in	r24, 0x25	; 37
     2242:	82 60       	ori	r24, 0x02	; 2
     2244:	85 bd       	out	0x25, r24	; 37
+	sbi(TCCR0B, CS00);
     2246:	85 b5       	in	r24, 0x25	; 37
     2248:	81 60       	ori	r24, 0x01	; 1
     224a:	85 bd       	out	0x25, r24	; 37
+
+	// enable timer 0 overflow interrupt
+#if defined(TIMSK) && defined(TOIE0)
+	sbi(TIMSK, TOIE0);
+#elif defined(TIMSK0) && defined(TOIE0)
+	sbi(TIMSK0, TOIE0);
     224c:	ee e6       	ldi	r30, 0x6E	; 110
     224e:	f0 e0       	ldi	r31, 0x00	; 0
     2250:	80 81       	ld	r24, Z
     2252:	81 60       	ori	r24, 0x01	; 1
     2254:	80 83       	st	Z, r24
+	// this is better for motors as it ensures an even waveform
+	// note, however, that fast pwm mode can achieve a frequency of up
+	// 8 MHz (with a 16 MHz clock) at 50% duty cycle
+
+#if defined(TCCR1B) && defined(CS11) && defined(CS10)
+	TCCR1B = 0;
     2256:	e1 e8       	ldi	r30, 0x81	; 129
     2258:	f0 e0       	ldi	r31, 0x00	; 0
     225a:	10 82       	st	Z, r1
+
+	// set timer 1 prescale factor to 64
+	sbi(TCCR1B, CS11);
     225c:	80 81       	ld	r24, Z
     225e:	82 60       	ori	r24, 0x02	; 2
     2260:	80 83       	st	Z, r24
+#if F_CPU >= 8000000L
+	sbi(TCCR1B, CS10);
     2262:	80 81       	ld	r24, Z
     2264:	81 60       	ori	r24, 0x01	; 1
     2266:	80 83       	st	Z, r24
+	sbi(TCCR1, CS10);
+#endif
+#endif
+	// put timer 1 in 8-bit phase correct pwm mode
+#if defined(TCCR1A) && defined(WGM10)
+	sbi(TCCR1A, WGM10);
     2268:	e0 e8       	ldi	r30, 0x80	; 128
     226a:	f0 e0       	ldi	r31, 0x00	; 0
     226c:	80 81       	ld	r24, Z
     226e:	81 60       	ori	r24, 0x01	; 1
     2270:	80 83       	st	Z, r24
+
+	// set timer 2 prescale factor to 64
+#if defined(TCCR2) && defined(CS22)
+	sbi(TCCR2, CS22);
+#elif defined(TCCR2B) && defined(CS22)
+	sbi(TCCR2B, CS22);
     2272:	e1 eb       	ldi	r30, 0xB1	; 177
     2274:	f0 e0       	ldi	r31, 0x00	; 0
     2276:	80 81       	ld	r24, Z
     2278:	84 60       	ori	r24, 0x04	; 4
     227a:	80 83       	st	Z, r24
+
+	// configure timer 2 for phase correct pwm (8-bit)
+#if defined(TCCR2) && defined(WGM20)
+	sbi(TCCR2, WGM20);
+#elif defined(TCCR2A) && defined(WGM20)
+	sbi(TCCR2A, WGM20);
     227c:	e0 eb       	ldi	r30, 0xB0	; 176
     227e:	f0 e0       	ldi	r31, 0x00	; 0
     2280:	80 81       	ld	r24, Z
     2282:	81 60       	ori	r24, 0x01	; 1
     2284:	80 83       	st	Z, r24
+#if defined(ADCSRA)
+	// set a2d prescale factor to 128
+	// 16 MHz / 128 = 125 KHz, inside the desired 50-200 KHz range.
+	// XXX: this will not work properly for other clock speeds, and
+	// this code should use F_CPU to determine the prescale factor.
+	sbi(ADCSRA, ADPS2);
     2286:	ea e7       	ldi	r30, 0x7A	; 122
     2288:	f0 e0       	ldi	r31, 0x00	; 0
     228a:	80 81       	ld	r24, Z
     228c:	84 60       	ori	r24, 0x04	; 4
     228e:	80 83       	st	Z, r24
+	sbi(ADCSRA, ADPS1);
     2290:	80 81       	ld	r24, Z
     2292:	82 60       	ori	r24, 0x02	; 2
     2294:	80 83       	st	Z, r24
+	sbi(ADCSRA, ADPS0);
     2296:	80 81       	ld	r24, Z
     2298:	81 60       	ori	r24, 0x01	; 1
     229a:	80 83       	st	Z, r24
+
+	// enable a2d conversions
+	sbi(ADCSRA, ADEN);
     229c:	80 81       	ld	r24, Z
     229e:	80 68       	ori	r24, 0x80	; 128
     22a0:	80 83       	st	Z, r24
+	// here so they can be used as normal digital i/o; they will be
+	// reconnected in Serial.begin()
+#if defined(UCSRB)
+	UCSRB = 0;
+#elif defined(UCSR0B)
+	UCSR0B = 0;
     22a2:	10 92 c1 00 	sts	0x00C1, r1	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7e00c1>
     22a6:	08 95       	ret
 
 000022a8 <turnOffPWM>:
+//
+//static inline void turnOffPWM(uint8_t timer) __attribute__ ((always_inline));
+//static inline void turnOffPWM(uint8_t timer)
+static void turnOffPWM(uint8_t timer)
+{
+	switch (timer)
     22a8:	83 30       	cpi	r24, 0x03	; 3
     22aa:	81 f0       	breq	.+32     	; 0x22cc <turnOffPWM+0x24>
     22ac:	28 f4       	brcc	.+10     	; 0x22b8 <turnOffPWM+0x10>
@@ -4876,42 +4985,87 @@ size_t Print::println(const char c[])
     22be:	b9 f0       	breq	.+46     	; 0x22ee <turnOffPWM+0x46>
     22c0:	84 30       	cpi	r24, 0x04	; 4
     22c2:	d1 f4       	brne	.+52     	; 0x22f8 <turnOffPWM+0x50>
+	{
+		#if defined(TCCR1A) && defined(COM1A1)
+		case TIMER1A:   cbi(TCCR1A, COM1A1);    break;
+		#endif
+		#if defined(TCCR1A) && defined(COM1B1)
+		case TIMER1B:   cbi(TCCR1A, COM1B1);    break;
     22c4:	80 91 80 00 	lds	r24, 0x0080	; 0x800080 <__TEXT_REGION_LENGTH__+0x7e0080>
     22c8:	8f 7d       	andi	r24, 0xDF	; 223
     22ca:	03 c0       	rjmp	.+6      	; 0x22d2 <turnOffPWM+0x2a>
+static void turnOffPWM(uint8_t timer)
+{
+	switch (timer)
+	{
+		#if defined(TCCR1A) && defined(COM1A1)
+		case TIMER1A:   cbi(TCCR1A, COM1A1);    break;
     22cc:	80 91 80 00 	lds	r24, 0x0080	; 0x800080 <__TEXT_REGION_LENGTH__+0x7e0080>
     22d0:	8f 77       	andi	r24, 0x7F	; 127
+		#endif
+		#if defined(TCCR1A) && defined(COM1B1)
+		case TIMER1B:   cbi(TCCR1A, COM1B1);    break;
     22d2:	80 93 80 00 	sts	0x0080, r24	; 0x800080 <__TEXT_REGION_LENGTH__+0x7e0080>
     22d6:	08 95       	ret
+		#if defined(TCCR2) && defined(COM21)
+		case  TIMER2:   cbi(TCCR2, COM21);      break;
+		#endif
+		
+		#if defined(TCCR0A) && defined(COM0A1)
+		case  TIMER0A:  cbi(TCCR0A, COM0A1);    break;
     22d8:	84 b5       	in	r24, 0x24	; 36
     22da:	8f 77       	andi	r24, 0x7F	; 127
     22dc:	02 c0       	rjmp	.+4      	; 0x22e2 <turnOffPWM+0x3a>
+		#endif
+		
+		#if defined(TIMER0B) && defined(COM0B1)
+		case  TIMER0B:  cbi(TCCR0A, COM0B1);    break;
     22de:	84 b5       	in	r24, 0x24	; 36
     22e0:	8f 7d       	andi	r24, 0xDF	; 223
     22e2:	84 bd       	out	0x24, r24	; 36
     22e4:	08 95       	ret
+		#endif
+		#if defined(TCCR2A) && defined(COM2A1)
+		case  TIMER2A:  cbi(TCCR2A, COM2A1);    break;
     22e6:	80 91 b0 00 	lds	r24, 0x00B0	; 0x8000b0 <__TEXT_REGION_LENGTH__+0x7e00b0>
     22ea:	8f 77       	andi	r24, 0x7F	; 127
     22ec:	03 c0       	rjmp	.+6      	; 0x22f4 <turnOffPWM+0x4c>
+		#endif
+		#if defined(TCCR2A) && defined(COM2B1)
+		case  TIMER2B:  cbi(TCCR2A, COM2B1);    break;
     22ee:	80 91 b0 00 	lds	r24, 0x00B0	; 0x8000b0 <__TEXT_REGION_LENGTH__+0x7e00b0>
     22f2:	8f 7d       	andi	r24, 0xDF	; 223
     22f4:	80 93 b0 00 	sts	0x00B0, r24	; 0x8000b0 <__TEXT_REGION_LENGTH__+0x7e00b0>
     22f8:	08 95       	ret
 
 000022fa <pinMode>:
+#define ARDUINO_MAIN
+#include "wiring_private.h"
+#include "pins_arduino.h"
+
+void pinMode(uint8_t pin, uint8_t mode)
+{
     22fa:	cf 93       	push	r28
     22fc:	df 93       	push	r29
+	uint8_t bit = digitalPinToBitMask(pin);
     22fe:	90 e0       	ldi	r25, 0x00	; 0
     2300:	fc 01       	movw	r30, r24
     2302:	e1 5f       	subi	r30, 0xF1	; 241
     2304:	fa 4f       	sbci	r31, 0xFA	; 250
     2306:	24 91       	lpm	r18, Z
+	uint8_t port = digitalPinToPort(pin);
     2308:	fc 01       	movw	r30, r24
     230a:	ed 5d       	subi	r30, 0xDD	; 221
     230c:	fa 4f       	sbci	r31, 0xFA	; 250
     230e:	84 91       	lpm	r24, Z
+	volatile uint8_t *reg, *out;
+
+	if (port == NOT_A_PIN) return;
     2310:	88 23       	and	r24, r24
     2312:	61 f1       	breq	.+88     	; 0x236c <pinMode+0x72>
+
+	// JWS: can I let the optimizer do this?
+	reg = portModeRegister(port);
     2314:	90 e0       	ldi	r25, 0x00	; 0
     2316:	88 0f       	add	r24, r24
     2318:	99 1f       	adc	r25, r25
@@ -4920,69 +5074,108 @@ size_t Print::println(const char c[])
     231e:	fa 4f       	sbci	r31, 0xFA	; 250
     2320:	c5 91       	lpm	r28, Z+
     2322:	d4 91       	lpm	r29, Z
+	out = portOutputRegister(port);
     2324:	fc 01       	movw	r30, r24
     2326:	e9 5c       	subi	r30, 0xC9	; 201
     2328:	fa 4f       	sbci	r31, 0xFA	; 250
     232a:	a5 91       	lpm	r26, Z+
     232c:	b4 91       	lpm	r27, Z
+
+	if (mode == INPUT) { 
     232e:	61 11       	cpse	r22, r1
     2330:	09 c0       	rjmp	.+18     	; 0x2344 <pinMode+0x4a>
+		uint8_t oldSREG = SREG;
     2332:	9f b7       	in	r25, 0x3f	; 63
+                cli();
     2334:	f8 94       	cli
+		*reg &= ~bit;
     2336:	88 81       	ld	r24, Y
     2338:	20 95       	com	r18
     233a:	82 23       	and	r24, r18
     233c:	88 83       	st	Y, r24
+		*out &= ~bit;
     233e:	ec 91       	ld	r30, X
     2340:	2e 23       	and	r18, r30
     2342:	0b c0       	rjmp	.+22     	; 0x235a <pinMode+0x60>
+		SREG = oldSREG;
+	} else if (mode == INPUT_PULLUP) {
     2344:	62 30       	cpi	r22, 0x02	; 2
     2346:	61 f4       	brne	.+24     	; 0x2360 <pinMode+0x66>
+		uint8_t oldSREG = SREG;
     2348:	9f b7       	in	r25, 0x3f	; 63
+                cli();
     234a:	f8 94       	cli
+		*reg &= ~bit;
     234c:	38 81       	ld	r19, Y
     234e:	82 2f       	mov	r24, r18
     2350:	80 95       	com	r24
     2352:	83 23       	and	r24, r19
     2354:	88 83       	st	Y, r24
+		*out |= bit;
     2356:	ec 91       	ld	r30, X
     2358:	2e 2b       	or	r18, r30
     235a:	2c 93       	st	X, r18
+		SREG = oldSREG;
     235c:	9f bf       	out	0x3f, r25	; 63
     235e:	06 c0       	rjmp	.+12     	; 0x236c <pinMode+0x72>
+	} else {
+		uint8_t oldSREG = SREG;
     2360:	8f b7       	in	r24, 0x3f	; 63
+                cli();
     2362:	f8 94       	cli
+		*reg |= bit;
     2364:	e8 81       	ld	r30, Y
     2366:	2e 2b       	or	r18, r30
     2368:	28 83       	st	Y, r18
+		SREG = oldSREG;
     236a:	8f bf       	out	0x3f, r24	; 63
+	}
+}
     236c:	df 91       	pop	r29
     236e:	cf 91       	pop	r28
     2370:	08 95       	ret
 
 00002372 <digitalWrite>:
+		#endif
+	}
+}
+
+void digitalWrite(uint8_t pin, uint8_t val)
+{
     2372:	1f 93       	push	r17
     2374:	cf 93       	push	r28
     2376:	df 93       	push	r29
+	uint8_t timer = digitalPinToTimer(pin);
     2378:	28 2f       	mov	r18, r24
     237a:	30 e0       	ldi	r19, 0x00	; 0
     237c:	f9 01       	movw	r30, r18
     237e:	e5 50       	subi	r30, 0x05	; 5
     2380:	fb 4f       	sbci	r31, 0xFB	; 251
     2382:	84 91       	lpm	r24, Z
+	uint8_t bit = digitalPinToBitMask(pin);
     2384:	f9 01       	movw	r30, r18
     2386:	e1 5f       	subi	r30, 0xF1	; 241
     2388:	fa 4f       	sbci	r31, 0xFA	; 250
     238a:	d4 91       	lpm	r29, Z
+	uint8_t port = digitalPinToPort(pin);
     238c:	f9 01       	movw	r30, r18
     238e:	ed 5d       	subi	r30, 0xDD	; 221
     2390:	fa 4f       	sbci	r31, 0xFA	; 250
     2392:	c4 91       	lpm	r28, Z
+	volatile uint8_t *out;
+
+	if (port == NOT_A_PIN) return;
     2394:	cc 23       	and	r28, r28
     2396:	c9 f0       	breq	.+50     	; 0x23ca <digitalWrite+0x58>
     2398:	16 2f       	mov	r17, r22
+
+	// If the pin that support PWM output, we need to turn it off
+	// before doing a digital write.
+	if (timer != NOT_ON_TIMER) turnOffPWM(timer);
     239a:	81 11       	cpse	r24, r1
     239c:	0e 94 54 11 	call	0x22a8	; 0x22a8 <turnOffPWM>
+
+	out = portOutputRegister(port);
     23a0:	ec 2f       	mov	r30, r28
     23a2:	f0 e0       	ldi	r31, 0x00	; 0
     23a4:	ee 0f       	add	r30, r30
@@ -4991,25 +5184,43 @@ size_t Print::println(const char c[])
     23aa:	fa 4f       	sbci	r31, 0xFA	; 250
     23ac:	a5 91       	lpm	r26, Z+
     23ae:	b4 91       	lpm	r27, Z
+
+	uint8_t oldSREG = SREG;
     23b0:	8f b7       	in	r24, 0x3f	; 63
+	cli();
     23b2:	f8 94       	cli
+
+	if (val == LOW) {
     23b4:	11 11       	cpse	r17, r1
     23b6:	05 c0       	rjmp	.+10     	; 0x23c2 <digitalWrite+0x50>
+		*out &= ~bit;
     23b8:	9c 91       	ld	r25, X
     23ba:	ed 2f       	mov	r30, r29
     23bc:	e0 95       	com	r30
     23be:	e9 23       	and	r30, r25
     23c0:	02 c0       	rjmp	.+4      	; 0x23c6 <digitalWrite+0x54>
+	} else {
+		*out |= bit;
     23c2:	ec 91       	ld	r30, X
     23c4:	ed 2b       	or	r30, r29
     23c6:	ec 93       	st	X, r30
+	}
+
+	SREG = oldSREG;
     23c8:	8f bf       	out	0x3f, r24	; 63
+}
     23ca:	df 91       	pop	r29
     23cc:	cf 91       	pop	r28
     23ce:	1f 91       	pop	r17
     23d0:	08 95       	ret
 
 000023d2 <shiftOut>:
+	}
+	return value;
+}
+
+void shiftOut(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder, uint8_t val)
+{
     23d2:	bf 92       	push	r11
     23d4:	cf 92       	push	r12
     23d6:	df 92       	push	r13
@@ -5029,13 +5240,20 @@ size_t Print::println(const char c[])
     23f2:	87 e0       	ldi	r24, 0x07	; 7
     23f4:	e8 2e       	mov	r14, r24
     23f6:	f1 2c       	mov	r15, r1
+	uint8_t i;
+
+	for (i = 0; i < 8; i++)  {
+		if (bitOrder == LSBFIRST)
     23f8:	b1 10       	cpse	r11, r1
     23fa:	05 c0       	rjmp	.+10     	; 0x2406 <shiftOut+0x34>
     23fc:	c7 01       	movw	r24, r14
     23fe:	8c 1b       	sub	r24, r28
     2400:	9d 0b       	sbc	r25, r29
+			digitalWrite(dataPin, !!(val & (1 << i)));
     2402:	98 01       	movw	r18, r16
     2404:	02 c0       	rjmp	.+4      	; 0x240a <shiftOut+0x38>
+		else	
+			digitalWrite(dataPin, !!(val & (1 << (7 - i))));
     2406:	98 01       	movw	r18, r16
     2408:	8c 2f       	mov	r24, r28
     240a:	02 c0       	rjmp	.+4      	; 0x2410 <shiftOut+0x3e>
@@ -5048,14 +5266,19 @@ size_t Print::println(const char c[])
     2418:	77 27       	eor	r23, r23
     241a:	8c 2d       	mov	r24, r12
     241c:	0e 94 b9 11 	call	0x2372	; 0x2372 <digitalWrite>
+			
+		digitalWrite(clockPin, HIGH);
     2420:	61 e0       	ldi	r22, 0x01	; 1
     2422:	8d 2d       	mov	r24, r13
     2424:	0e 94 b9 11 	call	0x2372	; 0x2372 <digitalWrite>
+		digitalWrite(clockPin, LOW);		
     2428:	60 e0       	ldi	r22, 0x00	; 0
     242a:	8d 2d       	mov	r24, r13
     242c:	0e 94 b9 11 	call	0x2372	; 0x2372 <digitalWrite>
     2430:	21 97       	sbiw	r28, 0x01	; 1
     2432:	10 f7       	brcc	.-60     	; 0x23f8 <shiftOut+0x26>
+	}
+}
     2434:	df 91       	pop	r29
     2436:	cf 91       	pop	r28
     2438:	1f 91       	pop	r17

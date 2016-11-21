@@ -36,7 +36,7 @@
 /******************************************************************************************************************************************************
   CONSTRUCTOR OF MaxMatrix
 ******************************************************************************************************************************************************/
-/*! \brief          MaxMatrix Constructor
+/*! \brief          MaxMatrix constructor
  *  \details        Instantiation of the MaxMatrix library
  *
  *  \param[in]      sDataInPin         number of the Data Input Pin
@@ -73,8 +73,8 @@ MaxMatrix::~MaxMatrix()
 /******************************************************************************************************************************************************
   init()
 ******************************************************************************************************************************************************/
-/*! \brief          initialization of the Matrix Hardware
- *  \details        this function initializes the IO Hardware and the MAX7219 Controller
+/*! \brief          initialization of the Matrix hardware
+ *  \details        this function initializes the IO hardware and the MAX7219 controller
  *                  all LEDs of the matrix will be cleared and intensity will be set
  *  \return         -
  *****************************************************************************************************************************************************/

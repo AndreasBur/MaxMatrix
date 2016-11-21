@@ -23,7 +23,11 @@
 #include "TimerTwo.h"
 
 
-TimerTwo Timer2;              // preinstatiate
+/******************************************************************************************************************************************************
+ * GLOBAL DATA
+ *****************************************************************************************************************************************************/
+TimerTwo Timer2;              // pre-instantiate TimerTwo
+
 
 /******************************************************************************************************************************************************
  * P U B L I C   F U N C T I O N S
@@ -32,8 +36,8 @@ TimerTwo Timer2;              // preinstatiate
 /******************************************************************************************************************************************************
   CONSTRUCTOR OF TimerTwo
 ******************************************************************************************************************************************************/
-/*! \brief          
- *  \details        
+/*! \brief          TimerTwo constructor
+ *  \details        Instantiation of the TimerTwo library
  *    
  *  \return         -
  *****************************************************************************************************************************************************/
@@ -57,10 +61,14 @@ TimerTwo::~TimerTwo()
 /******************************************************************************************************************************************************
   init()
 ******************************************************************************************************************************************************/
-/*! \brief          
- *  \details        
+/*! \brief          initialization of the Timer2 hardware
+ *  \details        this functions initializes the Timer2 hardware
  *                  
- *  \return         -
+ *  \param[in]      Microseconds				period of the timer overflow interrupt
+ *  \param[in]      sTimerOverflowCallback      Callback function which should be called when timer overflow interrupt occurs
+ *  \return         E_OK
+ *                  E_NOT_OK
+ *  \pre			Timer has to be in NONE STATE
  *****************************************************************************************************************************************************/
 stdReturnType TimerTwo::init(long Microseconds, TimerIsrCallbackF_void sTimerOverflowCallback)
 {
@@ -76,7 +84,7 @@ stdReturnType TimerTwo::init(long Microseconds, TimerIsrCallbackF_void sTimerOve
 	    writeBit(TCCR2A, WGM20, 1);
 	    writeBit(TCCR2A, WGM21, 0);
 	    writeBit(TCCR2B, WGM22, 1);
-
+		
 		if(E_NOT_OK == setPeriod(Microseconds)) ReturnValue = E_NOT_OK;
 		if(sTimerOverflowCallback != NULL) if(E_NOT_OK == attachInterrupt(sTimerOverflowCallback)) ReturnValue = E_NOT_OK;
 
@@ -91,10 +99,12 @@ stdReturnType TimerTwo::init(long Microseconds, TimerIsrCallbackF_void sTimerOve
 /******************************************************************************************************************************************************
   setPeriod()
 ******************************************************************************************************************************************************/
-/*! \brief          
- *  \details        
- *                  
- *  \return         -
+/*! \brief          set period of Timer2 overflow interrupt
+ *  \details        this functions sets the period of the Timer2 overflow interrupt therefore 
+ *                  prescaler and timer top value will be calculated
+ *  \param[in]      Microseconds				period of the timer overflow interrupt
+ *  \return         E_OK
+ *                  E_NOT_OK
  *****************************************************************************************************************************************************/
 stdReturnType TimerTwo::setPeriod(long Microseconds)
 {
@@ -112,7 +122,7 @@ stdReturnType TimerTwo::setPeriod(long Microseconds)
 	else {
 		/* request was out of bounds, set as maximum */
 		TimerCycles = TIMERTWO_RESOLUTION - 1;
-		ClockSelectBitGroup = TIMERTWO_REG_CS_PRESCALE_1024;		
+		ClockSelectBitGroup = TIMERTWO_REG_CS_PRESCALE_1024;
 		ReturnValue = E_NOT_OK;
 	}
 	/* OCR2A is TOP in phase correct pwm mode */
@@ -130,21 +140,27 @@ stdReturnType TimerTwo::setPeriod(long Microseconds)
 /******************************************************************************************************************************************************
   enablePwm()
 ******************************************************************************************************************************************************/
-/*! \brief          
- *  \details        
- *                  
- *  \return         -
+/*! \brief          enable Pwm on given Pin
+ *  \details        this function enables Pwm on given Pin with given duty cycle
+ *                  period of timer can also be set
+ *  \param[in]      PwmPin					pin where pwm should be enabled
+ *  \param[in]      DutyCycle				duty cycle of pwm
+ *  \param[in]      Microseconds			period of the timer overflow interrupt
+ *  \return         E_OK
+ *                  E_NOT_OK
+ *  \pre			Timer has to be in READY, RUNNING or STOPPED STATE
  *****************************************************************************************************************************************************/
 stdReturnType TimerTwo::enablePwm(TimerTwoPwmPinType PwmPin, unsigned int DutyCycle, long Microseconds) 
 {
 	stdReturnType ReturnValue = E_OK;
 
 	if(TIMERTWO_STATE_READY == State || TIMERTWO_STATE_RUNNING == State || TIMERTWO_STATE_STOPPED == State)
-	{
+	{	/* if optional parameter is set, set period of timer overflow interrupt */
 		if(Microseconds > 0) if(E_NOT_OK == setPeriod(Microseconds)) ReturnValue = E_NOT_OK;
 
 		if(TIMERTWO_PWM_PIN_3 == PwmPin) {
 			pinMode(TIMERTWO_PWM_PIN_3, OUTPUT);
+			/* activate compare output mode in timer control register */
 			writeBit(TCCR2A, COM2B1, 1);
 		} else {
 			ReturnValue = E_NOT_OK;
@@ -164,16 +180,18 @@ stdReturnType TimerTwo::enablePwm(TimerTwoPwmPinType PwmPin, unsigned int DutyCy
 /******************************************************************************************************************************************************
   disablePwm()
 ******************************************************************************************************************************************************/
-/*! \brief          
+/*! \brief          disable Pwm on given Pin
  *  \details        
- *                  
- *  \return         -
+ *  \param[in]      PwmPin					pin where pwm should be disabled
+ *  \return         E_OK
+ *                  E_NOT_OK
  *****************************************************************************************************************************************************/
 stdReturnType TimerTwo::disablePwm(TimerTwoPwmPinType PwmPin)
 {
 	stdReturnType ReturnValue = E_NOT_OK;
 
 	if(TIMERTWO_PWM_PIN_3 == PwmPin) {
+		/* deactivate compare output mode in timer control register */
 		writeBit(TCCR2A, COM2B1, 0);
 		ReturnValue = E_OK;
 	}
@@ -189,10 +207,14 @@ stdReturnType TimerTwo::disablePwm(TimerTwoPwmPinType PwmPin)
 /******************************************************************************************************************************************************
   setPwmDuty()
 ******************************************************************************************************************************************************/
-/*! \brief          
+/*! \brief          set pwm duty cycle on given pin
  *  \details        
  *                  
- *  \return         -
+ *  \param[in]      PwmPin					pin where pwm duty cycle should be set
+ *  \param[in]      DutyCycle				duty cycle of pwm
+ *  \return         E_OK
+ *                  E_NOT_OK
+ *  \pre			Timer has to be in READY, RUNNING or STOPPED STATE
  *****************************************************************************************************************************************************/
 stdReturnType TimerTwo::setPwmDuty(TimerTwoPwmPinType PwmPin, unsigned int DutyCycle)
 {
@@ -200,10 +222,12 @@ stdReturnType TimerTwo::setPwmDuty(TimerTwoPwmPinType PwmPin, unsigned int DutyC
 	unsigned long DutyCycleTrans;
 
 	if(TIMERTWO_STATE_READY == State || TIMERTWO_STATE_RUNNING == State || TIMERTWO_STATE_STOPPED == State) {
+		/* duty cycle out of bound? */
 		if(DutyCycle <= TIMERTWO_RESOLUTION) {
+			/* use rule of three to calculate duty cycle related to timer top value */
 			DutyCycleTrans = OCR2A * DutyCycle;
 			DutyCycleTrans >>= TIMERTWO_NUMBER_OF_BITS;
-
+			/* set output compare register value for given pwm pin */
 			if(TIMERTWO_PWM_PIN_3 == PwmPin) OCR2B = DutyCycleTrans;
 			else ReturnValue = E_NOT_OK;
 		} else {
@@ -219,10 +243,12 @@ stdReturnType TimerTwo::setPwmDuty(TimerTwoPwmPinType PwmPin, unsigned int DutyC
 /******************************************************************************************************************************************************
   start()
 ******************************************************************************************************************************************************/
-/*! \brief          
+/*! \brief          start timer
  *  \details        
  *                  
- *  \return         -
+ *  \return         E_OK
+ *                  E_NOT_OK
+ *  \pre			Timer has to be in READY or STOPPED STATE
  *****************************************************************************************************************************************************/
 stdReturnType TimerTwo::start()
 {
@@ -231,7 +257,7 @@ stdReturnType TimerTwo::start()
 	if(TIMERTWO_STATE_READY == State || TIMERTWO_STATE_STOPPED == State) {
 		/* reset counter value */
 		TCNT2 = 0;
-		/* start counter */
+		/* start counter by setting clock select register */
 		writeBitGroup(TCCR2B, TIMERTWO_REG_CS_GM, TIMERTWO_REG_CS_GP, ClockSelectBitGroup);
 		/* set overflow interrupt, if callback is set */
 		if(TimerOverflowCallback != NULL) {
@@ -251,13 +277,14 @@ stdReturnType TimerTwo::start()
 /******************************************************************************************************************************************************
   stop()
 ******************************************************************************************************************************************************/
-/*! \brief          
+/*! \brief          stop timer
  *  \details        
  *                  
  *  \return         -
  *****************************************************************************************************************************************************/
 void TimerTwo::stop()
 {
+	/* stop counter by clearing clock select register */
 	writeBitGroup(TCCR2B, TIMERTWO_REG_CS_GM, TIMERTWO_REG_CS_GP, TIMERTWO_REG_CS_NO_CLOCK);
 	State = TIMERTWO_STATE_STOPPED;
 } /* stop */
@@ -266,15 +293,17 @@ void TimerTwo::stop()
 /******************************************************************************************************************************************************
   resume()
 ******************************************************************************************************************************************************/
-/*! \brief          
+/*! \brief          resume timer
  *  \details        
  *                  
- *  \return         -
+ *  \return         E_OK
+ *                  E_NOT_OK
+ *  \pre			Timer has to be in STOPPED STATE
  *****************************************************************************************************************************************************/
 stdReturnType TimerTwo::resume()
 {
 	if(TIMERTWO_STATE_STOPPED == State) {
-		/* reset clock select register, and starts the clock */
+		/* resume counter by setting clock select register */
 		writeBitGroup(TCCR2B, TIMERTWO_REG_CS_GM, TIMERTWO_REG_CS_GP, ClockSelectBitGroup);
 		return E_OK;
 	} else {
@@ -286,10 +315,12 @@ stdReturnType TimerTwo::resume()
 /******************************************************************************************************************************************************
   attachInterrupt()
 ******************************************************************************************************************************************************/
-/*! \brief          
+/*! \brief          set timer overflow interrupt callback
  *  \details        
  *                  
- *  \return         -
+ *  \param[in]      sTimerOverflowCallback				timer overflow callback function
+ *  \return         E_OK
+ *                  E_NOT_OK
  *****************************************************************************************************************************************************/
 stdReturnType TimerTwo::attachInterrupt(TimerIsrCallbackF_void sTimerOverflowCallback)
 {
@@ -307,7 +338,7 @@ stdReturnType TimerTwo::attachInterrupt(TimerIsrCallbackF_void sTimerOverflowCal
 /******************************************************************************************************************************************************
   detachInterrupt()
 ******************************************************************************************************************************************************/
-/*! \brief          
+/*! \brief          clear timer overflow interrupt callback
  *  \details        
  *                  
  *  \return         -
@@ -322,10 +353,12 @@ void TimerTwo::detachInterrupt()
 /******************************************************************************************************************************************************
   read()
 ******************************************************************************************************************************************************/
-/*! \brief          
- *  \details        
+/*! \brief          read current timer value in microseconds
+ *  \details        this function returns the current timer value in microseconds
  *                  
- *  \return         -
+ *  \param[out]     Microseconds		current timer value
+ *  \return         E_OK
+ *                  E_NOT_OK
  *  \pre			Timer has to be in RUNNING STATE
  *****************************************************************************************************************************************************/
 stdReturnType TimerTwo::read(long* Microseconds)

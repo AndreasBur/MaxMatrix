@@ -1,5 +1,4 @@
 MaxMatrix
-- Kommentare innerhalb Funktionen hinzufügen
 - SPI und digitalwritefast testen
 
 
