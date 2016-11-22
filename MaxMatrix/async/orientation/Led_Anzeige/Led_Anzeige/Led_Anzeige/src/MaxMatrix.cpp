@@ -1324,7 +1324,7 @@ stdReturnType MaxMatrix::setRowOnAllModulesLL(byte Row, byte Value)
  *
  *  \param[in]      Rotate                      activate rotation of the matrix LED states
  *  \param[in]      FillWithZero                initialize the column on the right side with zero.
- *  \param[in]      ShiftToNeighbourModule      shift led states to neighbour module
+ *  \param[in]      ShiftToNeighbourModule      shift led states to neighbor module
  *  \return         -
  *****************************************************************************************************************************************************/
 void MaxMatrix::shiftLeftLL(bool Rotate, bool FillWithZero, bool ShiftToNeighbourModule)
@@ -1371,7 +1371,7 @@ void MaxMatrix::shiftLeftLL(bool Rotate, bool FillWithZero, bool ShiftToNeighbou
  *
  *  \param[in]      Rotate                      activate rotation of the matrix LED states
  *  \param[in]      FillWithZero                initialize the column on the left side with zero.
- *  \param[in]      ShiftToNeighbourModule      shift led states to neighbour module
+ *  \param[in]      ShiftToNeighbourModule      shift led states to neighbor module
  *  \return         -
  *****************************************************************************************************************************************************/
 void MaxMatrix::shiftRightLL(bool Rotate, bool FillWithZero, bool ShiftToNeighbourModule)
