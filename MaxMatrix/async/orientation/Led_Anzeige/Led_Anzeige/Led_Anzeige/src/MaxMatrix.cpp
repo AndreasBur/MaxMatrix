@@ -729,21 +729,21 @@ void MaxMatrix::setSprite(int X, int Y, const spriteType* Sprite)
     
     /* If height of Sprite = height of Matrix set whole column */
     if(SpriteHeight == MAXMATRIX_ROW_NUMBER_OF_MODULE && Y == 0) {
-        for(int i = 0; i < SpriteWidth; i++)
+        for(int SpriteColumn = 0; SpriteColumn < SpriteWidth; SpriteColumn++)
         {
-            int Column = X + i;
+            int Column = X + SpriteColumn;
             if(Column >= 0 && Column < MAXMATRIX_NUMBER_OF_COLUMNS)
-                setColumn(Column, (*Sprite)[i + ASCII_TABLE_SPRITE_COLUMN1]);
+                setColumn(Column, (*Sprite)[SpriteColumn + ASCII_TABLE_SPRITE_COLUMN1]);
         } 
     } else { /* otherwise we have to set every single dot */
-        for(int i = 0; i < SpriteWidth; i++)
+        for(int SpriteColumn = 0; SpriteColumn < SpriteWidth; SpriteColumn++)
         {
-            for(int j = 0; j < SpriteHeight; j++)
+            for(int SpriteRow = 0; SpriteRow < SpriteHeight; SpriteRow++)
             {
-                int Column = X + i;
-                int Row = Y + j;
+                int Column = X + SpriteColumn;
+                int Row = Y + SpriteRow;
                 if(Column >= 0 && Column < MAXMATRIX_NUMBER_OF_COLUMNS && Row >= 0 && Row < MAXMATRIX_ROW_NUMBER_OF_MODULE)
-                    setDot(Column, Row, bitRead((*Sprite)[i + ASCII_TABLE_SPRITE_COLUMN1], j));
+                    setDot(Column, Row, bitRead((*Sprite)[SpriteColumn + ASCII_TABLE_SPRITE_COLUMN1], SpriteRow));
             }
         }
     }
