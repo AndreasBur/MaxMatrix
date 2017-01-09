@@ -1,0 +1,8 @@
+fornax LED cube V1.2
+
+Written for avr-gcc.
+fusebits have to be set like hfuse/lfuse (default avrdude hex format).
+( => ext. high-frequency Crystal, JTAG disabled).
+
+For more information about the project visit http://leyanda.de
+
