@@ -1,0 +1,31 @@
+# depslib dependency file v1.0
+1299570951 source:c:\users\nick\documents\engineering\c++\cube\image.cpp
+	"image.h"
+
+1299569936 c:\users\nick\documents\engineering\c++\cube\image.h
+
+1302252253 source:c:\users\nick\documents\engineering\c++\cube\main.cpp
+	"cube.h"
+	<stdio.h>
+
+1301229088 c:\users\nick\documents\engineering\c++\cube\cube.h
+	"C:\Users\Nick\Documents\Engineering\C++\serial\serial.h"
+	"image.h"
+
+1299809585 c:\users\nick\documents\engineering\c++\serial\serial.h
+	<windows.h>
+
+1299816109 source:c:\users\nick\documents\engineering\c++\serial\serial.cpp
+	"serial.h"
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1302252280 source:c:\users\nick\documents\engineering\c++\cube\cube.cpp
+	"cube.h"
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<string.h>
+	<time.h>
+
