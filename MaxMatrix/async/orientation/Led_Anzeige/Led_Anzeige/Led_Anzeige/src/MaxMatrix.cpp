@@ -311,7 +311,7 @@ stdReturnType MaxMatrix::setColumn(byte Module, byte Column, byte Value)
  *  \return         E_OK
  *                  E_NOT_OK
  *****************************************************************************************************************************************************/
-stdReturnType MaxMatrix::getRow(byte Row, rowType* Value)
+stdReturnType MaxMatrix::getRow(byte Row, rowType Value)
 {
     rowType ValueReversed;
     
@@ -319,14 +319,14 @@ stdReturnType MaxMatrix::getRow(byte Row, rowType* Value)
 
     if(Orientation == MAXMATRIX_MODULE_ORIENTATION_90) {
         for(int Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++) {
-            if(E_NOT_OK == getColumnLL(Module, MAXMATRIX_COLUMN_NUMBER_OF_MODULE - Row - 1, &(*Value)[Module])) return E_NOT_OK;
+            if(E_NOT_OK == getColumnLL(Module, MAXMATRIX_COLUMN_NUMBER_OF_MODULE - Row - 1, &Value[Module])) return E_NOT_OK;
         }
         return E_OK;
     }
     if(Orientation == MAXMATRIX_MODULE_ORIENTATION_180) {
-        if(E_OK == getRowLL(MAXMATRIX_ROW_NUMBER_OF_MODULE - Row - 1, &ValueReversed)) {
+        if(E_OK == getRowLL(MAXMATRIX_ROW_NUMBER_OF_MODULE - Row - 1, ValueReversed)) {
             for(int Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++) {
-                (*Value)[Module] = reverseByte(ValueReversed[Module]);
+                Value[Module] = reverseByte(ValueReversed[Module]);
             }
             return E_OK;
         } else return E_NOT_OK;
@@ -336,7 +336,7 @@ stdReturnType MaxMatrix::getRow(byte Row, rowType* Value)
             if(E_NOT_OK == getColumnLL(Module, Row, &ValueReversed[Module])) return E_NOT_OK;
         }
         for(int Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++) {
-            (*Value)[Module] = reverseByte(ValueReversed[Module]);
+            Value[Module] = reverseByte(ValueReversed[Module]);
         }
         return E_OK;
     }
@@ -392,7 +392,7 @@ stdReturnType MaxMatrix::getRow(byte Module, byte Row, byte* Value)
  *  \return         E_OK
  *                  E_NOT_OK
  *****************************************************************************************************************************************************/
-stdReturnType MaxMatrix::setRow(byte Row, const rowType* Value)
+stdReturnType MaxMatrix::setRow(byte Row, const rowType Value)
 {
     rowType ValueReversed;
     
@@ -400,19 +400,19 @@ stdReturnType MaxMatrix::setRow(byte Row, const rowType* Value)
 
     if(Orientation == MAXMATRIX_MODULE_ORIENTATION_90) {
         for(int Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++) {
-            if(E_NOT_OK == setColumnLL(Module, MAXMATRIX_COLUMN_NUMBER_OF_MODULE - Row - 1, (*Value)[Module])) return E_NOT_OK;
+            if(E_NOT_OK == setColumnLL(Module, MAXMATRIX_COLUMN_NUMBER_OF_MODULE - Row - 1, Value[Module])) return E_NOT_OK;
         }
         return E_OK;
     }
     if(Orientation == MAXMATRIX_MODULE_ORIENTATION_180) {
         for(int Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++) {
-            ValueReversed[Module] = reverseByte((*Value)[Module]);
+            ValueReversed[Module] = reverseByte(Value[Module]);
         }
-        return setRowLL(MAXMATRIX_ROW_NUMBER_OF_MODULE - Row - 1, &ValueReversed);
+        return setRowLL(MAXMATRIX_ROW_NUMBER_OF_MODULE - Row - 1, ValueReversed);
     }
     if(Orientation == MAXMATRIX_MODULE_ORIENTATION_270) {
         for(int Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++) {
-            ValueReversed[Module] = reverseByte((*Value)[Module]);
+            ValueReversed[Module] = reverseByte(Value[Module]);
         }
         for(int Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++) {
             if(E_NOT_OK == setColumnLL(Module, Row, ValueReversed[Module])) return E_NOT_OK;
@@ -519,7 +519,7 @@ stdReturnType MaxMatrix::setChar(int X, int Y, char Char)
     
     if(E_OK == convertCharToSprite(Char, &SpriteIndex)) {
         if(E_OK == getSprite(SpriteIndex, &Sprite)) {
-            setSprite(X, Y, &Sprite);
+            setSprite(X, Y, Sprite);
             return E_OK;
         } else return E_NOT_OK;
     } else return E_NOT_OK;
@@ -575,8 +575,8 @@ stdReturnType MaxMatrix::setText(const char* String)
             if(E_NOT_OK == convertCharToSprite(*String, &SpriteIndex)) { return E_NOT_OK; }
             else if(E_NOT_OK == getSprite(SpriteIndex, &Sprite)) { return E_NOT_OK; }
             else {
-                setSprite(CharColumn, 0, &Sprite);
-                CharColumn += Sprite[ASCII_TABLE_SPRITE_WIDTH] + 1;
+                setSprite(CharColumn, 0, Sprite);
+                CharColumn += Sprite[ASCII_TABLE_SPRITE_WIDTH] + SpaceBetweenChars;
                 if(CharColumn > MAXMATRIX_NUMBER_OF_COLUMNS) break;
             }
             String++;
@@ -722,10 +722,10 @@ stdReturnType MaxMatrix::getSprite(spriteIndexType SpriteIndex, spriteType* Spri
  *  \param[in]      Sprite      sprite from sprite table (width, height, value column 1 ... 5)
  *  \return         -
  *****************************************************************************************************************************************************/
-void MaxMatrix::setSprite(int X, int Y, const spriteType* Sprite)
+void MaxMatrix::setSprite(int X, int Y, const spriteType Sprite)
 {
-    int SpriteWidth = (*Sprite)[ASCII_TABLE_SPRITE_WIDTH];
-    int SpriteHeight = (*Sprite)[ASCII_TABLE_SPRITE_HEIGHT];
+    int SpriteWidth = Sprite[ASCII_TABLE_SPRITE_WIDTH];
+    int SpriteHeight = Sprite[ASCII_TABLE_SPRITE_HEIGHT];
     
     /* If height of Sprite = height of Matrix set whole column */
     if(SpriteHeight == MAXMATRIX_ROW_NUMBER_OF_MODULE && Y == 0) {
@@ -733,7 +733,7 @@ void MaxMatrix::setSprite(int X, int Y, const spriteType* Sprite)
         {
             int Column = X + SpriteColumn;
             if(Column >= 0 && Column < MAXMATRIX_NUMBER_OF_COLUMNS)
-                setColumn(Column, (*Sprite)[SpriteColumn + ASCII_TABLE_SPRITE_COLUMN1]);
+                setColumn(Column, Sprite[SpriteColumn + ASCII_TABLE_SPRITE_COLUMN1]);
         } 
     } else { /* otherwise we have to set every single dot */
         for(int SpriteColumn = 0; SpriteColumn < SpriteWidth; SpriteColumn++)
@@ -743,7 +743,7 @@ void MaxMatrix::setSprite(int X, int Y, const spriteType* Sprite)
                 int Column = X + SpriteColumn;
                 int Row = Y + SpriteRow;
                 if(Column >= 0 && Column < MAXMATRIX_NUMBER_OF_COLUMNS && Row >= 0 && Row < MAXMATRIX_ROW_NUMBER_OF_MODULE)
-                    setDot(Column, Row, bitRead((*Sprite)[SpriteColumn + ASCII_TABLE_SPRITE_COLUMN1], SpriteRow));
+                    setDot(Column, Row, bitRead(Sprite[SpriteColumn + ASCII_TABLE_SPRITE_COLUMN1], SpriteRow));
             }
         }
     }
@@ -928,7 +928,7 @@ void MaxMatrix::charShiftTask()
     
     /* if sprite is completed set only spaces */
     if(SpriteShiftCounter <= SpriteBuffer[ASCII_TABLE_SPRITE_WIDTH]) {
-        setSprite(MAXMATRIX_NUMBER_OF_COLUMNS - SpriteShiftCounter, 0, &SpriteBuffer);
+        setSprite(MAXMATRIX_NUMBER_OF_COLUMNS - SpriteShiftCounter, 0, SpriteBuffer);
     }
     /* if sprite and spaces are completed task has finished */
     else if(SpriteShiftCounter == SpriteBuffer[ASCII_TABLE_SPRITE_WIDTH] + SpaceBetweenChars + 1) {
@@ -1088,10 +1088,10 @@ stdReturnType MaxMatrix::getRowLL(byte Module, byte Row, byte* Value)
  *  \return         E_OK
  *                  E_NOT_OK
  *****************************************************************************************************************************************************/
-stdReturnType MaxMatrix::getRowLL(byte Row, rowType* Value)
+stdReturnType MaxMatrix::getRowLL(byte Row, rowType Value)
 {
     for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++) 
-        if(E_NOT_OK == getRow(Module, Row, &(*Value)[Module])) return E_NOT_OK;
+        if(E_NOT_OK == getRowLL(Module, Row, &Value[Module])) return E_NOT_OK;
     return E_OK;
 } /* getRowLL */
 
@@ -1229,7 +1229,7 @@ stdReturnType MaxMatrix::setColumnOnAllModulesLL(byte Column, byte Value)
  *  \return         E_OK
  *                  E_NOT_OK
  *****************************************************************************************************************************************************/
-stdReturnType MaxMatrix::setRowLL(byte Row, const rowType* Value)
+stdReturnType MaxMatrix::setRowLL(byte Row, const rowType Value)
 {
     byte BitPos = MAXMATRIX_COLUMN_NUMBER_OF_MODULE - 1;
     
@@ -1238,7 +1238,7 @@ stdReturnType MaxMatrix::setRowLL(byte Row, const rowType* Value)
         for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++) {
             for(byte Column = Module * MAXMATRIX_COLUMN_NUMBER_OF_MODULE; Column < (Module + 1) * MAXMATRIX_COLUMN_NUMBER_OF_MODULE; Column++)
             {
-                bitWrite(MatrixBuffer[Column], Row, bitRead((*Value)[Module], BitPos));
+                bitWrite(MatrixBuffer[Column], Row, bitRead(Value[Module], BitPos));
                 setColumnLL(Column, MatrixBuffer[Column]);
                 BitPos--;
             }

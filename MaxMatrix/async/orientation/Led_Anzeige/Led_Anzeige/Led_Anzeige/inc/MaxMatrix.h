@@ -284,7 +284,7 @@ class MaxMatrix
     // Low Level get functions
     stdReturnType getColumnLL(byte, byte*);
     stdReturnType getColumnLL(byte, byte, byte*);
-    stdReturnType getRowLL(byte, rowType*);
+    stdReturnType getRowLL(byte, rowType);
     stdReturnType getRowLL(byte, byte, byte*);
 
     
@@ -292,7 +292,7 @@ class MaxMatrix
     stdReturnType setColumnLL(byte, byte);
     stdReturnType setColumnLL(byte, byte, byte);
     stdReturnType setColumnOnAllModulesLL(byte, byte);
-    stdReturnType setRowLL(byte, const rowType*);
+    stdReturnType setRowLL(byte, const rowType);
     stdReturnType setRowLL(byte, byte, byte);
     stdReturnType setRowOnAllModulesLL(byte, byte);
 
@@ -318,17 +318,20 @@ class MaxMatrix
 
     stdReturnType getColumn(byte, byte*);
     stdReturnType getColumn(byte, byte, byte*);
-    stdReturnType getRow(byte, rowType*);
+    stdReturnType getRow(byte, rowType);
     stdReturnType getRow(byte, byte, byte*);
     stdReturnType getDot(byte, byte, bool*);
     stdReturnType getSprite(spriteIndexType, spriteType*);
 
 
     // set methods
+    void setDataInPin(byte sDataInPin) { DataInPin = sDataInPin; }
+    void setChipSelectPin(byte sChipSelectPin) { ChipSelectPin = sChipSelectPin; }
+    void setClockPin(byte sClockPin) { ClockPin = sClockPin; }
     stdReturnType setIntensity(byte);
     stdReturnType setColumn(byte, byte);
     stdReturnType setColumn(byte, byte, byte);
-    stdReturnType setRow(byte, const rowType*);
+    stdReturnType setRow(byte, const rowType);
     stdReturnType setRow(byte, byte, byte);
     stdReturnType setDot(byte, byte, bool);
     stdReturnType setChar(int, int, char);
@@ -336,7 +339,7 @@ class MaxMatrix
     stdReturnType setText(const char*);
     stdReturnType setTextWithShift(char*);
     stdReturnType setSpaceBetweenChars(byte);
-    void setSprite(int, int, const spriteType*);
+    void setSprite(int, int, const spriteType);
     void setModuleOrientation(MaxMatrixModuleOrientationType);
 
 
