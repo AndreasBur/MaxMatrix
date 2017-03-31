@@ -130,7 +130,7 @@ void rotateClockwise(uint8_t clk){
 				--------------|---------------|---------------|--------------
 	Kreis 1:	X X X X X X X | X X X X X X X | X X X X X X X | X X X X X X X		28 Takte pro Umdrehung
 	Kreis 2:	X X   X   X X | X X   X   X X | X X   X   X X | X X   X   X X		20 Takte pro Umdrehung
-	Kreis 3:	  X   X   X   |   X   X   X   |   X   X   X   |   X   X   X			12 Takte pro Umdrehung 
+	Kreis 3:	  X   X   X   |   X   X   X   |   X   X   X   |   X   X   X			12 Takte pro Umdrehung
 	Kreis 4:		  X       |       X       |       X       |       X				 4 Takte pro Umdrehung
 	
 	*/
