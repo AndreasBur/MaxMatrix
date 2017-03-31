@@ -277,7 +277,7 @@ class MaxMatrix
     void reload();
     void charShiftTask();
     void stringShiftTask();
-    stdReturnType convertCharToSprite(char Char, spriteIndexType* SpriteIndex);
+    stdReturnType convertCharToSprite(char Char, spriteIndexType*);
     byte reverseByte(byte);
 
 

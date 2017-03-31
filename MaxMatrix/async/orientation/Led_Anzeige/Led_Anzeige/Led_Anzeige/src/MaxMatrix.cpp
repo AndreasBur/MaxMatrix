@@ -762,7 +762,7 @@ void MaxMatrix::setSprite(int X, int Y, const spriteType Sprite)
  *****************************************************************************************************************************************************/
 stdReturnType MaxMatrix::setSpaceBetweenChars(byte sSpaceBetweenChars)
 {
-    if(sSpaceBetweenChars > 0) {
+    if(sSpaceBetweenChars >= 0) {
         SpaceBetweenChars = sSpaceBetweenChars;
         return E_OK;
     } else {

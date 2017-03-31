@@ -27,13 +27,25 @@
  *  LOCAL CONSTANT MACROS
  *****************************************************************************************************************************************************/
  /* standard type for configuration */
-#define STD_ON       1u
-#define STD_OFF      0u
+#define STD_ON					1u
+#define STD_OFF					0u
+
+#define STD_NULL_CHARACTER		'\0'
 
 
 /******************************************************************************************************************************************************
  *  LOCAL FUNCTION MACROS
  *****************************************************************************************************************************************************/
+#define writeBit(Var, Bit, Value) \
+(Var = (Var & ~(1 << Bit)) | (Value << Bit))
+
+/* read Bit Group */
+#define readBitGroup(Var, BitGroupMask, BitGroupPosition) \
+(Var = ((Var & ((uint8_t)BitGroupMask)) >> BitGroupPosition))
+
+/* write Bit Group */
+#define writeBitGroup(Var, BitGroupMask, BitGroupPosition, Value) \
+(Var = ((Var & ~((uint8_t)BitGroupMask)) | ((Value << BitGroupPosition) & ((uint8_t)BitGroupMask))))
 
 
 /******************************************************************************************************************************************************

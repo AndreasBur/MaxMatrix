@@ -32,7 +32,8 @@
 #define MAXMATRIX_NUMBER_OF_MODULES                                 4
 #define MAXMATRIX_USE_SPI                                           STD_OFF
 #define MAXMATRIX_USE_DIGITAL_WRITE_FAST                            STD_OFF
-
+#define MAXMATRIX_SPACE_BETWEEN_CHARS_INIT_VALUE                    1
+#define MAXMATRIX_INTENSITY_INIT_VALUE                              5
 
 /* MaxMatrix Parameter */
 #define MAXMATRIX_COLUMN_NUMBER_OF_MODULE                           8
@@ -46,6 +47,9 @@
 #define MAXMATRIX_ASCII_CHAR_MAX_WIDTH                              5
 #define MAXMATRIX_BUFFER_SIZE                                       MAXMATRIX_NUMBER_OF_COLUMNS
 
+/* MaxMatrix shift state */
+#define MAXMATRIX_SPRITE_SHIFT_STATE_READY                          0
+#define MAXMATRIX_SPRITE_SHIFT_STATE_RUNNING                        1
 
 /* Max7219 Register Address Table */
 #define MAX7219_REG_NO_OP_ADDRESS                                   0x00
@@ -112,8 +116,8 @@ typedef enum {
 /* Type which describes the orientation of the Matrix */
 /*
 typedef enum {
-	MAXMATRIX_MATRIX_ORIENTATION_0,
-	MAXMATRIX_MATRIX_ORIENTATION_180
+    MAXMATRIX_MATRIX_ORIENTATION_0,
+    MAXMATRIX_MATRIX_ORIENTATION_180
 } MaxMatrixMatrixOrientationType;
 */
 
@@ -266,75 +270,81 @@ class MaxMatrix
     byte MatrixBuffer[MAXMATRIX_BUFFER_SIZE];
     spriteType SpriteBuffer;
     byte SpriteShiftCounter;
+    byte SpaceBetweenChars;
     char* String;
 
-	// functions
+    // functions
     void reload();
     void charShiftTask();
     void stringShiftTask();
-    stdReturnType convertCharToSprite(char Char, spriteIndexType* SpriteIndex);
-	byte reverseByte(byte);
+    stdReturnType convertCharToSprite(char Char, spriteIndexType*);
+    byte reverseByte(byte);
 
 
-	// Low Level get functions
-	stdReturnType getColumnLL(byte, byte*);
-	stdReturnType getColumnLL(byte, byte, byte*);
-	stdReturnType getRowLL(byte, rowType*);
-	stdReturnType getRowLL(byte, byte, byte*);
+    // Low Level get functions
+    stdReturnType getColumnLL(byte, byte*);
+    stdReturnType getColumnLL(byte, byte, byte*);
+    stdReturnType getRowLL(byte, rowType);
+    stdReturnType getRowLL(byte, byte, byte*);
 
-	
-	// Low Level set functions
-	stdReturnType setColumnLL(byte, byte);
-	stdReturnType setColumnLL(byte, byte, byte);
-	stdReturnType setColumnOnAllModulesLL(byte, byte);
-	stdReturnType setRowLL(byte, const rowType*);
-	stdReturnType setRowLL(byte, byte, byte);
-	stdReturnType setRowOnAllModulesLL(byte, byte);
+    
+    // Low Level set functions
+    stdReturnType setColumnLL(byte, byte);
+    stdReturnType setColumnLL(byte, byte, byte);
+    stdReturnType setColumnOnAllModulesLL(byte, byte);
+    stdReturnType setRowLL(byte, const rowType);
+    stdReturnType setRowLL(byte, byte, byte);
+    stdReturnType setRowOnAllModulesLL(byte, byte);
 
 
-	// Low Level functions
-	void shiftLeftLL(bool = false, bool = true, bool = false);
-	void shiftRightLL(bool = false, bool = true, bool = false);
-	void shiftUpLL(bool = false, bool = false);
-	void shiftDownLL(bool = false, bool = false);
+    // Low Level functions
+    void shiftLeftLL(bool = false, bool = true, bool = false);
+    void shiftRightLL(bool = false, bool = true, bool = false);
+    void shiftUpLL(bool = false, bool = false);
+    void shiftDownLL(bool = false, bool = false);
 
   public:
     MaxMatrix(byte, byte, byte);
     ~MaxMatrix();
 
 
-	// get methods
+    // get methods
     MaxMatrixStateType getState() { return State; }
     byte getDataInPin() { return DataInPin; }
     byte getChipSelectPin() { return ChipSelectPin; }
     byte getClockPin() { return ClockPin; }
-	MaxMatrixModuleOrientationType getOrientation() { return Orientation; }
+    MaxMatrixModuleOrientationType getOrientation() { return Orientation; }
+    byte getSpaceBetweenChars() { return SpaceBetweenChars; }
 
-	stdReturnType getColumn(byte, byte*);
-	stdReturnType getColumn(byte, byte, byte*);
-	stdReturnType getRow(byte, rowType*);
-	stdReturnType getRow(byte, byte, byte*);
+    stdReturnType getColumn(byte, byte*);
+    stdReturnType getColumn(byte, byte, byte*);
+    stdReturnType getRow(byte, rowType);
+    stdReturnType getRow(byte, byte, byte*);
     stdReturnType getDot(byte, byte, bool*);
-	stdReturnType getSprite(spriteIndexType, spriteType*);
+    stdReturnType getSprite(spriteIndexType, spriteType*);
 
 
-	// set methods
-	stdReturnType setIntensity(byte);
-	stdReturnType setColumn(byte, byte);
-	stdReturnType setColumn(byte, byte, byte);
-	stdReturnType setRow(byte, const rowType*);
-	stdReturnType setRow(byte, byte, byte);
-	stdReturnType setDot(byte, byte, bool);
-	stdReturnType setChar(int, int, char);
-	stdReturnType setCharWithShift(char);
-	stdReturnType setText(const char*);
-	stdReturnType setTextWithShift(char*);
-	void setSprite(int, int, const spriteType*);
-	void setOrientation(MaxMatrixModuleOrientationType);
+    // set methods
+    void setDataInPin(byte sDataInPin) { DataInPin = sDataInPin; }
+    void setChipSelectPin(byte sChipSelectPin) { ChipSelectPin = sChipSelectPin; }
+    void setClockPin(byte sClockPin) { ClockPin = sClockPin; }
+    stdReturnType setIntensity(byte);
+    stdReturnType setColumn(byte, byte);
+    stdReturnType setColumn(byte, byte, byte);
+    stdReturnType setRow(byte, const rowType);
+    stdReturnType setRow(byte, byte, byte);
+    stdReturnType setDot(byte, byte, bool);
+    stdReturnType setChar(int, int, char);
+    stdReturnType setCharWithShift(char);
+    stdReturnType setText(const char*);
+    stdReturnType setTextWithShift(char*);
+    stdReturnType setSpaceBetweenChars(byte);
+    void setSprite(int, int, const spriteType);
+    void setModuleOrientation(MaxMatrixModuleOrientationType);
 
 
     // methods
-	void init();
+    void init();
     void shiftTask();
     void clear();
     void RegisterWrite(byte, byte);
