@@ -140,7 +140,7 @@ void rotateClockwise(uint8_t clk){
 	uint8_t rotCircle = 1;
 	if(((clk-3)%7 != 0) && ((clk-5)%7 != 0)){
 		rotCircle = 2;
-	}		
+	}
 	if((clk-4)%7 == 0){
 		rotCircle = 4;
 	}else{

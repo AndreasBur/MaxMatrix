@@ -1030,7 +1030,7 @@ stdReturnType MaxMatrix::getRowLL(byte Module, byte Row, byte* Value)
 	if(Module >= 0 && Module < MAXMATRIX_NUMBER_OF_MODULES && Row >= 0 && Row < MAXMATRIX_ROW_NUMBER_OF_MODULE) {
 		for(byte Column = 0; Column < MAXMATRIX_COLUMN_NUMBER_OF_MODULE; Column++)
 		{
-			bitWrite( *Value, MAXMATRIX_COLUMN_NUMBER_OF_MODULE - Column - 1,
+			bitWrite(*Value, MAXMATRIX_COLUMN_NUMBER_OF_MODULE - Column - 1,
 			bitRead(MatrixBuffer[Module * MAXMATRIX_COLUMN_NUMBER_OF_MODULE + Column], Row));
 		}
 		return E_OK;
@@ -1052,7 +1052,7 @@ stdReturnType MaxMatrix::getRowLL(byte Module, byte Row, byte* Value)
 stdReturnType MaxMatrix::getRowLL(byte Row, rowType* Value)
 {
 	for(byte Module = 0; Module < MAXMATRIX_NUMBER_OF_MODULES; Module++) 
-		if(E_NOT_OK == getRow(Module, Row, &(*Value)[Module])) return E_NOT_OK;
+		if(E_NOT_OK == getRowLL(Module, Row, &(*Value)[Module])) return E_NOT_OK;
 	return E_OK;
 } /* getRowLL */
 
