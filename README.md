@@ -7,4 +7,4 @@ Features:
 - scroll text over the matrix
 - set dot
 
-![Matrix Connection](doku/LED_Matrix.jpg)
+![Matrix Connection](docu/LED_Matrix.jpg)
