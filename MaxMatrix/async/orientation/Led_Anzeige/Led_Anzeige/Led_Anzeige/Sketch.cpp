@@ -69,7 +69,7 @@ typedef enum {
 char UartInput[UART_INPUT_LENGTH];                  // buffer for incoming UART data
 boolean UartInputComplete;                          // flag UART string is complete
 char MaxMatrixText[MAXMATRIX_MAX_TEXT_LENGTH];      // current Matrix Text
-bool Timer1Overflow;                                // flag Timer1 overflow
+volatile bool Timer1Overflow;                       // flag Timer1 overflow
 MaxMatrix Matrix(MAXMATRIX_DATA_PIN, MAXMATRIX_CS_PIN, MAXMATRIX_CLOCK_PIN);
 LedMatrixStateType State;
 
