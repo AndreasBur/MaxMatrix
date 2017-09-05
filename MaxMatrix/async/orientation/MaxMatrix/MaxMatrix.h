@@ -47,10 +47,6 @@
 #define MAXMATRIX_ASCII_CHAR_MAX_WIDTH                              5
 #define MAXMATRIX_BUFFER_SIZE                                       MAXMATRIX_NUMBER_OF_COLUMNS
 
-/* MaxMatrix shift state */
-#define MAXMATRIX_SPRITE_SHIFT_STATE_READY                          0
-#define MAXMATRIX_SPRITE_SHIFT_STATE_RUNNING                        1
-
 /* Max7219 Register Address Table */
 #define MAX7219_REG_NO_OP_ADDRESS                                   0x00
 #define MAX7219_REG_DIGIT0_ADDRESS                                  0x01
@@ -104,7 +100,7 @@
 /******************************************************************************************************************************************************
  *  GLOBAL DATA TYPES AND STRUCTURES
  *****************************************************************************************************************************************************/
-/* Type which describes the internal state of the MaxMatrix task */
+/* Type which describes the internal state of the MaxMatrix */
 typedef enum {
     MAXMATRIX_STATE_NONE,
     MAXMATRIX_STATE_INIT,
@@ -112,6 +108,12 @@ typedef enum {
     MAXMATRIX_STATE_STRING_SHIFT,
     MAXMATRIX_STATE_CHAR_SHIFT
 } MaxMatrixStateType;
+
+/* Type which describes the internal state of the MaxMatrix shift task */
+typedef enum {
+    MAXMATRIX_SPRITE_SHIFT_STATE_READY,
+    MAXMATRIX_SPRITE_SHIFT_STATE_RUNNING
+} MaxMatrixShiftStateType;
 
 /* Type which describes the orientation of the Matrix */
 /*
