@@ -75,7 +75,7 @@ MaxMatrix::~MaxMatrix()
 ******************************************************************************************************************************************************/
 /*! \brief          initialization of the Matrix hardware
  *  \details        this function initializes the IO hardware and the MAX7219 controller
- *                  all LEDs of the matrix will be cleared and intensity will be set
+ *                  all LEDs of the matrix will be cleared and intensity will be set to init value
  *  \return         -
  *****************************************************************************************************************************************************/
 void MaxMatrix::init()
@@ -727,7 +727,7 @@ void MaxMatrix::setSprite(int X, int Y, const spriteType Sprite)
     int SpriteWidth = Sprite[ASCII_TABLE_SPRITE_WIDTH];
     int SpriteHeight = Sprite[ASCII_TABLE_SPRITE_HEIGHT];
     
-    /* If height of Sprite = height of Matrix set whole column */
+    /* if height of Sprite = height of Matrix set whole column */
     if(SpriteHeight == MAXMATRIX_ROW_NUMBER_OF_MODULE && Y == 0) {
         for(int SpriteColumn = 0; SpriteColumn < SpriteWidth; SpriteColumn++)
         {
